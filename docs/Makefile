@@ -30,4 +30,4 @@ clean:
 	rm -rf $(BUILDDIR)/*
 
 livehtml:
-	sphinx-autobuild -b html $(SPHINXOPTS) $(BUILDDIR)/html
+	@$(SPHINXAUTOBUILD) -b html $(SPHINXOPTS) "$(SOURCEDIR)" "$(BUILDDIR)/html"
