@@ -1,0 +1,161 @@
+### Permissions and sharing
+
+As with the <a title="System Registration" href="http://agaveapi.co/system-registration/">Systems</a>, <a title="Application Management" href="http://agaveapi.co/application-management/">Apps</a>, and <a title="File Management" href="http://agaveapi.co/file-management/">Files</a> services, your jobs have their own set of access controls. Using these, you can share your job and its data with other Agave users. Job permissions are private by default. The permissions you give a job apply both to the job, its outputs, its metadata, and the permissions themselves. Thus, by sharing a job with another user, you share all aspects of that job.
+
+Job permissions are managed through a set of URLs consistent with the permissions URL elsewhere in the API.
+
+#### Granting
+
+```shell
+# General grant
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+     -H "Content-Type: application/json" \
+     -X POST --data-binary '{"permission":"READ","username":"$USERNAME"}' \
+     https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID/pems
+
+# Custom url grant
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+     -H "Content-Type: application/json" \
+     -X POST --data-binary '{"permission":"READ"}' \
+     https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID/pems/$USERNAME
+```
+```plaintext
+jobs-pems-update -u $USERNAME $JOB_ID
+```
+
+```json
+{
+  "username": "$USERNAME",
+  "internalUsername": null,
+  "permission": {
+    "read": true,
+    "write": false
+  },
+  "_links": {
+    "self": {
+      "href": "https://public.agaveapi.co/jobs/v2/$JOB_ID/pems/$USERNAME"
+    },
+    "parent": {
+      "href": "https://public.agaveapi.co/jobs/v2/$JOB_ID"
+    },
+    "profile": {
+      "href": "https://public.agaveapi.co/profiles/v2/$USERNAME"
+    }
+  }
+}
+```
+
+Granting permissions is simply a matter of issuing a `POST` with the desired permission object to the job's `pems` collection.
+
+The available permission values are listed in Table 2.
+
+<%= partial "includes/tables/70" %>
+
+<p class="table-caption">Table 2. Supported job permission values.</p>
+
+<alert class="alert-warning">Job permissions are distinct from file permissions. In many instances, your job output will be accessible via the Files and Jobs services simultaneously. Granting a user permissions a job output file through the Files services does not alter the accessibility of that file through the Jobs service. It is important, then, that you consider to whom you grant permissions, and the implications of that decision in all areas of your application.</alert>
+
+#### Listing
+
+```shell
+curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
+    'https://public.agaveapi.co/jobs/v2/$JOB_ID/pems/'
+```
+```plaintext
+jobs-pems-list -V $JOB_ID
+```
+
+```json
+[
+  {
+    "username": "$API_USERNAME",
+    "internalUsername": null,
+    "permission": {
+      "read": true,
+      "write": true
+    },
+    "_links": {
+      "self": {
+        "href": "https://public.agaveapi.co/jobs/v2/6608339759546166810-242ac114-0001-007/pems/$API_USERNAME"
+      },
+      "parent": {
+        "href": "https://public.agaveapi.co/jobs/v2/6608339759546166810-242ac114-0001-007"
+      },
+      "profile": {
+        "href": "https://public.agaveapi.co/profiles/v2/$API_USERNAME"
+      }
+    }
+  },
+  {
+    "username": "$USERNAME",
+    "internalUsername": null,
+    "permission": {
+      "read": true,
+      "write": false
+    },
+    "_links": {
+      "self": {
+        "href": "https://public.agaveapi.co/jobs/v2/$JOB_ID/pems/$USERNAME"
+      },
+      "parent": {
+        "href": "https://public.agaveapi.co/jobs/v2/$JOB_ID"
+      },
+      "profile": {
+        "href": "https://public.agaveapi.co/profiles/v2/$USERNAME"
+      }
+    }
+  }
+]
+```
+
+To find the permissions for a given job, make a GET on the job's `pems` collection. Here we see that both the job owner and the user we just granted permission to appear in the response.
+
+#### Updating
+
+```shell
+curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" \
+     -H "Content-Type: application/json" \
+     -X POST --data-binary {"permission":"READ_WRITE}" \
+     https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID/$USERNAME
+```
+```plaintext
+jobs-pems-update -u $USERNAME -p READ_WRITE $JOB_ID
+```
+
+```json
+{
+  "username": "$USERNAME",
+  "internalUsername": null,
+  "permission": {
+    "read": true,
+    "write": true
+  },
+  "_links": {
+    "self": {
+      "href": "https://public.agaveapi.co/jobs/v2/$JOB_ID/pems/$USERNAME"
+    },
+    "parent": {
+      "href": "https://public.agaveapi.co/jobs/v2/$JOB_ID"
+    },
+    "profile": {
+      "href": "https://public.agaveapi.co/profiles/v2/$USERNAME"
+    }
+  }
+}
+```
+
+Updating is exactly like granting permissions. Just POST to the same job's `pems` collection.
+
+
+#### Deleting
+
+```shell
+curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" \
+     -X DELETE \
+     https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID/$USERNAME
+```
+```plaintext
+jobs-pems-update -u $USERNAME -p '' $JOB_ID
+```
+
+To delete a permission, you can issue a DELETE request on the user permission resource we've been using, or update with an empty permission value.

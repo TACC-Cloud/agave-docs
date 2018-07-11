@@ -1,0 +1,36 @@
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>retryStrategy</td>
+			<td>NONE, IMMEDIATE, DELAYED, EXPONENTIAL</td>
+			<td>The retry strategy to employ. Default is IMMEDIATE</td>
+		</tr>
+		<tr>
+			<td>retryRate</td>
+			<td>int; 0:86400</td>
+			<td>The frequency with which attempts should be made to deliver the message.</td>
+		</tr>
+		<tr>
+			<td>retryLimit</td>
+			<td>int; 0:1440</td>
+			<td>The maximum attempts that should be made to delivery the message. </td>
+		</tr>
+		<tr>
+			<td>retryDelay</td>
+			<td>int; 0:86400</td>
+			<td>The initial delay between the initial delivery attempt and the first retry.</td>
+		</tr>
+		<tr>
+			<td>saveOnFailure</td>
+			<td>boolean</td>
+			<td>Whether the failed message should be persisted if unable to be delivered within the retryLimit</td>
+		</tr>
+	</tbody>
+</table>

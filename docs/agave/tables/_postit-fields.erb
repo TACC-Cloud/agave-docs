@@ -1,0 +1,31 @@
+<table>
+ 	<thead>
+ 		<tr>
+ 			<th>Attribute</th>
+ 			<th>Type</th>
+ 			<th>Description</th>
+ 		</tr>
+ 	</thead>
+ 	<tbody>
+ 		<tr>
+ 			<td>maxUses</td>
+ 			<td>JSON object</td>
+ 			<td>The maximum number of times the postit may be redeemed. Defaults to 1.</td>
+ 		</tr>
+ 		<tr>
+ 			<td>maxLifetime</td>
+ 			<td>string</td>
+ 			<td>The maximum lifetime in seconds over which the postit may be redeemed. Defaults to 1 month.</td>
+ 		</tr>
+ 		<tr>
+ 			<td>method</td>
+ 			<td>GET,POST,PUT,DELETE</td>
+ 			<td>The HTTP method to be used to request the target resource when redeeming a postit. Defaults to GET</td>
+ 		</tr>
+ 		<tr>
+            <td>noauth</td>
+            <td>boolean</td>
+            <td>Whether the request to the target resource should be authenticated. Defaults to true.</td>
+        </tr>
+ 	</tbody>
+ </table>

@@ -1,0 +1,56 @@
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>name</td>
+			<td>string</td>
+			<td>Arbitrary name for the queue. This will be used in the job submission process, so it should line up with the name of an actual queue on the execution system.</td>
+		</tr>
+		<tr>
+			<td>maxJobs</td>
+			<td>integer</td>
+			<td>Maximum number of jobs that can be queued or running within this queue at a given time. Defaults to 10. -1 for no limit</td>
+		</tr>
+		<tr>
+			<td>maxUserJobs</td>
+			<td>integer</td>
+			<td>Maximum number of jobs that can be queued or running by any single user within this queue at a given time. Defaults to 10. -1 for no limit</td>
+		</tr>
+		<tr>
+			<td>maxNodes</td>
+			<td>integer</td>
+			<td>Maximum number of nodes that can be requested for any job in this queue. -1 for no limit</td>
+		</tr>
+		<tr>
+			<td>maxProcessorsPerNode</td>
+			<td>integer</td>
+			<td>Maximum number of processors per node that can be requested for any job in this queue. -1 for no limit</td>
+		</tr>
+		<tr>
+			<td>maxMemoryPerNode</td>
+			<td>string</td>
+			<td>Maximum memory per node for jobs submitted to this queue in ###.#[E|P|T|G]B format.</td>
+		</tr>
+		<tr>
+			<td>maxRequestedTime</td>
+			<td>string</td>
+			<td>Maximum run time for any job in this queue given in hh:mm:ss format.</td>
+		</tr>
+		<tr>
+			<td>customDirectives</td>
+			<td>string</td>
+			<td>Arbitrary text that will be appended to the end of the scheduler directives in a batch submit script. This could include a project number, system-specific directives, etc.</td>
+		</tr>
+		<tr>
+			<td>default</td>
+			<td>boolean</td>
+			<td>True if this is the default queue for the system, false otherwise.</td>
+		</tr>
+	</tbody>
+</table>

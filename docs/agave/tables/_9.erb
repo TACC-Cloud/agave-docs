@@ -1,0 +1,30 @@
+<table>
+	<thead>
+		<tr>
+			<th>Request body parameter</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>grant_type</td>
+			<td><i>Required</i>. As defined in the OAuth 2.0 specification, this field must contain the value  "authorization_code".</td>
+		</tr>
+		<tr>
+			<td>code</td>
+			<td><i>Required</i>. The authorization code returned from the initial request to the Account's <code>/authorize</code> endpoint. <br/></td>
+		</tr>
+		<tr>
+			<td>redirect_uri</td>
+			<td><i>Required</i>. This parameter is used for validation only (there is no actual redirection). The value of this parameter must <i>exactly</i> match the value of <code>redirect_uri</code> supplied when requesting the authorization code.</td>
+		</tr>
+		<tr>
+			<td>client_id</td>
+			<td><i>Required</i>. The application's client ID, obtained when the client application was registered with Agave (see <a href="/documentation/tutorials/client-registration/">Client Registration</a>).</td>
+		</tr>
+		<tr>
+			<td>client_secret</td>
+			<td><i>Required</i>. The application's client secret key, obtained when the client application was registered with Agave (see <a href="/documentation/tutorials/client-registration/">Client Registration</a>).</td>
+		</tr>
+	</tbody>
+</table>

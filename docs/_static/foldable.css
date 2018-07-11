@@ -1,0 +1,5 @@
+.foldable .header {
+    display: block;
+    clear: both;
+    cursor: pointer;
+}

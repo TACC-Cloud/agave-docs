@@ -1,0 +1,175 @@
+# User Guide
+
+Through the Agave REST API your applications can retrieve and manage all aspects of your digital lab. The base address of the API varies from tenant to tenant, however, by logging in to the developer portal, all content will be customized for your account. The base structure of the API is `https://public.tenants.agaveapi.co/${resource}/v2`. Where `${resource}` represents a particular API endpoint. While your tenant may have one or more boutique APIs providing domain-specific services, all tenants have a common set of APIs <a title="Live Documentation" href="/live-docs/">endpoints</a>, each with their own unique path.
+
+Several endpoints are open and you do not need any special permissions to access them. To access private data through the Agave API, such as user profiles, data, apps, jobs, an application must get the user’s permission to access the data. <a title="Authorization">Authorization</a> is via the Agave Auth service at `https://public.tenants.agaveapi.co/token`.
+
+## Conventions  
+
+Throughout the documentation you will regularly encounter the following variables. These represent user-specific values that should be replaced when attempting any of the calls using your account. Once you log into this site, these values will be replaced with values appropriate for you to use when copying and pasting the examples on your own.
+
+<%= partial "includes/tables/4" %>
+
+```json
+{
+    "active": true,
+    "created": "2014-09-04T16:59:33.000-05:00",
+    "frequency": 60,
+    "id": "0001409867973952-5056a550b8-0001-014",
+    "internalUsername": null,
+    "lastCheck": [
+      {
+        "created": "2014-10-02T13:03:25.000-05:00",
+        "id": "0001412273000497-5056a550b8-0001-015",
+        "message": null,
+        "result": "PASSED",
+        "type": "STORAGE"
+      },
+      {
+        "created": "2014-10-02T13:03:25.000-05:00",
+        "id": "0001411825368981-5056a550b8-0001-015",
+        "message": null,
+        "result": "FAILED",
+        "type": "LOGIN"
+      }
+    ],
+    "lastSuccess": "2014-10-02T11:03:13.000-05:00",
+    "lastUpdated": "2014-10-02T13:03:25.000-05:00",
+    "nextUpdate": "2014-10-02T14:03:15.000-05:00",
+    "owner": "systest",
+    "target": "demo.storage.example.com",
+    "updateSystemStatus": false,
+    "_links": {
+        "checks": {
+            "href": "https://public.tenants.agaveapi.co/monitor/v2/0001409867973952-5056a550b8-0001-014/checks"
+        },
+        "notifications": {
+            "href": "https://public.tenants.agaveapi.co/notifications/v2/?associatedUuid=0001409867973952-5056a550b8-0001-014"
+        },
+        "owner": {
+            "href": "https://public.tenants.agaveapi.co/profiles/v2/systest"
+        },
+        "self": {
+            "href": "https://public.tenants.agaveapi.co/monitor/v2/0001409867973952-5056a550b8-0001-014"
+        },
+        "system": {
+            "href": "https://public.tenants.agaveapi.co/systems/v2/demo.storage.example.com"
+        }
+    }
+}
+```
+
+When describing the JSON objects passed back and forth with the APIs, Javascript dot notation will be used to refer to individual properties. For example, consider the following JSON object.
+
+* `active` refers to the top level `active` attribute in the response object. 
+* `lastCheck.[].result` generically refers to the result attribute contained within any of the objects contained in the `lastCheck` array. 
+* `lastCheck.[0].result` specifically refers to the result attribute contained within the first object in the `lastCheck` array. 
+* `_links.self.href` refers to the href attribute in the checks object within the _links object. 
+
+### Versioning  
+
+The current major version of Agave is given in the URI immediately following the API resource name. For example, if the endpoint is `https://public.tenants.agaveapi.co/jobs/v2/`, the API version would be `v2`. The current major version of agave is v2.
+
+### Slugs  
+
+In certain situations, usually where file system paths and names are involved in some way, Agave will generate slugify object names to make them safe to use. Slugs will be created on the fly by applying the following rules 
+1. Lowercase the string
+2. Replace spaces with a dash
+3. Remove any special characters and punctuation that might require encoding in the URL. Allowed characters are alphanumeric characters, numbers, underscores, and periods.
+
+### Secure communication  
+
+Agave uses SSL to secure communication with the clients. If HTTPS is not specified in the request, the request will be redirected to a secure channel.
+
+### Rate limiting  
+
+To make the API fast for everybody, rate limits apply. Unsigned requests are processed at the lowest rate limit. Signed requests with a valid access token benefit from higher rate limits — this is true even if endpoint doesn’t require an access token to be passed in the call.
+
+## Requests  
+
+The Agave API is based on <a title="REST" href="http://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank">REST</a> principles: data resources are accessed via standard HTTPS requests in UTF-8 format to an API endpoint. Where possible, the API strives to use appropriate HTTP verbs for each action
+
+<%= partial "includes/tables/3" %>
+
+### Standard query parameters  
+
+Several URL query parameters are common across all services. The following table lists them for reference
+
+<%= partial "includes/tables/77" %>
+
+## Responses  
+
+All data is received and returned as a JSON object. The <a title="Live Documentation" href="/live-docs/">Live Docs</a> provide a description of all the retrievable objects.
+
+### Response Details  
+
+```json
+{
+    "status": "error",
+    "message": "Permission denied. You do not have permission to view this system",
+    "version": "2.2.0-r8228",
+    "result": {}
+}
+```
+
+Apart from the response code, all responses from Agave are in the form of a json object. The object takes the following form.
+
+<%= partial "includes/tables/2" %>
+
+Here, for example, is the response that occurs when trying to fetch information for system to which you do not have access:
+
+### Naked Responses  
+
+In situations where you do not care to parse the wrapper for the raw response data, you may request a *naked* response from the API by adding `naked=true` in to the request URL. This will return just the value of the `result` attribute in the response wrapper.
+
+### Formatting  
+
+By default, all responses are serialized JSON. To receive pre-formatted JSON, add `pretty=true` to any query string.
+
+### Pagination  
+
+All resource collections support a way of paging the dataset, taking an `offset` and `limit` as query parameters:
+
+```shell
+$ curl -sk -H "Authorization: Bearer ${API_KEY}" "https://public.tenants.agaveapi.co/jobs/v2/?offset=50&amp;limit=25"
+```
+
+Note that offset numbering is zero-based and that omitting the offset parameter will return the first X elements. Unless specified, all result sets are paginated in groups of 100. Check the documentation for the specific endpoint to see specific information.
+
+### Timestamps  
+
+Timestamps are returned in <a href="http://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601</a> format as <a title="Offset to Coordinated Universal Time" href="http://en.wikipedia.org/wiki/Offset_to_Coordinated_Universal_Time" target="_blank">Coordinated Universal Time</a>(UTC) with zero offset: `YYYY-MM-DDTHH:MM:SSZ`. If the time is imprecise (for example, the date/time of an album release), an additional field will show the precision; see for example, `created` in an <a title="Job object" href="http://agaveapi.co/live-docs/#!/jobs/list_get_0" target="_blank">Job object</a>.
+
+### Status Codes  
+
+The API uses the following response status codes, as defined in the <a href="https://www.ietf.org/rfc/rfc2616.txt" target="_blank">RFC 2616</a>:
+<%= partial "includes/tables/1" %>
+
+### CORS  
+
+Many modern applications choose to implement client-server communication exclusively in Javascript. For this reason, Agave provides <a href="http://en.wikipedia.org/wiki/Cross-origin_resource_sharing" title="CORS" target="_blank">cross-origin resource sharing (CORS)</a> support so AJAX requests from a web browser are not constrained by cross-origin requests and can safely make GET, PUT, POST, and DELETE requests to the API.
+
+### Hypermedia  
+
+```json
+{
+    "associationIds": [],
+    "created": "2013-11-16T11:25:38.900-06:00",
+    "internalUsername": null,
+    "lastUpdated": "2013-11-16T11:25:38.900-06:00",
+    "name": "color",
+    "owner": "nryan",
+    "uuid": "0001384622738900-5056a550b8-0001-012",
+    "value": "red",
+    "_links": {
+        "self": {
+            "href": "https://public.tenants.agaveapi.co/meta/v2/data/0001384622738900-5056a550b8-0001-012"
+        },
+        "owner": {
+            "href": "https://public.tenants.agaveapi.co/profiles/v2/nryan"
+        }
+    }
+}
+```
+
+Agave strives to be a fully descriptive hypermedia API. Given any endpoint, you should be able to walk the API through the links provided in the `_links` object in each resource representation. The following user metadata object contains two referenced objects. The first, `self` is common to all objects, and contains the URL of that object. The second, `owner` contains the URL to the profile of the user who created the object.

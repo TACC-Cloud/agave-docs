@@ -1,0 +1,204 @@
+## Introduction  
+
+Apps have fine grained permissions similar to those found in the <a title="Job Management" href="/documentation/tutorials/job-management-tutorial/">Jobs</a> and <a title="File Management" href="/documentation/tutorials/data-management-tutorial/">Files</a> services. Using these, you can share your app other Agave users. App permissions are private by default, so when you first POST your app to the Apps service, you are the only one who can see it. You may share your app with other users by granting them varying degrees of permissions. The full list of app permission values are listed in the following table.
+
+<%= partial "includes/tables/65" %>
+
+App permissions are distinct from all other roles and permissions and do not have implications outside the Apps service. This means that if you want to allow someone to run a job using your app, it is not sufficient to grant them READ_EXECUTE permissions on your app. They must also have an appropriate user role on the execution system on which the app will run. Similarly, if you do not have the right to publish on the `executionSystem` or access the `deploymentPath` on the `deploymentSystem` in your app description, you will not be able to publish your app.
+
+### Listing permissions  
+
+App permissions are managed through a set of URLs consistent with the permission operations elsewhere in the API. To query for a user's permission for an app, perform a GET on the user's unique app permissions url.
+
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/apps/v2/$APP_ID/pems/$USERNAME
+```
+
+
+```plaintext
+apps-pems-list -v -u $USERNAME $APP_ID
+```
+
+
+The response from the service will be a JSON object representing the user permission. If the user does not have a permission for that app, the permission value will be NONE. By default, only you have permission to your private apps. Public apps will return a single permission for the <em>public</em> meta user rather than return a permissions for every user.
+
+```javascript
+{
+    "_links": {
+        "app": {
+            "href": "https://public.tenants.agaveapi.co/apps/v2/$APP_ID"
+        },
+        "profile": {
+            "href": "https://public.tenants.agaveapi.co/profiles/v2/systest"
+        },
+        "self": {
+            "href": "https://public.tenants.agaveapi.co/apps/v2/$APP_ID/pems/systest"
+        }
+    },
+    "permission": {
+        "execute": true,
+        "read": true,
+        "write": true
+    },
+    "username": "systest"
+}
+```
+
+You can also query for all permissions granted on a specific app by making a GET request on the app's permission collection.
+
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/apps/v2/$APP_ID/pems
+```
+
+
+```plaintext
+apps-pems-list -v $APP_ID
+```
+
+
+This time the service will respond with a JSON array of permission objects.
+
+```javascript
+[  
+   {  
+      "_links":{  
+         "app":{  
+            "href":"https://public.tenants.agaveapi.co/apps/v2/$APP_ID"
+         },
+         "profile":{  
+            "href":"https://public.tenants.agaveapi.co/profiles/v2/systest"
+         },
+         "self":{  
+            "href":"https://public.tenants.agaveapi.co/apps/v2/$APP_ID/pems/systest"
+         }
+      },
+      "permission":{  
+         "execute":true,
+         "read":true,
+         "write":true
+      },
+      "username":"systest"
+   }
+]
+```
+
+### Adding and updating permissions  
+
+Setting permissions is done by posting a JSON object containing a permission and username. Alternatively, you can POST just the permission and append the username to the URL.
+
+```shell
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "username=bgibson&amp;permission=READ" https://public.tenants.agaveapi.co/apps/v2/$APP_ID/pems
+```
+Abbreviated POST data to grant permission to a single user
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "permission=READ" https://public.tenants.agaveapi.co/apps/v2/$APP_ID/pems/bgibson
+```
+
+
+```plaintext
+apps-pems-update -v -u bgibson -p READ $APP_ID
+```
+
+
+[/tabgroup]
+
+The response will contain a JSON object representing the permission that was just created.
+
+```javascript
+{
+    "_links": {
+        "app": {
+            "href": "https://public.tenants.agaveapi.co/apps/v2/$APP_ID"
+        },
+        "profile": {
+            "href": "https://public.tenants.agaveapi.co/profiles/v2/bgibson"
+        },
+        "self": {
+            "href": "https://public.tenants.agaveapi.co/apps/v2/$APP_ID/pems/bgibson"
+        }
+    },
+    "permission": {
+        "execute": false,
+        "read": true,
+        "write": false
+    },
+    "username": "bgibson"
+}
+```
+
+### Deleting permissions  
+
+Permissions can be deleted on a user-by-user basis, or all at once. To delete an individual user permission, make a DELETE request on the user's app permission URL.
+
+[oldy]
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://public.tenants.agaveapi.co/apps/v2/$APP_ID/bgibson
+```
+
+
+```plaintext
+apps-pems-delete -u bgibson $APP_ID
+```
+
+
+[/tabgroup]
+
+The response will be an empty result object.
+
+You can accomplish the same thing by updating the user permission to an empty value or <em>NONE</em>.
+
+```shell
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "username=bgibson&amp;permission=NONE" https://public.tenants.agaveapi.co/apps/v2/$APP_ID/pems
+```
+Delete permission for a single user by updating with an empty permission value
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "permission=" https://public.tenants.agaveapi.co/apps/v2/$APP_ID/pems/bgibson
+```
+
+
+```plaintext
+apps-pems-update -v -u bgibson $APP_ID
+```
+
+
+Since this is an update operation, the resulting JSON permission object will be returned showing the user has no permissions to the app anymore.
+
+```javascript
+{
+    "_links": {
+        "app": {
+            "href": "https://public.tenants.agaveapi.co/apps/v2/$APP_ID"
+        },
+        "profile": {
+            "href": "https://public.tenants.agaveapi.co/profiles/v2/bgibson"
+        },
+        "self": {
+            "href": "https://public.tenants.agaveapi.co/apps/v2/$APP_ID/pems/bgibson"
+        }
+    },
+    "permission": {
+        "execute": false,
+        "read": false,
+        "write": false
+    },
+    "username": "bgibson"
+}
+```
+
+To delete all permissions for an app, make a DELETE request on the app's permissions collection.
+
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://public.tenants.agaveapi.co/apps/v2/$APP_ID
+```
+
+
+```plaintext
+apps-pems-delete $APP_ID
+```
+
+
+[/tabgroup]
+
+The response will be an empty result object.

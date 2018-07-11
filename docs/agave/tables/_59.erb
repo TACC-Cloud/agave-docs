@@ -1,0 +1,51 @@
+<table>
+	<thead>
+		<tr>
+			<th>Attribute</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>credential</td>
+			<td>string</td>
+			<td>The credential used to authenticate to the remote system. Depending on the authentication protocol of the remote system, this could be an OAuth Token, X.509 certificate.</td>
+		</tr>
+		<tr>
+			<td>internalUsername</td>
+			<td>string</td>
+			<td>The username of the internal user associated with this credential.</td>
+		</tr>
+		<tr>
+			<td>password</td>
+			<td>string</td>
+			<td>The password on the remote system used to authenticate.</td>
+		</tr>
+		<tr>
+			<td>privateKey</td>
+			<td>string</td>
+			<td>The private ssh key used to authenticate to the remote system.</td>
+		</tr>
+		<tr>
+			<td>publicKey</td>
+			<td>string</td>
+			<td>The public ssh key used to authenticate to the remote system.</td>
+		</tr>
+		<tr>
+			<td>server</td>
+			<td>JSON object</td>
+			<td>A JSON object describing the authentication server from which a valid credential may be obtained. Currently only  auth type X509 supports this attribute.</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>APIKEYS, LOCAL, PAM, PASSWORD, SSHKEYS, or X509</td>
+			<td><b>Required:</b> The path on the remote system where apps will be stored if this system is used as the default public storage system.</td>
+		</tr>
+		<tr>
+			<td>username</td>
+			<td>string</td>
+			<td>The remote username used to authenticate.</td>
+		</tr>
+	</tbody>
+</table>

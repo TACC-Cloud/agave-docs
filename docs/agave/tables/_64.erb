@@ -1,0 +1,99 @@
+<table>
+	<thead>
+		<tr>
+			<th>Variable</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>AGAVE_JOB_APP_ID</td>
+			<td>The <span class="code">appId</span> for which the job was requested.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_ARCHIVE</td>
+			<td>Binary boolean value indicating whether the current job will be archived after the wrapper template exits.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_ARCHIVE_SYSTEM</td>
+			<td>The system to which the job will be archived after the wrapper template exits.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_ARCHIVE_URL
+</td>
+			<td>The fully qualified URL to the archive folder where the job output will be copied if archiving is enabled, or the URL of the output listing </td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_ARCHIVE_PATH</td>
+			<td>The path on the <span class="code">archiveSystem</span> where the job output will be copied if archiving is enabled.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_BATCH_QUEUE</td>
+			<td>The batch queue on the <span class="code">AGAVE_JOB_EXECUTION_SYSTEM</span> to which the job was submitted.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_EXECUTION_SYSTEM</td>
+			<td>The Agave execution system id where this job is running.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_ID</td>
+			<td>The unique identifier of the job.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_MEMORY_PER_NODE</td>
+			<td>The amount of memory per node requested at submit time.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_NAME</td>
+			<td>The slugified version of the name of the job. See the section on <a href="#slugs">Conventions</a> for more information about slugs.</td>
+		</tr>
+		<tr>
+            <td>AGAVE_JOB_NAME_RAW</td>
+            <td>The name of the job as given at submit time.</td>
+        </tr>
+		<tr>
+			<td>AGAVE_JOB_NODE_COUNT</td>
+			<td>The number of nodes requested at submit time.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_OWNER</td>
+			<td>The username of the job owner.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_PROCESSORS_PER_NODE</td>
+			<td>The number of cores requested at submit time.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_SUBMIT_TIME</td>
+			<td>The time at which the job was submitted in ISO-8601 format.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_TENANT</td>
+			<td>The id of the tenant to which the job was submitted.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_ARCHIVE_URL</td>
+			<td>The Agave url to which the job will be archived after the job completes.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_CALLBACK_RUNNING</td>
+			<td>Represents a call back to the API stating the job has started.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_CALLBACK_CLEANING_UP</td>
+			<td>Represents a call back to the API stating the job is cleaning up.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_CALLBACK_ALIVE</td>
+			<td>Represents a call back to the API stating the job is still alive. This will essentially update the timestamp on the job and add an entry to the job's history record.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_CALLBACK_NOTIFICATION</td>
+			<td>Represents a call back to the API telling it to forward a notification to the registered endpoint for that job. If no notification is registered, this will be ignored.</td>
+		</tr>
+		<tr>
+			<td>AGAVE_JOB_CALLBACK_FAILURE</td>
+			<td>Represents a call back to the API stating the job failed. Use this with caution as it will tell the API the job failed even if it has not yet completed. Upon receiving this callback, Agave will abandon the job and skip any archiving that may have been requested. Think of this as <span class="code">kill -9</span> for the job lifecycle.</td>
+		</tr>
+	</tbody>
+</table>

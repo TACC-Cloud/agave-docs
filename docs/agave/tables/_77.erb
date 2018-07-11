@@ -1,0 +1,36 @@
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Values</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>offset</td>
+			<td>integer (zero-based)</td>
+			<td>Skips the first <span class="code">offset<span> results in the response.</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>integer</td>
+			<td>Limits the number of responses to, at most, this number.</td>
+		</tr>
+		<tr>
+			<td>pretty</td>
+			<td>boolean</td>
+			<td>If true, pretty prints the response. Default false.</td>
+		</tr>
+		<tr>
+			<td>naked</td>
+			<td>boolean</td>
+			<td>If true, returns only the value of the <span class="code">result</span> attribute in the standard response wrapper.</td>
+		</tr>
+		<tr>
+            <td>filter</td>
+            <td>string</td>
+            <td>A comma-delimited list of fields to return for each object in the response. Each field may be referenced using JSON notation. See the <a href="#custom-response">Response Customization</a> for more info.</td>
+        </tr>
+	</tbody>
+</table>

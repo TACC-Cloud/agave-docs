@@ -1,0 +1,90 @@
+<table id="notification-macros-systems" class="notification-macros hidden">
+	<thead>
+		<tr>
+			<th>Variable</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>UUID</td>
+			<td>The UUID of the system</td>
+		</tr>
+		<tr>
+			<td>EVENT</td>
+			<td>The event which occurred</td>
+		</tr>
+		<tr>
+			<td>SYSTEM_ID</td>
+			<td>ID of the system (ex. ssh.execute.example.com)</td>
+		</tr>
+		<tr>
+			<td>STATUS</td>
+			<td>Current status of the system: UP, DOWN, UNKNOWN</td>
+		</tr>
+		<tr>
+			<td>PUBLIC</td>
+			<td>True if the system is publicly available, false otherwise</td>
+		</tr>
+		<tr>
+			<td>GLOBAL_DEFAULT</td>
+			<td>True if the system is one of the two default publicly available systems, false otherwise</td>
+		</tr>
+		<tr>
+			<td>LAST_UPDATED</td>
+			<td>The last time this system was updated in ISO8601 format</td>
+		</tr>
+		<tr>
+			<td>STORAGE_PROTOCOL</td>
+			<td>The protocol used to move data to and from this system</td>
+		</tr>
+		<tr>
+			<td>STORAGE_HOST</td>
+			<td>The storage host for this sytem</td>
+		</tr>
+		<tr>
+			<td>STORAGE_PORT</td>
+			<td>The storage port for this system</td>
+		</tr>
+		<tr>
+			<td>STORAGE_RESOURCE</td>
+			<td>The system resource for iRODS systems</td>
+		</tr>
+		<tr>
+			<td>STORAGE_ZONE</td>
+			<td>The system zone for iRODS systems</td>
+		</tr>
+		<tr>
+            <td>STORAGE_CONTAINER</td>
+            <td>The the object store bucket in which the <span class="code">rootDir</span> resides. </td>
+        </tr>
+		<tr>
+			<td>STORAGE_ROOT_DIR</td>
+			<td>The virtual root directory exposed on this system</td>
+		</tr>
+		<tr>
+			<td>STORAGE_HOME_DIR</td>
+			<td>The home directory on this system relative to the STORAGE_ROOT_DIR</td>
+		</tr>
+		<tr>
+			<td>STORAGE_AUTH_TYPE</td>
+			<td>The storage authentication method for this system</td>
+		</tr>
+		<tr>
+			<td>LOGIN_PROTOCOL</td>
+			<td>The protocol used to establish a session with this system (eg SSH, GSISSH, etc)</td>
+		</tr>
+		<tr>
+			<td>LOGIN_HOST</td>
+			<td>The login host for this system</td>
+		</tr>
+		<tr>
+			<td>LOGIN_PORT</td>
+			<td>The login port for this system</td>
+		</tr>
+		<tr>
+			<td>LOGIN_AUTH_TYPE</td>
+			<td>The login authentication method for this system</td>
+		</tr>
+	</tbody>
+</table>

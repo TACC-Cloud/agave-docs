@@ -1,0 +1,81 @@
+<table>
+	<thead>
+		<tr>
+			<th>Operator</th>
+			<th>Values</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>eq</td>
+			<td>mixed</td>
+			<td>Matches values equal to the given search value. All comparisons are case sensitive. This cannot be used for complex object comparison.</td>
+		</tr>
+		<tr>
+			<td>on</td>
+			<td>datestring</td>
+			<td>Matches dates falling on the given datestring. Regardless of the precision given in the datestring, the search will look for matches from midnight to midnight on the resovled date.</td>
+		</tr>
+		<tr>
+			<td>neq</td>
+			<td>mixed</td>
+			<td>Matches values <b>not</b> equal to the given search value. All comparisons are case sensitive. This cannot be used for complex object comparison.</td>
+		</tr>
+		<tr>
+			<td>lt</td>
+			<td>mixed</td>
+			<td>Matches values less than the given search value. </td>
+		</tr>
+		<tr>
+			<td>before</td>
+			<td>datestring</td>
+			<td>Matches dates falling before the given datestring. Single second precision is supported.</td>
+		</tr>
+		<tr>
+			<td>lte</td>
+			<td>mixed</td>
+			<td>Matches values less than or equal to the given search value. </td>
+		</tr>
+		<tr>
+			<td>gt</td>
+			<td>mixed</td>
+			<td>Matches values greater than the given search value. </td>
+		</tr>
+		<tr>
+			<td>after</td>
+			<td>datestring</td>
+			<td>Matches values after the given datestring. </td>
+		</tr>
+		<tr>
+			<td>gte</td>
+			<td>mixed</td>
+			<td>Matches values greater than or equal to the given search value. </td>
+		</tr>
+		<tr>
+			<td>in</td>
+			<td>comma-separated list</td>
+			<td>Matches values in the given comma-separated list. This is equivalent to applying the <span class="code">like</span> operator to each comma-separated value .</td>
+		</tr>
+		<tr>
+			<td>nin</td>
+			<td>comma-separated list</td>
+			<td>Matches values <b>not</b> in the given comma-separated list. This is equivalent to applying the <span class="code">nlike</span> operator to each comma-separated value .</td>
+		</tr>
+		<tr>
+			<td>like</td>
+			<td>string</td>
+			<td>Matches values similar to the given search term. Wildcards (*) may be used to perform partial matches.</td>
+		</tr>
+		<tr>
+			<td>nlike</td>
+			<td>string</td>
+			<td>Matches values different from the given search term. Wildcards (*) may be used to perform partial matches.</td>
+		</tr>
+		<tr>
+			<td>between</td>
+			<td>comma-separated datestring </td>
+			<td>Matches dates falling within the given range. Single second precision is supported at either end of the range.</td>
+		</tr>
+	</tbody>
+</table>

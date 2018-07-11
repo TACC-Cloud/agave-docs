@@ -1,0 +1,26 @@
+<table>
+	<thead>
+		<tr>
+			<th><code>executionType</code></th>
+			<th><code>scheduler</code></th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>HPC</td>
+			<td>LSF, LOADLEVELER, PBS, SGE, COBALT, TORQUE, MOAB, SLURM</td>
+			<td>Jobs will be submitted to the local scheduler using the appropriate scheduler commands. Systems with this execution type will not allow forked jobs.</td>
+		</tr>
+		<tr>
+			<td>CONDOR</td>
+			<td>CONDOR</td>
+			<td>Jobs will be submitted to the condor scheduler running locally on the remote system. Agave will not do any installation for you, so the setup and administration of the Condor server is up to you.</td>
+		</tr>
+		<tr>
+			<td>CLI</td>
+			<td>FORK</td>
+			<td>Jobs will be started as a forked process and monitored using the system process id.</td>
+		</tr>
+	</tbody>
+</table>

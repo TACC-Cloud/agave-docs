@@ -1,0 +1,111 @@
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>String</td>
+			<td><em>Required</em>: The textual id of this parameter. This value must be unique within all parameters and parameters for an app description.</td>
+		</tr>
+		<tr>
+			<td>details</td>
+			<td>JSON object</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>details.argument</td>
+			<td>string</td>
+			<td>A command line argument or flag to be prepended before the parameter value.</td>
+		</tr>
+		<tr>
+			<td>details.description</td>
+			<td>string</td>
+			<td>Human-readable description of the parameter. Often used to create contextual help in automatically generated UI.</td>
+		</tr>
+		<tr>
+			<td>details.label</td>
+			<td>string</td>
+			<td>Human-readable label for the parameter. Often implemented as text label next to the field in automatically generated UI.</td>
+		</tr>
+		<tr>
+			<td>details.showArgument</td>
+			<td>boolean</td>
+			<td>Whether to include the argument value for this parameter when performing the template variable replacement during job submission. If true, the <code>details.argument</code> value will be prepended, without spaces, to the actual parameter value(s).</td>
+		</tr>
+		<tr>
+			<td>details.repeatArgument</td>
+			<td>boolean</td>
+			<td>When multiple values are provided for this input, this attribute determines whether to include the argument value  before each user-supplied value when performing the template variable replacement during job submission. The <code>details.showArgument</code> value must be <i>true</i> for this value to be applied.</td>
+		</tr>
+		<tr>
+			<td>semantics</td>
+			<td>JSON object</td>
+			<td>Describes the semantic definition of this parameters and the filetypes it represents. Multiple ontologies and values are supported.</td>
+		</tr>
+		<tr>
+			<td>semantics.minCardinality</td>
+			<td>integer</td>
+			<td>Minimum number of values this parameter must have. </td>
+		</tr>
+		<tr>
+			<td>semantics.maxCardinality</td>
+			<td>integer</td>
+			<td>Maximum number of values this parameter can have. A null value or value of -1 indicates no limit.</td>
+		</tr>
+		<tr>
+			<td>semantics.ontology</td>
+			<td>JSON array</td>
+			<td>List of ontology terms (or URIs pointing to ontology terms) applicable to the parameter. We recommend at least specifying an <a href="http://www.schemacentral.com/sc/xsd/s-datatypes.xsd.html">XSL Schema Simple Type</a>.</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>JSON object</td>
+			<td>A description of the anticipated value and the situations when it is required.</td>
+		</tr>
+		<tr>
+			<td>value.default</td>
+			<td>string, JSON array</td>
+			<td>The default value for this parameter. This value is optional except when <code>value.required</code> is <i>true</i> and <code>value.visible</code> is <i>false</i>. If the <code>value.type</code> is of this parameter is <i>enumeration</i>, this value must be one of the specified <code>value.enumValues</code>. If the <code>value.type</code> is of this parameter is <i>bool</i> or <i>flag</i>, then only boolean values are accepted here.</td>
+		</tr>
+		<tr>
+			<td>value.enumValues</td>
+			<td>JSON array</td>
+			<td>An array of values specifying the possible values this parameter may have when <code>value.type</code> is <i>enumeration</i>. Both JSON Objects and strings are supported in the array. If a JSON Object is given, the object must be a single value attribute. The key will be the value passed into the wrapper template. The value will be the display value shown when auto-generating the option element in the select box representing this input.</td>
+		</tr>
+		<tr>
+			<td>value.order</td>
+			<td>integer</td>
+			<td>The order in which this parameter should appear when auto-generating a command line invocation.</td>
+		</tr>
+		<tr>
+			<td>value.required</td>
+			<td>boolean</td>
+			<td><em>Required</em>: Is specification of this parameter mandatory to run a job?</td>
+		</tr>
+		<tr>
+			<td>value.type</td>
+			<td>string, number, enumeration, bool, flag</td>
+			<td>JSON type for this parameter (used to generate and validate UI).</td>
+		</tr>
+		<tr>
+			<td>value.validator</td>
+			<td>string</td>
+			<td><a href="Perl-formatted regular expression to restrict valid values">Perl-formatted regular expression</a> to restrict valid values.</td>
+		</tr>
+		<tr>
+			<td>value.visible</td>
+			<td>boolean</td>
+			<td>When automatically generated a UI, should this field be visible to end users? If <i>false</i>, users will not be able to set this value in their job request.</td>
+		</tr>
+		<tr>
+			<td>value.enquote</td>
+			<td>boolean</td>
+			<td>Should the value be surrounded in quotation marks prior to injecting into the wrapper template at job runtime.</td>
+		</tr>
+	</tbody>
+</table>

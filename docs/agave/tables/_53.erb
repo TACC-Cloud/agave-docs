@@ -1,0 +1,26 @@
+<table>
+	<thead>
+		<tr>
+			<th>Scope</th>
+			<th>Required role</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>private</td>
+			<td>Admin</td>
+			<td>System is visible and available for use to the owner and to anyone whom they grant a role.</td>
+		</tr>
+		<tr>
+			<td>read only</td>
+			<td>Tenant admin</td>
+			<td>Storage system is visible and available for data browsing and download by any API user. Write access is restricted unless explicitly granted to a specific user.</td>
+		</tr>
+		<tr>
+			<td>public</td>
+			<td>Tenant admin</td>
+			<td>System is visible and available to all users for reading and writing. Virtual user home directories are enforced and write access outside of a user's home directory is restricted unless explicitly granted by a system admin.</td>
+		</tr>
+	</tbody>
+</table>

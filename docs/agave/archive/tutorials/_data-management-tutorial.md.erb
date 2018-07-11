@@ -1,0 +1,368 @@
+## Introduction  
+
+The Agave Files service allows you to manage data across multiple storage systems using multiple protocols. It supports traditional file operations such as directory listing, renaming, copying, deleting, and upload/download that are traditional to most file services. It also supports file importing from arbitrary locations, metadata assignment, and a full access control layer allowing you to keep your data private, share it with your colleagues, or make it publicly available.
+
+### Files service URL structure  
+
+Every file and directory referenced through the Files service has a canonical URI defined as:
+
+```shell
+https://public.tenants.agaveapi.co/files/v2/media/system/$SYSTEM_ID/$PATH
+```
+
+The following table defines each component:
+
+<%= partial "includes/tables/22" %>
+
+Agave also supports the concept of default systems. Excluding the `/system/$SYSTEM_ID` tokens from the above URL, the Files service will automatically assume you are referencing your default storage system. Thus, if your default system was `data.agaveapi.co`,
+
+```shell
+https://public.tenants.agaveapi.co/files/v2/media/shared
+```
+
+would behave identically to:
+
+```shell
+https://public.tenants.agaveapi.co/files/v2/media/system/data.agaveapi.co/shared
+```
+
+This comes in especially handy when referencing your default system paths in other contexts such as job requests and when interacting with the Agave CLI. A good example of this situation is when you have a global default storage system accessible to all your users. In this case, most users will use that for all of their data staging and archiving needs. These users may find it easier not to even think about the system they are using. The default system support in the Files service allows them to do just that.
+
+<aside class="notice">When building applications against the Files service, it is considered a best practice to always specify the intended system ID when constructing URL paths to avoid situations where users change their default systems. This will also provide long-term stability to your data references and make debugging much easier. You can read more about default systems in the <a href="http://agaveapi.co/documentation/tutorials/system-management/" title="System Management">System Management</a> tutorial.</aside>
+
+## Understanding Agave file paths vs actual system paths <a name="understanding-agave-file-paths-vs-actual-system-paths"></a>  
+
+One potentially confusing feature of Agave is its support for virtualizing systems paths. Every registered system specifies both a root directory, `rootDir`, and a home directory, `homeDir` attribute in its storage configuration. `rootDir` tells Agave the absolute path on the remote system that it should treat as `/`. Similar to the Linux `chroot` command; no requests made to Agave will ever be resolved to locations outside of `rootDir`.
+
+<%= partial "includes/tables/21" %>
+
+`homeDir` specifies the path, relative to `rootDir`, that Agave should use for relative paths. Since Agave is stateless, there is no concept of a current working directory. Thus, when you specify a path to Agave that does not begin with a `/`, Agave will always prefix the path with the value of `homeDir`. The following table gives several examples of how different combinations of `rootDir`, `homeDir`, and URL paths will be resolved by Agave. For a deeper dive into this subject, please see the <a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/understanding-agave-file-paths/" title="Understanding Agave File Paths">Understanding Agave File Paths</a> tutorial.
+
+<%= partial "includes/tables/20" %>
+
+## Moving data  
+
+Before we talk about how to do basic operations on your data, let's first talk about how you can move your data around. You already have a storage system available to you, so we will start with the "hello world" of data movement, uploading a file.
+
+### Uploading data  
+
+You may upload data to a remote systems by performing a multipart POST on the FILES service. If you are using the Agave CLI, you can perform recursive directory uploads. If you are manually calling curl or building an app with the Agave SDK, you will need to implement the recursion yourself. You can take a look in the `files-upload` script to see how this is done. The following is an example of how to upload a file that we will use in the remainder of this tutorial.
+
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST  
+    -F "fileToUpload=@files/picksumipsum.txt"  
+    https://public.tenants.agaveapi.co/files/v2/media/data.agaveapi.co/$API_USERNAME
+```
+
+
+
+```plaintext
+files-upload -v -F files/picksumipsum.txt -S data.agaveapi.co $API_USERNAME
+``` 
+
+
+You will see a progress bar while the file uploads, followed by a response from the server with a description of the uploaded file. Agave does not block during data movement operations, so it may be just a second before the file physically shows up on the remote system.
+
+```javascript
+{
+    "internalUsername": null,
+    "lastModified": "2014-09-03T10:28:09.943-05:00",
+    "name": "picksumipsum.txt",
+    "nativeFormat": "raw",
+    "owner": "systest",
+    "path": "/iplant/home/systest/picksumipsum.txt",
+    "source": "http://129.114.60.211/picksumipsum.txt",
+    "status": "STAGING_QUEUED",
+    "systemId": "data.agaveapi.co",
+    "uuid": "0001409758089943-5056a550b8-0001-002",
+    "_links": {
+        "history": {
+            "href": "https://public.tenants.agaveapi.co/files/v2/history/system/data.agaveapi.co/systest/picksumipsum.txt"
+        },
+        "self": {
+            "href": "https://public.tenants.agaveapi.co/files/v2/media/system/data.agaveapi.co/systest/picksumipsum.txt"
+        },
+        "system": {
+            "href": "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+        }
+    }
+}
+```
+
+### Importing data <a name="importing-data">&nbsp;</a>  
+
+You can also import data from an external URL. Rather than making a multipart file upload request, you can pass in a JSON object with the URL and an optional target file name, file type, and array of notifications which should be made when the import completes. Agave supports several protocols for ingestion listed in the next table.
+
+<%= partial "includes/tables/23" %>
+
+To demonstrate how this works, will import a the README.md file from the <a href="https://bitbucket.org/agaveapi/science-api-samples" title="Agave Samples" target="_blank">Agave Samples</a> git repository in Bitbucket.
+
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST  
+    -- data &#039;{ "url":"https://bitbucket.org/agaveapi/science-api-samples/raw/master/README.md"}&#039;
+    https://public.tenants.agaveapi.co/files/v2/media/data.agaveapi.co/$API_USERNAME
+```
+
+
+```plaintext
+files-import -v -U "https://bitbucket.org/agaveapi/science-api-samples/raw/master/README.md"
+    -S data.agaveapi.co $API_USERNAME
+``` 
+
+
+Importing data from a third party is done offline as an asynchronous activity, so the response from the server will come right away. The response is given below. One thing worth noting is that the file length given in the response will always be -1. This is because Agave does not know what the actual file size is yet. That will be updated later on, after the transfer has finished.
+
+```javascript
+{
+    "name" : "README.md",
+    "uuid" : "0001409758713912-5056a550b8-0001-002",
+    "owner" : "systest",
+    "internalUsername" : null,
+    "lastModified" : "2014-09-10T20:00:55.266-05:00",
+    "source" : "https://bitbucket.org/agaveapi/science-api-samples/raw/master/README.md",
+    "path" : "/iplant/home/systest/README.md",
+    "status" : "STAGING_QUEUED",
+    "systemId" : "data.agaveapi.co",
+    "nativeFormat" : "raw",
+    "_links" : {
+      "self" : {
+        "href" : "https://public.tenants.agaveapi.co/files/v2/media/system/data.agaveapi.co/systest/README.md"
+      },
+      "system" : {
+        "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+      },
+      "history" : {
+        "href" : "https://public.tenants.agaveapi.co/files/v2/history/system/data.agaveapi.co/systest/README.md"
+      }
+    }
+}
+```
+
+For this exercise, the file we just imported is just a few KB, so you should see it appear in your home folder on `data.agaveapi.co` almost immediately. If you were importing larger datasets, the transfer could take significantly longer depending on the network quality between Agave and the source location. In this case, you would see the file size continue to increase until it completed. In the event of a failed transfer, Agave will retry several times before canceling the transfer.
+
+<aside class="notice">Agave attempts to make smart decisions about how and when to transfer data. This includes leveraging third-party transfers whenever possible, scaling directory copies out horizontally, and taking advantage of chunked or parallel uploads. As a result, data may arrive in a non-deterministic way on the target system. This is normal and should be expected.</aside>
+
+### Transferring data  
+
+Much like importing data, Agave can manage the transfer of data between registered systems. This is, in fact, how data is staged prior to running a simulation. Data transfers are fire and forget, so you can simply start a transfer and go about your business. Agave will ensure it completes. If you would like a notification when the transfer completes or reaches a certain stage, you can subscribe for one or more emails and/or <a href="http://webhooks.org" title="Webhooks" target="_blank">webhooks</a> and Agave will process them upon completion. The following table lists the available file events. For more information about Agave's event and notification system, please see the <a href="http://agaveapi.co/documentation/tutorials/notifications-tutorial/" title="Notifications Tutorial" target="_blank">Notifications Tutorial</a> and <a href="http://agaveapi.co/documentation/event-reference/" title="Agave Platform Event Reference" target="_blank">Event Reference</a>.
+
+In the example below, we will transfer a file from `stampede.tacc.utexas.edu` to `data.agaveapi.co`. While the request looks pretty basic, there's a lot going on behind the scenes. Agave will authenticate to both systems, check permissions, stream data out of Stampede using SFTP and proxy it into `data.agaveapi.co` using the IRODS protocol, adjusting the transfer buffer size along the way to optimize throughput. Doing this by hand is both painful and error prone. Doing it with Agave is nearly identical to copying a file from one directory to another on your local system.
+
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST  
+    -- data &#039;{ "url":"agave://stampede.tacc.utexas.edu//etc/motd"}&#039;  
+    https://public.tenants.agaveapi.co/files/v2/media/data.agaveapi.co/$API_USERNAME
+```
+
+
+```plaintext
+files-import -v -U "agave://stampede.tacc.utexas.edu//etc/motd" -S data.agaveapi.co $API_USERNAME
+``` 
+
+
+The response from the service will be the same as the one we received importing a file.
+
+One of the benefits of Agave's Files service is that it frees you up to work in parallel and scale as large as your application demands. In the next example we will use Agave's Files to create redundant archives of a shared project directory.
+
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" 
+    -X POST -- data &#039;{ "url":"agave://data.agaveapi.co/$API_USERNAME/foo_project"}&#039;
+    https://public.tenants.agaveapi.co/files/v2/media/system/$API_USERNAME.storage1/
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" 
+    -X POST -- data &#039;{ "url":"agave://data.agaveapi.co/$API_USERNAME/foo_project"}&#039;
+    https://public.tenants.agaveapi.co/files/v2/media/system/$API_USERNAME.storage2/
+```
+
+
+```plaintext
+files-import -v -U "agave://data.agaveapi.co/$API_USERNAME/foo_project" -S $API_USERNAME.storage1
+files-import -v -U "agave://data.agaveapi.co/$API_USERNAME/foo_project" -S $API_USERNAME.storage2
+``` 
+
+
+<aside class="notice">Notice in the above examples that the Files services works identically regardless of whether the source is a file or directory. If the source is a file, it will copy the file. If the source is a directory, it will recursively process the contents until everything has been copied.</aside>
+
+## Basic data operations  
+
+Now that we understand how to move data into, out of, and between systems, we will look at how to perform file operations on the data. Again, remember that the Files service gives you a common REST interface to all your storage and execution systems regardless of the authentication mechanism or protocol they use. The examples below will use your default public storage system, but they would work identically with any storage system you have access to.
+
+### Directory listing  
+
+Obtaining a directory listing, or information about a specific file is done by making a GET request on the `/files/v2/listings/` resource.
+
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"  
+    https://public.tenants.agaveapi.co/files/v2/listings/data.agaveapi.co/$API_USERNAME
+```
+
+
+```plaintext
+files-list -v -S data.agaveapi.co $API_USERNAME
+``` 
+
+
+The response to this contains a summary listing of the contents of your home directory on  `data.agaveapi.co`. Appending a file path to your commands above would give information on a specific file.
+
+```javascript
+[
+    {
+        "format": "folder",
+        "lastModified": "2012-08-03T06:30:12.000-05:00",
+        "length": 0,
+        "mimeType": "text/directory",
+        "name": ".",
+        "path": "systest",
+        "permisssions": "ALL",
+        "system": "data.agaveapi.co",
+        "type": "dir",
+        "_links": {
+            "self": {
+                "href": "https://public.tenants.agaveapi.co/files/v2/media/system/data.agaveapi.co/systest"
+            },
+            "system": {
+                "href": "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+            }
+        }
+    },
+    {
+    "format": "raw",
+    "lastModified": "2014-09-10T19:47:44.000-05:00",
+    "length": 3235,
+    "mimeType": "text/plain",
+    "name": "picksumipsum.txt",
+    "path": "systest/picksumipsum.txt",
+    "permissions": "ALL",
+    "system": "data.agaveapi.co",
+    "type": "file",
+    "_links": {
+            "self": {
+                "href": "https://public.tenants.agaveapi.co/files/v2/media/system/data.agaveapi.co/systest/picksumipsum.txt"
+        },
+        "system": {
+            "href": "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+        }
+    }
+    }
+]
+```
+
+### Move, copy, rename, delete  
+
+Basic file operations are available by sending a POST request the the `/files/v2/media/` collection with the following parameters.
+
+<%= partial "includes/tables/24" %>
+
+#### Copying files and directories  
+
+Copying can be performed on any remote system. Unlike the Unix `cp` command, all copy invocations in Agave will overwrite the destination target if it exists. In the event of a directory collision, the contents of the two directory trees will be merged with the source overwriting the destination. Any overwritten files will maintain their provenance records and have an additional entry added to record the copy operation.
+
+```shell
+```shell
+curl -sk -H "Authorization: Bearer de32225c235cf47b9965997270a1496c"  
+    -X POST -d "action=copy&amp;path=$DESTPATH" 
+    https://public.tenants.agaveapi.co/files/v2/media/system/$SYSTEM_ID/$PATH
+```
+
+
+```plaintext
+```shell
+files-copy -D $DESTPATH -S $SYSTEM_ID $PATH
+```
+
+
+[/tabgroup]
+
+The response from a copy operation will be a JSON object describing the new file or folder.
+
+`javascript`
+
+#### Moving files and directories  
+
+Moving can be performed on any remote system. Moving a file or directory will overwrite the destination target if it exists. Unlike copy operations, the destination will be completely replaced by the source in the event of a collision. No merge will take place. Further, the provenance of the source will replace that of the target.
+
+```shell
+```shell
+curl -sk -H "Authorization: Bearer de32225c235cf47b9965997270a1496c"  
+    -X POST -d "action=move&amp;path=$DESTPATH"  
+    https://public.tenants.agaveapi.co/files/v2/media/system/$SYSTEM_ID/$PATH
+```
+
+
+```plaintext
+```shell
+files-move -D $DESTPATH -S $SYSTEM_ID $PATH
+```
+
+
+[/tabgroup]
+
+#### Renaming files and directories  
+
+Renaming, like copying and moving, is only applicable within the context of a single system. Unlike on Unix systems, renaming and moving are not synonymous. When specifying a new name for a file or directory, the new name is relative to the parent directory of the original file or directory. Also, If a file or directory already exists with that name, the operation will fail and an error message will be returned. All provenance information will follow the renamed file or directory.
+
+```shell
+```shell
+curl -sk -H "Authorization: Bearer de32225c235cf47b9965997270a1496c" 
+    -X POST -d "action=rename&amp;path=$NEWNAME" 
+    https://public.tenants.agaveapi.co/files/v2/media/system/$SYSTEM_ID/$PATH
+```
+
+
+```plaintext
+```shell
+files-rename -N $NEWNAME -S $SYSTEM_ID $PATH
+```
+
+
+[/tabgroup]
+
+#### Creating a new directory  
+
+Creating a new directory is a recursive action in Agave. If the parent directories do not exist, they will be created on the fly. If a file or directory already exists with that name, the operation will fail and an error message will be returned.
+
+```shell
+```shell
+curl -sk -H "Authorization: Bearer de32225c235cf47b9965997270a1496c" 
+    -X POST -d "action=mkdir&amp;path=$NEWDIR" 
+    https://public.tenants.agaveapi.co/files/v2/media/system/$SYSTEM_ID/$PATH
+```
+
+
+```plaintext
+```shell
+files-mkdir -N $NEWDIR -S $SYSTEM_ID $PATH
+```
+
+
+[/tabgroup]
+
+#### Deleting a file or directory  
+
+As with creating a directory, deleting a file or directory is a recursive action in Agave. No prompt or warning will be given once the request is sent. It is up to you to implement such checks in your application logic and/or user interface.
+
+```shell
+```shell
+curl -sk -H "Authorization: Bearer de32225c235cf47b9965997270a1496c" 
+    -X DELETE https://public.tenants.agaveapi.co/files/v2/media/system/$SYSTEM_ID/$PATH
+```
+
+
+```plaintext
+```shell
+files-delete -S $SYSTEM_ID $PATH
+```
+
+
+[/tabgroup]
+
+## Metadata management  
+
+In many systems, the concept of metadata is directly tied to the notion of a file system. Agave takes a broader view of metadata and supports it as its own first class resource in the REST API. For more information on how to leverage metadata in Agave, please consult the <a href="http://agaveapi.co/documentation/tutorials/metadata-tutorial/" title="Metadata Tutorial">Metadata Tutorial</a>. In there we cover all aspects of how to manage, search, validate, and associate metadata across your entire digital lab.
+
+## Data permissions  
+
+Agave has a fine-grained permission model supporting use cases from creating and expositing readonly storage systems to sharing individual files and folders with one or more users. To learn more about the data permission model and how you can use it to meet your needs, consult the <a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/data-permissions-tutorial/" title="Data Permissions Tutorial">Data Permissions Tutorial</a>.
+
+## Data provenance  
+
+Agave keeps a full provenance record of every action it takes or observes on a a file and folder. You can read more about how Agave tracks these things as well as how to access provenance information in the <a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/data-provenance-tutorial/" title="Data Provenance Tutorial">Data Provenance Tutorial</a>.

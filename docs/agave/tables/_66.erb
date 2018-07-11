@@ -1,0 +1,106 @@
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>String</td>
+			<td><em>Required</em>: The textual id of this input. This value must be unique within all inputs and inputs for an app description.</td>
+		</tr>
+		<tr>
+			<td>details</td>
+			<td>JSON object</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>details.argument</td>
+			<td>string</td>
+			<td>A command line argument or flag to be prepended before the input value.</td>
+		</tr>
+		<tr>
+			<td>details.description</td>
+			<td>string</td>
+			<td>Human-readable description of the input. Often used to create contextual help in automatically generated UI.</td>
+		</tr>
+		<tr>
+			<td>details.label</td>
+			<td>string</td>
+			<td>Human-readable label for the input. Often implemented as text label next to the field in automatically generated UI.</td>
+		</tr>
+		<tr>
+			<td>details.showArgument</td>
+			<td>boolean</td>
+			<td>Whether to include the argument value for this input when performing the template variable replacement during job submission. If true, the <code>details.argument</code> value will be prepended, without spaces, to the actual input value(s).</td>
+		</tr>
+		<tr>
+			<td>details.repeatArgument</td>
+			<td>boolean</td>
+			<td>When multiple values are provided for this input, this attribute determines whether to include the argument value  before each user-supplied value when performing the template variable replacement during job submission. The <code>details.showArgument</code> value must be <i>true</i> for this value to be applied.</td>
+		</tr>
+		<tr>
+			<td>semantics</td>
+			<td>JSON object</td>
+			<td>Describes the semantic definition of this inputs and the filetypes it represents. Multiple ontologies and values are supported.</td>
+		</tr>
+		<tr>
+			<td>semantics.fileTypes</td>
+			<td>JSON array</td>
+			<td>Array of string values describing the file types represented by this input. The types correspond to values from the Transforms service. Use "raw-0" for the time being</td>
+		</tr>
+		<tr>
+			<td>semantics.minCardinality</td>
+			<td>integer</td>
+			<td>Minimum number of values this input must have. </td>
+		</tr>
+		<tr>
+			<td>semantics.maxCardinality</td>
+			<td>integer</td>
+			<td>Maximum number of values this input can have. A null value or value of -1 indicates no limit.</td>
+		</tr>
+		<tr>
+			<td>semantics.ontology</td>
+			<td>JSON array</td>
+			<td>List of ontology terms (or URIs pointing to ontology terms) applicable to the input. We recommend at least specifying an <a href="http://www.schemacentral.com/sc/xsd/s-datatypes.xsd.html">XSL Schema Simple Type</a>.</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>JSON object</td>
+			<td>A description of the anticipated value and the situations when it is required.</td>
+		</tr>
+		<tr>
+			<td>value.default</td>
+			<td>string, JSON array</td>
+			<td>The default value for this input. This value is optional except when <code>value.required</code> is <i>true</i> and <code>value.visible</code> is <i>false</i>. Values may be absolute or relative paths on the user's default storage sytem, an agave URI, or any valid URL with a supported schema.</td>
+		</tr>
+		<tr>
+			<td>value.order</td>
+			<td>integer</td>
+			<td>The order in which this input should appear when auto-generating a command line invocation.</td>
+		</tr>
+		<tr>
+			<td>value.required</td>
+			<td>boolean</td>
+			<td><em>Required</em>: Is specification of this input mandatory to run a job?</td>
+		</tr>
+		<tr>
+			<td>value.validator</td>
+			<td>string</td>
+			<td><a href="Perl-formatted regular expression to restrict valid values">Perl-formatted regular expression</a> to restrict valid values.</td>
+		</tr>
+		<tr>
+			<td>value.visible</td>
+			<td>boolean</td>
+			<td>When automatically generated a UI, should this field be visible to end users? If <i>false</i>, users will not be able to set this value in their job request.</td>
+		</tr>
+		<tr>
+			<td>value.enquote</td>
+			<td>boolean</td>
+			<td>Should the value be surrounded in quotation marks prior to injecting into the wrapper template at job runtime.</td>
+		</tr>
+	</tbody>
+</table>

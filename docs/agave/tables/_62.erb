@@ -1,0 +1,36 @@
+<table>
+	<thead>
+		<tr>
+			<th>Attribute</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>auth</td>
+			<td>JSON object</td>
+			<td><b>Required:</b> A JSON object describing the default login authentication credential for this system.</td>
+		</tr>
+		<tr>
+			<td>host</td>
+			<td>string</td>
+			<td><b>Required:</b> The hostname or ip address of the server where the job will be submitted.</td>
+		</tr>
+		<tr>
+			<td>port</td>
+			<td>int</td>
+			<td>The port number of the server where the job will be submitted. Defaults to the default port of the protocol used.</td>
+		</tr>
+		<tr>
+			<td>protocol</td>
+			<td>SSH, GSISSH, LOCAL</td>
+			<td><b>Required:</b> The protocol used to submit jobs for execution.</td>
+		</tr>
+		<tr>
+			<td>proxy</td>
+			<td>JSON Object</td>
+			<td>The proxy server through with Agave will tunnel when submitting jobs. Currently proxy servers will use the same authentication mechanism as the target server.</td>
+		</tr>
+	</tbody>
+</table>

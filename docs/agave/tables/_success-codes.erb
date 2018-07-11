@@ -1,0 +1,8 @@
+Response Code | Meaning | Description
+---------- | ------- | ----------
+200 | Success           | The request succeeded. Life is good.
+201 | Created           | The request succeeded and a new resource was created. Only applicable on PUT and POST actions.
+202 | Accepted          | The request has been accepted for processing, but the processing has not been completed. Common for all async actions such as job submissions, file transfers, etc.
+206 | Partial Content   | The server has fulfilled the partial GET request for the resource. This will always be the return status of a request using a `Range` header.
+301 | Moved Permanently | The requested resource has been assigned a new permanent URI. You should follow the `Location` header, repeating the request.
+304 | Not Modified      | You requested an action that succeeded, but did not modify the resource. Sound, fury, that whole thing.

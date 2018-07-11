@@ -1,0 +1,98 @@
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>available</td>
+			<td>boolean</td>
+			<td>Whether the system is currently available for use in the API. Unavailable systems will not be visible to anyone but the owner. This differs from the <code>status</code> attribute in that a system may be UP, but not available for use in Agave. Defaults to true</td>
+		</tr>
+		<tr>
+			<td>description</td>
+			<td>string</td>
+			<td>Verbose description of this system.</td>
+		</tr>
+		<tr>
+			<td>environment</td>
+			<td>String</td>
+			<td>List of key-value pairs that will be added to the environment prior to execution of any command.</td>
+		</tr>
+		<tr>
+			<td>executionType</td>
+			<td>HPC, Condor, CLI</td>
+			<td><b>Required:</b> Specifies how jobs should go into the system. HPC and Condor will leverage a batch scheduler. CLI will fork processes. </td>
+		</tr>
+		<tr>
+			<td>id</td>
+			<td>string</td>
+			<td><b>Required:</b> A unique identifier you assign to the system. A system id must be globally unique across a tenant and cannot be reused once deleted. </td>
+		</tr>
+		<tr>
+			<td>maxSystemJobs</td>
+			<td>integer</td>
+			<td>Maximum number of jobs that can be queued or running on a system across all queues at a given time. Defaults to unlimited.</td>
+		</tr>
+		<tr>
+			<td>maxSystemJobsPerUser</td>
+			<td>integer</td>
+			<td>Maximum number of jobs that can be queued or running on a system for an individual user across all queues at a given time. Defaults to unlimited.</td>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>string</td>
+			<td><b>Required:</b> Common display name for this system.</td>
+		</tr>
+		<tr>
+			<td>queues</td>
+			<td>JSON Array</td>
+			<td>An array of batch queue definitions providing descriptive and quota information about the queues you want to expose on your system. If not specified, no other system queues will be available to jobs submitted using this system.</td>
+		</tr>
+		<tr>
+			<td>scheduler</td>
+			<td>LSF, LOADLEVELER, PBS, SGE, CONDOR, FORK, COBALT, TORQUE, MOAB, SLURM,
+			CUSTOM_LSF, CUSTOM_LOADLEVELER, CUSTOM_PBS, CUSTOM_SGE, CUSTOM_CONDOR,
+			FORK, CUSTOM_COBALT, CUSTOM_TORQUE, CUSTOM_MOAB, CUSTOM_SLURM, UNKNOWN</td>
+			<td><b>Required:</b> The type of batch scheduler available on the system. This only applies to systems with executionType HPC and CONDOR. The *_CUSTOM version of each scheduler provides a mechanism for you to override the default scheduler directives added by Agave and explicitly add your own through the <span style="code">customDirectives</span> field in each of the batchQueue definitions for your system.</td>
+		</tr>
+		<tr>
+			<td>scratchDir</td>
+			<td>string</td>
+			<td>Path to use for a job scratch directory. This value is the first choice for creating a job`s working directory at runtime. The path will be resolved relative to the <code>rootDir</code> value in the storage config if it begins with a "/", and relative to the system <code>homeDir</code> otherwise.</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>string</td>
+			<td>The site associated with this system. Primarily for logical grouping.</td>
+		</tr>
+		<tr>
+			<td>startupScript</td>
+			<td>String</td>
+			<td>Path to a script that will be run prior to execution of any command on this system. The path will be a standard path on the remote system. A limited set of system macros are supported in this field. They are <span style="code">rootDir</span>, <span style="code">homeDir</span>, <span style="code">systemId</span>, <span style="code">workDir</span>, and <span style="code">homeDir</span>. The standard set of runtime job attributes are also supported. Between the two set of macros, you should be able to construct distinct paths per job, user, and app. Any environment variables defined in the system description will be added after this script is sourced. If this script fails, output will be logged to the <span style="code">.agave.log</span> file in your job directory. Job submission will still continue regardless of the exit code of the script.</td>
+		</tr>
+		<tr>
+			<td>status</td>
+			<td>UP, DOWN, MAINTENANCE, UNKNOWN</td>
+			<td>The functional status of the system. Systems must be in UP status to be used.</td>
+		</tr>
+		<tr>
+			<td>storage</td>
+			<td>JSON Object</td>
+			<td><b>Required:</b> Storage configuration describing the storage config defining how to connect to this system for data staging.</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>STORAGE, EXECUTION</td>
+			<td><b>Required:</b> Must be EXECUTION.</td>
+		</tr>
+		<tr>
+			<td>workDir</td>
+			<td>string</td>
+			<td>Path to use for a job working directory. This value will be used if no <code>scratchDir</code> is given. The path will be resolved relative to the <code>rootDir</code> value in the storage config if it begins with a "/", and relative to the system <code>homeDir</code> otherwise.</td>
+		</tr>
+	</tbody>
+</table>

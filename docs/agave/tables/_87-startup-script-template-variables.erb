@@ -1,0 +1,118 @@
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SYSTEM_ID</td>
+<td>ID of the system (ex. ssh.execute.example.com)</td>
+</tr>
+<tr>
+<td>SYSTEM_UUID</td>
+<td>fThe UUID of the system</td>
+</tr>
+<tr>
+<td>SYSTEM_STORAGE_PROTOCOL</td>
+<td>The protocol used to move data to and from this system</td>
+</tr>
+<tr>
+<td>SYSTEM_STORAGE_HOST</td>
+<td>The storage host for this sytem</td>
+</tr>
+<tr>
+<td>SYSTEM_STORAGE_PORT</td>
+<td>The storage port for this system</td>
+</tr>
+<tr>
+<td>SYSTEM_STORAGE_RESOURCE</td>
+<td>The system resource for iRODS systems</td>
+</tr>
+<tr>
+<td>SYSTEM_STORAGE_ZONE</td>
+<td>The system zone for iRODS systems</td>
+</tr>
+<tr>
+<td>SYSTEM_STORAGE_ROOTDIR</td>
+<td>The virtual root directory exposed on this system</td>
+</tr>
+<tr>
+<td>SYSTEM_STORAGE_HOMEDIR</td>
+<td>The home directory on this system relative to the STORAGE_ROOT_DIR</td>
+</tr>
+<tr>
+<td>SYSTEM_STORAGE_AUTH_TYPE</td>
+<td>The storage authentication method for this system</td>
+</tr>
+<tr>
+<td>SYSTEM_STORAGE_CONTAINER</td>
+<td>The the object store bucket in which the <span class="code">rootDir</span> resides.</td>
+</tr>
+<tr>
+<td>SYSTEM_LOGIN_PROTOCOL</td>
+<td>The protocol used to establish a session with this system (eg SSH, GSISSH, etc)</td>
+</tr>
+<tr>
+<td>SYSTEM_LOGIN_HOST</td>
+<td>The login host for this system</td>
+</tr>
+<tr>
+<td>SYSTEM_LOGIN_PORT</td>
+<td>The login port for this system</td>
+</tr>
+<tr>
+<td>SYSTEM_LOGIN_AUTH_TYPE</td>
+<td>The login authentication method for this system</td>
+</tr>
+<tr>
+<td>SYSTEM_OWNER</td>
+<td>The username of the user who created the system.</td>
+</tr>
+<tr>
+<td>AGAVE_JOB_NAME</td>
+<td>The slugified version of the name of the job. See the section on <a href="#slugs">Conventions</a> for more information about slugs.</td>
+</tr>
+<tr>
+<td>AGAVE_JOB_ID</td>
+<td>The unique identifier of the job.</td>
+</tr>
+<tr>
+<td>AGAVE_JOB_APP_ID</td>
+<td>The <span class="code">appId</span> for which the job was requested.</td>
+</tr>
+<tr>
+<td>AGAVE_JOB_BATCH_QUEUE</td>
+<td>The batch queue on the <span class="code">AGAVE_JOB_EXECUTION_SYSTEM</span> to which the job was submitted.</td>
+</tr>
+<tr>
+<td>AGAVE_JOB_EXECUTION_SYSTEM</td>
+<td>The Agave execution system id where this job is running.</td>
+</tr>
+<tr>
+<td>AGAVE_JOB_ARCHIVE_PATH</td>
+<td>The path on the <span class="code">archiveSystem</span> where the job output will be copied if archiving is enabled.</td>
+</tr>
+<tr>
+<td>AGAVE_JOB_OWNER</td>
+<td>The username of the job owner.</td>
+</tr>
+<tr>
+<td>AGAVE_JOB_TENANT</td>
+<td>The id of the tenant to which the job was submitted.</td>
+</tr>
+<tr>
+<td>MONITOR_ID</td>
+<td>The ID of the monitor.</td>
+</tr>
+<tr>
+<td>MONITOR_CHECK_ID</td>
+<td>The ID of the monitor check making the request.</td>
+</tr>
+<tr>
+<td>MONITOR_OWNER</td>
+<td>The username of the user who created the monitor.</td>
+</tr>
+</tbody>
+</table>

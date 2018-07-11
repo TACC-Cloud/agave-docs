@@ -1,0 +1,51 @@
+<table>
+	<thead>
+		<tr>
+			<th>Attribute</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>available</td>
+			<td>boolean</td>
+			<td>Whether the system is currently available for use in the API. Unavailable systems will not be visible to anyone but the owner. This differs from the <code>status</code> attribute in that a system may be UP, but not available for use in Agave. Defaults to true</td>
+		</tr>
+		<tr>
+			<td>description</td>
+			<td>string</td>
+			<td>Verbose description of this system.</td>
+		</tr>
+		<tr>
+			<td>id</td>
+			<td>string </td>
+			<td><b>Required:</b> A unique identifier you assign to the system. A system id must be globally unique across a tenant and cannot be reused once deleted. </td>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>string</td>
+			<td><b>Required:</b> Common display name for this system.</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>string</td>
+			<td>The site associated with this system. Primarily for logical grouping.</td>
+		</tr>
+		<tr>
+			<td>status</td>
+			<td>UP, DOWN, MAINTENANCE, UNKNOWN</td>
+			<td>The functional status of the system. Systems must be in UP status to be used.</td>
+		</tr>
+		<tr>
+			<td>storage</td>
+			<td>JSON Object</td>
+			<td><b>Required:</b> Storage configuration describing the storage config defining how to connect to this system for data staging.</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>STORAGE, EXECUTION</td>
+			<td><b>Required:</b> Must be STORAGE.</td>
+		</tr>
+	</tbody>
+</table>

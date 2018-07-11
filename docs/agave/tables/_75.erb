@@ -1,0 +1,171 @@
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>available</td>
+			<td>boolean</td>
+			<td>Whether the application is available.</td>
+		</tr>
+		<tr>
+			<td>checkpointable</td>
+			<td>boolean</td>
+			<td>Whether the application supports checkpointing.</td>
+		</tr>
+		<tr>
+			<td>defaultMaxRunTime</td>
+			<td>string</td>
+			<td>The max execution time that should be used if none is given in a job description. Ignore if the system does not support schedulers. If not specified, the max run time of the execution queue will be used or 1000:00:00 if that is not set.</td>
+		</tr>
+		<tr>
+			<td>defaultMemoryPerNode</td>
+			<td>string</td>
+			<td>The default memory in GB to pass to the scheduler if none is given in the job description. This must be less than the max memory parameter in the target queue definition.</td>
+		</tr>
+		<tr>
+			<td>defaultNodeCount</td>
+			<td>string</td>
+			<td>The number of nodes that should be used if none is given in a job description. Ignore if the system does not support schedulers.</td>
+		</tr>
+		<tr>
+			<td>defaultProcessorsPerNode</td>
+			<td>string</td>
+			<td>The number of processors to pass to the scheduler if none are given in the job description. This must be 1 if the app is serial.</td>
+		</tr>
+		<tr>
+			<td>defaultQueue</td>
+			<td>string</td>
+			<td>The queue on the execution system that should be used if none is given in a job description. Ignore if the system does not support schedulers.</td>
+		</tr>
+		<tr>
+			<td>deploymentPath</td>
+			<td>string</td>
+			<td><em>Required</em> The location in the user's default storage system containing the application wrapper and dependencies.</td>
+		</tr>
+		<tr>
+			<td>deploymentSystem</td>
+			<td>string</td>
+			<td>The system id of the storage system where this app should run. If not specfied, the user's default storage system will be used.</td>
+		</tr>
+		<tr>
+			<td>executionSystem</td>
+			<td>string</td>
+			<td><em>Required</em> The system id of the execution system where this app should run.</td>
+		</tr>
+		<tr>
+			<td>executionType</td>
+			<td>ATMOSPHERE, HPC, CONDOR, CLI</td>
+			<td><em>Required</em> The execution type of the application. If you're unsure, it's probably HPC.</td>
+		</tr>
+		<tr>
+			<td>helpURI</td>
+			<td>string</td>
+			<td>The URL where users can go for more information about the app.</td>
+		</tr>
+		<tr>
+			<td>id</td>
+			<td>string</td>
+			<td>Unique id of this app. Comprised of the app name-version. This is a derived value and cannot be set manually.</td>
+		</tr>
+		<tr>
+			<td>icon</td>
+			<td>string</td>
+			<td>The icon to associate with this app.</td>
+		</tr>
+		<tr>
+			<td>inputs</td>
+			<td>JSON array of your <a href="/documentation/tutorials/app-management-tutorial/app-inputs-and-parameters-tutorial/">App Inputs</a></td>
+			<td><em>Required</em> The inputs files for this application. </td>
+		</tr>
+		<tr>
+			<td>label</td>
+			<td>string</td>
+			<td>The label to use when generating forms.</td>
+		</tr>
+		<tr>
+			<td>lastModified</td>
+			<td>string</td>
+			<td>The date this application was last modified in ISO 8601 format.</td>
+		</tr>
+		<tr>
+			<td>longDescription</td>
+			<td>string</td>
+			<td>The full text description of this input to use when generating forms.</td>
+		</tr>
+		<tr>
+			<td>modules</td>
+			<td>array[string]</td>
+			<td>An array of modules to load prior to the execution of the application.</td>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>string</td>
+			<td><em>Required</em> The name of the application. The name does not have to be unique, but the combination of name and version does.</td>
+		</tr>
+		<tr>
+			<td>ontology</td>
+			<td>JSONarray of URI</td>
+			<td>An array of ontology values describing this application.</td>
+		</tr>
+		<tr>
+			<td>outputs</td>
+			<td>JSON array of your app <a href="/documentation/tutorials/app-management-tutorial/app-inputs-and-parameters-tutorial/">App Outputs</a></td>
+			<td>The outputs files for this application. </td>
+		</tr>
+		<tr>
+			<td>parallelism</td>
+			<td>SERIAL, PARALLEL, PTHREAD</td>
+			<td><em>Required</em> The parallelism type of the application. If you're unsure, it's probably SERIAL.</td>
+		</tr>
+		<tr>
+			<td>parameters</td>
+			<td>JSON  array of your <a href="/documentation/tutorials/app-management-tutorial/app-inputs-and-parameters-tutorial/">App Parameters</a></td>
+			<td><em>Required</em> The inputs parameters for this application. </td>
+		</tr>
+		<tr>
+			<td>isPublic</td>
+			<td>boolean</td>
+			<td>Whether the application is public or private. This value is always false unless an administrator publishes the app. For more on this topic see <a name="app-visibility">App Visibility</a></td>
+		</tr>
+		<tr>
+			<td>revision</td>
+			<td>integer</td>
+			<td>The number of times this application has been revised. This is a dervied value representing the number of times this app has been updated.</td>
+		</tr>
+		<tr>
+			<td>shortDescription</td>
+			<td>string</td>
+			<td>The short description of this application.</td>
+		</tr>
+		<tr>
+			<td>tags</td>
+			<td>JSON array of string</td>
+			<td>An array of tags related to this application.</td>
+		</tr>
+		<tr>
+			<td>templatePath</td>
+			<td>string</td>
+			<td><em>Required</em> The path to the wrapper script relative to the deploymentPath. (ex. <span class="code">wrapper.sh</span>) </td>
+		</tr>
+		<tr>
+			<td>testPath</td>
+			<td>string</td>
+			<td><em>Required</em> The path to the test script relative to the deploymentPath. (ex. <span class="code">test/test.sh</span>)</td>
+		</tr>
+		<tr>
+			<td>uuid</td>
+			<td>string</td>
+			<td>The UUID of this application. UUID are 36 alphanumeric string. This is assigned by Agave and cannot be changed.</td>
+		</tr>
+		<tr>
+			<td>version</td>
+			<td>string</td>
+			<td><em>Required</em> The version of the application in #.#.# format. While the version does not need to be unique, the combination of name and version does have to be unique.</td>
+		</tr>
+	</tbody>
+</table>

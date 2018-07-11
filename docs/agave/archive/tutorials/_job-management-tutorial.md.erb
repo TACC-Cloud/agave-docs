@@ -1,0 +1,545 @@
+### Overview  
+
+The Jobs service is a basic execution service that allows you to run applications registered with the Apps service across multiple, distributed, heterogeneous systems through a common REST interface. The service manages all aspects of execution and job management from data staging, job submission, monitoring, output archiving, event logging, sharing, and notifications. The Jobs service also provides a persistent reference to your job's output data and a mechanism for sharing all aspects of your job with others. Each feature will be described in more detail below.
+
+<aside class="notice">If you are not familiar with batch computing and why we refer to a simulation run as a "job," we wrote a good blog post on the topic, <a href="http://agaveapi.co/what-is-a-job2/" title="What is a Job">What is a "Job"</a> that will help give you some context and background on the subject and terminology.</aside>
+
+### Job submission  
+
+Job submission is a term recycled from shared batch computing environments where a user would submit a request for a unit of computational work (called a Job) to the batch scheduler, then go head home for dinner while waiting for the computer to complete the job they gave it.
+
+Originally the batch scheduler was a person and the term batch came from their ability to process several submissions together. Later on, as human schedulers were replaced by software, the term stuck even though the process remained unchanged. Today the term job submission is essentially unchanged.
+
+A user submits a request for a unit of work to be done. The primary difference is that today, often times, the wait time between submission and execution is considerably less. On shared systems, such as many of the HPC systems originally targeted by Agave, waiting for your job to start is the price you pay for the incredible performance you get once your job starts.
+
+Agave, too, adopts the concept of job submission, though it is not in and of itself a scheduler. In the context of Agave's Job service, the process of running an application registered with the Apps service is referred to as submitting a job.
+
+Unlike in the batch scheduling world where each scheduler has its own job submission syntax and its own idiosyncrasies, the mechanism for submitting a job to Agave is consistent regardless of the application or system on which you run. A HTML form or JSON object are posted to the Jobs service. The submission is validated, and the job is forwarded to the scheduling and execution services for processing.
+
+Because Agave takes an app-centric view of science, execution does not require knowing about the underlying systems on which an application runs. Simply knowing how the parameters and inputs you want to use when running an app is sufficient to define a job. Agave will handle the rest.
+
+As mentioned previously, jobs are submitted by making a HTTP POST request either a HTML form or a JSON object to the Jobs service. All job submissions must include a few mandatory values that are used to define a basic unit of work. Table 1 lists the optional and required attributes of all job submissions.
+
+<%= partial "includes/tables/69" %>
+
+<p class="table-caption">Table 1. The optional and required attributes common to all job submissions. Optional fields are marked with an astericks.</p>
+
+<aside class="notice">In this tutorial we will use JSON for our examples, however, one could replace the JSON object with a HTML form mapping JSON attribute and values to HTML form attributes and values one for one and get the same results, with the exception of the `notifications` attribute which is not accepted using HTML form submission and would need to be added after submitting the job request by sending each of the notification objects with the returned job id to the <a href="http://agaveapi.co/documentation/tutorials/notification-management-tutorial/" title="Notification Management Tutorial">Notifications API</a>.</aside>
+
+In addition to the standard fields for all jobs, the application you specify in the `appId` field will also have its own set of inputs and parameters specified during registration that are unique to that app. (For more information about app registration and descriptions, see the <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/" title="App Management Tutorial">App Management Tutorial</a>).
+
+The following snippet shows a sample JSON job request that could be submitted to the Jobs service to run the `pyplot-0.1.0` app from the <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/advanced-app-example/" title="Advanced App Example">Advanced App Example</a> tutorial.
+
+```javascript
+{  
+  "name":"pyplot-demo test",
+  "appId":"demo-pyplot-demo-advanced-0.1.0",
+  "inputs":{  
+    "dataset":[  
+      "agave://$PUBLIC_STORAGE_SYSTEM/$API_USERNAME/inputs/pyplot/testdata.csv",
+      "agave://$PUBLIC_STORAGE_SYSTEM/$API_USERNAME/inputs/pyplot/testdata2.csv"
+    ]
+  },
+  "archive":false,
+  "parameters":{  
+    "unpackInputs":false,
+    "chartType":[  
+      "bar",
+      "line"
+    ],
+    "width":1024,
+    "height":512,
+    "background":"#d96727",
+    "showYLabel":true,
+    "ylabel":"The Y Axis Label",
+    "showXLabel":true,
+    "xlabel":"The X Axis Label",
+    "showLegend":true,
+    "separateCharts":false
+  },
+  "notifications":[  
+    {  
+      "url":"$API_EMAIL",
+      "event":"RUNNING"
+    },
+    {  
+      "url":"$API_EMAIL",
+      "event":"FINISHED"
+    },
+    {  
+      "url":"http://http://requestbin.agaveapi.co/o1aiawo1?job_id=${JOB_ID}&amp;status=${JOB_STATUS}",
+      "event":"*",
+      "persistent":true
+    }
+  ]
+}
+```
+
+Notice that this example specifies a single input attribute, `dataset`. The `pyplot-0.1.0` app definition specified that the `dataset` input attribute could accept more than one value (maxCardinality = 2). In the job request object, that translates to an array of string values. Each string represents a piece of data that Agave will transfer into the job work directory prior to job execution. Any value accepted by the Files service when <a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/#importing-data">importing data</a> is accepted here. Some examples of valid values are given in the following table.
+
+<%= partial "includes/tables/73" %>
+
+<p class="table-caption">Table 2. Examples of different syntaxes that input values can be specified in the job request object. Here we assume that the validator for the input field is such that these would pass.</p>
+
+The example job request also specifies `parameters` object with the parameters defined in the `pyplot-0.1.0` app description. Notice that the parameter `type` value specified in the app description is reflected here. Numbers are given as numbers, not strings. Boolean and flag attributes are given as boolean true and false values. As with the input section, there is also a parameter `chartType` that accepts multiple values. In this case that translates to an array of string value. Had the parameter type required another primary type, that would be used in the array instead.
+
+Finally, we see a `notifications` array specifying that we want Agave send three notifications related to this job. The first is a one-time email when the job starts running. The second is a one-time email when the job reaches a terminal state. The third is a webhook to the url we specified. More on notifications in the section on monitoring below.
+
+### Job submission validation  
+
+If everything went well, you will receive a response that looks something like the following JSON object.
+
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -F "fileToUpload=@job.json" https://public.tenants.agaveapi.co/jobs/v2?pretty=true
+``` 
+
+
+```plaintext
+
+
+[/tabgroup]
+
+```javascript
+{
+  "status" : "success",
+  "message" : null,
+  "version" : "2.1.0-r6d11c",
+  "result" : {
+    "id" : "0001414144065563-5056a550b8-0001-007",
+    "name" : "demo-pyplot-demo-advanced test-1414139896",
+    "owner" : "$API_USERNAME",
+    "appId" : "demo-pyplot-demo-advanced-0.1.0",
+    "executionSystem" : "$PUBLIC_EXECUTION_SYSTEM",
+    "batchQueue" : "debug",
+    "nodeCount" : 1,
+    "processorsPerNode" : 1,
+    "memoryPerNode" : 1.0,
+    "maxRunTime" : "01:00:00",
+    "archive" : false,
+    "retries" : 0,
+    "localId" : "10321",
+    "outputPath" : null,
+    "status" : "FINISHED",
+    "submitTime" : "2014-10-24T04:48:11.000-05:00",
+    "startTime" : "2014-10-24T04:48:08.000-05:00",
+    "endTime" : "2014-10-24T04:48:15.000-05:00",
+    "inputs" : {
+      "dataset" : "agave://$PUBLIC_STORAGE_SYSTEM/$API_USERNAME/inputs/pyplot/testdata.csv"
+    },
+    "parameters" : {
+      "chartType" : "bar",
+      "height" : "512",
+      "showLegend" : "false",
+      "xlabel" : "Time",
+      "background" : "#FFF",
+      "width" : "1024",
+      "showXLabel" : "true",
+      "separateCharts" : "false",
+      "unpackInputs" : "false",
+      "ylabel" : "Magnitude",
+      "showYLabel" : "true"
+    },
+    "_links" : {
+      "self" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+      },
+      "app" : {
+        "href" : "https://public.tenants.agaveapi.co/apps/v2/demo-pyplot-demo-advanced-0.1.0"
+      },
+      "executionSystem" : {
+        "href" : "https://public.tenants.agaveapi.co/systems/v2/$PUBLIC_EXECUTION_SYSTEM"
+      },
+      "archiveData" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/listings"
+      },
+      "owner" : {
+        "href" : "https://public.tenants.agaveapi.co/profiles/v2/$API_USERNAME"
+      },
+      "permissions" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/pems"
+      },
+      "history" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/history"
+      },
+      "metadata" : {
+        "href" : "https://public.tenants.agaveapi.co/meta/v2/data/?q={"associationIds":"0001414144065563-5056a550b8-0001-007"}"
+      },
+      "notifications" : {
+        "href" : "https://public.tenants.agaveapi.co/notifications/v2/?associatedUuid=0001414144065563-5056a550b8-0001-007"
+      }
+    }
+  }
+}
+```
+
+### Job monitoring  
+
+Once you submit your job request, the job will be handed off to Agave's back end execution service. Your job may run right away, or it may wait in a batch queue on the execution system until the required resources are available. Either way, the execution process occurs completely asynchronous to the submission process. To monitor the status of your job, Agave supports two different mechanisms: polling and webhooks.
+
+<aside class="notice">For the sake of brevity, we placed a detailed explanation of the job lifecycle in a separate, aptly title post, <a href="http://agaveapi.co/documentation/tutorials/job-management-tutorial/the-job-lifecycle" title="The Job Lifecycle">The Job Lifecycle</a>. There you will find detailed information about how, when, and why everything moves from place to place and how you can peek behind the curtains.</aside>
+
+#### Polling  
+
+If you have ever taken a long road trip with children, you are probably painfully aware of how polling works. Starting several minutes from the time you leave the house, a child asks, <a href="https://www.youtube.com/watch?v=4vUBsTJYK28&amp;w=640&amp;h=385" title="Are we there yet Shrek?" target="_blank">"Are we there yet?"</a> You reply, "No." Several minutes later the child again asks, "Are we there yet?" You again reply, "No." This process continues until you finally arrive at your destination. <strong>This is called polling and polling is bad</strong>
+
+Polling for your job status works the same way. After submitting your job, you start a while loop that queries the Jobs service for your job status until it detects that the job is in a terminal state. The following two URLs both return the status of your job. The first will result in a list of abbreviated job descriptions, the second will result in a full description of the job with the given $JOB_ID, exactly like that returned when submitting the job. The third will result in a much smaller response object that contains only the $JOB_ID and status being returned.
+
+```shell
+curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://public.tenants.agaveapi.co/jobs/v2
+curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007
+curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/status
+```
+
+Sample response snippet
+
+```javascript
+{
+  "status" : "success",
+  "message" : null,
+  "version" : "2.1.0-r6d11c",
+  "result" : {
+    "id" : "0001414144065563-5056a550b8-0001-007",
+    "status" : "FINISHED",
+    "_links" : {
+      "self" : {
+        "href" : "$API_BASE_URL/jobs/v2/0001414144065563-5056a550b8-0001-007"
+      }
+    }
+  }
+}
+```
+
+The list of all possible job statuses is given in table 2.
+
+<%= partial "includes/tables/71" %>
+
+<p class="table-caption">Table 2. Job statuses listed in progressive order from job submission to completion.</p>
+
+Polling is an incredibly effective approach, but it is bad practice for two reasons. First, it does not scale well. Querying for one job status every few seconds does not take much effort, but querying for 100 takes quite a bit of time and puts unnecessary load on Agave's servers. Second, polling provides what is effectively a binary response. It tells you whether a job is done or not done, it does not give you any information on what is actually going on with the job or where it is in the overall execution process.
+
+The job history URL provides much more detailed information on the various state changes, system messages, and progress information associated with data staging. The syntax of the job history URL is as follows
+
+```shell
+curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/history
+```
+
+Sample response snippet
+
+```javascript
+{  
+  "status":"success",
+  "message":null,
+  "version":"2.1.0-r6d11c",
+  "result":[  
+    {  
+      "created":"2014-10-24T04:47:45.000-05:00",
+      "status":"PENDING",
+      "description":"Job accepted and queued for submission."
+    },
+    {  
+      "created":"2014-10-24T04:47:47.000-05:00",
+      "status":"PROCESSING_INPUTS",
+      "description":"Attempt 1 to stage job inputs"
+    },
+    {  
+      "created":"2014-10-24T04:47:47.000-05:00",
+      "status":"PROCESSING_INPUTS",
+      "description":"Identifying input files for staging"
+    },
+    {  
+      "created":"2014-10-24T04:47:48.000-05:00",
+      "status":"STAGING_INPUTS",
+      "description":"Staging agave://$PUBLIC_STORAGE_SYSTEM/$API_USERNAME/inputs/pyplot/testdata.csv to remote job directory"
+    },
+    {  
+      "progress":{  
+        "averageRate":0,
+        "totalFiles":1,
+        "source":"agave://$PUBLIC_STORAGE_SYSTEM/$API_USERNAME/inputs/pyplot/testdata.csv",
+        "totalActiveTransfers":0,
+        "totalBytes":3212,
+        "totalBytesTransferred":3212
+      },
+      "created":"2014-10-24T04:47:48.000-05:00",
+      "status":"STAGING_INPUTS",
+      "description":"Copy in progress"
+    },
+    {  
+      "created":"2014-10-24T04:47:50.000-05:00",
+      "status":"STAGED",
+      "description":"Job inputs staged to execution system"
+    },
+    {  
+      "created":"2014-10-24T04:47:55.000-05:00",
+      "status":"SUBMITTING",
+      "description":"Preparing job for submission."
+    },
+    {  
+      "created":"2014-10-24T04:47:55.000-05:00",
+      "status":"SUBMITTING",
+      "description":"Attempt 1 to submit job"
+    },
+    {  
+      "created":"2014-10-24T04:48:08.000-05:00",
+      "status":"RUNNING",
+      "description":"Job started running"
+    },
+    {  
+      "created":"2014-10-24T04:48:12.000-05:00",
+      "status":"CLEANING_UP"
+    },
+    {  
+      "created":"2014-10-24T04:48:15.000-05:00",
+      "status":"FINISHED",
+      "description":"Job completed. Skipping archiving at user request."
+    }
+  ]
+}
+```
+
+Depending on the nature of your job and the reliability of the underlying systems, the response from this service can grow rather large, so it is important to be aware that this query can be an expensive call for your client application to make. Everything we said before about polling job status applies to polling job history with the additional caveat that you can chew through quite a bit of bandwidth polling this service, so keep that in mind if your application is bandwidth starved.
+
+Often times, however, polling is unavoidable. In these situations, we recommend using an <a href="http://en.wikipedia.org/wiki/Exponential_backoff" title="Exponential Backoff" target="_blank">exponential backoff</a> to check job status. An exponential backoff is an alogrithm that increases the time between retries as the number of failures increases.
+
+#### Webhooks  
+
+Webhooks are the alternative, preferred way for your application to monitor the status of asynchronous actions in Agave. If you are a <a href="http://en.wikipedia.org/wiki/Design_Patterns_(book)" title="Gang of Four" target="_blank">Gang of Four</a> disciple, webhooks are a mechanism for implementing the <a href="http://en.wikipedia.org/wiki/Observer%5Fpattern" title="Observer Pattern" target="_blank">Observer Pattern</a>. They are widely used across the web and chances are that something you're using right now is leveraging them. In the context of Agave, a webhook is a URL that you give to Agave in advance of an event which it later POSTs a response to when that event occurs. A webhook can be any web accessible URL.
+
+<aside class="notice">For more information about webhooks, events, and notifications in Agave, please see the <a href="http://agaveapi.co/notifications-and-events/" title="Notifications and Events">Notifications and Events</a> page.</aside>
+
+The Jobs service provides several template variables for constructing dynamic URLs. Template variables can be included anywhere in your URL by surrounding the variable name in the following manner `${VARIABLE_NAME}`. When an event of interest occurs, the variables will be resolved and the resulting URL called. Several example urls are given below.
+
+[code lang=text]
+http://example.com/?job_id=${JOB_ID}&amp;job_status=${EVENT}
+```
+
+[code lang=text]
+http://example.com/trigger/job/${JOB_NAME}/${EVENT}
+```
+
+[code lang=text]
+http://example.com/webhooks/?nonce=sdfkajerouiwe234289fahlkqr&amp;id=${JOB_ID}&amp;status=${EVENT}&amp;start=${JOB_START_TIME}&amp;end=${JOB_END_TIME}&amp;url=${JOB_ARCHIVE_URL}
+```
+
+The full list of template variables are listed in Table 3.
+
+<%= partial "includes/tables/33" %>
+
+<p class="table-caption">Table 3. Template variables available for use when defining webhooks for your job.</p>
+
+#### Email  
+
+In situations where you do not have a persistent web address, or access to a backend service, you may find it more convenient to subscribe for email notifications rather then providing a webhook. Agave supports email notifications support as well. Simply specify a valid email address in the `url` field in your job submission notification object and an email will be sent to that address when a relevant event occurs. A sample email message is given below.
+
+[code lang=text]
+The status of job 0001414144065563-5056a550b8-0001-007, "demo-pyplot-demo-advanced test-1414139896," has changed to FINISHED.
+
+Name: demo-pyplot-demo-advanced test-1414139896
+URL: https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007
+Message: Job completed successfully.
+Submit Time: 2014-10-24T04:48:11.000-05:00
+Start Time: 2014-10-24T04:48:08.000-05:0
+End Time: 2014-10-24T04:48:15.000-05:00
+Output Path: $API_USERNAME/archive/jobs/job-0001414144065563-5056a550b8-0001-007
+Output URL: https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs
+```
+
+### Job outputs  
+
+Throughout the lifecycle of a job, your inputs, application assets, and outputs are copied from and shuffled between several different locations. Though it is possible in many instances to explicitly locate and view all the moving pieces of your job through the Files service, resolving where those pieces are given the status, execution system, storage systems, data protocols, login protocols, and execution mechanisms of your job at a given time is...challenging. It is important, however, that you have the ability to monitor your job's output throughout the lifetime of the job.
+
+To make tracking the output of a specific job easier to do, the Jobs service provides a special URL for referencing individual job outputs
+
+```shell
+curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID/outputs/listings/$PATH
+```
+
+The syntax of this service is consistent with the Files service syntax, as is the JSON response from the service. The response would be similar to the following:
+
+```javascript
+{
+  "status" : "success",
+  "message" : null,
+  "version" : "2.1.0-r6d11c",
+  "result" : [ {
+    "name" : "output",
+    "path" : "/output",
+    "lastModified" : "2014-11-06T13:34:35.000-06:00",
+    "length" : 0,
+    "permission" : "NONE",
+    "mimeType" : "text/directory",
+    "format" : "folder",
+    "type" : "dir",
+    "_links" : {
+      "self" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/output"
+      },
+      "system" : {
+        "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+      },
+      "parent" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+      }
+    }
+  }, {
+    "name" : "demo-pyplot-demo-advanced-test-1414139896.err",
+    "path" : "/demo-pyplot-demo-advanced-test-1414139896.err",
+    "lastModified" : "2014-11-06T13:34:27.000-06:00",
+    "length" : 442,
+    "permission" : "NONE",
+    "mimeType" : "application/octet-stream",
+    "format" : "unknown",
+    "type" : "file",
+    "_links" : {
+      "self" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.err"
+      },
+      "system" : {
+        "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+      },
+      "parent" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+      }
+    }
+  }, {
+    "name" : "demo-pyplot-demo-advanced-test-1414139896.out",
+    "path" : "/demo-pyplot-demo-advanced-test-1414139896.out",
+    "lastModified" : "2014-11-06T13:34:30.000-06:00",
+    "length" : 1396,
+    "permission" : "NONE",
+    "mimeType" : "application/octet-stream",
+    "format" : "unknown",
+    "type" : "file",
+    "_links" : {
+      "self" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.out"
+      },
+      "system" : {
+        "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+      },
+      "parent" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+      }
+    }
+  }, {
+    "name" : "demo-pyplot-demo-advanced-test-1414139896.pid",
+    "path" : "/demo-pyplot-demo-advanced-test-1414139896.pid",
+    "lastModified" : "2014-11-06T13:34:33.000-06:00",
+    "length" : 6,
+    "permission" : "NONE",
+    "mimeType" : "application/octet-stream",
+    "format" : "unknown",
+    "type" : "file",
+    "_links" : {
+      "self" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.pid"
+      },
+      "system" : {
+        "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+      },
+      "parent" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+      }
+    }
+  }, {
+    "name" : "testdata.csv",
+    "path" : "/testdata.csv",
+    "lastModified" : "2014-11-06T13:34:42.000-06:00",
+    "length" : 3212,
+    "permission" : "NONE",
+    "mimeType" : "application/octet-stream",
+    "format" : "unknown",
+    "type" : "file",
+    "_links" : {
+      "self" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/testdata.csv"
+      },
+      "system" : {
+        "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+      },
+      "parent" : {
+        "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+      }
+    }
+  } ]
+}
+```
+
+To download a file you would use the following syntax
+
+```shell
+curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID/outputs/media/$PATH
+```
+
+<aside class="notice">The Jobs output service follows the same conventions of the Files service. Thus, you may specify a range header to retrieve a specific byte range. This is particularly helpful when tracking job progress since it gives you a mechanism to tail the output and error log files.</aside>
+
+Regardless of job status, the above services will always point to the most recent location of the job data. If you choose for the Jobs service to archive your job after completion, the URL will point to the archive folder of the job. If you do not choose to archive your data, or if archiving fails, the URL will point to the execution folder created for your job at runtime. Because Agave does not own any of the underlying hardware, it cannot guarantee that those locations will always exist. If, for example, the execution system enforces a purge policy, the output data may be deleted by the system administrators. Agave will let you know if the data is no longer present, however, it cannot prevent it from being deleted. This is another reason that it is important to archive data you feel will be needed in the future.
+
+### Managing your job  
+
+Once your job is submitted, you have the ability to stop, delete, and resubmit it as a new job.
+```shell
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "action=kill" https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID
+``` 
+
+
+[tab title="Deleting"]
+```shell 
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID
+```
+
+
+[tab title="Resubmitting"]
+```shell 
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "action=resubmit" https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID
+```
+
+
+[/tabgroup]
+
+### Permissions and sharing  
+
+As with the <a title="System Registration" href="http://agaveapi.co/system-registration/">Systems</a>, <a title="Application Management" href="http://agaveapi.co/application-management/">Apps</a>, and <a title="File Management" href="http://agaveapi.co/file-management/">Files</a> services, your jobs have their own set of access controls. Using these, you can share your job and its data with other Agave users. Job permissions are private by default. The permissions you give a job apply both to the job, its outputs, its metadata, and the permissions themselves. Thus, by sharing a job with another user, you share all aspects of that job.
+
+Job permissions are managed through a set of URLs consistent with the permissions URL elsewhere in the API.
+
+```shell
+```shell
+curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID/pems
+```
+
+Permissions granted to a specific user: 
+```shell
+curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID/pems/$USERNAME
+```
+
+
+[tab title="Adding &amp; Updating"]
+```shell 
+curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" -X POST -d "permission:$PERMISSION" https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID/$USERNAME
+```
+
+
+[tab title="Deleting"]
+Deleting permissions for all users on a job: 
+
+```shell 
+curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" -X DELETE https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID
+```
+
+Deleting permissions for a specific user on a job: 
+
+```shell
+curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" -X DELETE https://public.tenants.agaveapi.co/jobs/v2/$JOB_ID/$USERNAME
+``` 
+
+
+[/tabgroup]
+
+The available permission values are listed in Table 2.
+
+<%= partial "includes/tables/70" %>
+
+<p class="table-caption">Table 2. Supported job permission values.</p>
+
+<alert class="alert-warning">Job permissions are distinct from file permissions. In many instances, your job output will be accessible via the Files and Jobs services simultaneously. Granting a user permissions a job output file through the Files services does not alter the accessibility of that file through the Jobs service. It is important, then, that you consider to whom you grant permissions, and the implications of that decision in all areas of your application.</alert>

@@ -1,0 +1,54 @@
+<table>
+	<thead>
+		<tr>
+			<th><code>argument</code></th>
+			<th><code>showArgument</code></th>
+			<th>Input value from job request</th>
+			<th>Value injected into wrapper template</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td></td>
+			<td>true</td>
+			<td>/etc/motd</td>
+			<td>/etc/motd</td>
+		</tr>
+		<tr>
+			<td>-f</td>
+			<td>true</td>
+			<td>/etc/motd</td>
+			<td>-f/etc/motd</td>
+		</tr>
+		<tr>
+			<td>-f (trailing space)</td>
+			<td>true</td>
+			<td>/etc/motd</td>
+			<td>-f /etc/motd</td>
+		</tr>
+		<tr>
+			<td>-f</td>
+			<td>false</td>
+			<td>/etc/motd</td>
+			<td>/etc/motd</td>
+		</tr>
+		<tr>
+			<td>--filename</td>
+			<td>true</td>
+			<td>/etc/motd</td>
+			<td>--filename/etc/motd</td>
+		</tr>
+		<tr>
+			<td>--filename=</td>
+			<td>true</td>
+			<td>/etc/motd</td>
+			<td>--filename=/etc/motd</td>
+		</tr>
+		<tr>
+			<td>--filename</td>
+			<td>false</td>
+			<td>/etc/motd</td>
+			<td>/etc/motd</td>
+		</tr>
+	</tbody>
+</table>

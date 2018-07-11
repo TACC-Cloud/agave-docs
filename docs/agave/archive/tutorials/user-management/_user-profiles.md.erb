@@ -1,0 +1,213 @@
+## Introduction  
+
+Agave provides a service for searching and viewing profile information about users associated with your tenant of the API. Generally speaking, these would be other people who were issued accounts by the same organization that issued you the username and password you used to login to this developer portal.
+
+### Viewing a specific user profile  
+
+
+```shell  
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/profiles/v2/me
+```  
+
+```plaintext
+profiles-list -v me
+```  
+
+
+The response from the service will resemble the following:
+
+```javascript
+{
+  "status":"success",
+  "message":"",
+  "version":"2.1.8-SNAPSHOT-r8244",
+  "result":[
+     {
+        "username":"nryan",
+        "email":"nryan@astros.mlb.com",
+        "firstName":"Nolan",
+        "lastName":"Ryan",
+        "position":"Pitcher",
+        "institution":"Baseball",
+        "phone":"(817) 273-5222",
+        "fax":null,
+        "researchArea":null,
+        "department":null,
+        "city":"Houston",
+        "state":"TX",
+        "country":"USA",
+        "gender":"MALE",
+        "_links":{
+           "self":{
+"href":"https://public.tenants.agaveapi.co/profiles/v2/nryan"
+           },
+           "users":{
+"href":"https://public.tenants.agaveapi.co/profiles/v2/nryan/users"
+           }
+        }
+     }
+  ]
+}
+```
+
+## Searching for other users  
+
+It is also possible to search for users by partial name, email address, or username. The syntax for these queries are as follows:
+
+```shell
+# Search by name
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" http://$API_BASE_URL/profiles/v2/search/name/$NAME
+
+# Search by email address
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" http://$API_BASE_URL/profiles/v2/search/name/$EMAIL
+
+# Search by username
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" http://$API_BASE_URL/profiles/v2/search/username/$USERNAME
+```  
+
+```plaintext
+# Search by name
+profiles-list -v -N $NAME
+
+# Search by email address
+profiles-list -v -E $EMAIL
+
+# Search by username
+profiles-list -v -U $USERNAME
+```  
+
+
+Search values can be partial values. The service will look for case-insensitive matches for the given value anywhere within the specified field. For name searches, the service will look for matches in the user's first name, last name, and first name + last name separated by a space.
+
+## Identity Management  
+
+Agave's hosted Identity service supports full CRUD access to user accounts through a REST API and an OpenLDAP interface. Extensive documentation on the OpenLDAP interface can be found on the OpenLDAP <a href="http://www.openldap.org/" title="OpenLDAP" target="_blank">website</a> and is beyond the scope of this document. For more information on how to create a tenant of Agave for your project or organization, please reach out to nryan [at] tacc [dot] utexas [dot] edu.
+
+<aside class="notice">If your organization runs their own identity service, the information available through the Profiles will most likely be restricted to read only access. This will still allow you to search for and view other users, but you will not be able to do things like update your personal profile information or create new user accounts. To do that, consult your organization's user portal or contact their user support team.</aside>
+
+## Creating users  
+
+To create a new user profile, send a POST request with a JSON description of the user to the `/profiles/v2/` endpoint.
+
+
+```shell  
+curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+   --data &#039;{"username":"rclemens","email":"rclemens@mlb.com", "firstname":"Roger","lastname":"Clemens"}&#039;
+   "https://public.tenants.agaveapi.co/profiles/v2/
+```  
+
+```plaintext
+profiles-addupdate -v -F rclemens.json
+```  
+
+
+The response from the service will resemble the following:
+
+```javascript
+{
+  "status":"success",
+  "message":"",
+  "version":"2.1.8-SNAPSHOT-r8244",
+  "result":[
+     {
+        "username":"rclemens",
+        "email":"rclemens@mlb.com",
+        "firstName":"Roger",
+        "lastName":"Clemens",
+        "position":null,
+        "institution":null,
+        "phone":null,
+        "fax":null,
+        "researchArea":null,
+        "department":null,
+        "city":null,
+        "state":null,
+        "country":null,
+        "gender":"MALE",
+        "_links":{
+           "self":{
+"href":"https://public.tenants.agaveapi.co/profiles/v2/rclemens"
+           },
+           "users":{
+"href":"https://public.tenants.agaveapi.co/profiles/v2/rclemens/users"
+           }
+        }
+     }
+  ]
+}
+```
+
+## Updating users  
+
+To update a user profile, make a PUT request to the URI of the user, passing the
+updated description of the user in the payload.
+
+
+```shell  
+curl -sk -X PUT -H "Authorization: Bearer $ACCESS_TOKEN"
+   --data &#039;{"username":"rclemens","email":"rclemens@mlb.com", "firstname":"Roger","lastname":"Clemens"}&#039;
+   "https://public.tenants.agaveapi.co/profiles/v2/rclemens
+```  
+
+```plaintext
+profiles-addupdate -v -F profile.json
+```  
+
+
+The response from the service will resemble the following:
+
+```javascript
+[  
+  {  
+    "username":"rclemens",
+    "email":"rclemens@mlb.com",
+    "firstName":"Roger",
+    "lastName":"Clemens",
+    "position":null,
+    "institution":null,
+    "phone":null,
+    "fax":null,
+    "researchArea":null,
+    "department":null,
+    "city":null,
+    "state":null,
+    "country":null,
+    "gender":"MALE",
+    "_links":{  
+      "self":{  
+        "href":"https://public.tenants.agaveapi.co/profiles/v2/rclemens"
+      },
+      "users":{  
+        "href":"https://public.tenants.agaveapi.co/profiles/v2/rclemens/users"
+      }
+    }
+  }
+]
+```
+
+## Deleting users  
+
+To delete a user profile, make a DELETE request to the URI of the user.
+
+
+```shell  
+curl -sk -X DELETE -H "Authorization: Bearer $ACCESS_TOKEN"
+   "https://public.tenants.agaveapi.co/profiles/v2/rclemens
+```  
+
+```plaintext
+profiles-users-delete -v rclemens
+```  
+
+
+The response from the service will be an empty result object.
+
+```javascript
+{}
+```
+
+## User roles  
+
+Agave supports three user roles: user, tenant admin, and super admin. Each role is described in the following table. User roles are currently assigned and managed by Agave staff. If you need help configuring user roles for your tenant, please contact your tenant admin at $TENANT_ADMIN_EMAIL.
+
+<%= partial "includes/tables/56" %>

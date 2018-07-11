@@ -1,0 +1,30 @@
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>inputs/pyplot/testdata.csv</td>
+			<td>A relative path on the user's default storage system.</td>
+		</tr>
+		<tr>
+			<td>/home/apiuser/inputs/pyplot/testdata.csv</td>
+			<td>An absolute path on the user's default storage system.</td>
+		</tr>
+		<tr>
+			<td>agave://$PUBLIC_STORAGE_SYSTEM/$API_USERNAME/inputs/pyplot/testdata.csv</td>
+			<td>An Agave URL explicitly specifying a source system and relative path.</td>
+		</tr>
+		<tr>
+			<td>agave://$PUBLIC_STORAGE_SYSTEM//home/apiuser/$API_USERNAME/inputs/pyplot/testdata.csv</td>
+			<td>An Agave URL explicitly specifying a source system and absolute path.</td>
+		</tr>
+		<tr>
+			<td>http://example.com/inputs/pyplot/testdata.csv</td>
+			<td>Standard url with any <a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/#importing-data">supported transfer protocol</a>.</td>
+		</tr>
+	</tbody>
+</table>

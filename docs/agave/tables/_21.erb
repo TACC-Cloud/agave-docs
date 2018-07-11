@@ -1,0 +1,23 @@
+<table>
+	<thead>
+		<tr>
+			<th>Type of storage system</th>
+			<th>Examples of rootDir values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Linux</td>
+			<td><ul><li>Actual system root directory, `/`</li><li>RAID array physically attached to the system</li><li>NSF mount you want to share</li><li>An arbitrary file path, such as your `$HOME` directory from which you want to server application data.</li></ul></td>
+		</tr>
+		<tr>
+			<td>Cloud</td>
+			<td><ul><li>A bucket on S3</li><li>A folder/marker file in your object store
+</li></ul></td>
+		</tr>
+		<tr>
+			<td>iRODS</td>
+			<td><ul><li>A specific resource or zone you want to expose.</li><li>A collection you want to publish for use</li><li>Your personal home folder</li></ul></td>
+		</tr>
+	</tbody>
+</table>

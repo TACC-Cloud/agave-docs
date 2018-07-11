@@ -1,0 +1,34 @@
+<table>
+	<thead>
+		<tr>
+			<th>Request body parameter</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>response_type</td>
+			<td><i>Required</i>. As defined in the OAuth 2.0 specification, this field must contain the value  "token".</td>
+		</tr>
+		<tr>
+			<td>client_id</td>
+			<td><i>Required</i>. The application's client ID, obtained when the client application was registered with Agave (see <a href="/documentation/tutorials/client-registration/">Client Registration</a>).</td>
+		</tr>
+		<tr>
+			<td>redirect_uri</td>
+			<td><i>Required</i>. This parameter is used for validation only (there is no actual redirection). The value of this parameter must <i>exactly</i> match the value of <code>redirect_uri</code> supplied when requesting the authorization code.</td>
+		</tr>
+		<tr>
+			<td>scope</td>
+			<td><i>Required</i>. A space-separated list of scopes. Currently only PRODUCTION is supported.</td>
+		</tr>
+		<tr>
+			<td>state</td>
+			<td><i>Optional,</i> but strongly recommended. The state can be useful for correlating requests and responses. Because your redirect_uri can be guessed, using a state value can increase your assurance that an incoming connection is the result of an authentication request. If you generate a random string or encode the hash of some client state (e.g., a cookie) in this state variable, you can validate the response to additionally ensure that the request and response originated in the same browser. This provides protection against attacks such as cross-site request forgery. See <a href="http://tools.ietf.org/html/rfc6749#section-4.4" title="RFC-6749">RFC-6749</a>. </td>
+		</tr>
+		<tr>
+			<td>show_dialog</td>
+			<td><i>Optional</i>. Whether or not to force the user to approve the app again if they’ve already done so. If <code>false</code> (default), a user who has already approved the application may be automatically redirected to the URI specified by <code>redirect_uri</code>. If <code>true</code>, the user will not be automatically redirected and will have to approve the app again.</td>
+		</tr>
+	</tbody>
+</table>

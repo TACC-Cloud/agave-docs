@@ -1,0 +1,36 @@
+<table>
+	<thead>
+		<tr>
+			<th>Type</th>
+			<th>Scope</th>
+			<th>Role needed to set</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>storage</td>
+			<td>user default</td>
+			<td>USER</td>
+			<td>Default storage system for an individual user. This takes priority over any global defaults and will be used in all data operations in leu of a system being specified for this user.</td>
+		</tr>
+		<tr>
+			<td>storage</td>
+			<td>global default</td>
+			<td>Tenant admin</td>
+			<td>Default storage system for an entire tenant. This will be used as the default storage system whenever a user has not explicitly specified another. Only public systems may be made the global default.</td>
+		</tr>
+		<tr>
+			<td>execution</td>
+			<td>user default</td>
+			<td>USER</td>
+			<td>Default execution system for an individual user. This takes priority over any global defaults and will be used in all app and job operations in leu of an execution system being specified for this user. In the case of app registration, normal user role requirements apply.</td>
+		</tr>
+		<tr>
+			<td>execution</td>
+			<td>global default</td>
+			<td>Tenant admin</td>
+			<td>Default execution system for an entire tenant. This will be used as the default execution system whenever a user has not explicitly specified another. Only public systems may be made the global default.</td>
+		</tr>
+	</tbody>
+</table>

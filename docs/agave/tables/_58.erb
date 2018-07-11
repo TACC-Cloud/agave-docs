@@ -1,0 +1,71 @@
+<table>
+	<thead>
+		<tr>
+			<th>Attribute</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>auth</td>
+			<td>JSON object</td>
+			<td><b>Required:</b> A JSON object describing the default authentication credential for this system.</td>
+		</tr>
+		<tr>
+			<td>container</td>
+			<td>string</td>
+			<td>The container to use when interacting with an object store. Specifying a container provides isolation when exposing your cloud storage accounts so users do not have access to your entire storage account. This should be used in combination with delegated cloud credentials such as an AWS IAM user credential.</td>
+		</tr>
+		<tr>
+			<td>homeDir</td>
+			<td>string</td>
+			<td>The path on the remote system, relative to <code>rootDir</code> to use as the virtual home directory for all API requests. This will be the base of any requested paths that do not being with a '/'. Defaults to '/', thus being equivalent to <code>rootDir</code>.</td>
+		</tr>
+		<tr>
+			<td>host</td>
+			<td>string</td>
+			<td><b>Required:</b> The hostname or ip address of the storage server</td>
+		</tr>
+		<tr>
+			<td>port</td>
+			<td>int</td>
+			<td><b>Required:</b> The port number of the storage server.</td>
+		</tr>
+		<tr>
+			<td>mirror</td>
+			<td>boolean</td>
+			<td>Whether the permissions set on the server should be pushed to the storage system itself. Currently, this only applies to IRODS systems.</td>
+		</tr>
+		<tr>
+			<td>protocol</td>
+			<td>FTP, GRIDFTP, IRODS, IRODS4, LOCAL, S3, SFTP</td>
+			<td><b>Required:</b> The protocol used to authenticate to the storage server.</td>
+		</tr>
+		<tr>
+			<td>publicAppsDir</td>
+			<td>string</td>
+			<td>The path on the remote system where apps will be stored if this system is used as the default public storage system.</td>
+		</tr>
+		<tr>
+			<td>proxy</td>
+			<td>JSON Object</td>
+			<td>The proxy server through with Agave will tunnel when submitting jobs. Currently proxy servers will use the same authentication mechanism as the target server.</td>
+		</tr>
+		<tr>
+			<td>resource</td>
+			<td>string</td>
+			<td>The name of the default resource to use when defining an IRODS system.</td>
+		</tr>
+		<tr>
+			<td>rootDir</td>
+			<td>string</td>
+			<td>The path on the remote system to use as the virtual root directory for all API requests. Defaults to '/'.</td>
+		</tr>
+		<tr>
+			<td>zone</td>
+			<td>string</td>
+			<td>The name of the default zone to use when defining an IRODS system.</td>
+		</tr>
+	</tbody>
+</table>
