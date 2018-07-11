@@ -22,7 +22,7 @@ As mentioned previously, jobs are submitted by making a HTTP POST request either
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Name</th>
@@ -98,17 +98,19 @@ As mentioned previously, jobs are submitted by making a HTTP POST request either
 
 ..
 
-   :information_source: In this tutorial we will use JSON for our examples, however, one could replace the JSON object with a HTML form mapping JSON attribute and values to HTML form attributes and values one for one and get the same results, with the exception of the ``notifications`` attribute which is not accepted using HTML form submission and would need to be added after submitting the job request by sending each of the notification objects with the returned job id to the :raw-html-m2r:`<a href="../notifications/introduction" title="Notification Management Tutorial">Notifications API</a>`.
-
-
-In addition to the standard fields for all jobs, the application you specify in the ``appId`` field will also have its own set of inputs and parameters specified during registration that are unique to that app. (For more information about app registration and descriptions, see the `Apps section <../apps/introduction>`_\ ).
-
-The following snippet shows a sample JSON job request that could be submitted to the Jobs service to run the ``pyplot-0.1.0`` app. :raw-html-m2r:`<!-- from the <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/advanced-app-example/" title="Advanced App Example">Advanced App Example</a> tutorial. -->`
+.. note::
+    In this tutorial we will use JSON for our examples, however, one could replace the JSON object with a HTML form mapping JSON attribute and values to HTML form attributes and values one for one and get the same results, with the exception of the ``notifications`` attribute which is not accepted using HTML form submission and would need to be added after submitting the job request by sending each of the notification objects with the returned job id to the :raw-html-m2r:`<a href="../notifications/introduction" title="Notification Management Tutorial">Notifications API</a>`.
+    In addition to the standard fields for all jobs, the application you specify in the ``appId`` field will also have its own set of inputs and parameters specified during registration that are unique to that app. (For more information about app registration and descriptions, see the `Apps section <../apps/introduction>`_\ ).
+    The following snippet shows a sample JSON job request that could be submitted to the Jobs service to run the ``pyplot-0.1.0`` app. :raw-html-m2r:`<!-- from the <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/advanced-app-example/" title="Advanced App Example">Advanced App Example</a> tutorial. -->`
 
 ..
 
-   Show JSON job request &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
+
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show JSON job request**
 
    .. code-block:: json
 
@@ -155,22 +157,18 @@ The following snippet shows a sample JSON job request that could be submitted to
        ]
       }
 
-   {: .solution}
-
+|
 
 Notice that this example specifies a single input attribute, ``dataset``. The ``pyplot-0.1.0`` app definition specified that the ``dataset`` input attribute could accept more than one value (maxCardinality = 2). In the job request object, that translates to an array of string values. Each string represents a piece of data that Agave will transfer into the job work directory prior to job execution. Any value accepted by the Files service when `importing data  <../files/introduction#importing-data>`_ is accepted here. Some examples of valid values are given in the following table.
 
 
 .. raw:: html
 
-   <table>
-   <thead>
+   <table border="1px" cellpadding="5">
    <tr>
    <th>Name</th>
    <th>Description</th>
    </tr>
-   </thead>
-   <tbody>
    <tr>
    <td>inputs/pyplot/testdata.csv</td>
    <td>A relative path on the user's default storage system.</td>
@@ -193,7 +191,6 @@ Notice that this example specifies a single input attribute, ``dataset``. The ``
    <td>http://example.com/inputs/pyplot/testdata.csv</td>
    <td>Standard url with any <a href="../files/introduction#importing-data">supported transfer protocol</a>.</td>
    </tr>
-   </tbody>
    </table>
 
 
@@ -214,32 +211,37 @@ To get a template for the Job submission JSON for a particular app, you can use 
 
 .. code-block:: shell
 
-   jobs-template $APP_ID > job.json
+   $ jobs-template $APP_ID > job.json
 
 You can submit the job with the following CLI command:
 
 .. code-block:: shell
 
-   jobs-submit -F job.json
+   $ jobs-submit -F job.json
 
 ..
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
+
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show cURL**
 
    .. code-block:: shell
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -F "fileToUpload=@job.json" https://agave.iplantc.org/jobs/v2/?pretty=true
-
-   {: .solution}
-
-
+      $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -F "fileToUpload=@job.json" https://agave.iplantc.org/jobs/v2/?pretty=true
+|
 If everything went well, you will receive a response that looks something like the following JSON object.
 
 ..
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
+
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show response**
 
    .. code-block:: json
 
@@ -310,6 +312,4 @@ If everything went well, you will receive a response that looks something like t
          }
        }
       }
-
-   {: .solution}
-
+|
