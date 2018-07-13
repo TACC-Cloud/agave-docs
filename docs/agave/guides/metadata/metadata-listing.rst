@@ -9,77 +9,86 @@ Metadata details
 
    Fetching a metadata item
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012?pretty=true
+        :fa:`caret-right`
+        **Show curl**
 
-   {: .solution}
+     .. code-block:: shell
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012?pretty=true
+|
 
-   .. code-block:: shell
+.. container:: foldable
 
-      metadata-list -v 7341557475441971686-242ac11f-0001-012
+     .. container:: header
 
-   {: .solution}
+        :fa:`caret-right`
+        **Show Agave CLI**
+
+     .. code-block:: shell
+
+        metadata-list -v 7341557475441971686-242ac11f-0001-012
+|
 
    The response will look something like the following:
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-        "uuid":"7341557475441971686-242ac11f-0001-012",
-        "schemaId":null,
-        "internalUsername":null,
-        "associationIds":[
-          "179338873096442342-242ac113-0001-002",
-          "6608339759546166810-242ac114-0001-007"
-        ],
-        "lastUpdated":"2016-08-29T05:51:39.908-05:00",
-        "name":"some metadata",
-        "value":{
-          "title":"Example Metadata",
-          "properties":{
-            "species":"arabidopsis",
-            "description":"A model plant organism..."
-          }
-        },
-        "created":"2016-08-29T05:43:18.618-05:00",
-        "owner":"nryan",
-        "_links":{
-          "self":{
-            "href":"https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
-          },
-          "permissions":{
-            "href":"https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
-          },
-          "owner":{
-            "href":"https://public.agaveapi.co/profiles/v2/nryan"
-          },
+        :fa:`caret-right`
+        **Show json response**
+
+     .. code-block:: json
+
+        {
+          "uuid":"7341557475441971686-242ac11f-0001-012",
+          "schemaId":null,
+          "internalUsername":null,
           "associationIds":[
-            {
-              "rel":"179338873096442342-242ac113-0001-002",
-              "href":"https://public.agaveapi.co/files/v2/media/system/storage.example.com//",
-              "title":"file"
-            },
-            {
-              "rel":"6608339759546166810-242ac114-0001-007",
-              "href":"https://public.agaveapi.co/jobs/v2/6608339759546166810-242ac114-0001-007",
-              "title":"job"
+            "179338873096442342-242ac113-0001-002",
+            "6608339759546166810-242ac114-0001-007"
+          ],
+          "lastUpdated":"2016-08-29T05:51:39.908-05:00",
+          "name":"some metadata",
+          "value":{
+            "title":"Example Metadata",
+            "properties":{
+              "species":"arabidopsis",
+              "description":"A model plant organism..."
             }
-          ]
+          },
+          "created":"2016-08-29T05:43:18.618-05:00",
+          "owner":"nryan",
+          "_links":{
+            "self":{
+              "href":"https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
+            },
+            "permissions":{
+              "href":"https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
+            },
+            "owner":{
+              "href":"https://public.agaveapi.co/profiles/v2/nryan"
+            },
+            "associationIds":[
+              {
+                "rel":"179338873096442342-242ac113-0001-002",
+                "href":"https://public.agaveapi.co/files/v2/media/system/storage.example.com//",
+                "title":"file"
+              },
+              {
+                "rel":"6608339759546166810-242ac114-0001-007",
+                "href":"https://public.agaveapi.co/jobs/v2/6608339759546166810-242ac114-0001-007",
+                "title":"job"
+              }
+            ]
+          }
         }
-      }
-
-   {: .solution}
+|
 
 
 To fetch a detailed description of a metadata item, make a GET request on the resource URL. The response will be the full metadata item representation. Two points of interest in the example response are that the response does not have an ``id`` field. Instead, it has a ``uuid`` field which serves as its ID. This is the result of regression support for legacy consumers and will be changed in the next major release.
@@ -95,79 +104,88 @@ Metadata browsing
 
    Listing your metadata
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          'https://api.sd2e.org/meta/v2/data?limit=1&pretty=true'
+        :fa:`caret-right`
+        **Show curl**
 
-   {: .solution}
+     .. code-block:: shell
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            'https://api.sd2e.org/meta/v2/data?limit=1&pretty=true'
+|
 
-   .. code-block:: plaintext
+.. container:: foldable
 
-      metadata-list -v -l 1
+     .. container:: header
 
-   {: .solution}
+        :fa:`caret-right`
+        **Show Agave CLI**
+
+     .. code-block:: plaintext
+
+        metadata-list -v -l 1
+|
 
    The response will look something like the following:
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      [
-        {
-          "uuid": "7341557475441971686-242ac11f-0001-012",
-          "schemaId": null,
-          "internalUsername": null,
-          "associationIds": [
-            "179338873096442342-242ac113-0001-002",
-            "6608339759546166810-242ac114-0001-007"
-          ],
-          "lastUpdated": "2016-08-29T05:51:39.908-05:00",
-          "name": "some metadata",
-          "value": {
-            "title": "Example Metadata",
-            "properties": {
-              "species": "arabidopsis",
-              "description": "A model plant organism..."
-            }
-          },
-          "created": "2016-08-29T05:43:18.618-05:00",
-          "owner": "nryan",
-          "_links": {
-            "self": {
-              "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
-            },
-            "permissions": {
-              "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
-            },
-            "owner": {
-              "href": "https://public.agaveapi.co/profiles/v2/nryan"
-            },
+        :fa:`caret-right`
+        **Show json response**
+
+     .. code-block:: json
+
+        [
+          {
+            "uuid": "7341557475441971686-242ac11f-0001-012",
+            "schemaId": null,
+            "internalUsername": null,
             "associationIds": [
-              {
-                "rel": "179338873096442342-242ac113-0001-002",
-                "href": "https://public.agaveapi.co/files/v2/media/system/storage.example.com//",
-                "title": "file"
-              },
-              {
-                "rel": "6608339759546166810-242ac114-0001-007",
-                "href": "https://public.agaveapi.co/jobs/v2/6608339759546166810-242ac114-0001-007",
-                "title": "job"
+              "179338873096442342-242ac113-0001-002",
+              "6608339759546166810-242ac114-0001-007"
+            ],
+            "lastUpdated": "2016-08-29T05:51:39.908-05:00",
+            "name": "some metadata",
+            "value": {
+              "title": "Example Metadata",
+              "properties": {
+                "species": "arabidopsis",
+                "description": "A model plant organism..."
               }
-            ]
+            },
+            "created": "2016-08-29T05:43:18.618-05:00",
+            "owner": "nryan",
+            "_links": {
+              "self": {
+                "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
+              },
+              "permissions": {
+                "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
+              },
+              "owner": {
+                "href": "https://public.agaveapi.co/profiles/v2/nryan"
+              },
+              "associationIds": [
+                {
+                  "rel": "179338873096442342-242ac113-0001-002",
+                  "href": "https://public.agaveapi.co/files/v2/media/system/storage.example.com//",
+                  "title": "file"
+                },
+                {
+                  "rel": "6608339759546166810-242ac114-0001-007",
+                  "href": "https://public.agaveapi.co/jobs/v2/6608339759546166810-242ac114-0001-007",
+                  "title": "job"
+                }
+              ]
+            }
           }
-        }
-      ]
-
-   {: .solution}
+        ]
+|
 
 
 To browse your Metadata, make a GET request against the ``/meta/v2/data`` collection. This will return all the metadata you created and to which you have been granted READ access. This includes any metadata items that have been shared with the ``public`` or ``world`` users. In practice, users will have many metadata items created and shared with them as part of normal use of the platform, so pagination and :raw-html-m2r:`<a href="#metadata-search">search</a>` become important aspects of interacting with the service.

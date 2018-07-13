@@ -42,60 +42,68 @@ Throughout the documentation you will regularly encounter the following variable
        <td>de32225c235cf47b9965997270a1496c</td>
      </tr> 
    </table>
+|
 
 
 JSON Notation
 -------------
 
-.. code-block:: json
+.. container:: foldable
 
-   {
-       "active": true,
-       "created": "2014-09-04T16:59:33.000-05:00",
-       "frequency": 60,
-       "id": "0001409867973952-5056a550b8-0001-014",
-       "internalUsername": null,
-       "lastCheck": [
-         {
-           "created": "2014-10-02T13:03:25.000-05:00",
-           "id": "0001412273000497-5056a550b8-0001-015",
-           "message": null,
-           "result": "PASSED",
-           "type": "STORAGE"
-         },
-         {
-           "created": "2014-10-02T13:03:25.000-05:00",
-           "id": "0001411825368981-5056a550b8-0001-015",
-           "message": null,
-           "result": "FAILED",
-           "type": "LOGIN"
-         }
-       ],
-       "lastSuccess": "2014-10-02T11:03:13.000-05:00",
-       "lastUpdated": "2014-10-02T13:03:25.000-05:00",
-       "nextUpdate": "2014-10-02T14:03:15.000-05:00",
-       "owner": "systest",
-       "target": "demo.storage.example.com",
-       "updateSystemStatus": false,
-       "_links": {
-           "checks": {
-               "href": "https://public.tenants.agaveapi.co/monitor/v2/0001409867973952-5056a550b8-0001-014/checks"
-           },
-           "notifications": {
-               "href": "https://public.tenants.agaveapi.co/notifications/v2/?associatedUuid=0001409867973952-5056a550b8-0001-014"
-           },
-           "owner": {
-               "href": "https://public.tenants.agaveapi.co/profiles/v2/systest"
-           },
-           "self": {
-               "href": "https://public.tenants.agaveapi.co/monitor/v2/0001409867973952-5056a550b8-0001-014"
-           },
-           "system": {
-               "href": "https://public.tenants.agaveapi.co/systems/v2/demo.storage.example.com"
-           }
-       }
-   }
+   .. container:: header
 
+      :fa:`caret-right`
+      **Show JSON notation**
+
+   .. code-block:: json
+
+      {
+          "active": true,
+          "created": "2014-09-04T16:59:33.000-05:00",
+          "frequency": 60,
+          "id": "0001409867973952-5056a550b8-0001-014",
+          "internalUsername": null,
+          "lastCheck": [
+            {
+              "created": "2014-10-02T13:03:25.000-05:00",
+              "id": "0001412273000497-5056a550b8-0001-015",
+              "message": null,
+              "result": "PASSED",
+              "type": "STORAGE"
+            },
+            {
+              "created": "2014-10-02T13:03:25.000-05:00",
+              "id": "0001411825368981-5056a550b8-0001-015",
+              "message": null,
+              "result": "FAILED",
+              "type": "LOGIN"
+            }
+          ],
+          "lastSuccess": "2014-10-02T11:03:13.000-05:00",
+          "lastUpdated": "2014-10-02T13:03:25.000-05:00",
+          "nextUpdate": "2014-10-02T14:03:15.000-05:00",
+          "owner": "systest",
+          "target": "demo.storage.example.com",
+          "updateSystemStatus": false,
+          "_links": {
+              "checks": {
+                  "href": "https://public.tenants.agaveapi.co/monitor/v2/0001409867973952-5056a550b8-0001-014/checks"
+              },
+              "notifications": {
+                  "href": "https://public.tenants.agaveapi.co/notifications/v2/?associatedUuid=0001409867973952-5056a550b8-0001-014"
+              },
+              "owner": {
+                  "href": "https://public.tenants.agaveapi.co/profiles/v2/systest"
+              },
+              "self": {
+                  "href": "https://public.tenants.agaveapi.co/monitor/v2/0001409867973952-5056a550b8-0001-014"
+              },
+              "system": {
+                  "href": "https://public.tenants.agaveapi.co/systems/v2/demo.storage.example.com"
+              }
+          }
+      }
+|
 Javascript dot notation will be used to refer to individual properties of JSON objects. For example, consider the following JSON object.
 
 
@@ -150,7 +158,7 @@ The Agave API is based on :raw-html-m2r:`<a title="REST" href="http://en.wikiped
        <td>Used for deleting resources</td>
      </tr> 
    </table>
-
+|
 
 Common API query parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -187,7 +195,7 @@ Several URL query parameters are common across all services. The following table
        <td>A comma-delimited list of fields to return for each object in the response. Each field may be referenced using JSON notation</td>
      </tr> 
    </table>
-
+|
 
 Experimental query parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -212,7 +220,7 @@ Starting with the 2.1.10 release, two new query parameters have been introduced 
        <td>The field by which to sort the response. Any field present in the full representation of the resource that you are querying is supported. Multiple values are not currently supported</td>
      </tr> 
    </table>
-
+|
 
 Responses
 ---------

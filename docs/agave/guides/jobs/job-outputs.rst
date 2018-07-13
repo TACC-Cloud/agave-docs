@@ -11,135 +11,137 @@ To make tracking the output of a specific job easier to do, the Jobs service pro
    jobs-output-list $JOB_ID
    jobs-output-list -v $JOB_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/$JOB_ID/outputs/listings/?pretty=true
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/$JOB_ID/outputs/listings/?pretty=true
+|
 
 
 The syntax of this service is consistent with the Files service syntax, as is the JSON response from the service. The response would be similar to the following:
 
-..
+.. container:: foldable
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: json
+        :fa:`caret-right`
+        **Show json response**
 
-      {
-       "status" : "success",
-       "message" : null,
-       "version" : "2.1.0-r6d11c",
-       "result" : [ {
-         "name" : "output",
-         "path" : "/output",
-         "lastModified" : "2014-11-06T13:34:35.000-06:00",
-         "length" : 0,
-         "permission" : "NONE",
-         "mimeType" : "text/directory",
-         "format" : "folder",
-         "type" : "dir",
-         "_links" : {
-           "self" : {
-             "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/output"
-           },
-           "system" : {
-             "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
-           },
-           "parent" : {
-             "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
-           }
-         }
-       }, {
-         "name" : "demo-pyplot-demo-advanced-test-1414139896.err",
-         "path" : "/demo-pyplot-demo-advanced-test-1414139896.err",
-         "lastModified" : "2014-11-06T13:34:27.000-06:00",
-         "length" : 442,
-         "permission" : "NONE",
-         "mimeType" : "application/octet-stream",
-         "format" : "unknown",
-         "type" : "file",
-         "_links" : {
-           "self" : {
-             "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.err"
-           },
-           "system" : {
-             "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
-           },
-           "parent" : {
-             "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
-           }
-         }
-       }, {
-         "name" : "demo-pyplot-demo-advanced-test-1414139896.out",
-         "path" : "/demo-pyplot-demo-advanced-test-1414139896.out",
-         "lastModified" : "2014-11-06T13:34:30.000-06:00",
-         "length" : 1396,
-         "permission" : "NONE",
-         "mimeType" : "application/octet-stream",
-         "format" : "unknown",
-         "type" : "file",
-         "_links" : {
-           "self" : {
-             "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.out"
-           },
-           "system" : {
-             "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
-           },
-           "parent" : {
-             "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
-           }
-         }
-       }, {
-         "name" : "demo-pyplot-demo-advanced-test-1414139896.pid",
-         "path" : "/demo-pyplot-demo-advanced-test-1414139896.pid",
-         "lastModified" : "2014-11-06T13:34:33.000-06:00",
-         "length" : 6,
-         "permission" : "NONE",
-         "mimeType" : "application/octet-stream",
-         "format" : "unknown",
-         "type" : "file",
-         "_links" : {
-           "self" : {
-             "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.pid"
-           },
-           "system" : {
-             "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
-           },
-           "parent" : {
-             "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
-           }
-         }
-       }, {
-         "name" : "testdata.csv",
-         "path" : "/testdata.csv",
-         "lastModified" : "2014-11-06T13:34:42.000-06:00",
-         "length" : 3212,
-         "permission" : "NONE",
-         "mimeType" : "application/octet-stream",
-         "format" : "unknown",
-         "type" : "file",
-         "_links" : {
-           "self" : {
-             "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/testdata.csv"
-           },
-           "system" : {
-             "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
-           },
-           "parent" : {
-             "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
-           }
-         }
-       } ]
-      }
+     .. code-block:: json
 
-   {: .solution}
+        {
+        "status" : "success",
+        "message" : null,
+        "version" : "2.1.0-r6d11c",
+        "result" : [ {
+          "name" : "output",
+          "path" : "/output",
+          "lastModified" : "2014-11-06T13:34:35.000-06:00",
+          "length" : 0,
+          "permission" : "NONE",
+          "mimeType" : "text/directory",
+          "format" : "folder",
+          "type" : "dir",
+          "_links" : {
+            "self" : {
+              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/output"
+            },
+            "system" : {
+              "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+            },
+            "parent" : {
+              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+            }
+          }
+        }, {
+          "name" : "demo-pyplot-demo-advanced-test-1414139896.err",
+          "path" : "/demo-pyplot-demo-advanced-test-1414139896.err",
+          "lastModified" : "2014-11-06T13:34:27.000-06:00",
+          "length" : 442,
+          "permission" : "NONE",
+          "mimeType" : "application/octet-stream",
+          "format" : "unknown",
+          "type" : "file",
+          "_links" : {
+            "self" : {
+              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.err"
+            },
+            "system" : {
+              "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+            },
+            "parent" : {
+              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+            }
+          }
+        }, {
+          "name" : "demo-pyplot-demo-advanced-test-1414139896.out",
+          "path" : "/demo-pyplot-demo-advanced-test-1414139896.out",
+          "lastModified" : "2014-11-06T13:34:30.000-06:00",
+          "length" : 1396,
+          "permission" : "NONE",
+          "mimeType" : "application/octet-stream",
+          "format" : "unknown",
+          "type" : "file",
+          "_links" : {
+            "self" : {
+              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.out"
+            },
+            "system" : {
+              "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+            },
+            "parent" : {
+              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+            }
+          }
+        }, {
+          "name" : "demo-pyplot-demo-advanced-test-1414139896.pid",
+          "path" : "/demo-pyplot-demo-advanced-test-1414139896.pid",
+          "lastModified" : "2014-11-06T13:34:33.000-06:00",
+          "length" : 6,
+          "permission" : "NONE",
+          "mimeType" : "application/octet-stream",
+          "format" : "unknown",
+          "type" : "file",
+          "_links" : {
+            "self" : {
+              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.pid"
+            },
+            "system" : {
+              "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+            },
+            "parent" : {
+              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+            }
+          }
+        }, {
+          "name" : "testdata.csv",
+          "path" : "/testdata.csv",
+          "lastModified" : "2014-11-06T13:34:42.000-06:00",
+          "length" : 3212,
+          "permission" : "NONE",
+          "mimeType" : "application/octet-stream",
+          "format" : "unknown",
+          "type" : "file",
+          "_links" : {
+            "self" : {
+              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/testdata.csv"
+            },
+            "system" : {
+              "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+            },
+            "parent" : {
+              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+            }
+          }
+        } ]
+        }
+|
 
 
 To download a file you would use the following syntax
@@ -148,16 +150,17 @@ To download a file you would use the following syntax
 
    jobs-output-get $JOB_ID $PATH
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/$JOB_ID/outputs/media/$PATH
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/$JOB_ID/outputs/media/$PATH
+|
 
    :information_source: The Jobs output service follows the same conventions of the Files service. Thus, you may specify a range header to retrieve a specific byte range. This is particularly helpful when tracking job progress since it gives you a mechanism to tail the output and error log files.
 

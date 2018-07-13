@@ -21,7 +21,7 @@ Every file and directory referenced through the Files service has a canonical UR
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Token</th>
@@ -39,7 +39,7 @@ Every file and directory referenced through the Files service has a canonical UR
            </tr>
        </tbody>
    </table>
-
+|
 
 Agave also supports the concept of *default systems*. Excluding the ``/system/$SYSTEM_ID`` segments from the above URL, the Files service will automatically assume you are referencing your default storage system. Thus, if your default system was ``api.tacc.cloud``\ , the following two examples would be identical.
 
@@ -67,7 +67,7 @@ One powerful, but potentially confusing feature of Agave is its support for virt
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Type of storage system</th>
@@ -89,14 +89,14 @@ One powerful, but potentially confusing feature of Agave is its support for virt
            </tr>
        </tbody>
    </table>
-
+|
 
 ``homeDir`` specifies the path, relative to ``rootDir``\ , that Agave should use for relative paths. Since Agave is stateless, there is no concept of a current working directory. Thus, when you specify a path to Agave that does not begin with a ``/``\ , Agave will always prefix the path with the value of ``homeDir``. The following table gives several examples of how different combinations of ``rootDir``\ , ``homeDir``\ , and URL paths will be resolved by Agave. For a deeper dive into this subject, please see the :raw-html-m2r:`<a href="#understanding-agave-file-paths" title="Understanding Agave File Paths">Understanding Agave File Paths</a>` section.
 
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>"rootDir" value</th>
@@ -198,7 +198,7 @@ One powerful, but potentially confusing feature of Agave is its support for virt
            </tr>
        </tbody>
    </table>
-
+|
 
 Transferring data
 =================
@@ -214,19 +214,20 @@ Uploading a file
 
    files-upload -v -F files/picksumipsum.txt -S api.tacc.cloud nryan
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         -X POST \
-         -F "fileToUpload=@files/picksumipsum.txt" \
-         https://tacc.cloud/files/v2/media/api.tacc.cloud/nryan
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -X POST \
+            -F "fileToUpload=@files/picksumipsum.txt" \
+            https://tacc.cloud/files/v2/media/api.tacc.cloud/nryan
+|
 
 
 The response will look something like this:
@@ -269,7 +270,7 @@ You can also have Agave download data from an external URL. Rather than making a
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Schema</th>
@@ -299,7 +300,7 @@ You can also have Agave download data from an external URL. Rather than making a
            </tr>
        </tbody>
    </table>
-
+|
 
 To demonstrate how this works, we will import a README.md file from the :raw-html-m2r:`<a href="https://bitbucket.org/agaveapi/science-api-samples" title="Agave Samples" target="_blank">Agave Samples</a>` git repository in Bitbucket.
 
@@ -310,18 +311,19 @@ Download a file from a web accessible URL
    files-import -v -U "https://bitbucket.org/agaveapi/science-api-samples/raw/master/README.md"
        -S api.tacc.cloud nryan
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
-         -- data &#039;{ "url":"https://bitbucket.org/agaveapi/science-api-samples/raw/master/README.md"}&#039;
-         https://tacc.cloud/files/v2/media/api.tacc.cloud/nryan
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
+            -- data &#039;{ "url":"https://bitbucket.org/agaveapi/science-api-samples/raw/master/README.md"}&#039;
+            https://tacc.cloud/files/v2/media/api.tacc.cloud/nryan
+|
 
 
 The response will look something like this:
@@ -367,20 +369,21 @@ Transferring data between systems
 
    files-import -v -U "agave://stampede.tacc.utexas.edu//etc/motd" -S api.tacc.cloud nryan
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         -H "Content-Type: application/json" \
-         -X POST \
-         --data-binary '{"url":"agave://stampede.tacc.utexas.edu//etc/motd"}' \
-         https://tacc.cloud/files/v2/media/api.tacc.cloud/nryan
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            --data-binary '{"url":"agave://stampede.tacc.utexas.edu//etc/motd"}' \
+            https://tacc.cloud/files/v2/media/api.tacc.cloud/nryan
+|
 
 
 The response from the service will be the same as the one we received importing a file.
@@ -395,40 +398,42 @@ One of the benefits of the Files service is that it frees you up to work in para
 
    files-import -v -U "agave://api.tacc.cloud/nryan/foo_project" -S nryan.storage1
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         -H "Content-Type: application/json" \
-         -X POST \
-         --data-binary '{"url":"agave://api.tacc.cloud/nryan/foo_project"}' \
-         https://tacc.cloud/files/v2/media/system/nryan.storage1/
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            --data-binary '{"url":"agave://api.tacc.cloud/nryan/foo_project"}' \
+            https://tacc.cloud/files/v2/media/system/nryan.storage1/
+|
 
 
 .. code-block:: plaintext
 
    files-import -v -U "agave://api.tacc.cloud/nryan/foo_project" -S nryan.storage2
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         -H "Content-Type: application/json" \
-         -X POST \
-         --data-binary '{"url":"agave://api.tacc.cloud/nryan/foo_project"}' \
-         https://tacc.cloud/files/v2/media/system/nryan.storage2/
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            --data-binary '{"url":"agave://api.tacc.cloud/nryan/foo_project"}' \
+            https://tacc.cloud/files/v2/media/system/nryan.storage2/
+|
 
 
 Notice in the above examples that the Files services works identically regardless of whether the source is a file or directory. If the source is a file, it will copy the file. If the source is a directory, it will recursively process the contents until everything has been copied.
@@ -447,17 +452,18 @@ Listing a file or directory
 
    files-list -v -S api.tacc.cloud nryan
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         https://tacc.cloud/files/v2/listings/api.tacc.cloud/nryan
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            https://tacc.cloud/files/v2/listings/api.tacc.cloud/nryan
+|
 
 
 The response would look something like this:
@@ -517,7 +523,7 @@ Basic file operations are available by sending a POST request the the ``/files/v
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Attribute</th>
@@ -535,7 +541,7 @@ Basic file operations are available by sending a POST request the the ``/files/v
            </tr>
        </tbody>
    </table>
-
+|
 
 Copying files and directories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -549,20 +555,21 @@ Copying files and directories
 
    files-copy -D $DESTPATH -S api.tacc.cloud $PATH
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         -H "Content-Type: application/json" \
-         -X POST \
-         --data-binary '{"action":"copy","path":"$DESTPATH"}' \
-         https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            --data-binary '{"action":"copy","path":"$DESTPATH"}' \
+            https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+|
 
 
 The response from a copy operation will be a JSON object describing the new file or folder.
@@ -576,20 +583,21 @@ Moving files and directories
 
    files-move -D $DESTPATH -S api.tacc.cloud $PATH
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         -H "Content-Type: application/json" \
-         -X POST \
-         --data-binary '{"action":"move","path":"$DESTPATH"}' \
-         https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            --data-binary '{"action":"move","path":"$DESTPATH"}' \
+            https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+|
 
 
 Moving can be performed on any remote system. Moving a file or directory will overwrite the destination target if it exists. Unlike copy operations, the destination will be completely replaced by the source in the event of a collision. No merge will take place. Further, the provenance of the source will replace that of the target.
@@ -601,20 +609,21 @@ Renaming files and directories
 
    files-rename -N $NEWNAME -S api.tacc.cloud $PATH
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-        -H "Content-Type: application/json" \
-        -X POST \
-        --data-binary '{"action":"rename","path":"$NEWNAME"}' \
-         https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            --data-binary '{"action":"rename","path":"$NEWNAME"}' \
+            https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+|
 
 
 Renaming, like copying and moving, is only applicable within the context of a single system. Unlike on Unix systems, renaming and moving are not synonymous. When specifying a new name for a file or directory, the new name is relative to the parent directory of the original file or directory. Also, If a file or directory already exists with that name, the operation will fail and an error message will be returned. All provenance information will follow the renamed file or directory.
@@ -626,20 +635,21 @@ Creating a new directory
 
    files-mkdir -N $NEWDIR -S api.tacc.cloud $PATH
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         -H "Content-Type: application/json" \
-         -X POST \
-         --data-binary '{"action":"mkdir","path":"$NEWDIR"}' \
-         https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            --data-binary '{"action":"mkdir","path":"$NEWDIR"}' \
+            https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+|
 
 
 Creating a new directory is a recursive action in Agave. If the parent directories do not exist, they will be created on the fly. If a file or directory already exists with that name, the operation will fail and an error message will be returned.
@@ -651,18 +661,19 @@ Deleting a file item
 
    files-delete -S api.tacc.cloud $PATH
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         -X DELETE \
-         https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -X DELETE \
+            https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+|
 
 
 A standard Agave response with an empty result value will be returned. As with creating a directory, deleting a file or directory is a recursive action in Agave. No prompt or warning will be given once the request is sent. It is up to you to implement such checks in your application logic and/or user interface.

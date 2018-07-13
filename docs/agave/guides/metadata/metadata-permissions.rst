@@ -32,55 +32,64 @@ Listing all permissions
 
    List the permissions on Metadata for a given user
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+        :fa:`caret-right`
+        **Show curl**
 
-   {: .solution}
+     .. code-block:: shell
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+|
 
-   .. code-block:: shell
+.. container:: foldable
 
-      metadata-pems-list -u rclemens \
-          7341557475441971686-242ac11f-0001-012
+     .. container:: header
 
-   {: .solution}
+        :fa:`caret-right`
+        **Show Agave CLI**
+
+     .. code-block:: shell
+
+        metadata-pems-list -u rclemens \
+            7341557475441971686-242ac11f-0001-012
+|
 
    The response will look something like the following:
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      [
-        {
-          "username": "rclemens",
-          "permission": {
-            "read": true,
-            "write": true
-          },
-          "_links": {
-            "self": {
-              "href": "https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012/pems/nryan"
+        :fa:`caret-right`
+        **Show json response**
+
+     .. code-block:: json
+
+        [
+          {
+            "username": "rclemens",
+            "permission": {
+              "read": true,
+              "write": true
             },
-            "parent": {
-              "href": "https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012"
-            },
-            "profile": {
-              "href": "https://public.agaveapi.co/meta/v2/nryan"
+            "_links": {
+              "self": {
+                "href": "https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012/pems/nryan"
+              },
+              "parent": {
+                "href": "https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012"
+              },
+              "profile": {
+                "href": "https://public.agaveapi.co/meta/v2/nryan"
+              }
             }
           }
-        }
-      ]
-
-   {: .solution}
+        ]
+|
 
 
 To list all permissions for a metadata item, make a GET request on the metadata item's permission collection
@@ -92,53 +101,62 @@ List permissions for a specific user
 
    List the permissions on Metadata for a given user
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/nryan?pretty=true
+        :fa:`caret-right`
+        **Show curl**
 
-   {: .solution}
+     .. code-block:: shell
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/nryan?pretty=true
+|
 
-   .. code-block:: shell
+.. container:: foldable
 
-      metadata-pems-list -u rclemens \
-          7341557475441971686-242ac11f-0001-012
+     .. container:: header
 
-   {: .solution}
+        :fa:`caret-right`
+        **Show Agave CLI**
+
+     .. code-block:: shell
+
+        metadata-pems-list -u rclemens \
+            7341557475441971686-242ac11f-0001-012
+|
 
    The response will look something like the following:
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-        "username":"nryan",
-        "permission":{
-          "read":true,
-          "write":true
-        },
-        "_links":{
-          "self":{
-            "href":"https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012/pems/nryan"
+        :fa:`caret-right`
+        **Show json response**
+
+     .. code-block:: json
+
+        {
+          "username":"nryan",
+          "permission":{
+            "read":true,
+            "write":true
           },
-          "parent":{
-            "href":"https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012"
-          },
-          "profile":{
-            "href":"https://public.agaveapi.co/meta/v2/nryan"
+          "_links":{
+            "self":{
+              "href":"https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012/pems/nryan"
+            },
+            "parent":{
+              "href":"https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012"
+            },
+            "profile":{
+              "href":"https://public.agaveapi.co/meta/v2/nryan"
+            }
           }
         }
-      }
-
-   {: .solution}
+|
 
 
 Checking permissions for a single user is simply a matter of adding the username of the user in question to the end of the metadata permission collection.
@@ -150,77 +168,92 @@ Grant permissions
 
    Grant read access to a metadata item
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
-          --data '{"permission":"READ"}'
-          https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+        :fa:`caret-right`
+        **Show curl**
 
-   {: .solution}
+     .. code-block:: shell
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
+            --data '{"permission":"READ"}'
+            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+|
 
-   .. code-block:: plaintext
+.. container:: foldable
 
-      metadata-pems-addupdate -u rclemens \
-          -p READ 7341557475441971686-242ac11f-0001-012
+     .. container:: header
 
-   {: .solution}
+        :fa:`caret-right`
+        **Show Agave CLI**
+
+     .. code-block:: plaintext
+
+        metadata-pems-addupdate -u rclemens \
+            -p READ 7341557475441971686-242ac11f-0001-012
+|
 
    Grant read and write access to a metadata item
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
-          --data '{"permission":"READ_WRITE"}'
-          https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+        :fa:`caret-right`
+        **Show curl**
 
-   {: .solution}
+     .. code-block:: shell
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
+            --data '{"permission":"READ_WRITE"}'
+            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+|
 
-   .. code-block:: shell
+.. container:: foldable
 
-      metadata-pems-addupdate -u rclemens \
-          -p READ_WRITE 7341557475441971686-242ac11f-0001-012
+     .. container:: header
 
-   {: .solution}
+        :fa:`caret-right`
+        **Show Agave CLI**
+
+     .. code-block:: shell
+
+        metadata-pems-addupdate -u rclemens \
+            -p READ_WRITE 7341557475441971686-242ac11f-0001-012
+|
 
    The response will look something like the following:
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-        "username": "rclemens",
-        "permission": {
-          "read": true,
-          "write": true
-        },
-        "_links": {
-          "self": {
-            "href": "https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012/pems/rclemens"
+        :fa:`caret-right`
+        **Show json response**
+
+     .. code-block:: json
+
+        {
+          "username": "rclemens",
+          "permission": {
+            "read": true,
+            "write": true
           },
-          "parent": {
-            "href": "https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012"
-          },
-          "profile": {
-            "href": "https://public.agaveapi.co/meta/v2/jstubbs"
+          "_links": {
+            "self": {
+              "href": "https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012/pems/rclemens"
+            },
+            "parent": {
+              "href": "https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012"
+            },
+            "profile": {
+              "href": "https://public.agaveapi.co/meta/v2/jstubbs"
+            }
           }
         }
-      }
-
-   {: .solution}
+|
 
 
 To grant another user read access to your metadata item, assign them ``READ`` permission. To enable another user to update a metadata item, grant them ``READ_WRITE`` or ``ALL`` access.
@@ -232,25 +265,31 @@ Delete single user permissions
 
    Delete permission for single user on a Metadata item
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          -X DELETE
-          https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+        :fa:`caret-right`
+        **Show curl**
 
-   {: .solution}
+     .. code-block:: shell
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            -X DELETE
+            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+|
 
-   .. code-block:: shell
+.. container:: foldable
 
-      metadata-pems-delete -u rclemens 7341557475441971686-242ac11f-0001-012
+     .. container:: header
 
-   {: .solution}
+        :fa:`caret-right`
+        **Show Agave CLI**
+
+     .. code-block:: shell
+
+        metadata-pems-delete -u rclemens 7341557475441971686-242ac11f-0001-012
+|
 
    An empty response will come back from the API.
 
@@ -266,25 +305,31 @@ Deleting all permissions
 
    Delete all permissions on a Metadata item
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          -X DELETE
-          https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems?pretty=true
+        :fa:`caret-right`
+        **Show curl**
 
-   {: .solution}
+     .. code-block:: shell
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            -X DELETE
+            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems?pretty=true
+|
 
-   .. code-block:: shell
+.. container:: foldable
 
-      metadata-pems-delete 7341557475441971686-242ac11f-0001-012
+     .. container:: header
 
-   {: .solution}
+        :fa:`caret-right`
+        **Show Agave CLI**
+
+     .. code-block:: shell
+
+        metadata-pems-delete 7341557475441971686-242ac11f-0001-012
+|
 
    An empty response will be returned from the service.
 

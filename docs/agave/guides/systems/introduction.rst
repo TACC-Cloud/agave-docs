@@ -17,18 +17,18 @@ Discovering systems
 
    systems-list -v
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
 
    .. code-block:: shell
 
       curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/
 
-   {: .solution}
-
-
+|
 The response will be something like this:
 
 .. code-block:: json
@@ -79,16 +79,17 @@ List all systems (up to the page limit)
 
    systems-list -v -S
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
 
    .. code-block:: shell
 
       curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/?type=storage
-
-   {: .solution}
+|
 
 
 List only execution systems
@@ -97,16 +98,17 @@ List only execution systems
 
    systems-list -v -E
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
 
    .. code-block:: shell
 
       curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/?type=execution
-
-   {: .solution}
+|
 
 
 List only public systems
@@ -115,16 +117,17 @@ List only public systems
 
    systems-list -v -P
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
 
    .. code-block:: shell
 
       curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/?publicOnly=true
-
-   {: .solution}
+|
 
 
 List only private systems
@@ -133,16 +136,17 @@ List only private systems
 
    systems-list -v -Q
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
 
    .. code-block:: shell
 
       curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/?privateOnly=true
-
-   {: .solution}
+|
 
 
 Only return default systems
@@ -151,16 +155,17 @@ Only return default systems
 
    systems-list -v -D
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
 
    .. code-block:: shell
 
       curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/?default=true
-
-   {: .solution}
+|
 
 
 You can further filter the results by type, scope, and default status. See the search section for further filtering options.
@@ -172,16 +177,17 @@ System details
 
    systems-list -v api.tacc.cloud
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
 
    .. code-block:: shell
 
       curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co
-
-   {: .solution}
+|
 
 
 The response will be something like this:

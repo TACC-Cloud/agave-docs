@@ -10,7 +10,7 @@ Throughout these tutorials and :raw-html-m2r:`<a href="https://tacc.github.io/de
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Scope</th>
@@ -36,7 +36,7 @@ Throughout these tutorials and :raw-html-m2r:`<a href="https://tacc.github.io/de
            </tr>
        </tbody>
    </table>
-
+|
 
 Private systems
 ===============
@@ -61,7 +61,7 @@ Public storage systems enforce a virtual user home directory with implied user p
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th><code>rootDir</code></th>
@@ -109,7 +109,7 @@ Public storage systems enforce a virtual user home directory with implied user p
            </tr>
        </tbody>
    </table>
-
+|
 
 Notice in the above example that on public systems, users will have implied ownership of a folder matching their username in the system's ``homeDir``. In the table, this means that user "systest" will have ownership of the physical home directory ``/home/systest`` on the system after it's public. It is important that, before publishing a system, you make sure that the account used to access the system can actually write to these folders. Otherwise, users will not be able to access their data on the system you make public.
 
@@ -129,20 +129,21 @@ To publish a system and make it public, you make a PUT request on the system's u
 
    systems-publish -v $SYSTEM_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          -H "Content-Type: application/json"
-          -X PUT
-          --data-binary '{"action":"publish"}'
-          https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            -H "Content-Type: application/json"
+            -X PUT
+            --data-binary '{"action":"publish"}'
+            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+|
 
 
 The response from the service will be the same system description we saw before, this time with the public attribute set to :raw-html-m2r:`<em>true</em>`.
@@ -154,20 +155,21 @@ Unpublishing a system
 
    systems-unpublish -v $SYSTEM_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          -H "Content-Type: application/json"
-          -X PUT
-          --data-binary '{"action":"unpublish"}'
-          https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            -H "Content-Type: application/json"
+            -X PUT
+            --data-binary '{"action":"unpublish"}'
+            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+|
 
 
 The response from the service will be the same system description we saw before, this time with the public attribute set to :raw-html-m2r:`<em>false</em>`.
@@ -186,7 +188,7 @@ Four types of default systems are possible. The following table describes them.
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Type</th>
@@ -222,7 +224,7 @@ Four types of default systems are possible. The following table describes them.
            </tr>
        </tbody>
    </table>
-
+|
 
 As a best practice, it is recommended to always specify the system you intend to use when interacting with Agave. This will eliminate ambiguity in each request and make your actions more repeatable over time as the availability and configuration of the global and user default systems may change.
 
@@ -235,20 +237,21 @@ To set a system as the user's default, you make a PUT request on the system's ur
 
    systems-setdefault $SYSTEM_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          -H "Content-Type: application/json"
-          -X PUT
-          --data-binary '{"action":"setDefault"}'
-          https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            -H "Content-Type: application/json"
+            -X PUT
+            --data-binary '{"action":"setDefault"}'
+            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+|
 
 
 The response from the service will be the same system description we saw before, this time with the ``default`` attribute set to :raw-html-m2r:`<em>true</em>`.
@@ -260,20 +263,21 @@ Unsetting user default system
 
    systems-unsetdefault $SYSTEM_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          -H "Content-Type: application/json"
-          -X PUT
-          --data-binary '{"action":"unsetDefault"}'
-          https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            -H "Content-Type: application/json"
+            -X PUT
+            --data-binary '{"action":"unsetDefault"}'
+            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+|
 
 
 The response from the service will be the same system description we saw before, this time with the ``default`` attribute set to :raw-html-m2r:`<em>false</em>`.
@@ -289,20 +293,21 @@ Tenant administrators may wish to set default storage and execution systems for 
 
    systems-setdefault -G $SYSTEM_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          -H "Content-Type: application/json"
-          -X PUT
-          --data-binary '{"action":"setGlobalDefault"}'
-          https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            -H "Content-Type: application/json"
+            -X PUT
+            --data-binary '{"action":"setGlobalDefault"}'
+            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+|
 
 
 The response from the service will be the same system description we saw before, this time with both the ``default`` and ``public`` attributes set to :raw-html-m2r:`<em>true</em>`.
@@ -315,20 +320,21 @@ To remove a system from being the global default, make the same request with the
 
    systems-unsetdefault -G $SYSTEM_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          -H "Content-Type: application/json"
-          -X PUT
-          --data-binary '{"action":"unsetGlobalDefault"}'
-          https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            -H "Content-Type: application/json"
+            -X PUT
+            --data-binary '{"action":"unsetGlobalDefault"}'
+            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+|
 
 
 This time the response from the service will have ``default`` set to :raw-html-m2r:`<em>false</em>` and ``public`` set to :raw-html-m2r:`<em>true</em>`.

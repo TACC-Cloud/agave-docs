@@ -10,7 +10,7 @@ In contrast to storage systems, execution systems specify compute resources wher
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Name</th>
@@ -108,7 +108,7 @@ In contrast to storage systems, execution systems specify compute resources wher
            </tr>
        </tbody>
    </table>
-
+|
 
 Startup startupScript
 ---------------------
@@ -120,7 +120,7 @@ The ``startupScript`` field supports the use of template variables which Agave w
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>
@@ -238,7 +238,7 @@ The ``startupScript`` field supports the use of template variables which Agave w
    </tr>
    </tbody>
    </table>
-
+|
 
 The ``startupScript`` is :raw-html-m2r:`<strong>NOT</strong>` a virtual path relative to the relative to the system ``rootDir`` and ``homeDir``. It is an acutal path on the remote system. The reason being that this value can only be set by the system owner, so it is unlikely to be a security issue, and the login account home directory may not be visible from the virtualized file system exposed by the system definition. This gives the owner a way to properly configure their user environment while protecting assets they would otherwise choose not to expose.
 
@@ -254,7 +254,7 @@ Thankfully, picking the right combination is pretty simple. The following table 
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th><code>executionType</code></th>
@@ -280,7 +280,7 @@ Thankfully, picking the right combination is pretty simple. The following table 
            </tr>
        </tbody>
    </table>
-
+|
 
 When you are describing your system, consider the policies put in place by your system administrators. If the system you are defining has a scheduler, chances are they want you to use it.
 
@@ -292,7 +292,7 @@ Agave supports the notion of multiple submit queues. On HPC systems, queues shou
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Name</th>
@@ -348,7 +348,7 @@ Agave supports the notion of multiple submit queues. On HPC systems, queues shou
            </tr>
        </tbody>
    </table>
-
+|
 
 Configuring quotas
 ------------------
@@ -379,8 +379,8 @@ The following sample queue definitions illustrate some other interesting use cas
 
 .. raw:: html
 
-   <pre id="queue-short-job" class="json queue-config">
-   <code>{
+   <pre id="queue-short-job" class="json queue-config" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
        "name":"short_job",
        "mappedName": null,
        "maxJobs":100,
@@ -392,14 +392,14 @@ The following sample queue definitions illustrate some other interesting use cas
        "customDirectives":null,
        "default":true
    }
-   </code></pre>
+   </pre>
 
 
 
 .. raw:: html
 
-   <pre id="queue-small-queues" class="json queue-config hidden">
-   <code># Restrict the queue to having at most 10 total jobs in it at once. Jobs may run for no more than an hour.
+   <pre id="queue-small-queues" class="json queue-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   # Restrict the queue to having at most 10 total jobs in it at once. Jobs may run for no more than an hour.
    {
        "name":"small_q",
        "mappedName": null,
@@ -412,14 +412,14 @@ The following sample queue definitions illustrate some other interesting use cas
        "customDirectives":null,
        "default":true
    }
-   </code></pre>
+   </pre>
 
 
 
 .. raw:: html
 
-   <pre id="queue-single-node" class="json queue-config hidden">
-   <code># Restrict the queue to only running single node jobs.
+   <pre id="queue-single-node" class="json queue-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   # Restrict the queue to only running single node jobs.
    {
        "name":"short_job",
        "mappedName": null,
@@ -432,14 +432,14 @@ The following sample queue definitions illustrate some other interesting use cas
        "customDirectives":null,
        "default":true
    }
-   </code></pre>
+   </pre>
 
 
 
 .. raw:: html
 
-   <pre id="queue-dedicated" class="json queue-config hidden">
-   <code># Create two queues.
+   <pre id="queue-dedicated" class="json queue-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   # Create two queues.
    # - "big_mem" allows single node jobs with memory up to 1TB.
    # - "big_compute" allows jobs with up to 256 nodes, and 16GB of memory per node.
    [
@@ -468,7 +468,7 @@ The following sample queue definitions illustrate some other interesting use cas
        "default":true
      }
    ]
-   </code></pre>
+   </pre>
 
 
 System login protocols
@@ -495,8 +495,8 @@ As with storage systems, Agave supports several different protocols and mechanis
 
 .. raw:: html
 
-   <pre id="login-ssh-password" class="json login-config">
-   <code>{
+   <pre id="login-ssh-password" class="json login-config" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
      "host": "execute.example.com",
      "port": 22,
      "protocol": "SSH",
@@ -505,15 +505,15 @@ As with storage systems, Agave supports several different protocols and mechanis
        "password": "changeit",
        "type": "PASSWORD"
      }
-   }</code>
+   }
    </pre>
 
 
 
 .. raw:: html
 
-   <pre id="login-ssh-sshkeys" class="json login-config hidden">
-   <code>{
+   <pre id="login-ssh-sshkeys" class="json login-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
      "host": "execute.example.com",
      "port": 22,
      "protocol": "SSH",
@@ -523,15 +523,15 @@ As with storage systems, Agave supports several different protocols and mechanis
         "privateKey": "-----BEGIN RSA PRIVATE KEY-----nMIVCXAIBAAKBgQRhJ6bzejqSuJdTi+VwMif8qoyuSSlYwrVt0EWVduKZHpzOnSManlknAyYXmQQFcaJ+vNAQayVqTqv+A+1lzxppTdgZ0Dn42EOYWRa6B/IEMPzDuKb7Fn0uNFiH9x+OZJDYdIWS1rN1oK4DjHUi0xV8kMN3OPSIU23asx1UyZRpMGyQIDAQABnAoGATrW4NAkJ3Kltt6+HQ1Ir95sxFNrE6AZJaLYllke3iwPJpCX1dDdpDcXa8AGbVnjFXJUGA+dPrJqbyGCHA7E3H342837k/twSRGkcCNpRx/MMdWnw3asea/K5L4XVeunXAn79vo/e28D4Uue62dSwIvDJKIFWMSAgUoD53ImushqlLUCQQDPkObaowzkboLCnv3Nyj16KFZ5Lp7r5q5MYfRxO7t53Z7AWoflr++KrAT3UbSKtqmC68CqbPzxSd6qHnbnkWaD0HAkEAxsJZh7xorwAtdYznMFOsO0w5HDHOB7MuAnjwUvYZVaM0wA7HkE4rnH5SFAwEMlwx82OJxv83CnkRdlXOexn95rwJBALd8cnboGCd/AZzCvX2R+5K5lZtvnhLvczkWho3qrcoG/aUw4l1K78h4VFOFKMJOwv53BXQisF9kW6+qY3/XM49UCQHqDn4AYQOALvPBZCdVtPqFGg6W8csCAE7a5ud8zbj8A+6swcEB0+YcyEkvzID8en1ekmno/ET1wwRnhH6g/tdJlcCQM55QS4Z7rR4psgFDkFvA+wmxlqTGsXJD32sw15g4A0bmzSXnbfFg8TBAjGTDW7l0P8prFrtQ8Wml14390b29l1ptAyE=n-----END RSA PRIVATE KEY-----",
         "type": "SSHKEYS"
      }
-   }</code>
+   }
    </pre>
 
 
 
 .. raw:: html
 
-   <pre id="login-ssh-tunnel" class="json login-config hidden">
-   <code>{
+   <pre id="login-ssh-tunnel" class="json login-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
      "host":"execute.example.com",
      "port":22,
      "protocol":"SSH",
@@ -545,30 +545,30 @@ As with storage systems, Agave supports several different protocols and mechanis
        "host":"proxy.example.com",
        "port":"22"
      }
-   }</code>
+   }
    </pre>
 
 
 
 .. raw:: html
 
-   <pre id="login-local" class="json login-config hidden">
-   <code>{
+   <pre id="login-local" class="json login-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
    {
      "host": "localhost",
      "protocol": "LOCAL",
      "auth": {
        "type": "LOCAL"
      }
-   }</code>
+   }
    </pre>
 
 
 
 .. raw:: html
 
-   <pre id="login-gsissh" class="json login-config hidden">
-   <code>{
+   <pre id="login-gsissh" class="json login-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
       "host":"execute.example.com",
       "port":2222,
       "protocol":"GSISSH",
@@ -576,15 +576,15 @@ As with storage systems, Agave supports several different protocols and mechanis
          "credential": "-----BEGIN CERTIFICATE-----nMIIDqjCCApKgAwIBAgIDJSFGMA0GCSqGSIb3DQEBBQUAMHsxCzAJBgNVBAYTAlVTnMTgwNgYDVQQKEy9OYXRpb25hbCBDZW50ZXIgZm9yIFN1cGVyY29tcHV0aW5nIEFwncGxpY2F0aW9uczEgMB4GA1UECxMXQ2VydGlmaWNhdGUgQXV0aG9yaXRpZXMxEDAOnBgNVBAMTB015UHJveHkwHhcNMTMxMDE0MDcyMjE4WhcNMTMxMDE0MTkyNzE4WjBnnMQswCQYDVQQGEwJVUzE4MDYGA1UEChMvTmF0aW9uYWwgQ2VudGVyIGZvciBTdXBlncmNvbXB1dGluZyBBcHBsaWNhdGlvbnMxHjAcBgNVBAMTFWlwbGFudCBDb21tdW5pndHkgVXNlcjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAwfHbmtmJ1OUVwgDdn5oA8EsqihwRAi2xhZJYG/FFmOs38+0y7wTfORhVX/79XQMD3NqRJN8xhHQpmuoRynH9l9sbA9gbKaQsrpIYyExygrJ+qaZY0PccD+VAyPDjdLD86316AzWltEdV2E9b+OnCVioz62esJWSqOho8wya4Vo5svUCAwEAAaOBzjCByzAOBgNVHQ8BAf8EBAMCBLAwnHQYDVR0OBBYEFIJXT/jYmxaRywDbZudb1EXbxla5MB8GA1UdIwQYMBaAFNf8pQJ2nOvYT+iuh4OZQNccjx3tRMAwGA1UdEwEB/wQCMAAwNAYDVR0gBC0wKzAMBgorBgEEnAaQ+ZAIFMAwGCiqGSIb3TAUCAgMwDQYLKoZIhvdMBQIDAgEwNQYDVR0fBC4wLDAqnoCigJoYkaHR0cDovL2NhLm5jc2EudWl1Yy5lZHUvZjJlODlmZTMuY3JsMA0GCSqGnSIb3DQEBBQUAA4IBAQBDyW3FJ0xEIXEqk2NtiMqOM99MgufDPL0bxrR8CvPY5GRNn58EXU8RnSSJIuxL95PKclRPPOhGdB48eeF2H1MusOEUEEnHwzrZ1OUFUEpwKuqG6n0h411l3niRRx9wdJL4YITzAWZwpadzwj3d8aO9O/ttVJjGRc8A93I/d3fFAvHyvKnmlEaDrQZNBp1EtClW8xuxsfeUmyXkFlkRiKwqjkJGB8xBuzr8DfLomWq/mXaOkHznCo9nQxAs3gntszLOh+8U9aMxaeCsychRWxG3Y6Z33hrE0yz4AaVonVXu3Z7M+EN+nKbSVRblAzeKfQYYDOgsoFrugYbR9klv1so3Dt+n6n-----END CERTIFICATE-----n-----BEGIN RSA PRIVATE KEY-----nMIICWwIBAAKBgQDB8dua2YnU5RXCAN3mgDwSyqKHBECLbGFklgb8UWY6zfz7TLvBnN85GFVf/v1dAwPc2pEk3zGEdCma6hHIf2X2xsD2BsppCyukhjITHKCsn6ppljQ9xnwP5UDI8ON0sPzrfXoDNaW0R1XYT1v44JWKjPrZ6wlZKo6GjzDJrhWjmy9QIDAQABnAoGAcjrJZYMLM2FaV1G7YK/Wshq3b16JxZSoKF5U7vfihnAcuMaRL1R3IcAgfHlunIq2E7aIFnd+6sygVKXYo4alv5denekiucvKAyXK9F/VTTtLtajUnrvekLvSycKiEnbN9IgQ0ABCnlWyjgQMf64UUYBQtvU+lbRCs4jbuHxuyn5WECQQD8fJhlBHgA49hjnZBKnU9Xb+LEKhWDCEyIiOMMGY+2XhrGVvGF5KqJVusZEv8lbXNjzgSQFgLohEXVzn9v8tDFMzAkEAxKS5qCYHsTfgPlw3l1DLJRmG3SXrpevXSccBGpXQiUne9gfc9mlgnVTr5QQCXvvI673Y2LnNcnd94KEgvSrzhNwJACeS38/1g1mgXKo3ZTUUztBLinQ7sn463sQHsI6U8xGCbm/n8LMrxA8CsJadg6A6J3vdLpnm2U3YbZm1mqVhGNkQJAdsxxnoUVAdm8kWWhK6W6VG9e9I1OqdrXxfY/tecsyjg6D1a1Qb8mfuj4DoaKjCme69To8nZ3moZXRBWkypzYQopwJAB/zr1UpFz6vY4sIm3Gw3ll/ruNGCr2dzjTyLSGglCOf0nUljJ1FGLyW647JzGPMLcfdb0iEexzCEii9YUFUN1Ow==n-----END RSA PRIVATE KEY-----",
          "type": "X509"
       }
-   }</code>
+   }
    </pre>
 
 
 
 .. raw:: html
 
-   <pre id="login-gsissh-myproxy" class="json login-config hidden">
-   <code>{
+   <pre id="login-gsissh-myproxy" class="json login-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
       "host":"execute.example.com",
       "port":2222,
       "protocol":"GSISSH",
@@ -600,15 +600,15 @@ As with storage systems, Agave supports several different protocols and mechanis
            "protocol":"MYPROXY"
          }
       }
-   }</code>
+   }
    </pre>
 
 
 
 .. raw:: html
 
-   <pre id="login-gsissh-mpg" class="json login-config hidden">
-   <code>{
+   <pre id="login-gsissh-mpg" class="json login-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
       "host":"execute.example.com",
       "port":2222,
       "protocol":"GSISSH",
@@ -622,7 +622,7 @@ As with storage systems, Agave supports several different protocols and mechanis
            "protocol": "MPG"
          }
       }
-   }</code>
+   }
    </pre>
 
 
@@ -631,7 +631,7 @@ The full list of login configuration options is given in the following table. We
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Attribute</th>
@@ -667,7 +667,7 @@ The full list of login configuration options is given in the following table. We
            </tr>
        </tbody>
    </table>
-
+|
 
 Scratch and work directories
 ----------------------------
@@ -677,7 +677,7 @@ In the Job Management tutorial we will dive into how Agave manages the end-to-en
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th><code>rootDir</code> value</th>
@@ -761,7 +761,7 @@ In the Job Management tutorial we will dive into how Agave manages the end-to-en
            </tr>
        </tbody>
    </table>
-
+|
 
 While it is not required, it is a best practice to always specify ``scratchDir`` and ``workDir`` values for your execution systems and, whenever possible, place them outside of the system ``homeDir`` to ensure data privacy. The reason for this is that the file system available on many servers is actually made up of a combination of physically attached storage, mounted volumes, and network mounts. Often times, your home directory will have a very conservative quota while the mounted storage will essentially be quota free. As the above table shows, when you do not specify a ``scratchDir`` or ``workDir``\ , Agave will attempt to create your job work directories in your system ``homeDir``. It is very likely that, in the course of running simulations, you will reach the quota on your home directory, thereby causing that job and all future jobs to fail on the system until you clear up more space. To avoid this, we recommend specifying a location with sufficient available space to handle the work you want to do.
 
@@ -776,16 +776,17 @@ Creating a new execution system
 
    systems-addupdate -v -F ssh-password.json
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -F "fileToUpload=@ssh-password.json" https://public.tenants.agaveapi.co/systems/v2
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -F "fileToUpload=@ssh-password.json" https://public.tenants.agaveapi.co/systems/v2
+|
 
 
 The response from the server will be similar to the following

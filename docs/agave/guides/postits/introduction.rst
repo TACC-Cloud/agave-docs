@@ -27,53 +27,57 @@ CLI command to create a PostIt:
    -l 86400 \
    https://public.agaveapi.co/files/v2/media/system/data.agaveapi.co/nryan/picksumipsum.txt
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
-         -X POST \
-         -d "lifetime=3600" \
-         -d "maxUses=10" \
-         -d "method=GET" \
-         -d "url=https://public.agaveapi.co/files/v2/media/system/data.agaveapi.co/nryan/picksumipsum.txt" \
-         'https://public.agaveapi.co/postits/v2/?pretty=true'
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
+          -X POST \
+          -d "lifetime=3600" \
+          -d "maxUses=10" \
+          -d "method=GET" \
+          -d "url=https://public.agaveapi.co/files/v2/media/system/data.agaveapi.co/nryan/picksumipsum.txt" \
+          'https://public.agaveapi.co/postits/v2/?pretty=true'
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-       "creator":"nryan",
-       "internalUsername":null,
-       "authenticated":true,
-       "created":"2016-09-30T21:51:31-05:00",
-       "expires":"2016-10-01T00:14:51-05:00",
-       "remainingUses":10,
-       "postit":"f61256c53bf3744185de4ac6c0c839b4",
-       "noauth":false,
-       "url":"https://public.agaveapi.co/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt",
-       "method":"GET",
-       "_links":{
-         "self":{
-           "href":"https://public.agaveapi.co/postits/v2/f61256c53bf3744185de4ac6c0c839b4"
-         },
-         "profile":{
-           "href":"https://public.agaveapi.co/profiles/v2/nryan"
-         },
-         "file":{
-           "href":"https://public.agaveapi.co/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt"
-         }
-       }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+        "creator":"nryan",
+        "internalUsername":null,
+        "authenticated":true,
+        "created":"2016-09-30T21:51:31-05:00",
+        "expires":"2016-10-01T00:14:51-05:00",
+        "remainingUses":10,
+        "postit":"f61256c53bf3744185de4ac6c0c839b4",
+        "noauth":false,
+        "url":"https://public.agaveapi.co/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt",
+        "method":"GET",
+        "_links":{
+          "self":{
+            "href":"https://public.agaveapi.co/postits/v2/f61256c53bf3744185de4ac6c0c839b4"
+          },
+          "profile":{
+            "href":"https://public.agaveapi.co/profiles/v2/nryan"
+          },
+          "file":{
+            "href":"https://public.agaveapi.co/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt"
+          }
+        }
+        }
+|
 
 
 Restricting PostIt usage
@@ -81,7 +85,7 @@ Restricting PostIt usage
 
 When creating a PostIt, you have the ability to limit the lifespan, number of uses, and HTTP method used to connect to the target resource. The following table shows the fields available for this purpose. Not specifying any of these fields results in a single-use PostIt that remains valid for 1 calendar month.
 
-:raw-html-m2r:`<table>`
+:raw-html-m2r:`<table border="1px" cellpadding="5">`
 
 :raw-html-m2r:`<thead>`
 
@@ -92,8 +96,7 @@ When creating a PostIt, you have the ability to limit the lifespan, number of us
 :raw-html-m2r:`<th>Type</th>`
 
 :raw-html-m2r:`<th>Description</th>`
-</tr>
-</thead>
+
 
 :raw-html-m2r:`<tbody>`
 
@@ -104,7 +107,7 @@ When creating a PostIt, you have the ability to limit the lifespan, number of us
 :raw-html-m2r:`<td>JSON object</td>`
 
 :raw-html-m2r:`<td>The maximum number of times the postit may be redeemed. Defaults to 1.</td>`
-</tr>
+
 
 :raw-html-m2r:`<tr>`
 
@@ -113,7 +116,7 @@ When creating a PostIt, you have the ability to limit the lifespan, number of us
 :raw-html-m2r:`<td>string</td>`
 
 :raw-html-m2r:`<td>The maximum lifetime in seconds over which the postit may be redeemed. Defaults to 1 month.</td>`
-</tr>
+
 
 :raw-html-m2r:`<tr>`
 
@@ -122,7 +125,7 @@ When creating a PostIt, you have the ability to limit the lifespan, number of us
 :raw-html-m2r:`<td>GET,POST,PUT,DELETE</td>`
 
 :raw-html-m2r:`<td>The HTTP method to be used to request the target resource when redeeming a postit. Defaults to GET</td>`
-</tr>
+
 
 :raw-html-m2r:`<tr>`
 
@@ -131,9 +134,7 @@ When creating a PostIt, you have the ability to limit the lifespan, number of us
 :raw-html-m2r:`<td>boolean</td>`
 
 :raw-html-m2r:`<td>Whether the request to the target resource should be authenticated. Defaults to true.</td>`
-</tr>
-</tbody>
-</table>
+
 
 
 .. raw:: html
@@ -157,50 +158,54 @@ To list all currently active PostIts, enter the following CLI command:
 
    postits-list -v
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
-         'https://public.agaveapi.co/postits/v2/?pretty=true'
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
+          'https://public.agaveapi.co/postits/v2/?pretty=true'
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      [
-       {
-         "creator":"nryan",
-         "internalUsername":null,
-         "authenticated":true,
-         "created":"2016-09-30T21:51:31-05:00",
-         "expires":"2016-10-01T00:14:51-05:00",
-         "remainingUses":10,
-         "postit":"f61256c53bf3744185de4ac6c0c839b4",
-         "noauth":false,
-         "url":"https://public.agaveapi.co/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt",
-         "method":"GET",
-         "_links":{
-           "self":{
-             "href":"https://public.agaveapi.co/postits/v2/f61256c53bf3744185de4ac6c0c839b4"
-           },
-           "profile":{
-             "href":"https://public.agaveapi.co/profiles/v2/nryan"
-           },
-           "file":{
-             "href":"https://public.agaveapi.co/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt"
-           }
-         }
-       }
-      ]
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        [
+        {
+          "creator":"nryan",
+          "internalUsername":null,
+          "authenticated":true,
+          "created":"2016-09-30T21:51:31-05:00",
+          "expires":"2016-10-01T00:14:51-05:00",
+          "remainingUses":10,
+          "postit":"f61256c53bf3744185de4ac6c0c839b4",
+          "noauth":false,
+          "url":"https://public.agaveapi.co/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt",
+          "method":"GET",
+          "_links":{
+            "self":{
+              "href":"https://public.agaveapi.co/postits/v2/f61256c53bf3744185de4ac6c0c839b4"
+            },
+            "profile":{
+              "href":"https://public.agaveapi.co/profiles/v2/nryan"
+            },
+            "file":{
+              "href":"https://public.agaveapi.co/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt"
+            }
+          }
+        }
+        ]
+|
 
 
 Redeeming PostIts
@@ -216,16 +221,17 @@ cURL command for redeeming a PostIt:
 
 Which would download the ``picksumipsum.txt`` file from your storage system.
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -s -o picksumipsum.txt 'https://public.agaveapi.co/postits/v2/f61256c53bf3744185de4ac6c0c839b4'
+     .. code-block:: shell
 
-   {: .solution}
+        curl -s -o picksumipsum.txt 'https://public.agaveapi.co/postits/v2/f61256c53bf3744185de4ac6c0c839b4'
+|
 
    :warning: There will be no response for redeeming PostIts, even if the redemption fails.
 
@@ -246,18 +252,19 @@ Manually expiring a PostIt with CLI:
 
    postits-delete f61566c53bf3744185de4ac6c0c839b4
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
-      -X DELETE
-      'https://public.agaveapi.co/postits/v2/f61566c53bf3744185de4ac6c0c839b4?pretty=true'
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
+        -X DELETE
+        'https://public.agaveapi.co/postits/v2/f61566c53bf3744185de4ac6c0c839b4?pretty=true'
+|
 
 
 Which will result in an empty response from the server.

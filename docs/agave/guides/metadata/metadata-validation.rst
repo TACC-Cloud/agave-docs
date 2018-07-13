@@ -2,43 +2,50 @@
 Metadata Validation
 ===================
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
-          -H 'Content-Type: application/json'
-          --data-binary '{"schemaId": "4736020169528054246-242ac11f-0001-013", "value": {"title": "Example Metadata", "properties": {"description": "A model organism..."}}, "name": "some metadata"}'
-          https://public.tenants.agaveapi.co/meta/v2/data
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
+            -H 'Content-Type: application/json'
+            --data-binary '{"schemaId": "4736020169528054246-242ac11f-0001-013", "value": {"title": "Example Metadata", "properties": {"description": "A model organism..."}}, "name": "some metadata"}'
+            https://public.tenants.agaveapi.co/meta/v2/data
+|
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      metadata-addupdate -v -F - <<<'{"schemaId": "4736020169528054246-242ac11f-0001-013", "value": {"title": "Example Metadata", "properties": {"description": "A model organism..."}}, "name": "some metadata"}'
+        :fa:`caret-right`
+        **Show Agave CLI**
 
-   {: .solution}
+     .. code-block:: shell
+
+        metadata-addupdate -v -F - <<<'{"schemaId": "4736020169528054246-242ac11f-0001-013", "value": {"title": "Example Metadata", "properties": {"description": "A model organism..."}}, "name": "some metadata"}'
+|
 
    The response will look something like the following:
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-        "status" : "error",
-        "message" : "Metadata value does not conform to schema.",
-        "version" : "2.1.8-r8bb7e86"
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+          "status" : "error",
+          "message" : "Metadata value does not conform to schema.",
+          "version" : "2.1.8-r8bb7e86"
+        }
+|
 
 
 Often times it is necessary to validate metadata for format or simple quality control. The Metadata service is capable of validating the ``value`` of a metadata item against a predefined JSON Schema definition. In order to leverage this feature, you must first register your JSON Schema definition with the Metadata Schemata service, then reference the UUID of that metadata schema resource in the ``schemaId`` field.

@@ -15,7 +15,7 @@ Agave will record both direct and indirect events made on a file item. Examples 
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Event</th>
@@ -114,17 +114,18 @@ List the history of a file item
 
    files-history -v nryan/picksumipsum.txt
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         https://public.agaveapi.co/files/v2/history/nryan/picksumipsum.txt
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            https://public.agaveapi.co/files/v2/history/nryan/picksumipsum.txt
+|
 
 
 The response to this contains a summary listing all permissions on the

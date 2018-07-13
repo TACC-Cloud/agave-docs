@@ -61,7 +61,7 @@ The Agave REST APIs currently supports four authorization flows:
                <td>No</td>
            </tr>
    </table>
-
+|
 
 Token lifetimes
 ^^^^^^^^^^^^^^^
@@ -98,7 +98,7 @@ There are two kinds of tokens you will obtained: access and refresh. Access toke
          <td>n/a</td>
        </tr>
    </table>
-
+|
 
 Authorization Code
 ^^^^^^^^^^^^^^^^^^
@@ -109,7 +109,7 @@ The method is suitable for long-running applications in which the user logs in o
 .. raw:: html
 
    <p>
-       <img src="../../images/Authorization-Code-Flow.png" alt="Authorization Code Flow Diagram" style="height: auto;"/>
+       <img src="../../../_static/images/Authorization-Code-Flow.png" alt="Authorization Code Flow Diagram" style="height: auto;"/>
    </p>
 
 
@@ -158,7 +158,7 @@ The request will include parameters in the query string:
                <td><i>Optional,</i> but strongly recommended. The state can be useful for correlating requests and responses. Because your redirect_uri can be guessed, using a state value can increase your assurance that an incoming connection is the result of an authentication request. If you generate a random string or encode the hash of some client state (e.g., a cookie) in this state variable, you can validate the response to additionally ensure that the request and response originated in the same browser. This provides protection against attacks such as cross-site request forgery. See <a href="http://tools.ietf.org/html/rfc6749#section-4.4" title="RFC-6749">RFC-6749</a>. </td>
            </tr>
    </table>
-
+|
 
 2. The user is asked to authorize access within the scopes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -245,7 +245,7 @@ If the user has denied access, there will be no access token and the final URL w
                <td>The value of the state parameter supplied in the request. </td>
            </tr>
    </table>
-
+|
 
 4. Your application requests refresh and access tokens
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -268,7 +268,7 @@ When the authorization code has been received, you will need to exchange it with
                <td>grant_type</td>
                <td><i>Required</i>. As defined in the OAuth 2.0 specification, this field must contain the value  "authorization_code".</td>
    </tr></table>
-
+|
 
 5. The tokens are returned to your application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -337,7 +337,7 @@ On success, the response from the Agave Authorization service has the status cod
                <td>A token that can be sent to the Spotify Accounts service in place of an authorization code. (When the access code expires, send a POST request to the Accounts service <code>/token</code> endpoint, but use this code in place of an authorization code. A new access token will be returned. A new refresh token might be returned too.) </td>
            </tr>
    </table>
-
+|
 
 6. Use the access token to access the Agave REST APIs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -437,7 +437,7 @@ Implicit Grant
 
 Implicit grant flow is for clients that are implemented entirely using JavaScript and running in resource owner's browser. You do not need any server side code to use it. This flow is described in :raw-html-m2r:`<a href="http://tools.ietf.org/html/rfc6749#section-4.4" title="RFC-6749">RFC-6749</a>`.
 
-:raw-html-m2r:`<img src="../../images/Implicit-Flow.png" alt="Implicit Flow" style="width: 100%; height:auto"/>`
+:raw-html-m2r:`<img src="../../../_static/images/Implicit-Flow.png" alt="Implicit Flow" style="width: 100%; height:auto"/>`
 
 1. Your application requests authorization
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -481,7 +481,7 @@ The flow starts off with your application redirecting the user to the ``/authori
                <td><i>Optional</i>. Whether or not to force the user to approve the app again if they’ve already done so. If <code>false</code> (default), a user who has already approved the application may be automatically redirected to the URI specified by <code>redirect_uri</code>. If <code>true</code>, the user will not be automatically redirected and will have to approve the app again.</td>
            </tr>
    </table>
-
+|
 
 2. The user is asked to authorize access within the scopes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -578,7 +578,7 @@ If the user has denied access, there will be no access token and the final URL w
                <td>The value of the state parameter supplied in the request. </td>
            </tr>
    </table>
-
+|
 
 4. Use the access token to access the Agave REST APIs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -614,7 +614,7 @@ Resource Owner Password Credentials
 
 The method is suitable for scenarios where there is a high degree of trust between the end-user and the client application. This could be a Desktop application, shell script, or server-to-server communication where user authorization is needed. This flow is described in :raw-html-m2r:`<a href="http://tools.ietf.org/html/rfc6749#section-4.4" title="RFC-6749">RFC-6749</a>`.
 
-:raw-html-m2r:`<img src="../../images/Resource-Owner-Password-Flow.png" style="width:100%; height:auto;">`
+:raw-html-m2r:`<img src="../../../_static/images/Resource-Owner-Password-Flow.png" style="width:100%; height:auto;">`
 
 1. Your application requests authorization
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -665,7 +665,7 @@ The request is sent to the ``/token`` endpoint of the Agave Authentication servi
        <td><i>Required.</i> A space-separated list of scopes. Currently only PRODUCTION is supported</td>
      </tr> 
    </table>
-
+|
 
 The header of this POST request must contain the following parameter:
 
@@ -770,14 +770,14 @@ The request is sent to the token endpoint of the Agave Authorization service. Th
                <td>Required. A space-separated list of scopes. <i>Required.</i> Currently only PRODUCTION is supported.</td>
            </tr>
    </table>
-
+|
 
 Client Credentials
 ^^^^^^^^^^^^^^^^^^
 
 The method is suitable for authenticating your requests to the Agave REST API. This flow is described in :raw-html-m2r:`<a href="http://tools.ietf.org/html/rfc6749#section-4.4" title="RFC-6749">RFC-6749</a>`.
 
-:raw-html-m2r:`<img src="../../images/Client-Credentials-Flow.png" style="width:100%; height:auto;">`
+:raw-html-m2r:`<img src="../../../_static/images/Client-Credentials-Flow.png" style="width:100%; height:auto;">`
 
 1. Your application requests authorization
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -821,7 +821,7 @@ The request is sent to the ``/token`` endpoint of the Agave Authentication servi
                <td><i>Optional.</i> A space-separated list of scopes. Currently on PRODUCTION is supported.</td>
            </tr>
    </table>
-
+|
 
 2. Use the access token to access the Agave REST APIs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
