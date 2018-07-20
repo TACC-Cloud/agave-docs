@@ -16,19 +16,22 @@ Agave handles all of the end-to-end details involved with managing a job lifecyc
 
    </li>
    </ol>
-   ```shell
-   if (executionSystem.scratchDir exists) 
-   then
-       $jobDir = executionSystem.scratchDir
-   else if (executionSystem.workDir exists)
-   then
-       $jobDir = system.workDir  
-   else 
-       $jobDir = system.storage.homeDir
-   endif
 
-   $jobDir = $jobDir + "/" + job.owner + "/job-" + job.uuid
-   ```
+.. code:: shell
+
+    if (executionSystem.scratchDir exists) 
+    then
+        $jobDir = executionSystem.scratchDir
+    else if (executionSystem.workDir exists)
+    then
+        $jobDir = system.workDir  
+    else 
+        $jobDir = system.storage.homeDir
+    endif
+
+    $jobDir = $jobDir + "/" + job.owner + "/job-" + job.uuid
+
+.. raw:: html
 
    <ol start="4">
    <li>The job inputs are staged to the job work directory, job status is updated to "INPUTS_STAGING"

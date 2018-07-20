@@ -10,7 +10,7 @@ Apps have fine grained permissions similar to those found in the `Jobs <../jobs/
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Permission</th>
@@ -48,7 +48,7 @@ Apps have fine grained permissions similar to those found in the `Jobs <../jobs/
    </tr>
    </tbody>
    </table>
-
+|
 
 App permissions are distinct from all other roles and permissions and do not have implications outside the Apps service. This means that if you want to allow someone to run a job using your app, it is not sufficient to grant them READ_EXECUTE permissions on your app. They must also have an appropriate user role on the execution system on which the app will run. Similarly, if you do not have the right to publish on the ``executionSystem`` or access the ``deploymentPath`` on the ``deploymentSystem`` in your app description, you will not be able to publish your app.
 
@@ -63,49 +63,51 @@ You can use the following CLI command:
 
    apps-pems-list -v -u $USERNAME $APP_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-      https://agave.iplantc.org/apps/v2/$APP_ID/pems/$USERNAME?pretty=true
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+        https://agave.iplantc.org/apps/v2/$APP_ID/pems/$USERNAME?pretty=true
+|
 
 
 The response from the service will be a JSON object representing the user permission. If the user does not have a permission for that app, the permission value will be NONE. By default, only you have permission to your private apps. Public apps will return a single permission for the :raw-html-m2r:`<em>public</em>` meta user rather than return a permissions for every user.
 
-..
+.. container:: foldable
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: json
+        :fa:`caret-right`
+        **Show json response**
 
-      {
-       "username": "$USERNAME",
-       "permission": {
-         "read": true,
-         "write": true,
-         "execute": true
-       },
-       "_links": {
-         "self": {
-           "href": "https://agave.iplantc.org/apps/v2/$APP_ID/pems/$USERNAME"
-         },
-         "app": {
-           "href": "https://agave.iplantc.org/apps/v2/$APP_ID"
-         },
-         "profile": {
-           "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
-         }
-       }
-      }
+     .. code-block:: json
 
-   {: .solution}
+        {
+        "username": "$USERNAME",
+        "permission": {
+          "read": true,
+          "write": true,
+          "execute": true
+        },
+        "_links": {
+          "self": {
+            "href": "https://agave.iplantc.org/apps/v2/$APP_ID/pems/$USERNAME"
+          },
+          "app": {
+            "href": "https://agave.iplantc.org/apps/v2/$APP_ID"
+          },
+          "profile": {
+            "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
+          }
+        }
+        }
+|
 
 
 You can also query for all permissions granted on a specific app by making a GET request on the app's permission collection.
@@ -114,50 +116,52 @@ You can also query for all permissions granted on a specific app by making a GET
 
    apps-pems-list -v $APP_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-      https://agave.iplantc.org/apps/v2/$APP_ID/pems?pretty=true
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+        https://agave.iplantc.org/apps/v2/$APP_ID/pems?pretty=true
+|
 
 
 This time the service will respond with a JSON array of permission objects.
 
-..
+.. container:: foldable
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: json
+        :fa:`caret-right`
+        **Show json response**
 
-      [
-       {
-         "username": "$USERNAME",
-         "permission": {
-           "read": true,
-           "write": true,
-           "execute": true
-         },
-         "_links": {
-           "self": {
-             "href": "https://agave.iplantc.org/apps/v2/$APP_ID/pems/$USERNAME"
-           },
-           "app": {
-             "href": "https://agave.iplantc.org/apps/v2/$APP_ID"
-           },
-           "profile": {
-             "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
-           }
-         }
-       }
+     .. code-block:: json
 
-   {: .solution}
+        
+        {
+          "username": "$USERNAME",
+          "permission": {
+            "read": true,
+            "write": true,
+            "execute": true
+          },
+          "_links": {
+            "self": {
+              "href": "https://agave.iplantc.org/apps/v2/$APP_ID/pems/$USERNAME"
+            },
+            "app": {
+              "href": "https://agave.iplantc.org/apps/v2/$APP_ID"
+            },
+            "profile": {
+              "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
+            }
+          }
+        }
+|
 
 
 Adding and updating permissions
@@ -169,48 +173,54 @@ Setting permissions is done by posting a JSON object containing a permission and
 
    apps-pems-update -v -u bgibson -p READ $APP_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      # Standard syntax to grant permissions to a specific user
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "username=bgibson&permission=READ" https://agave.iplantc.org/apps/v2/$APP_ID/pems?pretty=true
+     .. code-block:: shell
 
-      # Abbreviated POST data to grant permission to a single user
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "permission=READ" https://agave.iplantc.org/apps/v2/$APP_ID/pems/bgibson?pretty=true
+        # Standard syntax to grant permissions to a specific user
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "username=bgibson&permission=READ" https://agave.iplantc.org/apps/v2/$APP_ID/pems?pretty=true
 
-   {: .solution}
+        # Abbreviated POST data to grant permission to a single user
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "permission=READ" https://agave.iplantc.org/apps/v2/$APP_ID/pems/bgibson?pretty=true
+
+|
+
    The response will contain a JSON object representing the permission that was just created.
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-       "username": "bgibson",
-       "permission": {
-         "read": true,
-         "write": false,
-         "execute": false
-       },
-       "_links": {
-         "self": {
-           "href": "https://agave.iplantc.org/apps/v2/$APP_ID/pems/bgibson"
-         },
-         "app": {
-           "href": "https://agave.iplantc.org/apps/v2/$APP_ID"
-         },
-         "profile": {
-           "href": "https://agave.iplantc.org/profiles/v2/bgibson"
-         }
-       }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+        "username": "bgibson",
+        "permission": {
+          "read": true,
+          "write": false,
+          "execute": false
+        },
+        "_links": {
+          "self": {
+            "href": "https://agave.iplantc.org/apps/v2/$APP_ID/pems/bgibson"
+          },
+          "app": {
+            "href": "https://agave.iplantc.org/apps/v2/$APP_ID"
+          },
+          "profile": {
+            "href": "https://agave.iplantc.org/profiles/v2/bgibson"
+          }
+        }
+        }
+|
 
 
 Deleting permissions
@@ -222,28 +232,34 @@ Permissions can be deleted on a user-by-user basis, or all at once. To delete an
 
    apps-pems-delete -u bgibson $APP_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://agave.iplantc.org/apps/v2/$APP_ID/pems/bgibson?pretty=true
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://agave.iplantc.org/apps/v2/$APP_ID/pems/bgibson?pretty=true
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   The CLI response will be:
+     .. container:: header
 
-   .. code-block::
+        :fa:`caret-right`
+        **Show response**
 
-      Successfully removed permission for bgibson on app $APP_ID
+|
+The CLI response will be:
 
-   And the cURL response will be an empty result object.
-   {: .solution}
+.. code-block:: plaintext
+
+    Successfully removed permission for bgibson on app $APP_ID
+
+And the cURL response will be an empty result object.
+|
 
 
 You can accomplish the same thing by updating the user permission to an empty value.
@@ -252,56 +268,58 @@ You can accomplish the same thing by updating the user permission to an empty va
 
    apps-pems-update -v -u bgibson $APP_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      # Delete permission for a single user by updating with an empty permission value
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"  \
-          -X POST -d "username=bgibson" -d "permission=NONE" \
-          https://agave.iplantc.org/apps/v2/$APP_ID/pems?pretty=true
+     .. code-block:: shell
 
-      # Delete permission for a single user by updating with an empty permission value
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -X POST -d "permission=" \
-          https://agave.iplantc.org/apps/v2/$APP_ID/pems/bgibson?pretty=true
+        # Delete permission for a single user by updating with an empty permission value
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"  \
+            -X POST -d "username=bgibson" -d "permission=NONE" \
+            https://agave.iplantc.org/apps/v2/$APP_ID/pems?pretty=true
 
-   {: .solution}
+        # Delete permission for a single user by updating with an empty permission value
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -X POST -d "permission=" \
+            https://agave.iplantc.org/apps/v2/$APP_ID/pems/bgibson?pretty=true
+|
 
 
 Since this is an update operation, the resulting JSON permission object will be returned showing the user has no permissions to the app anymore.
 
-..
+.. container:: foldable
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: json
+        :fa:`caret-right`
+        **Show json response**
 
-      {
-       "username": "bgibson",
-       "permission": {
-         "read": false,
-         "write": false,
-         "execute": false
-       },
-       "_links": {
-         "self": {
-           "href": "https://agave.iplantc.org/apps/v2/$APP_ID/pems/bgibson"
-         },
-         "app": {
-           "href": "https://agave.iplantc.org/apps/v2/$APP_ID"
-         },
-         "profile": {
-           "href": "https://agave.iplantc.org/profiles/v2/bgibson"
-         }
-       }
-      }
+     .. code-block:: json
 
-   {: .solution}
+        {
+        "username": "bgibson",
+        "permission": {
+          "read": false,
+          "write": false,
+          "execute": false
+        },
+        "_links": {
+          "self": {
+            "href": "https://agave.iplantc.org/apps/v2/$APP_ID/pems/bgibson"
+          },
+          "app": {
+            "href": "https://agave.iplantc.org/apps/v2/$APP_ID"
+          },
+          "profile": {
+            "href": "https://agave.iplantc.org/profiles/v2/bgibson"
+          }
+        }
+        }
+|
 
 
 To delete all permissions for an app, make a DELETE request on the app's permissions collection.
@@ -310,18 +328,19 @@ To delete all permissions for an app, make a DELETE request on the app's permiss
 
    apps-pems-delete $APP_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -X DELETE \
-          https://agave.iplantc.org/apps/v2/$APP_ID/pems?pretty=true
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -X DELETE \
+            https://agave.iplantc.org/apps/v2/$APP_ID/pems?pretty=true
+|
 
 
 The response will be an empty result object.
@@ -353,147 +372,151 @@ To publish an app, make a PUT request on the app resource. In this example, we p
 
    apps-publish -e condor.opensciencegrid.org wc-osg-1.00
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          -H "Content-Type: application/json"
-          -X PUT
-          --data-binary '{"action":"publish","executionSystem":"condor.opensciencegrid.org"}'
-          https://agave.iplantc.org/apps/v2/wc-osg-1.00?pretty=true
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            -H "Content-Type: application/json"
+            -X PUT
+            --data-binary '{"action":"publish","executionSystem":"condor.opensciencegrid.org"}'
+            https://agave.iplantc.org/apps/v2/wc-osg-1.00?pretty=true
+|
 
    The response from the service will resemble the following:
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-       "id": "wc-osg-1.00u1",
-       "name": "wc-osg",
-       "icon": null,
-       "uuid": "8734854070765284890-242ac116-0001-005",
-       "parallelism": "SERIAL",
-       "defaultProcessorsPerNode": 1,
-       "defaultMemoryPerNode": 1,
-       "defaultNodeCount": 1,
-       "defaultMaxRunTime": null,
-       "defaultQueue": null,
-       "version": "1.00",
-       "revision": 1,
-       "isPublic": false,
-       "helpURI": "http://www.gnu.org/s/coreutils/manual/html_node/wc-invocation.html",
-       "label": "wc condor",
-       "shortDescription": "Count words in a file",
-       "longDescription": "",
-       "tags": [
-         "gnu",
-         "textutils"
-       ],
-       "ontology": [
-         "http://sswapmeet.sswap.info/algorithms/wc"
-       ],
-       "executionType": "CONDOR",
-       "executionSystem": "condor.opensciencegrid.org",
-       "deploymentPath": "/agave/apps/wc-1.00",
-       "deploymentSystem": "public.storage.agave",
-       "templatePath": "/wrapper.sh",
-       "testPath": "/wrapper.sh",
-       "checkpointable": true,
-       "lastModified": "2016-09-15T04:48:17.000-05:00",
-       "modules": [
-         "load TACC",
-         "purge"
-       ],
-       "available": true,
-       "inputs": [
-         {
-           "id": "query1",
-           "value": {
-             "validator": "",
-             "visible": true,
-             "required": false,
-             "order": 0,
-             "enquote": false,
-             "default": [
-               "read1.fq"
-             ]
-           },
-           "details": {
-             "label": "File to count words in: ",
-             "description": "",
-             "argument": null,
-             "showArgument": false,
-             "repeatArgument": false
-           },
-           "semantics": {
-             "minCardinality": 1,
-             "maxCardinality": -1,
-             "ontology": [
-               "http://sswapmeet.sswap.info/util/TextDocument"
-             ],
-             "fileTypes": [
-               "text-0"
-             ]
-           }
-         }
-       ],
-       "parameters": [],
-       "outputs": [
-         {
-           "id": "outputWC",
-           "value": {
-             "validator": "",
-             "order": 0,
-             "default": "wc_out.txt"
-           },
-           "details": {
-             "label": "Text file",
-             "description": "Results of WC"
-           },
-           "semantics": {
-             "minCardinality": 1,
-             "maxCardinality": 1,
-             "ontology": [
-               "http://sswapmeet.sswap.info/util/TextDocument"
-             ],
-             "fileTypes": []
-           }
-         }
-       ],
-       "_links": {
-         "self": {
-           "href": "https://public.agaveapi.co/apps/v2/wc-osg-1.00u1"
-         },
-         "executionSystem": {
-           "href": "https://public.agaveapi.co/systems/v2/condor.opensciencegrid.org"
-         },
-         "storageSystem": {
-           "href": "https://public.agaveapi.co/systems/v2/public.storage.agave"
-         },
-         "history": {
-           "href": "https://public.agaveapi.co/apps/v2/wc-osg-1.00u1/history"
-         },
-         "metadata": {
-           "href": "https://public.agaveapi.co/meta/v2/data/?q=%7B%22associationIds%22%3A%228734854070765284890-242ac116-0001-005%22%7D"
-         },
-         "owner": {
-           "href": "https://public.agaveapi.co/profiles/v2/nryan"
-         },
-         "permissions": {
-           "href": "https://public.agaveapi.co/apps/v2/wc-osg-1.00u1/pems"
-         }
-       }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+        "id": "wc-osg-1.00u1",
+        "name": "wc-osg",
+        "icon": null,
+        "uuid": "8734854070765284890-242ac116-0001-005",
+        "parallelism": "SERIAL",
+        "defaultProcessorsPerNode": 1,
+        "defaultMemoryPerNode": 1,
+        "defaultNodeCount": 1,
+        "defaultMaxRunTime": null,
+        "defaultQueue": null,
+        "version": "1.00",
+        "revision": 1,
+        "isPublic": false,
+        "helpURI": "http://www.gnu.org/s/coreutils/manual/html_node/wc-invocation.html",
+        "label": "wc condor",
+        "shortDescription": "Count words in a file",
+        "longDescription": "",
+        "tags": [
+          "gnu",
+          "textutils"
+        ],
+        "ontology": [
+          "http://sswapmeet.sswap.info/algorithms/wc"
+        ],
+        "executionType": "CONDOR",
+        "executionSystem": "condor.opensciencegrid.org",
+        "deploymentPath": "/agave/apps/wc-1.00",
+        "deploymentSystem": "public.storage.agave",
+        "templatePath": "/wrapper.sh",
+        "testPath": "/wrapper.sh",
+        "checkpointable": true,
+        "lastModified": "2016-09-15T04:48:17.000-05:00",
+        "modules": [
+          "load TACC",
+          "purge"
+        ],
+        "available": true,
+        "inputs": [
+          {
+            "id": "query1",
+            "value": {
+              "validator": "",
+              "visible": true,
+              "required": false,
+              "order": 0,
+              "enquote": false,
+              "default": [
+                "read1.fq"
+              ]
+            },
+            "details": {
+              "label": "File to count words in: ",
+              "description": "",
+              "argument": null,
+              "showArgument": false,
+              "repeatArgument": false
+            },
+            "semantics": {
+              "minCardinality": 1,
+              "maxCardinality": -1,
+              "ontology": [
+                "http://sswapmeet.sswap.info/util/TextDocument"
+              ],
+              "fileTypes": [
+                "text-0"
+              ]
+            }
+          }
+        ],
+        "parameters": [],
+        "outputs": [
+          {
+            "id": "outputWC",
+            "value": {
+              "validator": "",
+              "order": 0,
+              "default": "wc_out.txt"
+            },
+            "details": {
+              "label": "Text file",
+              "description": "Results of WC"
+            },
+            "semantics": {
+              "minCardinality": 1,
+              "maxCardinality": 1,
+              "ontology": [
+                "http://sswapmeet.sswap.info/util/TextDocument"
+              ],
+              "fileTypes": []
+            }
+          }
+        ],
+        "_links": {
+          "self": {
+            "href": "https://public.agaveapi.co/apps/v2/wc-osg-1.00u1"
+          },
+          "executionSystem": {
+            "href": "https://public.agaveapi.co/systems/v2/condor.opensciencegrid.org"
+          },
+          "storageSystem": {
+            "href": "https://public.agaveapi.co/systems/v2/public.storage.agave"
+          },
+          "history": {
+            "href": "https://public.agaveapi.co/apps/v2/wc-osg-1.00u1/history"
+          },
+          "metadata": {
+            "href": "https://public.agaveapi.co/meta/v2/data/?q=%7B%22associationIds%22%3A%228734854070765284890-242ac116-0001-005%22%7D"
+          },
+          "owner": {
+            "href": "https://public.agaveapi.co/profiles/v2/nryan"
+          },
+          "permissions": {
+            "href": "https://public.agaveapi.co/apps/v2/wc-osg-1.00u1/pems"
+          }
+        }
+        }
+|
 
 
 Notice a few things about the response.
@@ -516,18 +539,19 @@ Unlike systems, it is not possible to unpublish an app. Once published, a deep c
 
    apps-disable -v $APP_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          -X PUT -d "action=disable"
-          https://agave.iplantc.org/apps/v2/$APP_ID?pretty=true
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            -X PUT -d "action=disable"
+            https://agave.iplantc.org/apps/v2/$APP_ID?pretty=true
+|
 
 
 The response will look identical to before, but with ``available`` set to *false*
@@ -541,22 +565,23 @@ Often times you will want to copy an existing app for use on another system, or 
 
    apps-clone -N my-pyplot-demo -V 2.2 demo-pyplot-demo-advanced-0.1.0
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -X PUT 'https://agave.iplantc.org/apps/v2/$APP_ID?pretty=true' \
-          --data-urlencode action=clone \
-          --data-urlencode name=$NEW_APP_NAME \
-          --data-urlencode version=0.1.2 \
-          --data-urlencode deploymentSystem= $STORAGE_SYSTEM \
-          --data-urlencode executionSystem= $EXECUTION_SYSTEM
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -X PUT 'https://agave.iplantc.org/apps/v2/$APP_ID?pretty=true' \
+            --data-urlencode action=clone \
+            --data-urlencode name=$NEW_APP_NAME \
+            --data-urlencode version=0.1.2 \
+            --data-urlencode deploymentSystem= $STORAGE_SYSTEM \
+            --data-urlencode executionSystem= $EXECUTION_SYSTEM
+|
 
    :information_source: When cloning public apps, the entire app bundle will be recreated on the ``deploymentSystem`` you specify or your default storage system. The same is not true for private apps. Cloning a private app will copy the job description, but not the app bundle. This is to honor the original ownership of the assets and prevent them from leaking out to the public space without the owner's permission. If you need direct access to the app's assets, request that the owner give you read access to the folder listed as the deploymentPath in the app description.
 

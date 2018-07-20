@@ -140,3 +140,7 @@ venv.bak/
 
 
 # End of https://www.gitignore.io/api/macos,python,visualstudiocode
+
+bin/
+pip-selfcheck.json
+pyvenv.cfg

@@ -7,7 +7,7 @@ Systems you register are private to you and you alone. You can, however, allow o
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Role</th>
@@ -37,6 +37,6 @@ Systems you register are private to you and you alone. You can, however, allow o
            </tr>
        </tbody>
    </table>
-
+|
 
 Please see the Systems Roles tutorial for a deep discussion of system roles and how they are used.

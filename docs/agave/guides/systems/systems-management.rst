@@ -11,19 +11,20 @@ Disable a system
 
    systems-disable $SYSTEM_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
-         -H "Content-Type: application/json"
-         -X PUT --data-binary '{"action": "disable"}'
-         https://public.agaveapi.co/systems/v2/$SYSTEM_ID
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
+          -H "Content-Type: application/json"
+          -X PUT --data-binary '{"action": "disable"}'
+          https://public.agaveapi.co/systems/v2/$SYSTEM_ID
+|
 
 
 The response will look something like the following:
@@ -88,19 +89,20 @@ Enable a system
 
    systems-enable $SYSTEM_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
-         -H "Content-Type: application/json"
-         -X PUT --data-binary '{"action": "enable"}'
-         https://public.agaveapi.co/systems/v2/$SYSTEM_ID
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
+          -H "Content-Type: application/json"
+          -X PUT --data-binary '{"action": "enable"}'
+          https://public.agaveapi.co/systems/v2/$SYSTEM_ID
+|
 
 
 The response will look something like the following:
@@ -163,16 +165,17 @@ Deleting systems
 
    systems-delete $SYSTEM_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+|
 
 
 The call will return an empty result.

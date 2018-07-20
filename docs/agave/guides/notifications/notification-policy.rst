@@ -26,7 +26,7 @@ Example notification subscription object with custom retry policy:
 
    <p></p>   
    <p></p>   
-   <table>
+   <table border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Name</th>
@@ -80,53 +80,56 @@ To query failed attempts for a specific notification, enter the following CLI co
 
    notifications-list-failures 229681451607921126-8e1831906a8e-0001-042"
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-      https://$API_BASE_URL/notifications/$API_VERSION/229681451607921126-8e1831906a8e-0001-042"/attempts
+     .. code-block:: shell
 
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+        https://$API_BASE_URL/notifications/$API_VERSION/229681451607921126-8e1831906a8e-0001-042"/attempts
+|
 
 A list of notification attempts will be returned.
 
-..
+.. container:: foldable
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: javascript
+        :fa:`caret-right`
+        **Show json response**
 
-      [
-       {
-         "id" : "229681451607921126-8e1831906a8e-0001-042",
-         "url" : "https://httpbin.org/status/500",
-         "event" : "SENT",
-         "associatedUuid" : "5833036796741676570-b0b0b0bb0b-0001-011",
-         "startTime" : "2016-06-19T22:21:02.266-05:00",
-         "endTime" : "2016-06-19T22:21:03.268-05:00",
-         "response" : {
-           "code" : 500,
-           "message" : ""
-         },
-         "_links" : {
-           "self" : {
-             "href" : "https://$API_BASE_URL/notifications/$API_VERSION/229123105859441126-8e1831906a8e-0001-011/attempts/229681451607921126-8e1831906a8e-0001-042"
-           },
-           "notification" : {
-             "href" : "https://$API_BASE_URL/notifications/$API_VERSION/5833036796741676570-b0b0b0bb0b-0001-011"
-           },
-           "profile" : {
-             "href" : "https://$API_BASE_URL/profiles/$API_VERSION/ipcservices"
-           }
-         }
-       }
-      ]
+     .. code-block:: json
 
-   {: .solution}
+        [
+        {
+          "id" : "229681451607921126-8e1831906a8e-0001-042",
+          "url" : "https://httpbin.org/status/500",
+          "event" : "SENT",
+          "associatedUuid" : "5833036796741676570-b0b0b0bb0b-0001-011",
+          "startTime" : "2016-06-19T22:21:02.266-05:00",
+          "endTime" : "2016-06-19T22:21:03.268-05:00",
+          "response" : {
+            "code" : 500,
+            "message" : ""
+          },
+          "_links" : {
+            "self" : {
+              "href" : "https://$API_BASE_URL/notifications/$API_VERSION/229123105859441126-8e1831906a8e-0001-011/attempts/229681451607921126-8e1831906a8e-0001-042"
+            },
+            "notification" : {
+              "href" : "https://$API_BASE_URL/notifications/$API_VERSION/5833036796741676570-b0b0b0bb0b-0001-011"
+            },
+            "profile" : {
+              "href" : "https://$API_BASE_URL/profiles/$API_VERSION/ipcservices"
+            }
+          }
+        }
+        ]
+|
 
 
 Note: There is no way to save successful notification deliveries.

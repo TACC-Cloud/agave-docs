@@ -37,7 +37,7 @@ The full list of storage system attributes is described in the following table.
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Attribute</th>
@@ -88,7 +88,7 @@ The full list of storage system attributes is described in the following table.
            </tr>
        </tbody>
    </table>
-
+|
 
 Supported data and authentication protocols
 -------------------------------------------
@@ -119,8 +119,8 @@ Sample storage system definition with each supported data protocol and authentic
 
 .. raw:: html
 
-   <pre id="sftp-password" class="json storage-config">
-   <code>{
+   <pre id="sftp-password" class="json storage-config" style="white-space:pre-wrap;">
+   {
       "id":"sftp.storage.example.com",
       "name":"Example SFTP Storage System",
       "status":"UP",
@@ -139,15 +139,15 @@ Sample storage system definition with each supported data protocol and authentic
             "type":"PASSWORD"
          }
       }
-   }</code>
+   }
    </pre>
 
 
 
 .. raw:: html
 
-   <pre id="sftp-sshkeys" class="json storage-config hidden">
-   <code>{
+   <pre id="sftp-sshkeys" class="json storage-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
       "id":"sftp.storage.example.com",
       "name":"Example SFTP Storage Host",
       "status":"UP",
@@ -168,14 +168,14 @@ Sample storage system definition with each supported data protocol and authentic
          }
       }
    }
-   </code></pre>
+   </pre>
 
 
 
 .. raw:: html
 
-   <pre id="sftp-tunnel" class="json storage-config hidden">
-   <code>{
+   <pre id="sftp-tunnel" class="json storage-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
       "id":"sftp.storage.example.com",
       "name":"Example SFTP Tunnel Storage Host",
       "status":"UP",
@@ -200,14 +200,14 @@ Sample storage system definition with each supported data protocol and authentic
          }
       }
    }
-   </code></pre>
+   </pre>
 
 
 
 .. raw:: html
 
-   <pre id="irods" class="json storage-config hidden">
-   <code>{
+   <pre id="irods" class="json storage-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
       "id":"irods.storage.example.com",
       "name":"Example IRODS Storage Host",
       "status":"UP",
@@ -229,14 +229,14 @@ Sample storage system definition with each supported data protocol and authentic
          "zone":"demoZone"
       }
    }
-   </code></pre>
+   </pre>
 
 
 
 .. raw:: html
 
-   <pre id="irods-pam" class="json storage-config hidden">
-   <code>{
+   <pre id="irods-pam" class="json storage-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
       "id":"irods.storage.example.com",
       "name":"Example IRODS Storage Host",
       "status":"UP",
@@ -258,14 +258,14 @@ Sample storage system definition with each supported data protocol and authentic
          "zone":"demoZone"
       }
    }
-   </code></pre>
+   </pre>
 
 
 
 .. raw:: html
 
-   <pre id="irods-myproxy" class="json storage-config hidden">
-   <code>{
+   <pre id="irods-myproxy" class="json storage-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
       "id":"irods.storage.example.com",
       "name":"Example IRODS Storage Host",
       "status":"UP",
@@ -293,14 +293,14 @@ Sample storage system definition with each supported data protocol and authentic
          "zone":"demoZone"
       }
    }
-   </code></pre>
+   </pre>
 
 
 
 .. raw:: html
 
-   <pre id="irods4" class="json storage-config hidden">
-   <code>{
+   <pre id="irods4" class="json storage-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
       "id":"irods.storage.example.com",
       "name":"Example IRODS Storage Host",
       "status":"UP",
@@ -322,14 +322,14 @@ Sample storage system definition with each supported data protocol and authentic
          "zone":"demoZone"
       }
    }
-   </code></pre>
+   </pre>
 
 
 
 .. raw:: html
 
-   <pre id="gridftp" class="json storage-config hidden">
-   <code>{
+   <pre id="gridftp" class="json storage-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
      "id": "demo.storage.example.com",
      "name": "Demo GRIDFTP demo vm",
      "status": "UP",
@@ -348,14 +348,14 @@ Sample storage system definition with each supported data protocol and authentic
        }
      }
    }
-   </code></pre>
+   </pre>
 
 
 
 .. raw:: html
 
-   <pre id="gridftp-myproxy" class="json storage-config hidden">
-   <code>{
+   <pre id="gridftp-myproxy" class="json storage-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
      "id": "demo.storage.example.com",
      "name": "Demo GRIDFTP + MyProxy Storage System",
      "status": "UP",
@@ -381,14 +381,14 @@ Sample storage system definition with each supported data protocol and authentic
        }
      }
    }
-   </code></pre>
+   </pre>
 
 
 
 .. raw:: html
 
-   <pre id="gridftp-mpg" class="json storage-config hidden">
-   <code>{
+   <pre id="gridftp-mpg" class="json storage-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
      "id": "demo.storage.example.com",
      "name": "Demo GRIDFTP + MyProxy Storage System",
      "status": "UP",
@@ -412,14 +412,14 @@ Sample storage system definition with each supported data protocol and authentic
        }
      }
    }
-   </code></pre>
+   </pre>
 
 
 
 .. raw:: html
 
-   <pre id="s3" class="json storage-config hidden">
-   <code>{
+   <pre id="s3" class="json storage-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
       "id":"demo.storage.example.com",
       "name":"Example Amazon S3 Storage System",
       "status":"UP",
@@ -440,14 +440,14 @@ Sample storage system definition with each supported data protocol and authentic
          }
       }
    }
-   </code></pre>
+   </pre>
 
 
 
 .. raw:: html
 
-   <pre id="local" class="json storage-config hidden">
-   <code>{
+   <pre id="local" class="json storage-config hidden" style="white-space:pre-wrap; word-wrap:break-word;">
+   {
       "id":"local.storage.example.com",
       "name":"Example LOCAL Storage Host",
       "status":"UP",
@@ -461,7 +461,7 @@ Sample storage system definition with each supported data protocol and authentic
          "homeDir":"/home/systest"
       }
    }
-   </code></pre>
+   </pre>
 
 
 In each of the examples above, the ``storage`` objects were slightly different, each unique to the protocol used. Descriptions of every attribute in the ``storage``\ > object and its children are given in the following tables.
@@ -471,7 +471,7 @@ In each of the examples above, the ``storage`` objects were slightly different, 
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Attribute</th>
@@ -542,14 +542,14 @@ In each of the examples above, the ``storage`` objects were slightly different, 
            </tr>
        </tbody>
    </table>
-
+|
 
 ``storage.auth`` attributes give authentication information describing how to authenticate to the system specified in the ``storage`` config above.
 
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Attribute</th>
@@ -600,14 +600,14 @@ In each of the examples above, the ``storage`` objects were slightly different, 
            </tr>
        </tbody>
    </table>
-
+|
 
 ``storage.auth.server`` attributes give information about how to obtain a credential that can be used in the authentication process. Currently only systems using the X509 authentication can leverage this feature to communicate with :raw-html-m2r:`<a href="http://grid.ncsa.illinois.edu/myproxy/" title="MyProxy Server" target="_blank">MyProxy</a>` and :raw-html-m2r:`<a href="https://bitbucket.org/taccaci/myproxy-gateway" title="MyProxy Gateway" target="_blank">MyProxy Gateway</a>` servers.
 
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Attribute</th>
@@ -638,14 +638,14 @@ In each of the examples above, the ``storage`` objects were slightly different, 
            </tr>
        </tbody>
    </table>
-
+|
 
 ``system.proxy`` configuration attributes give information about how to connect to a remote system through a proxy server. This often happens when the target system is behind a firewall or resides on a NAT. Currently proxy servers can only reuse the authentication configuration provided by the target system.
 
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
        <thead>
            <tr>
                <th>Attribute</th>
@@ -671,7 +671,7 @@ In each of the examples above, the ``storage`` objects were slightly different, 
            </tr>
        </tbody>
    </table>
-
+|
 
 If you have not yet set up a system of your own, now is a good time to grab a sandbox system to use while you follow along with the rest of this tutorial.
 
@@ -682,16 +682,17 @@ Creating a new storage system
 
    systems-addupdate -v -F sftp-password.json
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
+
+     .. code-block:: shell
 
       curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -F "fileToUpload=@sftp-password.json" https://public.tenants.agaveapi.co/systems/v2
-
-   {: .solution}
+|
 
 
 The response from the service will be similar to the following:

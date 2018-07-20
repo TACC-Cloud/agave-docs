@@ -18,53 +18,57 @@ Granting permissions is simply a matter of issuing a ``POST`` with the desired p
 
    jobs-pems-update -u $USERNAME -p READ_WRITE $JOB_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      # General grant
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -H "Content-Type: application/json" \
-          -X POST --data-binary '{"permission":"READ","username":"$USERNAME"}' \
-          https://agave.iplantc.org/jobs/v2/$JOB_ID/pems
+     .. code-block:: shell
 
-      # Custom url grant
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -H "Content-Type: application/json" \
-          -X POST --data-binary '{"permission":"READ"}' \
-          https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/$USERNAME
+        # General grant
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST --data-binary '{"permission":"READ","username":"$USERNAME"}' \
+            https://agave.iplantc.org/jobs/v2/$JOB_ID/pems
 
-   {: .solution}
+        # Custom url grant
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST --data-binary '{"permission":"READ"}' \
+            https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/$USERNAME
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-       "username": "$USERNAME",
-       "internalUsername": null,
-       "permission": {
-         "read": true,
-         "write": false
-       },
-       "_links": {
-         "self": {
-           "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/$USERNAME"
-         },
-         "parent": {
-           "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID"
-         },
-         "profile": {
-           "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
-         }
-       }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+        "username": "$USERNAME",
+        "internalUsername": null,
+        "permission": {
+          "read": true,
+          "write": false
+        },
+        "_links": {
+          "self": {
+            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/$USERNAME"
+          },
+          "parent": {
+            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID"
+          },
+          "profile": {
+            "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
+          }
+        }
+        }
+|
 
 
 The available permission values are listed in Table 2.
@@ -72,7 +76,7 @@ The available permission values are listed in Table 2.
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Permission</th>
@@ -98,7 +102,7 @@ The available permission values are listed in Table 2.
    </tr>
    </tbody>
    </table>
-
+|
 
 
 .. raw:: html
@@ -120,65 +124,69 @@ To find the permissions for a given job, make a GET on the job's ``pems`` collec
 
    jobs-pems-list -V $JOB_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
-         'https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/'
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
+          'https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/'
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      [
-       {
-         "username": "$API_USERNAME",
-         "internalUsername": null,
-         "permission": {
-           "read": true,
-           "write": true
-         },
-         "_links": {
-           "self": {
-             "href": "https://agave.iplantc.org/jobs/v2/6608339759546166810-242ac114-0001-007/pems/$API_USERNAME"
-           },
-           "parent": {
-             "href": "https://agave.iplantc.org/jobs/v2/6608339759546166810-242ac114-0001-007"
-           },
-           "profile": {
-             "href": "https://agave.iplantc.org/profiles/v2/$API_USERNAME"
-           }
-         }
-       },
-       {
-         "username": "$USERNAME",
-         "internalUsername": null,
-         "permission": {
-           "read": true,
-           "write": false
-         },
-         "_links": {
-           "self": {
-             "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/$USERNAME"
-           },
-           "parent": {
-             "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID"
-           },
-           "profile": {
-             "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
-           }
-         }
-       }
-      ]
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        [
+        {
+          "username": "$API_USERNAME",
+          "internalUsername": null,
+          "permission": {
+            "read": true,
+            "write": true
+          },
+          "_links": {
+            "self": {
+              "href": "https://agave.iplantc.org/jobs/v2/6608339759546166810-242ac114-0001-007/pems/$API_USERNAME"
+            },
+            "parent": {
+              "href": "https://agave.iplantc.org/jobs/v2/6608339759546166810-242ac114-0001-007"
+            },
+            "profile": {
+              "href": "https://agave.iplantc.org/profiles/v2/$API_USERNAME"
+            }
+          }
+        },
+        {
+          "username": "$USERNAME",
+          "internalUsername": null,
+          "permission": {
+            "read": true,
+            "write": false
+          },
+          "_links": {
+            "self": {
+              "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/$USERNAME"
+            },
+            "parent": {
+              "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID"
+            },
+            "profile": {
+              "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
+            }
+          }
+        }
+        ]
+|
 
 
 Updating
@@ -190,46 +198,50 @@ Updating is exactly like granting permissions. Just POST to the same job's ``pem
 
    jobs-pems-update -u $USERNAME -p READ_WRITE $JOB_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" \
-          -H "Content-Type: application/json" \
-          -X POST --data-binary {"permission":"READ_WRITE}" \
-          https://agave.iplantc.org/jobs/v2/$JOB_ID/$USERNAME
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST --data-binary {"permission":"READ_WRITE}" \
+            https://agave.iplantc.org/jobs/v2/$JOB_ID/$USERNAME
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-       "username": "$USERNAME",
-       "internalUsername": null,
-       "permission": {
-         "read": true,
-         "write": true
-       },
-       "_links": {
-         "self": {
-           "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/$USERNAME"
-         },
-         "parent": {
-           "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID"
-         },
-         "profile": {
-           "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
-         }
-       }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+        "username": "$USERNAME",
+        "internalUsername": null,
+        "permission": {
+          "read": true,
+          "write": true
+        },
+        "_links": {
+          "self": {
+            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/$USERNAME"
+          },
+          "parent": {
+            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID"
+          },
+          "profile": {
+            "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
+          }
+        }
+        }
+|
 
 
 Deleting
@@ -241,16 +253,17 @@ To delete a permission, you can issue a DELETE request on the user permission re
 
    jobs-pems-update -u $USERNAME -p '' $JOB_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" \
-          -X DELETE \
-          https://agave.iplantc.org/jobs/v2/$JOB_ID/$USERNAME
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" \
+            -X DELETE \
+            https://agave.iplantc.org/jobs/v2/$JOB_ID/$USERNAME
+|
 

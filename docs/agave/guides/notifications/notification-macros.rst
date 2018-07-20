@@ -26,7 +26,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
 
 .. raw:: html
 
-   <table id="notification-macros-apps" class="notification-macros">
+   <table id="notification-macros-apps" class="notification-macros" border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>
@@ -50,7 +50,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
    </table>
    <p></p>
    <p></p>
-   <table id="notification-macros-jobs" class="notification-macros hidden">
+   <table id="notification-macros-jobs" class="notification-macros hidden" border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>
@@ -124,7 +124,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
 
 .. raw:: html
 
-   <table id="notification-macros-files" class="notification-macros hidden">
+   <table id="notification-macros-files" class="notification-macros hidden" border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>
@@ -170,7 +170,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
 
 .. raw:: html
 
-   <table id="notification-macros-metadata" class="notification-macros hidden">
+   <table id="notification-macros-metadata" class="notification-macros hidden" border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>
@@ -200,7 +200,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
 
 .. raw:: html
 
-   <table id="notification-macros-metadata-schema" class="notification-macros hidden">
+   <table id="notification-macros-metadata-schema" class="notification-macros hidden" border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>
@@ -230,7 +230,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
 
 .. raw:: html
 
-   <table id="notification-macros-monitors" class="notification-macros hidden">
+   <table id="notification-macros-monitors" class="notification-macros hidden" border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>
@@ -300,7 +300,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
 
 .. raw:: html
 
-   <table id="notification-macros-notification" class="notification-macros hidden">
+   <table id="notification-macros-notification" class="notification-macros hidden" border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>
@@ -359,7 +359,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
 
 .. raw:: html
 
-   <table id="notification-macros-postits" class="notification-macros hidden">
+   <table id="notification-macros-postits" class="notification-macros hidden" border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>
@@ -421,7 +421,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
 
 .. raw:: html
 
-   <table id="notification-macros-profiles" class="notification-macros hidden">
+   <table id="notification-macros-profiles" class="notification-macros hidden" border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>
@@ -515,7 +515,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
 
 .. raw:: html
 
-   <table id="notification-macros-systems" class="notification-macros hidden">
+   <table id="notification-macros-systems" class="notification-macros hidden" border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>
@@ -617,7 +617,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
 
 .. raw:: html
 
-   <table id="notification-macros-transforms" class="notification-macros hidden">
+   <table id="notification-macros-transforms" class="notification-macros hidden" border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>

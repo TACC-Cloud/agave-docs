@@ -50,7 +50,7 @@ Success Codes
        <td>You requested an action that succeeded, but did not modify the resource</td>
      </tr> 
    </table>
-
+|
 
 Error Codes
 -----------

@@ -26,58 +26,62 @@ Create a new default monitor with the following CLI command:
 
    monitors-addupdate -S storage.example.com
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
-           -H "Content-Type: application-json" \
-           -X POST --data-binary '{"target": "storage.example.com"}' \
-           https://public.agaveapi.co/monitors/v2/
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
+            -H "Content-Type: application-json" \
+            -X POST --data-binary '{"target": "storage.example.com"}' \
+            https://public.agaveapi.co/monitors/v2/
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-          "active": true,
-          "created": "2016-06-03T17:22:59.000-05:00",
-          "frequency": 60,
-          "id": "5024717285821443610-242ac11f-0001-014",
-          "internalUsername": null,
-          "lastCheck": null,
-          "lastSuccess": null,
-          "lastUpdated": "2016-06-03T17:22:59.000-05:00",
-          "nextUpdate": "2016-06-03T18:22:59.000-05:00",
-          "owner": "nryan",
-          "target": "storage.example.com",
-          "updateSystemStatus": false,
-          "_links": {
-              "checks": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
-              },
-              "notifications": {
-                  "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
-              },
-              "owner": {
-                  "href": "https://public.agaveapi.co/profiles/v2/nryan"
-              },
-              "self": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
-              },
-              "system": {
-                  "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
-              }
-          }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}  
+     .. code-block:: json
+
+        {
+            "active": true,
+            "created": "2016-06-03T17:22:59.000-05:00",
+            "frequency": 60,
+            "id": "5024717285821443610-242ac11f-0001-014",
+            "internalUsername": null,
+            "lastCheck": null,
+            "lastSuccess": null,
+            "lastUpdated": "2016-06-03T17:22:59.000-05:00",
+            "nextUpdate": "2016-06-03T18:22:59.000-05:00",
+            "owner": "nryan",
+            "target": "storage.example.com",
+            "updateSystemStatus": false,
+            "_links": {
+                "checks": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
+                },
+                "notifications": {
+                    "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
+                },
+                "owner": {
+                    "href": "https://public.agaveapi.co/profiles/v2/nryan"
+                },
+                "self": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                },
+                "system": {
+                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                }
+            }
+        }
+| 
 
 
 The only piece of information needed to monitor a system is the system ID. 
@@ -98,58 +102,62 @@ Create a monitor with a custom frequency with the following CLI command:
 
    monitors-addupdate -S storage.example.com -I 15
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
-           -H "Content-Type: application-json" \
-           -X POST --data-binary '{"target": "storage.example.com","frequency":15}' \
-           https://public.agaveapi.co/monitors/v2/
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
+            -H "Content-Type: application-json" \
+            -X POST --data-binary '{"target": "storage.example.com","frequency":15}' \
+            https://public.agaveapi.co/monitors/v2/
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-          "_links": {
-              "checks": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
-              },
-              "notifications": {
-                  "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
-              },
-              "owner": {
-                  "href": "https://public.agaveapi.co/profiles/v2/nryan"
-              },
-              "self": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
-              },
-              "system": {
-                  "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
-              }
-          },
-          "active": true,
-          "created": "2016-06-03T17:22:59.000-05:00",
-          "frequency": 15,
-          "id": "5024717285821443610-242ac11f-0001-014",
-          "internalUsername": null,
-          "lastCheck": null,
-          "lastSuccess": null,
-          "lastUpdated": "2016-06-03T17:22:59.000-05:00",
-          "nextUpdate": "2016-06-03T17:37:59.000-05:00",
-          "owner": "nryan",
-          "target": "storage.example.com",
-          "updateSystemStatus": false
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution} 
+     .. code-block:: json
+
+        {
+            "_links": {
+                "checks": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
+                },
+                "notifications": {
+                    "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
+                },
+                "owner": {
+                    "href": "https://public.agaveapi.co/profiles/v2/nryan"
+                },
+                "self": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                },
+                "system": {
+                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                }
+            },
+            "active": true,
+            "created": "2016-06-03T17:22:59.000-05:00",
+            "frequency": 15,
+            "id": "5024717285821443610-242ac11f-0001-014",
+            "internalUsername": null,
+            "lastCheck": null,
+            "lastSuccess": null,
+            "lastUpdated": "2016-06-03T17:22:59.000-05:00",
+            "nextUpdate": "2016-06-03T17:37:59.000-05:00",
+            "owner": "nryan",
+            "target": "storage.example.com",
+            "updateSystemStatus": false
+        }
+| 
 
 
 If you need the monitor to run more frequently, you can customize the frequency and time 
@@ -178,59 +186,63 @@ Create a monitor that updates system status on change with the following CLI com
 
    monitors-addupdate -S storage.example.com -I 15 -U true
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
-           -H "Content-Type: application-json" \
-           -X POST \
-           --data-binary '{"target": "storage.example.com","frequency":15,"updateSystemStatus"=true}' \
-           https://public.agaveapi.co/monitors/v2/
+     .. code-block:: shell
 
-   {: .solution} 
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
+            -H "Content-Type: application-json" \
+            -X POST \
+            --data-binary '{"target": "storage.example.com","frequency":15,"updateSystemStatus"=true}' \
+            https://public.agaveapi.co/monitors/v2/
+| 
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-          "active": true,
-          "created": "2016-06-03T17:22:59.000-05:00",
-          "frequency": 15,
-          "id": "5024717285821443610-242ac11f-0001-014",
-          "internalUsername": null,
-          "lastCheck": null,
-          "lastSuccess": null,
-          "lastUpdated": "2016-06-03T17:22:59.000-05:00",
-          "nextUpdate": "2016-06-03T17:37:59.000-05:00",
-          "owner": "nryan",
-          "target": "storage.example.com",
-          "updateSystemStatus": true,
-          "_links": {
-              "checks": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
-              },
-              "notifications": {
-                  "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
-              },
-              "owner": {
-                  "href": "https://public.agaveapi.co/profiles/v2/nryan"
-              },
-              "self": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
-              },
-              "system": {
-                  "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
-              }
-          }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution} 
+     .. code-block:: json
+
+        {
+            "active": true,
+            "created": "2016-06-03T17:22:59.000-05:00",
+            "frequency": 15,
+            "id": "5024717285821443610-242ac11f-0001-014",
+            "internalUsername": null,
+            "lastCheck": null,
+            "lastSuccess": null,
+            "lastUpdated": "2016-06-03T17:22:59.000-05:00",
+            "nextUpdate": "2016-06-03T17:37:59.000-05:00",
+            "owner": "nryan",
+            "target": "storage.example.com",
+            "updateSystemStatus": true,
+            "_links": {
+                "checks": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
+                },
+                "notifications": {
+                    "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
+                },
+                "owner": {
+                    "href": "https://public.agaveapi.co/profiles/v2/nryan"
+                },
+                "self": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                },
+                "system": {
+                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                }
+            }
+        }
+| 
 
 
 In the Events and Notifications sections, we cover the ways in which you can get alerted about events 
@@ -253,59 +265,63 @@ Update an existing monitor with the following CLI command:
 
    monitors-addupdate -S storage.example.com -I 5 -U false 5024717285821443610-242ac11f-0001-014
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
-           -H "Content-Type: application-json" \
-           -X POST \
-           --data-binary '{"target": "storage.example.com","frequency":5,"updateSystemStatus"=false}' \
-           https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014
+     .. code-block:: shell
 
-   {: .solution} 
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
+            -H "Content-Type: application-json" \
+            -X POST \
+            --data-binary '{"target": "storage.example.com","frequency":5,"updateSystemStatus"=false}' \
+            https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014
+| 
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-          "active": true,
-          "created": "2016-06-03T17:22:59.000-05:00",
-          "frequency": 15,
-          "id": "5024717285821443610-242ac11f-0001-014",
-          "internalUsername": null,
-          "lastCheck": null,
-          "lastSuccess": null,
-          "lastUpdated": "2016-06-03T17:24:59.000-05:00",
-          "nextUpdate": "2016-06-03T17:29:59.000-05:00",
-          "owner": "nryan",
-          "target": "storage.example.com",
-          "updateSystemStatus": false,
-          "_links": {
-              "checks": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
-              },
-              "notifications": {
-                  "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
-              },
-              "owner": {
-                  "href": "https://public.agaveapi.co/profiles/v2/nryan"
-              },
-              "self": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
-              },
-              "system": {
-                  "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
-              }
-          }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution} 
+     .. code-block:: json
+
+        {
+            "active": true,
+            "created": "2016-06-03T17:22:59.000-05:00",
+            "frequency": 15,
+            "id": "5024717285821443610-242ac11f-0001-014",
+            "internalUsername": null,
+            "lastCheck": null,
+            "lastSuccess": null,
+            "lastUpdated": "2016-06-03T17:24:59.000-05:00",
+            "nextUpdate": "2016-06-03T17:29:59.000-05:00",
+            "owner": "nryan",
+            "target": "storage.example.com",
+            "updateSystemStatus": false,
+            "_links": {
+                "checks": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
+                },
+                "notifications": {
+                    "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
+                },
+                "owner": {
+                    "href": "https://public.agaveapi.co/profiles/v2/nryan"
+                },
+                "self": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                },
+                "system": {
+                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                }
+            }
+        }
+| 
 
 
 Monitors can be managed by making traditional GET, POST, and DELETE operations. 
@@ -324,58 +340,62 @@ Disable an existing monitor with the following CLI command:
 
    monitors-disable 5024717285821443610-242ac11f-0001-014
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
-          -H "Content-Type: application/json"
-          -X PUT --data-binary '{"action": "disable"}'
-          https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
+            -H "Content-Type: application/json"
+            -X PUT --data-binary '{"action": "disable"}'
+            https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-          "active": false,
-          "created": "2016-06-03T17:22:59.000-05:00",
-          "frequency": 15,
-          "id": "5024717285821443610-242ac11f-0001-014",
-          "internalUsername": null,
-          "lastCheck": null,
-          "lastSuccess": null,
-          "lastUpdated": "2016-06-03T17:24:59.000-05:00",
-          "nextUpdate": "2016-06-03T17:29:59.000-05:00",
-          "owner": "nryan",
-          "target": "storage.example.com",
-          "updateSystemStatus": false,
-          "_links": {
-              "checks": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
-              },
-              "notifications": {
-                  "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
-              },
-              "owner": {
-                  "href": "https://public.agaveapi.co/profiles/v2/nryan"
-              },
-              "self": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
-              },
-              "system": {
-                  "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
-              }
-          }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+            "active": false,
+            "created": "2016-06-03T17:22:59.000-05:00",
+            "frequency": 15,
+            "id": "5024717285821443610-242ac11f-0001-014",
+            "internalUsername": null,
+            "lastCheck": null,
+            "lastSuccess": null,
+            "lastUpdated": "2016-06-03T17:24:59.000-05:00",
+            "nextUpdate": "2016-06-03T17:29:59.000-05:00",
+            "owner": "nryan",
+            "target": "storage.example.com",
+            "updateSystemStatus": false,
+            "_links": {
+                "checks": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
+                },
+                "notifications": {
+                    "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
+                },
+                "owner": {
+                    "href": "https://public.agaveapi.co/profiles/v2/nryan"
+                },
+                "self": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                },
+                "system": {
+                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                }
+            }
+        }
+|
 
 
 There may be times when you need to pause a monitor. If your system has scheduled 
@@ -394,58 +414,62 @@ Enable an existing monitor with the following CLI command:
 
    monitors-enable 5024717285821443610-242ac11f-0001-014
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
-          -H "Content-Type: application/json"
-          -X PUT --data-binary '{"action": "enable"}'
-          https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
+            -H "Content-Type: application/json"
+            -X PUT --data-binary '{"action": "enable"}'
+            https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-          "active": true,
-          "created": "2016-06-03T17:22:59.000-05:00",
-          "frequency": 15,
-          "id": "5024717285821443610-242ac11f-0001-014",
-          "internalUsername": null,
-          "lastCheck": null,
-          "lastSuccess": null,
-          "lastUpdated": "2016-06-03T17:24:59.000-05:00",
-          "nextUpdate": "2016-06-03T17:29:59.000-05:00",
-          "owner": "nryan",
-          "target": "storage.example.com",
-          "updateSystemStatus": false,
-          "_links": {
-              "checks": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
-              },
-              "notifications": {
-                  "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
-              },
-              "owner": {
-                  "href": "https://public.agaveapi.co/profiles/v2/nryan"
-              },
-              "self": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
-              },
-              "system": {
-                  "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
-              }
-          }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+            "active": true,
+            "created": "2016-06-03T17:22:59.000-05:00",
+            "frequency": 15,
+            "id": "5024717285821443610-242ac11f-0001-014",
+            "internalUsername": null,
+            "lastCheck": null,
+            "lastSuccess": null,
+            "lastUpdated": "2016-06-03T17:24:59.000-05:00",
+            "nextUpdate": "2016-06-03T17:29:59.000-05:00",
+            "owner": "nryan",
+            "target": "storage.example.com",
+            "updateSystemStatus": false,
+            "_links": {
+                "checks": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
+                },
+                "notifications": {
+                    "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
+                },
+                "owner": {
+                    "href": "https://public.agaveapi.co/profiles/v2/nryan"
+                },
+                "self": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                },
+                "system": {
+                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                }
+            }
+        }
+|
 
 
 Similarly, to enable a monitor, make a PUT request with the a field name ``action`` set to 
@@ -463,19 +487,20 @@ Deleting an existing monitor with the following CLI command:
 
    monitors-delete 5024717285821443610-242ac11f-0001-014
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
-          -H "Content-Type: application/json"
-          -X DELETE
-          https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
+            -H "Content-Type: application/json"
+            -X DELETE
+            https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014
+|
 
    An empty response will be returned
 
@@ -495,45 +520,49 @@ Listing past monitor checks with the following CLI command:
 
    monitors-checks-list -v -l 1 -M 5024717285821443610-242ac11f-0001-014
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
-          'https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014/checks?limit=1'
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
+            'https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014/checks?limit=1'
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      [
-          {
-              "created": "2016-06-03T17:29:59.000-05:00",
-              "id": "4035070921477123610-242ac11f-0001-015",
-              "message": null,
-              "result": "PASSED",
-              "type": "STORAGE",
-              "_links": {
-                  "monitor": {
-                      "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
-                  },
-                  "self": {
-                      "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks/4035070921477123610-242ac11f-0001-015"
-                  },
-                  "system": {
-                      "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
-                  }
-              }
-          }
-      ]
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        [
+            {
+                "created": "2016-06-03T17:29:59.000-05:00",
+                "id": "4035070921477123610-242ac11f-0001-015",
+                "message": null,
+                "result": "PASSED",
+                "type": "STORAGE",
+                "_links": {
+                    "monitor": {
+                        "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                    },
+                    "self": {
+                        "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks/4035070921477123610-242ac11f-0001-015"
+                    },
+                    "system": {
+                        "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                    }
+                }
+            }
+        ]
+|
 
 
 Each instance of a monitor testing a system is called a Check. Monitor Checks are 
@@ -559,45 +588,49 @@ Searching check history for a monitor with the following CLI command:
        -M 5024717285821443610-242ac11f-0001-014 \
        result.eq=PASSED
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN"   
-          'https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014/checks?limit=1&result.eq=PASSED'
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN"   
+            'https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014/checks?limit=1&result.eq=PASSED'
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      [
-          {
-              "created": "2016-06-03T17:29:59.000-05:00",
-              "id": "4035070921477123610-242ac11f-0001-015",
-              "message": null,
-              "result": "PASSED",
-              "type": "STORAGE",
-              "_links": {
-                  "monitor": {
-                      "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
-                  },
-                  "self": {
-                      "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks/4035070921477123610-242ac11f-0001-015"
-                  },
-                  "system": {
-                      "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
-                  }
-              }
-          }
-      ]
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}  
+     .. code-block:: json
+
+        [
+            {
+                "created": "2016-06-03T17:29:59.000-05:00",
+                "id": "4035070921477123610-242ac11f-0001-015",
+                "message": null,
+                "result": "PASSED",
+                "type": "STORAGE",
+                "_links": {
+                    "monitor": {
+                        "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                    },
+                    "self": {
+                        "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks/4035070921477123610-242ac11f-0001-015"
+                    },
+                    "system": {
+                        "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                    }
+                }
+            }
+        ]
+|  
 
 
 Long-running monitor checks can build up a large history which can become prohibitive 
@@ -617,45 +650,49 @@ Force a monitor check to run with the following CLI command:
 
    monitors-fire -v 5024717285821443610-242ac11f-0001-014
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
-           -H "Content-Type: application-json" \
-           -X POST --data-binary '{}' \
-          https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014/checks
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
+            -H "Content-Type: application-json" \
+            -X POST --data-binary '{}' \
+            https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014/checks
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-          "created": "2016-06-10T11:30:58.920-05:00",
-          "id": "5314048891498786330-242ac11f-0001-015",
-          "message": null,
-          "result": "PASSED",
-          "type": "STORAGE",
-          "_links": {
-              "monitor": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
-              },
-              "self": {
-                  "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks/5314048891498786330-242ac11f-0001-015"
-              },
-              "system": {
-                  "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
-              }
-          }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+            "created": "2016-06-10T11:30:58.920-05:00",
+            "id": "5314048891498786330-242ac11f-0001-015",
+            "message": null,
+            "result": "PASSED",
+            "type": "STORAGE",
+            "_links": {
+                "monitor": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                },
+                "self": {
+                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks/5314048891498786330-242ac11f-0001-015"
+                },
+                "system": {
+                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                }
+            }
+        }
+|
 
 
 If you need to verify the accessibility of your system, or behavior of your monitor, you 
@@ -684,42 +721,47 @@ List the change history of a monitor with the following CLI command:
 
    monitors-history -v 5024717285821443610-242ac11f-0001-014
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
-           -H "Content-Type: application-json" \
-           -X POST --data-binary '{}' \
-          https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014/history
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
+            -H "Content-Type: application-json" \
+            -X POST --data-binary '{}' \
+            https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014/history
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      [
-        {
-          "createdBy": "nryan",
-          "created": "2016-06-12T19:10:22Z",
-          "status": "CREATED",
-          "description": "This monitor was created by nryan",
-          "id": "5705275956568068582-242ac11f-0001-035",
-          "_links": {
-            "self": {
-              "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/history/5705275956568068582-242ac11f-0001-035"
-            },
-            "monitor_event": {
-              "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+        :fa:`caret-right`
+        **Show json response**
+
+     .. code-block:: json
+
+        [
+            {
+            "createdBy": "nryan",
+            "created": "2016-06-12T19:10:22Z",
+            "status": "CREATED",
+            "description": "This monitor was created by nryan",
+            "id": "5705275956568068582-242ac11f-0001-035",
+            "_links": {
+                "self": {
+                "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/history/5705275956568068582-242ac11f-0001-035"
+                },
+                "monitor_event": {
+                "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                }
             }
-          }
-        }
-      ]
+            }
+        ]
 
    {: .solution}
 

@@ -26,20 +26,21 @@ Publish file item on your default storage system for public access
 
    files-pems-update -u public -p READ nryan/picksumipsum.txt
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         -H "Content-Type: application/json" \
-         -X POST \
-         --data '{"username","public", "permission":"READ"}' \
-         https://public.tenants.agaveapi.co/files/v2/pems/nryan/picksumipsum.txt
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+          -H "Content-Type: application/json" \
+          -X POST \
+          --data '{"username","public", "permission":"READ"}' \
+          https://public.tenants.agaveapi.co/files/v2/pems/nryan/picksumipsum.txt
+|
 
 
 Publish file item on a named system for public access
@@ -48,20 +49,21 @@ Publish file item on a named system for public access
 
    files-pems-update -u public -p READ -S data.agaveapi.co nryan/picksumipsum.txt
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         -H "Content-Type: application/json" \
-         -X POST \
-         --data '{"username","public", "permission":"READ"}' \
-         https://public.tenants.agaveapi.co/files/v2/pems/system/data.agaveapi.co/nryan/picksumipsum.txt
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+          -H "Content-Type: application/json" \
+          -X POST \
+          --data '{"username","public", "permission":"READ"}' \
+          https://public.tenants.agaveapi.co/files/v2/pems/system/data.agaveapi.co/nryan/picksumipsum.txt
+|
 
 
 The response will look something like the following:
@@ -102,20 +104,21 @@ Publish directory on your default storage system for public access
 
    files-pems-update --recursive -u public -p READ nryan/public
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         -H "Content-Type: application/json" \
-         -X POST \
-         --data '{"username","public", "permission":"READ", "recursive": true}' \
-         https://public.tenants.agaveapi.co/files/v2/pems/nryan/public
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+          -H "Content-Type: application/json" \
+          -X POST \
+          --data '{"username","public", "permission":"READ", "recursive": true}' \
+          https://public.tenants.agaveapi.co/files/v2/pems/nryan/public
+|
 
 
 Publish directory on a named system for public access
@@ -124,20 +127,21 @@ Publish directory on a named system for public access
 
    files-pems-update --recursive -u public -p READ -S data.agaveapi.co nryan/public
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
+
+     .. code-block:: shell
 
       curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
          -H "Content-Type: application/json" \
          -X POST \
          --data '{"username","public", "permission":"READ", "recursive": true}' \
          https://public.tenants.agaveapi.co/files/v2/pems/system/data.agaveapi.co/nryan/public
-
-   {: .solution}
+|
 
 
 The response will look something like the following:

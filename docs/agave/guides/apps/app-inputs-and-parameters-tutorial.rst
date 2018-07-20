@@ -7,8 +7,8 @@ In this section we take a detailed look at the ``inputs`` and ``parameters`` sec
 In practice, you will want to add some descriptive information, constraints, and runtime validation checks to reduce the amount of error users can run into when attempting to run your app. The full lists of app input and parameter attributes are provided in their respective sections below. However, before we dive deeper into the next section on app inputs, let's first get a big picture view of what we are doing when we define our app's input and parameters.
 
 
-.. image:: {{site.baseurl}}/assets/images/App-Job-Information-Flow-1.png
-   :target: {{site.baseurl}}/assets/images/App-Job-Information-Flow-1.png
+.. image:: /../../../_static/images/App-Job-Information-Flow-1.png
+   :target: /../../../_static/images/App-Job-Information-Flow-1.png
    :alt: Input and Parameter Information Flow
 
 

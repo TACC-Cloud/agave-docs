@@ -8,66 +8,70 @@ Create a new notification subscription with the following CLI command:
 
    notifications-addupdate -F notification.json
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST \
-         -H "Content-Type: application/json" \
-         --data-binary '{"associatedUuid": "7554973644402463206-242ac114-0001-007", "event": "FINISHED", "url": "http://requestbin.agaveapi.co/zyiomxzy?path=${PATH}&system=>{SYSTEM}&event=${EVENT}" }' \
-         https://public.tenants.agaveapi.co/notifications/v2?pretty=true
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST \
+          -H "Content-Type: application/json" \
+          --data-binary '{"associatedUuid": "7554973644402463206-242ac114-0001-007", "event": "FINISHED", "url": "http://requestbin.agaveapi.co/zyiomxzy?path=${PATH}&system=>{SYSTEM}&event=${EVENT}" }' \
+          https://public.tenants.agaveapi.co/notifications/v2?pretty=true
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-       "id": "7612526206168863206-242ac114-0001-011",
-       "owner": "nryan",
-       "url": "http://requestbin.agaveapi.co/zyiomxzy?path=${PATH}&system=${SYSTEM}&event=${EVENT}",
-       "associatedUuid": "7554973644402463206-242ac114-0001-007",
-       "event": "FINISHED",
-       "responseCode": null,
-       "attempts": 0,
-       "lastSent": null,
-       "success": false,
-       "persistent": false,
-       "status": "ACTIVE",
-       "lastUpdated": "2016-08-24T10:07:03.000-05:00",
-       "created": "2016-08-24T10:07:03.000-05:00",
-       "policy": {
-         "retryLimit": 5,
-         "retryRate": 5,
-         "retryDelay": 0,
-         "saveOnFailure": true,
-         "retryStrategy": "NONE"
-       },
-       "_links": {
-         "self": {
-           "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011"
-         },
-         "history": {
-           "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011/history"
-         },
-         "attempts": {
-           "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011/attempts"
-         },
-         "owner": {
-           "href": "https://public.agaveapi.co/profiles/v2/nryan"
-         },
-         "job": {
-           "href": "https://public.agaveapi.co/jobs/v2/7554973644402463206-242ac114-0001-007"
-         }
-       }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+        "id": "7612526206168863206-242ac114-0001-011",
+        "owner": "nryan",
+        "url": "http://requestbin.agaveapi.co/zyiomxzy?path=${PATH}&system=${SYSTEM}&event=${EVENT}",
+        "associatedUuid": "7554973644402463206-242ac114-0001-007",
+        "event": "FINISHED",
+        "responseCode": null,
+        "attempts": 0,
+        "lastSent": null,
+        "success": false,
+        "persistent": false,
+        "status": "ACTIVE",
+        "lastUpdated": "2016-08-24T10:07:03.000-05:00",
+        "created": "2016-08-24T10:07:03.000-05:00",
+        "policy": {
+          "retryLimit": 5,
+          "retryRate": 5,
+          "retryDelay": 0,
+          "saveOnFailure": true,
+          "retryStrategy": "NONE"
+        },
+        "_links": {
+          "self": {
+            "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011"
+          },
+          "history": {
+            "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011/history"
+          },
+          "attempts": {
+            "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011/attempts"
+          },
+          "owner": {
+            "href": "https://public.agaveapi.co/profiles/v2/nryan"
+          },
+          "job": {
+            "href": "https://public.agaveapi.co/jobs/v2/7554973644402463206-242ac114-0001-007"
+          }
+        }
+        }
+|
 
 
 Updating
@@ -91,66 +95,70 @@ CLI command to update subscription, using the above JSON:
 
    notifications-addupdate -F notification.json 2699130208276770330-242ac114-0001-011
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST \
-         -H "Content-Type: application/json" \
-         -F "fileToUpload=@notification.json" \
-         https://public.tenants.agaveapi.co/notifications/v2/2699130208276770330-242ac114-0001-011
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST \
+          -H "Content-Type: application/json" \
+          -F "fileToUpload=@notification.json" \
+          https://public.tenants.agaveapi.co/notifications/v2/2699130208276770330-242ac114-0001-011
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-       "id": "7612526206168863206-242ac114-0001-011",
-       "owner": "nryan",
-       "url": "http://requestbin.agaveapi.co/zyiomxzy?path=${PATH}&system=${SYSTEM}&event=${EVENT}",
-       "associatedUuid": "7554973644402463206-242ac114-0001-007",
-       "event": "*",
-       "responseCode": null,
-       "attempts": 0,
-       "lastSent": null,
-       "success": false,
-       "persistent": false,
-       "status": "ACTIVE",
-       "lastUpdated": "2016-08-24T10:07:03.000-05:00",
-       "created": "2016-08-24T10:07:03.000-05:00",
-       "policy": {
-         "retryLimit": 5,
-         "retryRate": 5,
-         "retryDelay": 0,
-         "saveOnFailure": true,
-         "retryStrategy": "NONE"
-       },
-       "_links": {
-         "self": {
-           "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011"
-         },
-         "history": {
-           "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011/history"
-         },
-         "attempts": {
-           "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011/attempts"
-         },
-         "owner": {
-           "href": "https://public.agaveapi.co/profiles/v2/nryan"
-         },
-         "job": {
-           "href": "https://public.agaveapi.co/jobs/v2/7554973644402463206-242ac114-0001-007"
-         }
-       }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+        "id": "7612526206168863206-242ac114-0001-011",
+        "owner": "nryan",
+        "url": "http://requestbin.agaveapi.co/zyiomxzy?path=${PATH}&system=${SYSTEM}&event=${EVENT}",
+        "associatedUuid": "7554973644402463206-242ac114-0001-007",
+        "event": "*",
+        "responseCode": null,
+        "attempts": 0,
+        "lastSent": null,
+        "success": false,
+        "persistent": false,
+        "status": "ACTIVE",
+        "lastUpdated": "2016-08-24T10:07:03.000-05:00",
+        "created": "2016-08-24T10:07:03.000-05:00",
+        "policy": {
+          "retryLimit": 5,
+          "retryRate": 5,
+          "retryDelay": 0,
+          "saveOnFailure": true,
+          "retryStrategy": "NONE"
+        },
+        "_links": {
+          "self": {
+            "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011"
+          },
+          "history": {
+            "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011/history"
+          },
+          "attempts": {
+            "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011/attempts"
+          },
+          "owner": {
+            "href": "https://public.agaveapi.co/profiles/v2/nryan"
+          },
+          "job": {
+            "href": "https://public.agaveapi.co/jobs/v2/7554973644402463206-242ac114-0001-007"
+          }
+        }
+        }
+|
 
 
 Listing
@@ -164,78 +172,82 @@ List all notificaiton subscriptions with the following CLI command:
 
    notifications-list -V
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-      https://public.tenants.agaveapi.co/notifications/v2/2699130208276770330-242ac114-0001-011
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+        https://public.tenants.agaveapi.co/notifications/v2/2699130208276770330-242ac114-0001-011
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      [
-       {
-         "id": "7612526206168863206-242ac114-0001-011",
-         "url": "http://requestbin.agaveapi.co/zyiomxzy?path=${PATH}&system=${SYSTEM}&event=${EVENT}",
-         "associatedUuid": "7554973644402463206-242ac114-0001-007",
-         "event": "*",
-         "_links": {
-           "self": {
-             "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011"
-           },
-           "profile": {
-             "href": "https://public.agaveapi.co/profiles/v2/nryan"
-           },
-           "job": {
-             "href": "https://public.agaveapi.co/jobs/v2/7554973644402463206-242ac114-0001-007"
-           }
-         }
-       },
-       {
-         "id": "7404907487080223206-242ac114-0001-011",
-         "url": "nryan@rangers.texas.mlb.com",
-         "associatedUuid": "6904887394479903206-242ac114-0001-007",
-         "event": "FINISHED",
-         "_links": {
-           "self": {
-             "href": "https://public.agaveapi.co/notifications/v2/7404907487080223206-242ac114-0001-011"
-           },
-           "profile": {
-             "href": "https://public.agaveapi.co/profiles/v2/nryan"
-           },
-           "job": {
-             "href": "https://public.agaveapi.co/jobs/v2/6904887394479903206-242ac114-0001-007"
-           }
-         }
-       },
-       {
-         "id": "3676815741209931290-242ac114-0001-011",
-         "url": "nryan@rangers.texas.mlb.com",
-         "associatedUuid": "3717016635100491290-242ac114-0001-007",
-         "event": "FINISHED",
-         "_links": {
-           "self": {
-             "href": "https://public.agaveapi.co/notifications/v2/3676815741209931290-242ac114-0001-011"
-           },
-           "profile": {
-             "href": "https://public.agaveapi.co/profiles/v2/nryan"
-           },
-           "job": {
-             "href": "https://public.agaveapi.co/jobs/v2/3717016635100491290-242ac114-0001-007"
-           }
-         }
-       }
-      ]
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        [
+        {
+          "id": "7612526206168863206-242ac114-0001-011",
+          "url": "http://requestbin.agaveapi.co/zyiomxzy?path=${PATH}&system=${SYSTEM}&event=${EVENT}",
+          "associatedUuid": "7554973644402463206-242ac114-0001-007",
+          "event": "*",
+          "_links": {
+            "self": {
+              "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011"
+            },
+            "profile": {
+              "href": "https://public.agaveapi.co/profiles/v2/nryan"
+            },
+            "job": {
+              "href": "https://public.agaveapi.co/jobs/v2/7554973644402463206-242ac114-0001-007"
+            }
+          }
+        },
+        {
+          "id": "7404907487080223206-242ac114-0001-011",
+          "url": "nryan@rangers.texas.mlb.com",
+          "associatedUuid": "6904887394479903206-242ac114-0001-007",
+          "event": "FINISHED",
+          "_links": {
+            "self": {
+              "href": "https://public.agaveapi.co/notifications/v2/7404907487080223206-242ac114-0001-011"
+            },
+            "profile": {
+              "href": "https://public.agaveapi.co/profiles/v2/nryan"
+            },
+            "job": {
+              "href": "https://public.agaveapi.co/jobs/v2/6904887394479903206-242ac114-0001-007"
+            }
+          }
+        },
+        {
+          "id": "3676815741209931290-242ac114-0001-011",
+          "url": "nryan@rangers.texas.mlb.com",
+          "associatedUuid": "3717016635100491290-242ac114-0001-007",
+          "event": "FINISHED",
+          "_links": {
+            "self": {
+              "href": "https://public.agaveapi.co/notifications/v2/3676815741209931290-242ac114-0001-011"
+            },
+            "profile": {
+              "href": "https://public.agaveapi.co/profiles/v2/nryan"
+            },
+            "job": {
+              "href": "https://public.agaveapi.co/jobs/v2/3717016635100491290-242ac114-0001-007"
+            }
+          }
+        }
+        ]
+|
 
 
 Unsubscribing
@@ -249,18 +261,19 @@ Unsubscribe from a notification subscription with the following CLI command:
 
    notifications-delete -V
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -X DELETE \
-          https://public.tenants.agaveapi.co/notifications/v2/2699130208276770330-242ac114-0001-011
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -X DELETE \
+            https://public.tenants.agaveapi.co/notifications/v2/2699130208276770330-242ac114-0001-011
+|
 
 
 A standard Agave response with an empty result will be returned.

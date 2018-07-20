@@ -40,66 +40,75 @@ Creating schemata
 
    Creating a new metadata schema
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          -X POST -H "Content-Type: application/json"
-          --data-binary '{ "title": "Example Schema", "type": "object", "properties": { "species": { "type": "string" } },"required": ["species"] }'
-          https://public.tenants.agaveapi.co/meta/v2/schemas/
+        :fa:`caret-right`
+        **Show curl**
 
-   {: .solution}
+     .. code-block:: shell
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            -X POST -H "Content-Type: application/json"
+            --data-binary '{ "title": "Example Schema", "type": "object", "properties": { "species": { "type": "string" } },"required": ["species"] }'
+            https://public.tenants.agaveapi.co/meta/v2/schemas/
+|
 
-   .. code-block:: shell
+.. container:: foldable
 
-      metadata-schema-addupdate -v -F schema.json
+     .. container:: header
 
-   {: .solution}
+        :fa:`caret-right`
+        **Show Agave CLI**
+
+     .. code-block:: shell
+
+        metadata-schema-addupdate -v -F schema.json
+|
 
    The response will look something like the following:
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-        "uuid": "4736020169528054246-242ac11f-0001-013",
-        "internalUsername": null,
-        "lastUpdated": "2016-08-29T04:52:11.474-05:00",
-        "schema": {
-          "title": "Example Schema",
-          "type": "object",
-          "properties": {
-            "species": {
-              "type": "string"
+        :fa:`caret-right`
+        **Show json response**
+
+     .. code-block:: json
+
+        {
+          "uuid": "4736020169528054246-242ac11f-0001-013",
+          "internalUsername": null,
+          "lastUpdated": "2016-08-29T04:52:11.474-05:00",
+          "schema": {
+            "title": "Example Schema",
+            "type": "object",
+            "properties": {
+              "species": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "species"
+            ]
+          },
+          "created": "2016-08-29T04:52:11.474-05:00",
+          "owner": "nryan",
+          "_links": {
+            "self": {
+              "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
+            },
+            "permissions": {
+              "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
+            },
+            "owner": {
+              "href": "https://public.agaveapi.co/profiles/v2/nryan"
             }
-          },
-          "required": [
-            "species"
-          ]
-        },
-        "created": "2016-08-29T04:52:11.474-05:00",
-        "owner": "nryan",
-        "_links": {
-          "self": {
-            "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
-          },
-          "permissions": {
-            "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
-          },
-          "owner": {
-            "href": "https://public.agaveapi.co/profiles/v2/nryan"
           }
         }
-      }
-
-   {: .solution}
+|
 
 
 To create a new metadata schema that can be used to validate metadata items upon addition or updating, POST a JSON Schema document to the service.
@@ -113,66 +122,75 @@ Updating schema
 
    Update a metadata schema
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
-          -H 'Content-Type: application/json'
-          --data-binary '{ "title": "Example Schema", "type": "object", "properties": { "species": { "type": "string" }, "description": {"type":"string"} },"required": ["species"] }'
-          https://public.tenants.agaveapi.co/meta/v2/data/4736020169528054246-242ac11f-0001-013
+        :fa:`caret-right`
+        **Show curl**
 
-   {: .solution}
+     .. code-block:: shell
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
+            -H 'Content-Type: application/json'
+            --data-binary '{ "title": "Example Schema", "type": "object", "properties": { "species": { "type": "string" }, "description": {"type":"string"} },"required": ["species"] }'
+            https://public.tenants.agaveapi.co/meta/v2/data/4736020169528054246-242ac11f-0001-013
+|
 
-   .. code-block:: shell
+.. container:: foldable
 
-      metadata-addupdate -v -F - 4736020169528054246-242ac11f-0001-013 <<< '{ "title": "Example Schema", "type": "object", "properties": { "species": { "type": "string" }, "description": {"type":"string"} },"required": ["species"] }'
+     .. container:: header
 
-   {: .solution}
+        :fa:`caret-right`
+        **Show Agave CLI**
+
+     .. code-block:: shell
+
+        metadata-addupdate -v -F - 4736020169528054246-242ac11f-0001-013 <<< '{ "title": "Example Schema", "type": "object", "properties": { "species": { "type": "string" }, "description": {"type":"string"} },"required": ["species"] }'
+|
 
    The response will look something like the following:
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-        "uuid": "4736020169528054246-242ac11f-0001-013",
-        "internalUsername": null,
-        "lastUpdated": "2016-08-29T04:52:11.474-05:00",
-        "schema": {
-          "title": "Example Schema",
-          "type": "object",
-          "properties": {
-            "species": {
-              "type": "string"
+        :fa:`caret-right`
+        **Show json response**
+
+     .. code-block:: json
+
+        {
+          "uuid": "4736020169528054246-242ac11f-0001-013",
+          "internalUsername": null,
+          "lastUpdated": "2016-08-29T04:52:11.474-05:00",
+          "schema": {
+            "title": "Example Schema",
+            "type": "object",
+            "properties": {
+              "species": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "species"
+            ]
+          },
+          "created": "2016-08-29T04:52:11.474-05:00",
+          "owner": "nryan",
+          "_links": {
+            "self": {
+              "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
+            },
+            "permissions": {
+              "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
+            },
+            "owner": {
+              "href": "https://public.agaveapi.co/profiles/v2/nryan"
             }
-          },
-          "required": [
-            "species"
-          ]
-        },
-        "created": "2016-08-29T04:52:11.474-05:00",
-        "owner": "nryan",
-        "_links": {
-          "self": {
-            "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
-          },
-          "permissions": {
-            "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
-          },
-          "owner": {
-            "href": "https://public.agaveapi.co/profiles/v2/nryan"
           }
         }
-      }
-
-   {: .solution}
+|
 
 
 Updating metadata schema is done by POSTing an updated schema object to the existing resource. When updating, it is important to note that it is not possible to change the schema ``uuid``\ , ``owner``\ , ``lastUpdated`` or ``created`` fields. Those fields are managed by the service.
@@ -184,25 +202,31 @@ Deleting schema
 
    Delete a metadata schema
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          -X DELETE
-          https://public.tenants.agaveapi.co/meta/v2/data/4736020169528054246-242ac11f-0001-013
+        :fa:`caret-right`
+        **Show curl**
 
-   {: .solution}
+     .. code-block:: shell
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            -X DELETE
+            https://public.tenants.agaveapi.co/meta/v2/data/4736020169528054246-242ac11f-0001-013
+|
 
-   .. code-block:: plaintext
+.. container:: foldable
 
-      metadata-schema-delete 4736020169528054246-242ac11f-0001-013
+     .. container:: header
 
-   {: .solution}
+        :fa:`caret-right`
+        **Show Agave CLI**
+
+     .. code-block:: plaintext
+
+        metadata-schema-delete 4736020169528054246-242ac11f-0001-013
+|
 
    An empty response will be returned from the service.
 

@@ -48,7 +48,7 @@ Agave provides information about the job, system, and user as predefined macros 
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>
@@ -147,7 +147,7 @@ Agave provides information about the job, system, and user as predefined macros 
    </tr>
    </tbody>
    </table>
-
+|
 
 Input data
 ----------
@@ -159,7 +159,7 @@ See the table below for fields that must be defined for an app's inputs:
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Field</th>
@@ -255,7 +255,7 @@ See the table below for fields that must be defined for an app's inputs:
    </tr>
    </tbody>
    </table>
-
+|
 
 Variable injection
 ------------------
@@ -319,7 +319,7 @@ Application metadata
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
    <thead>
    <tr>
      <th>Field</th>
@@ -463,7 +463,7 @@ Application metadata
    </tr>
    </tbody>
    </table>
-
+|
 
 ..
 
@@ -476,7 +476,7 @@ Parameter metadata
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
    <thead>
    <tr>
      <th>Field</th>
@@ -560,7 +560,7 @@ Parameter metadata
    </tr>
    </tbody>
    </table>
-
+|
 
 Output metadata
 ---------------
@@ -568,7 +568,7 @@ Output metadata
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
    <thead>
    <tr>
      <th>Field</th>
@@ -664,7 +664,7 @@ Output metadata
    </tr>
    </tbody>
    </table>
-
+|
 
 ..
 

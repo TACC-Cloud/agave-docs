@@ -86,65 +86,73 @@ Creating Metadata
 ..
 
    Create a new metadata item
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST  
-          -H 'Content-Type: application/json'
-          --data-binary '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model organism..."}}, "name": "mustard plant"}'
-          https://public.tenants.agaveapi.co/meta/v2/data?pretty=true
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST  
+            -H 'Content-Type: application/json'
+            --data-binary '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model organism..."}}, "name": "mustard plant"}'
+            https://public.tenants.agaveapi.co/meta/v2/data?pretty=true
+|
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      metadata-addupdate -v -F - <<<'{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model organism..."}}, "name": "mustard plant"}'
+        :fa:`caret-right`
+        **Show AgaveCLI**
 
-   {: .solution}
+     .. code-block:: shell
+
+        metadata-addupdate -v -F - <<<'{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model organism..."}}, "name": "mustard plant"}'
+|
 
    The response will look something like the following:
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-        "uuid": "7341557475441971686-242ac11f-0001-012",
-        "owner": "nryan",
-        "schemaId": null,
-        "internalUsername": null,
-        "associationIds": [],
-        "lastUpdated": "2016-08-29T04:49:34.532-05:00",
-        "name": "some metadata",
-        "value": {
-          "title": "Example Metadata",
-          "properties": {
-            "species": "arabidopsis",
-            "description": "A model organism..."
+        :fa:`caret-right`
+        **Show json response**
+
+     .. code-block:: json
+
+        {
+          "uuid": "7341557475441971686-242ac11f-0001-012",
+          "owner": "nryan",
+          "schemaId": null,
+          "internalUsername": null,
+          "associationIds": [],
+          "lastUpdated": "2016-08-29T04:49:34.532-05:00",
+          "name": "some metadata",
+          "value": {
+            "title": "Example Metadata",
+            "properties": {
+              "species": "arabidopsis",
+              "description": "A model organism..."
+            }
+          },
+          "created": "2016-08-29T04:49:34.532-05:00",
+          "_links": {
+            "self": {
+              "href": "https://public.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012"
+            },
+            "permissions": {
+              "href": "https://public.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems"
+            },
+            "owner": {
+              "href": "https://public.agaveapi.co/profiles/v2/nryan"
+            },
           }
-        },
-        "created": "2016-08-29T04:49:34.532-05:00",
-        "_links": {
-          "self": {
-            "href": "https://public.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012"
-          },
-          "permissions": {
-            "href": "https://public.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems"
-          },
-          "owner": {
-            "href": "https://public.agaveapi.co/profiles/v2/nryan"
-          },
         }
-      }
-
-   {: .solution}  
+|  
 
 
 New Metadata are created in the repository via a POST to their collection URLs. As we mentioned before, there is no uniqueness constraint placed on metadata items. Thus, repeatedly POSTing the same metadata item to the service will create duplicate entries, each with their own unique UUID assigned by the service.
@@ -156,79 +164,88 @@ Updating Metadata
 
    Update a metadata item
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
-          -H 'Content-Type: application/json'
-          --data-binary '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model plant organism..."}}, "name": "some metadata", "associationIds":["179338873096442342-242ac113-0001-002","6608339759546166810-242ac114-0001-007"]}'
-          https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012?pretty=true
+        :fa:`caret-right`
+        **Show curl**
 
-   {: .solution} 
+     .. code-block:: shell
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
+            -H 'Content-Type: application/json'
+            --data-binary '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model plant organism..."}}, "name": "some metadata", "associationIds":["179338873096442342-242ac113-0001-002","6608339759546166810-242ac114-0001-007"]}'
+            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012?pretty=true
+| 
 
-   .. code-block:: shell
+.. container:: foldable
 
-      metadata-addupdate -v -F - 7341557475441971686-242ac11f-0001-012 <<<'{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model plant organism..."}}, "name": "some metadata", "associationIds":["179338873096442342-242ac113-0001-002","6608339759546166810-242ac114-0001-007"]}'
+     .. container:: header
 
-   {: .solution} 
+        :fa:`caret-right`
+        **Show Agave CLI**
+
+     .. code-block:: shell
+
+        metadata-addupdate -v -F - 7341557475441971686-242ac11f-0001-012 <<<'{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model plant organism..."}}, "name": "some metadata", "associationIds":["179338873096442342-242ac113-0001-002","6608339759546166810-242ac114-0001-007"]}'
+| 
 
    The response will look something like the following:
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-        "uuid": "7341557475441971686-242ac11f-0001-012",
-        "schemaId": null,
-        "internalUsername": null,
-        "associationIds": [
-          "179338873096442342-242ac113-0001-002",
-          "6608339759546166810-242ac114-0001-007"
-        ],
-        "lastUpdated": "2016-08-29T05:51:39.908-05:00",
-        "name": "some metadata",
-        "value": {
-          "title": "Example Metadata",
-          "properties": {
-            "species": "arabidopsis",
-            "description": "A model plant organism..."
-          }
-        },
-        "created": "2016-08-29T05:43:18.618-05:00",
-        "owner": "nryan",
-        "_links": {
-          "self": {
-            "href": "https://public.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012"
-          },
-          "permissions": {
-            "href": "https://public.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems"
-          },
-          "owner": {
-            "href": "https://public.agaveapi.co/profiles/v2/nryan"
-          },
+        :fa:`caret-right`
+        **Show json response**
+
+     .. code-block:: json
+
+        {
+          "uuid": "7341557475441971686-242ac11f-0001-012",
+          "schemaId": null,
+          "internalUsername": null,
           "associationIds": [
-            {
-              "rel": "179338873096442342-242ac113-0001-002",
-              "href": "https://public.agaveapi.co/files/v2/media/system/storage.example.com//",
-              "title": "file"
-            },
-            {
-              "rel": "6608339759546166810-242ac114-0001-007",
-              "href": "https://public.agaveapi.co/jobs/v2/6608339759546166810-242ac114-0001-007",
-              "title": "job"
+            "179338873096442342-242ac113-0001-002",
+            "6608339759546166810-242ac114-0001-007"
+          ],
+          "lastUpdated": "2016-08-29T05:51:39.908-05:00",
+          "name": "some metadata",
+          "value": {
+            "title": "Example Metadata",
+            "properties": {
+              "species": "arabidopsis",
+              "description": "A model plant organism..."
             }
-          ]
+          },
+          "created": "2016-08-29T05:43:18.618-05:00",
+          "owner": "nryan",
+          "_links": {
+            "self": {
+              "href": "https://public.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012"
+            },
+            "permissions": {
+              "href": "https://public.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems"
+            },
+            "owner": {
+              "href": "https://public.agaveapi.co/profiles/v2/nryan"
+            },
+            "associationIds": [
+              {
+                "rel": "179338873096442342-242ac113-0001-002",
+                "href": "https://public.agaveapi.co/files/v2/media/system/storage.example.com//",
+                "title": "file"
+              },
+              {
+                "rel": "6608339759546166810-242ac114-0001-007",
+                "href": "https://public.agaveapi.co/jobs/v2/6608339759546166810-242ac114-0001-007",
+                "title": "job"
+              }
+            ]
+          }
         }
-      }
-
-   {: .solution} 
+| 
 
 
 Updating metadata is done by POSTing an updated metadata object to the existing resource. When updating, it is important to note that it is not possible to change the metadata ``uuid``\ , ``owner``\ , ``lastUpdated`` or ``created`` fields. Those fields are managed by the service.
@@ -240,25 +257,31 @@ Deleting Metadata
 
    Delete a metadata item
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: shell
+     .. container:: header
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          -X DELETE
-          https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012?pretty=true
+        :fa:`caret-right`
+        **Show curl**
 
-   {: .solution}
+     .. code-block:: shell
 
-   Show Agave CLI &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+            -X DELETE
+            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012?pretty=true
+|
 
-   .. code-block:: shell
+.. container:: foldable
 
-      metadata-delete 7341557475441971686-242ac11f-0001-012
+     .. container:: header
 
-   {: .solution}
+        :fa:`caret-right`
+        **Show Agave CLI**
+
+     .. code-block:: shell
+
+        metadata-delete 7341557475441971686-242ac11f-0001-012
+|
 
    An empty response will be returned from the service.
 

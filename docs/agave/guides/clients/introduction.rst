@@ -16,9 +16,16 @@ Creating a new client application
 
 In order to interact with any of the Agave APIs, you will need to first get a set of API keys. You can get your API keys from the :raw-html-m2r:`<a href="http://agaveapi.co/live-docs/#!/clients/create_post_1" title="Clients API">Clients service</a>`. The example below shows how to get your API keys using both curl and the :raw-html-m2r:`<a href="http://agaveapi.co/agave-cli/" title="Agave CLI">Agave CLI</a>`.
 
-.. code-block:: shell
+.. container:: foldable
 
-   curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "clientName=my_cli_app" -d "description=Client app used for scripting up cool stuff" https://public.tenants.agaveapi.co/clients/v2
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
+
+   .. code-block:: shell
+
+      curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "clientName=my_cli_app" -d "description=Client app used for scripting up cool stuff" https://public.tenants.agaveapi.co/clients/v2
 
 .. code-block:: plaintext
 
@@ -58,9 +65,16 @@ Your API keys should be kept in a secure place and not shared with others. This 
 Listing your existing client applications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: shell
+.. container:: foldable
 
-   curl -sku "$API_USERNAME:$API_PASSWORD" https://public.tenants.agaveapi.co/clients/v2
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
+
+   .. code-block:: shell
+
+      curl -sku "$API_USERNAME:$API_PASSWORD" https://public.tenants.agaveapi.co/clients/v2
 
 .. code-block:: plaintext
 
@@ -123,9 +137,15 @@ Over time you may develop several client applications. Managing several sets of 
 Deleting client registrations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: shell
+.. container:: foldable
 
-   curl -sku "$API_USERNAME:$API_PASSWORD" -X DELETE https://public.tenants.agaveapi.co/clients/v2/my_cli_app
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
+   .. code-block:: shell
+
+      curl -sku "$API_USERNAME:$API_PASSWORD" -X DELETE https://public.tenants.agaveapi.co/clients/v2/my_cli_app
 
 .. code-block:: plaintext
 
@@ -141,9 +161,15 @@ At some point you may need to delete a client. You can do this by requesting a D
 Listing current subscriptions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: shell
+.. container:: foldable
 
-   curl -sku "$API_USERNAME:$API_PASSWORD" https://public.tenants.agaveapi.co/clients/v2/my_cli_app/subscriptions
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
+   .. code-block:: shell
+
+      curl -sku "$API_USERNAME:$API_PASSWORD" https://public.tenants.agaveapi.co/clients/v2/my_cli_app/subscriptions
 
 .. code-block:: plaintext
 
@@ -203,9 +229,15 @@ When you register a new client application and get your API keys, you are given 
 Updating client subscriptions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: shell
+.. container:: foldable
 
-   curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "name=transforms" https://public.tenants.agaveapi.co/clients/v2/my_cli_app/subscriptions
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
+   .. code-block:: shell
+
+      curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "name=transforms" https://public.tenants.agaveapi.co/clients/v2/my_cli_app/subscriptions
 
 .. code-block:: plaintext
 
@@ -216,9 +248,15 @@ Updating client subscriptions
    You can also use a wildcard to resubscribe to all active APIs.
 
 
-.. code-block:: shell
+.. container:: foldable
 
-   curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "name=*" https://public.tenants.agaveapi.co/clients/v2/my_cli_app/subscriptions
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
+   .. code-block:: shell
+
+      curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "name=*" https://public.tenants.agaveapi.co/clients/v2/my_cli_app/subscriptions
 
 .. code-block:: plaintext
 

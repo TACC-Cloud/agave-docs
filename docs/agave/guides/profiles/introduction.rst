@@ -34,45 +34,49 @@ Create a user account with the following CLI command:
 
    profiles-create -u testuser -p abcd123 -e testuser@test.com
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -X POST \
-          -d "username=testuser" \
-          -d "password=abcd123" \
-          -d "email=testuser@test.com" \
-          https://public.tenants.agaveapi.co/profiles/v2
+     .. code-block:: shell
 
-   {: .solution}  
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -X POST \
+            -d "username=testuser" \
+            -d "password=abcd123" \
+            -d "email=testuser@test.com" \
+            https://public.tenants.agaveapi.co/profiles/v2
+| 
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-        "message":"User created successfully.",
-        "result":{
-          "email":"testuser@test.com",
-          "first_name":"",
-          "full_name":"testuser",
-          "last_name":"testuser",
-          "mobile_phone":"",
-          "phone":"",
-          "status":"Active",
-          "uid":null,
-          "username":"testuser"
-        },
-        "status":"success",
-        "version":"2.0.0-SNAPSHOT-rc3fad"
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+          "message":"User created successfully.",
+          "result":{
+            "email":"testuser@test.com",
+            "first_name":"",
+            "full_name":"testuser",
+            "last_name":"testuser",
+            "mobile_phone":"",
+            "phone":"",
+            "status":"Active",
+            "uid":null,
+            "username":"testuser"
+          },
+          "status":"success",
+          "version":"2.0.0-SNAPSHOT-rc3fad"
+        }
+|
 
 
 Create a user account by sending a POST request to the profiles service, providing an 
@@ -125,28 +129,29 @@ Extending with Metadata
 
 Here is an example metadata object for extending a user profile:
 
-..
+.. container:: foldable
 
-   Show profile_example.json &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: json
+        :fa:`caret-right`
+        **Show json example**
 
-      {
-        "name":"user_profile",
-        "value":{
-          "firstName":"Test",
-          "lastName":"User",
-          "email":"testuser@test.com",
-          "city":"Springfield",
-          "state":"IL",
-          "country":"USA",
-          "phone":"636-555-3226",
-          "gravatar":"http://www.gravatar.com/avatar/ed53e691ee322e24d8cc843fff68ebc6"
+     .. code-block:: json
+
+        {
+          "name":"user_profile",
+          "value":{
+            "firstName":"Test",
+            "lastName":"User",
+            "email":"testuser@test.com",
+            "city":"Springfield",
+            "state":"IL",
+            "country":"USA",
+            "phone":"636-555-3226",
+            "gravatar":"http://www.gravatar.com/avatar/ed53e691ee322e24d8cc843fff68ebc6"
+          }
         }
-      }
-
-   {: .solution}
+|
 
 
 Save the extended profile document to the metadata service with the following CLI command:
@@ -155,57 +160,61 @@ Save the extended profile document to the metadata service with the following CL
 
    metadata-addupdate -v -F profile_example.json
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -X POST \
-          -F "fileToUpload=@profile_ex" \
-          https://public.tenants.agaveapi.co/meta/v2/data/?pretty=true
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -X POST \
+            -F "fileToUpload=@profile_ex" \
+            https://public.tenants.agaveapi.co/meta/v2/data/?pretty=true
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-        "status" : "success",
-        "message" : null,
-        "version" : "2.1.0-rc0c5a",
-        "result" : {
-          "uuid" : "0001429724043699-5056a550b8-0001-012",
-          "owner" : "jstubbs",
-          "schemaId" : null,
-          "internalUsername" : null,
-          "associationIds" : [ ],
-          "lastUpdated" : "2015-04-22T12:34:03.698-05:00",
-          "name" : "user_profile",
-          "value" : {
-            "firstName" : "Test",
-            "lastName" : "User",
-            "email" : "testuser@test.com",
-            "city" : "Springfield",
-            "state" : "IL",
-            "country" : "USA",
-            "phone" : "636-555-3226",
-            "gravatar" : "http://www.gravatar.com/avatar/ed53e691ee322e24d8cc843fff68ebc6"
-          },
-          "created" : "2015-04-22T12:34:03.698-05:00",
-          "_links" : {
-            "self" : {
-              "href" : "https://public.tenants.agaveapi.co/meta/v2/data/0001429724043699-5056a550b8-0001-012"
+        :fa:`caret-right`
+        **Show json response**
+
+     .. code-block:: json
+
+        {
+          "status" : "success",
+          "message" : null,
+          "version" : "2.1.0-rc0c5a",
+          "result" : {
+            "uuid" : "0001429724043699-5056a550b8-0001-012",
+            "owner" : "jstubbs",
+            "schemaId" : null,
+            "internalUsername" : null,
+            "associationIds" : [ ],
+            "lastUpdated" : "2015-04-22T12:34:03.698-05:00",
+            "name" : "user_profile",
+            "value" : {
+              "firstName" : "Test",
+              "lastName" : "User",
+              "email" : "testuser@test.com",
+              "city" : "Springfield",
+              "state" : "IL",
+              "country" : "USA",
+              "phone" : "636-555-3226",
+              "gravatar" : "http://www.gravatar.com/avatar/ed53e691ee322e24d8cc843fff68ebc6"
+            },
+            "created" : "2015-04-22T12:34:03.698-05:00",
+            "_links" : {
+              "self" : {
+                "href" : "https://public.tenants.agaveapi.co/meta/v2/data/0001429724043699-5056a550b8-0001-012"
+              }
             }
           }
         }
-      }
-
-   {: .solution}
+|
 
 
 We do not expect the fields above to provide full support for anything but the most basic 
@@ -254,44 +263,48 @@ Update a user profile with the following CLI command:
 
    profiles-addupdate -v -p abcd123 -e "testuser@test.com" -f Test -l User testuser
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -X PUT 
-          -d "password=abcd123&email=testuser@test.com&first_name=Test&last_name=User" \
-          https://public.tenants.agaveapi.co/profiles/v2/testuser
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -X PUT 
+            -d "password=abcd123&email=testuser@test.com&first_name=Test&last_name=User" \
+            https://public.tenants.agaveapi.co/profiles/v2/testuser
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-        "message":"User updated successfully.",
-        "result":{
-          "create_time":"20150421153504Z",
-          "email":"testuser@test.com",
-          "first_name":"Test",
-          "full_name":"Test User",
-          "last_name":"User",
-          "mobile_phone":"",
-          "phone":"",
-          "status":"Active",
-          "uid":0,
-          "username":"testuser"
-        },
-        "status":"success",
-        "version":"2.0.0-SNAPSHOT-rc3fad"
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+          "message":"User updated successfully.",
+          "result":{
+            "create_time":"20150421153504Z",
+            "email":"testuser@test.com",
+            "first_name":"Test",
+            "full_name":"Test User",
+            "last_name":"User",
+            "mobile_phone":"",
+            "phone":"",
+            "status":"Active",
+            "uid":0,
+            "username":"testuser"
+          },
+          "status":"success",
+          "version":"2.0.0-SNAPSHOT-rc3fad"
+        }
+|
 
 
 Updates to existing users can be made by sending a PUT request to 
@@ -309,31 +322,35 @@ Delete a user profile with the following CLI command:
 
    profiles-delete -v testuser
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" 
-         -X DELETE https://public.tenants.agaveapi.co/profiles/v2/testuser
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" 
+          -X DELETE https://public.tenants.agaveapi.co/profiles/v2/testuser
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-        "message": "User deleted successfully.",
-        "result": {},
-        "status": "success",
-        "version": "2.0.0-SNAPSHOT-rc3fad"
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+          "message": "User deleted successfully.",
+          "result": {},
+          "status": "success",
+          "version": "2.0.0-SNAPSHOT-rc3fad"
+        }
+|
 
 
 To delete an existing user, make a DELETE request on their profile resource.
@@ -349,18 +366,11 @@ Registration Web Application
 
 The account creation web app provides a simple form to enable user self-sign. 
 
-..
 
-   Show screenshot of sign up form &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
-   .. image:: ../../images/self-signup-screenshot.png
-      :target: ../../images/self-signup-screenshot.png
-      :alt: Agave web app sign in
-
-
-   {: .solution}
+.. image:: ../../../_static/images/self-signup-screenshot.png
+  :target: ../../../_static/images/self-signup-screenshot.png
+  :alt: Agave web app sign in
+|
 
 
 The web application also provides an email loop for verification of new accounts. 

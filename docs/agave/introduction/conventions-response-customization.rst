@@ -6,12 +6,18 @@ Customizing Responses
 
    Returns the user id, name, and email for the authenticated user  
 
+.. container:: foldable
 
-.. code-block:: shell
+   .. container:: header
 
-   curl -sk -H \
-       "Authorization: Bearer ${API_KEY}" \
-       "https://public.tenants.agaveapi.co/profiles/v2/me?filter=username,email
+      :fa:`caret-right`
+      **Show curl**
+
+   .. code-block:: shell
+
+      curl -sk -H \
+          "Authorization: Bearer ${API_KEY}" \
+          "https://public.tenants.agaveapi.co/profiles/v2/me?filter=username,email
 
 .. code-block:: plaintext
 
@@ -34,11 +40,17 @@ Customizing Responses
    Returns the name, status, app id, and the url to the archived job output for every user job   
 
 
-.. code-block:: shell
+.. container:: foldable
 
-   curl -sk -H \
-       "Authorization: Bearer ${API_KEY}" \
-       "https://public.tenants.agaveapi.co/jobs/v2/?limit=2&filter=name,status,appId,_links.archiveData.href
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
+   .. code-block:: shell
+
+      curl -sk -H \
+          "Authorization: Bearer ${API_KEY}" \
+          "https://public.tenants.agaveapi.co/jobs/v2/?limit=2&filter=name,status,appId,_links.archiveData.href
 
 .. code-block:: plaintext
 
@@ -79,9 +91,16 @@ Customizing Responses
    Returns the system id, type, whether it is your default system, and the hostname from the system's storage config  
 
 
-.. code-block:: shell
+.. container:: foldable
 
-   /systems/v2/?filter=id,type,default,storage.host
+   .. container:: header
+
+      :fa:`caret-right`
+      **Show curl**
+      
+   .. code-block:: shell
+
+      /systems/v2/?filter=id,type,default,storage.host
 
 .. code-block:: plaintext
 

@@ -25,89 +25,93 @@ Polling for your job status works the same way. After submitting your job, you s
    jobs-list -v $JOB_ID
    jobs-list $JOB_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/?pretty=true
-      curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/$JOB_ID
-      curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/$JOB_ID/status
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/?pretty=true
+        curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/$JOB_ID
+        curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/$JOB_ID/status
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-       "id" : "$JOB_ID",
-       "name" : "$USERNAME-$APP_ID",
-       "owner" : "$USERNAME",
-       "appId" : "$APP_ID",
-       "executionSystem" : "$PUBLIC_EXECUTION_SYSTEM",
-       "batchQueue": "normal",
-       "nodeCount": 1,
-       "processorsPerNode": 16,
-       "memoryPerNode": 32,
-       "maxRunTime": "01:00:00",
-       "archive": false,
-       "retries": 0,
-       "localId": "659413",
-       "created": "2018-01-26T15:08:02.000-06:00",
-       "lastUpdated": "2018-01-26T15:09:55.000-06:00",
-       "outputPath": "$USERNAME/$JOB_ID-$APP_ID",
-       "status": "FINISHED",
-       "submitTime": "2018-01-26T15:09:45.000-06:00",
-       "startTime": "2018-01-26T15:09:53.000-06:00",
-       "endTime": "2018-01-26T15:09:55.000-06:00",
-       "inputs": {
-         "inputBam": [
-           "agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/Samtools_mpileup/ex1.bam"
-         ]
-       },
-       "parameters": {
-         "nameSort": true,
-         "maxMemSort": 800000000
-       },
-       "_links": {
-         "self": {
-           "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID"
-         },
-         "app": {
-           "href": "https://agave.iplantc.org/apps/v2/$APP_ID"
-         },
-         "executionSystem": {
-           "href": "https://agave.iplantc.org/systems/v2/$PUBLIC_EXECUTION_SYSTEM"
-         },
-         "archiveSystem": {
-           "href": "https://agave.iplantc.org/systems/v2/$PUBLIC_EXECUTION_SYSTEM""
-         },
-         "archiveData": {
-           "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/outputs/listings"
-         },
-         "owner": {
-           "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
-         },
-         "permissions": {
-           "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/pems"
-         },
-         "history": {
-           "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/history"
-         },
-         "metadata": {
-           "href": "https://agave.iplantc.org/meta/v2/data/?q=%7B%22associationIds%22%3A%22462259152402771480-242ac113-0001-007%22%7D"
-         },
-         "notifications": {
-           "href": "https://agave.iplantc.org/notifications/v2/?associatedUuid=$JOB_ID"
-         }
-       }
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+        "id" : "$JOB_ID",
+        "name" : "$USERNAME-$APP_ID",
+        "owner" : "$USERNAME",
+        "appId" : "$APP_ID",
+        "executionSystem" : "$PUBLIC_EXECUTION_SYSTEM",
+        "batchQueue": "normal",
+        "nodeCount": 1,
+        "processorsPerNode": 16,
+        "memoryPerNode": 32,
+        "maxRunTime": "01:00:00",
+        "archive": false,
+        "retries": 0,
+        "localId": "659413",
+        "created": "2018-01-26T15:08:02.000-06:00",
+        "lastUpdated": "2018-01-26T15:09:55.000-06:00",
+        "outputPath": "$USERNAME/$JOB_ID-$APP_ID",
+        "status": "FINISHED",
+        "submitTime": "2018-01-26T15:09:45.000-06:00",
+        "startTime": "2018-01-26T15:09:53.000-06:00",
+        "endTime": "2018-01-26T15:09:55.000-06:00",
+        "inputs": {
+          "inputBam": [
+            "agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/Samtools_mpileup/ex1.bam"
+          ]
+        },
+        "parameters": {
+          "nameSort": true,
+          "maxMemSort": 800000000
+        },
+        "_links": {
+          "self": {
+            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID"
+          },
+          "app": {
+            "href": "https://agave.iplantc.org/apps/v2/$APP_ID"
+          },
+          "executionSystem": {
+            "href": "https://agave.iplantc.org/systems/v2/$PUBLIC_EXECUTION_SYSTEM"
+          },
+          "archiveSystem": {
+            "href": "https://agave.iplantc.org/systems/v2/$PUBLIC_EXECUTION_SYSTEM""
+          },
+          "archiveData": {
+            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/outputs/listings"
+          },
+          "owner": {
+            "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
+          },
+          "permissions": {
+            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/pems"
+          },
+          "history": {
+            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/history"
+          },
+          "metadata": {
+            "href": "https://agave.iplantc.org/meta/v2/data/?q=%7B%22associationIds%22%3A%22462259152402771480-242ac113-0001-007%22%7D"
+          },
+          "notifications": {
+            "href": "https://agave.iplantc.org/notifications/v2/?associatedUuid=$JOB_ID"
+          }
+        }
+        }
+|
 
 
 The list of all possible job statuses is given in table 2.
@@ -115,7 +119,7 @@ The list of all possible job statuses is given in table 2.
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Event</th>
@@ -217,7 +221,7 @@ The list of all possible job statuses is given in table 2.
    </tr>
    </tbody>
    </table>
-
+|
 
 
 .. raw:: html
@@ -233,93 +237,97 @@ The job history URL provides much more detailed information on the various state
 
    jobs-history -v $JOB_ID
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/$JOB_ID/history?pretty=true
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/$JOB_ID/history?pretty=true
+|
 
-   Show response &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. container:: foldable
 
-   .. code-block:: json
+     .. container:: header
 
-      {
-       "status":"success",
-       "message":null,
-       "version":"2.1.0-r6d11c",
-       "result":[
-         {
-           "created":"2014-10-24T04:47:45.000-05:00",
-           "status":"PENDING",
-           "description":"Job accepted and queued for submission."
-         },
-         {
-           "created":"2014-10-24T04:47:47.000-05:00",
-           "status":"PROCESSING_INPUTS",
-           "description":"Attempt 1 to stage job inputs"
-         },
-         {
-           "created":"2014-10-24T04:47:47.000-05:00",
-           "status":"PROCESSING_INPUTS",
-           "description":"Identifying input files for staging"
-         },
-         {
-           "created":"2014-10-24T04:47:48.000-05:00",
-           "status":"STAGING_INPUTS",
-           "description":"Staging agave://$PUBLIC_STORAGE_SYSTEM/$API_USERNAME/inputs/pyplot/testdata.csv to remote job directory"
-         },
-         {
-           "progress":{
-             "averageRate":0,
-             "totalFiles":1,
-             "source":"agave://$PUBLIC_STORAGE_SYSTEM/$API_USERNAME/inputs/pyplot/testdata.csv",
-             "totalActiveTransfers":0,
-             "totalBytes":3212,
-             "totalBytesTransferred":3212
-           },
-           "created":"2014-10-24T04:47:48.000-05:00",
-           "status":"STAGING_INPUTS",
-           "description":"Copy in progress"
-         },
-         {
-           "created":"2014-10-24T04:47:50.000-05:00",
-           "status":"STAGED",
-           "description":"Job inputs staged to execution system"
-         },
-         {
-           "created":"2014-10-24T04:47:55.000-05:00",
-           "status":"SUBMITTING",
-           "description":"Preparing job for submission."
-         },
-         {
-           "created":"2014-10-24T04:47:55.000-05:00",
-           "status":"SUBMITTING",
-           "description":"Attempt 1 to submit job"
-         },
-         {
-           "created":"2014-10-24T04:48:08.000-05:00",
-           "status":"RUNNING",
-           "description":"Job started running"
-         },
-         {
-           "created":"2014-10-24T04:48:12.000-05:00",
-           "status":"CLEANING_UP"
-         },
-         {
-           "created":"2014-10-24T04:48:15.000-05:00",
-           "status":"FINISHED",
-           "description":"Job completed. Skipping archiving at user request."
-         }
-       ]
-      }
+        :fa:`caret-right`
+        **Show json response**
 
-   {: .solution}
+     .. code-block:: json
+
+        {
+        "status":"success",
+        "message":null,
+        "version":"2.1.0-r6d11c",
+        "result":[
+          {
+            "created":"2014-10-24T04:47:45.000-05:00",
+            "status":"PENDING",
+            "description":"Job accepted and queued for submission."
+          },
+          {
+            "created":"2014-10-24T04:47:47.000-05:00",
+            "status":"PROCESSING_INPUTS",
+            "description":"Attempt 1 to stage job inputs"
+          },
+          {
+            "created":"2014-10-24T04:47:47.000-05:00",
+            "status":"PROCESSING_INPUTS",
+            "description":"Identifying input files for staging"
+          },
+          {
+            "created":"2014-10-24T04:47:48.000-05:00",
+            "status":"STAGING_INPUTS",
+            "description":"Staging agave://$PUBLIC_STORAGE_SYSTEM/$API_USERNAME/inputs/pyplot/testdata.csv to remote job directory"
+          },
+          {
+            "progress":{
+              "averageRate":0,
+              "totalFiles":1,
+              "source":"agave://$PUBLIC_STORAGE_SYSTEM/$API_USERNAME/inputs/pyplot/testdata.csv",
+              "totalActiveTransfers":0,
+              "totalBytes":3212,
+              "totalBytesTransferred":3212
+            },
+            "created":"2014-10-24T04:47:48.000-05:00",
+            "status":"STAGING_INPUTS",
+            "description":"Copy in progress"
+          },
+          {
+            "created":"2014-10-24T04:47:50.000-05:00",
+            "status":"STAGED",
+            "description":"Job inputs staged to execution system"
+          },
+          {
+            "created":"2014-10-24T04:47:55.000-05:00",
+            "status":"SUBMITTING",
+            "description":"Preparing job for submission."
+          },
+          {
+            "created":"2014-10-24T04:47:55.000-05:00",
+            "status":"SUBMITTING",
+            "description":"Attempt 1 to submit job"
+          },
+          {
+            "created":"2014-10-24T04:48:08.000-05:00",
+            "status":"RUNNING",
+            "description":"Job started running"
+          },
+          {
+            "created":"2014-10-24T04:48:12.000-05:00",
+            "status":"CLEANING_UP"
+          },
+          {
+            "created":"2014-10-24T04:48:15.000-05:00",
+            "status":"FINISHED",
+            "description":"Job completed. Skipping archiving at user request."
+          }
+        ]
+        }
+|
 
 
 Depending on the nature of your job and the reliability of the underlying systems, the response from this service can grow rather large, so it is important to be aware that this query can be an expensive call for your client application to make. Everything we said before about polling job status applies to polling job history with the additional caveat that you can chew through quite a bit of bandwidth polling this service, so keep that in mind if your application is bandwidth starved.
@@ -351,7 +359,7 @@ The full list of template variables are listed in the following table.
 
 .. raw:: html
 
-   <table>
+   <table border="1px" cellpadding="5">
    <thead>
    <tr>
    <th>Variable</th>
@@ -413,7 +421,7 @@ The full list of template variables are listed in the following table.
    </tr>
    </tbody>
    </table>
-
+|
 
 
 .. raw:: html

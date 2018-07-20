@@ -36,17 +36,18 @@ List the permissions on a file item
 
    files-pems-list -S api.tacc.cloud nryan/picksumipsum.txt
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         'https://tacc.cloud/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?pretty=true''
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+          'https://tacc.cloud/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?pretty=true''
+|
 
 
 The response will look something like the following:
@@ -88,17 +89,18 @@ List the permissions on a file item for a given user
 
    files-pems-list -u rclemens -S api.tacc.cloud nryan/picksumipsum.txt
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-         https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username=rclemens
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+          https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username=rclemens
+|
 
 
 The response will look something like the following:
@@ -135,20 +137,21 @@ Grant read access to a file item
 
    files-pems-update -u rclemens -p READ -S api.tacc.cloud nryan/picksumipsum.txt
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         -H "Content-Type: application/json" \
-         -X POST \
-         --data '{"username":"rclemens", "permission":"READ"}' \
-         https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+          -H "Content-Type: application/json" \
+          -X POST \
+          --data '{"username":"rclemens", "permission":"READ"}' \
+          https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+|
 
 
 Grant read and write access to a file item
@@ -157,20 +160,21 @@ Grant read and write access to a file item
 
    files-pems-update -u rclemens -p READ_WRITE -S api.tacc.cloud nryan/picksumipsum.txt
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-         -H "Content-Type: application/json" \
-         -X POST \
-         --data '{"username","rclemens", "permission":"READ_WRITE"}' \
-         https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+          -H "Content-Type: application/json" \
+          -X POST \
+          --data '{"username","rclemens", "permission":"READ_WRITE"}' \
+          https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+|
 
 
 The response will look something like the following
@@ -212,20 +216,21 @@ Delete permission for single user on a file item
 
    files-pems-update -u rclemens -p 'NONE' -S api.tacc.cloud nryan/picksumipsum.txt
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -H "Content-Type: application/json" \
-          -X POST \
-          --data '{"username","rclemens", "permission":"NONE"}' \
-          https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+     .. code-block:: shell
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            --data '{"username","rclemens", "permission":"NONE"}' \
+            https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+|
 
 
 A response similiar to the following will be returned
@@ -269,24 +274,25 @@ Delete all permissions on a file item
 
    files-pems-delete -S api.tacc.cloud nryan/picksumipsum.txt
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -H "Content-Type: application/json" \
-          -X POST \
-          --data '{"username","*", "permission":"NONE"}' \
-          https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+     .. code-block:: shell
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -X DELETE \
-          https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            --data '{"username","*", "permission":"NONE"}' \
+            https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -X DELETE \
+            https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+|
 
 
 An empty response will be returned from the service. Permissions may be cleared for all users on a file item by making a DELETE request on the file item permission collection. 
@@ -302,24 +308,25 @@ Recursively delete all permissions on a directory
 
    files-pems-delete -S api.tacc.cloud nryan/directory
 
-..
+.. container:: foldable
 
-   Show cURL &nbsp;&nbsp;
-   ^^^^^^^^^^^^^^^^^^^^^^
+     .. container:: header
 
-   .. code-block:: shell
+        :fa:`caret-right`
+        **Show curl**
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -H "Content-Type: application/json" \
-          -X POST \
-          --data '{"username","*", "permission":"READ_WRITE", "recursive": true}' \
-          https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/directory/
+     .. code-block:: shell
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-          -X DELETE \
-          https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?recursive=true
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            --data '{"username","*", "permission":"READ_WRITE", "recursive": true}' \
+            https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/directory/
 
-   {: .solution}
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -X DELETE \
+            https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?recursive=true
+|
 
 
 An empty response will be returned from the service on delete. Update will return something like the following.
