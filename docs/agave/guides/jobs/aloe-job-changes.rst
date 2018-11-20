@@ -3,75 +3,204 @@ Jobs Service Changes
 
 This page discusses what has changed in the Jobs service between Agave 2.2.23 and Aloe 3.0.
 
-Job Content
------------
+The Job Model
+-------------
 
-The Job object used in redesigned Job Service differs from the legacy Job object.  Clients that query or process Job objects will notice that new fields have been added and some unneeded fields removed.  
+The *Job object* models jobs both in memory and in the database.  The fields in the Job object have changed in the redesigned Job Service when compared to the legacy system.  These differences are visible on APIs that return Job objects, such as job submission or query.  The following tables document changes to the Job object.  
+
+**Renamed Job Fields**
 
 +---------------------+-----------------------------+
 | *Old Job Field Name*|*New Job Field Name*         |
 +=====================+=============================+ 
 | archiveOutput       | archive                     |
 +---------------------+-----------------------------+
-| archive_system      | archive_system_id           |
+| batchQueue          | remoteQueue                 |
 +---------------------+-----------------------------+
-| software_name       | app_id                      |
+| endTime             | ended                       |
 +---------------------+-----------------------------+
-| end_time            | ended                       |
+| errorMessage        | lastStatusMessage           |
 +---------------------+-----------------------------+
-| error_message       | last_message                |
+| localJobId          | remoteJobId                 |
 +---------------------+-----------------------------+
-| local_job_id        | remote_job_id               |
+| maxRunTime          | maxHours                    |
 +---------------------+-----------------------------+
-| memory_request      | memory_gb                   |
+| retries             | submitRetries               |
 +---------------------+-----------------------------+
-| queue_request       | remote_queue                |
+| softwareName        | appId                       |
 +---------------------+-----------------------------+
-| requested_time      | max_hours                   |
+| startTime           | remoteStarted               |
 +---------------------+-----------------------------+
-| retries             | remote_submit_retries       |
+| submitTime          | remoteSubmitted             |
 +---------------------+-----------------------------+
-| scheduler_job_id    | remote_sched_id             |
-+---------------------+-----------------------------+
-| start_time          | remote_started              |
-+---------------------+-----------------------------+
-| submit_time         | remote_submit_time          |
+| system              | systemId                    |
 +---------------------+-----------------------------+
 
-
-+---------------------+-----------------------------+
-| *New Job Field*     | *Description*               |
-+=====================+=============================+ 
-| accepted            |                             |
-+---------------------+-----------------------------+
-| app_uuid            |                             |
-+---------------------+-----------------------------+
-| blocked_count       |                             |
-+---------------------+-----------------------------+
-| failed_status_checks|                             |
-+---------------------+-----------------------------+
-| last_status_check   |                             |
-+---------------------+-----------------------------+
-| remote_ended        |                             |
-+---------------------+-----------------------------+
-| remote_outcome      |                             |
-+---------------------+-----------------------------+
-| remote_status_checks|                             |
-+---------------------+-----------------------------+
-|remote_submit_retries|                             |
-+---------------------+-----------------------------+
-
+**Removed Job Fields**
 
 +---------------------+-----------------------------+
 | *Removed Job Field* | *Reason*                    |
 +=====================+=============================+ 
-| charge              |                             |
+| charge              | never used                  |
 +---------------------+-----------------------------+
-| internal_username   |                             |
+| internal_username   | obsolete                    |
 +---------------------+-----------------------------+
-| status_checks       |                             |
+| status_checks       | replaced by                 |
+|                     | remoteStatusChecks and      |
+|                     | failedStatusChecks          |
 +---------------------+-----------------------------+
 
+
+**New Job Fields**
+
++---------------------+
+| *New Job Field*     |
++=====================+
+| accepted            |
++---------------------+
+| appUuid             |
++---------------------+
+| blockedCount        |
++---------------------+
+| failedStatusChecks  |
++---------------------+
+| lastStatusCheck     | 
++---------------------+
+| remoteEnded         |
++---------------------+
+| remoteOutcome       |
++---------------------+
+| remoteStatusChecks  |
++---------------------+
+| tenantQueue         | 
++---------------------+
+
+**The Complete Job Object**
+
+New fields are marked with an asterisk (*).
+
++---------------------+---------+-------------------------------------+
+| *Job Field*         | *Type*  | *Description*                       |
++=====================+=========+=====================================+
+| id                  | long    | Job sequence number                 |
++---------------------+---------+-------------------------------------+
+| name                | string  | Human readable name for this job    |
++---------------------+---------+-------------------------------------+
+| tenantId            | string  | Current user's tenant ID            |
++---------------------+---------+-------------------------------------+
+| tenantQueue*        | string  | Tenant queue to which job was       |
+|                     |         | assigned                            |
++---------------------+---------+-------------------------------------+
+| status              | string  | Current state of job, see           |
+|                     |         | `Job States`_ for details           |
++---------------------+---------+-------------------------------------+
+| lastStatusMessage   | string  | Last message logged for this job    |
++---------------------+---------+-------------------------------------+
+|                     |         |                                     |
++---------------------+---------+-------------------------------------+
+| accepted*           | time    | Time job was accepted               |
++---------------------+---------+-------------------------------------+
+| created             | time    | Time job was recorded in database   |
++---------------------+---------+-------------------------------------+
+| ended               | time    | Time job processing completed       |
++---------------------+---------+-------------------------------------+
+| lastUpdated         | time    | Time job record was last updated    |
++---------------------+---------+-------------------------------------+
+|                     |         |                                     |
++---------------------+---------+-------------------------------------+
+| uuid                | string  | Unique job ID                       |
++---------------------+---------+-------------------------------------+
+| owner               | string  | User who submitted job              |
++---------------------+---------+-------------------------------------+
+| roles               | string  | Roles assigned by authentication    |
+|                     |         | server to owner                     |
++---------------------+---------+-------------------------------------+
+| systemId            | string  | Execution system ID on which this   |
+|                     |         | job runs (tenant-unique)            |
++---------------------+---------+-------------------------------------+
+| appId               | string  | Fully qualified application name    |
+|                     |         | that will be run by this job        |
++---------------------+---------+-------------------------------------+
+| appUuid*            | string  | Unique application ID               |
++---------------------+---------+-------------------------------------+
+|                     |         |                                     |
++---------------------+---------+-------------------------------------+
+| workPath            | string  | Temporary work directory            |
++---------------------+---------+-------------------------------------+
+| archive             | boolean | Whether or not to archive output    |
++---------------------+---------+-------------------------------------+
+| archivePath         | string  | Archive location on archive system  |
++---------------------+---------+-------------------------------------+
+| archiveSystem       | string  | Storage system ID to which this job |
+|                     |         | archives (tenant-unique)            |
++---------------------+---------+-------------------------------------+
+|                     |         |                                     |
++---------------------+---------+-------------------------------------+
+| nodeCount           | integer | Number of nodes requested by job    |
++---------------------+---------+-------------------------------------+
+| processorsPerNode   | integer | Number of processors per node       |
++---------------------+---------+-------------------------------------+
+| memoryPerNode       | float   | GB of memory requested per node     |
++---------------------+---------+-------------------------------------+
+| maxHours            | float   | Maximum runtime for job             |
++---------------------+---------+-------------------------------------+
+|                     |         |                                     |
++---------------------+---------+-------------------------------------+
+| inputs              | string  | JSON encoded list of inputs         |
++---------------------+---------+-------------------------------------+
+| parameters          | string  | JSON encoded list of parameters     |
++---------------------+---------+-------------------------------------+
+|                     |         |                                     |
++---------------------+---------+-------------------------------------+
+| remoteJobId	      | string  | Job or process ID of the job on the |
+|                     |         | remote (execution) system           |
++---------------------+---------+-------------------------------------+
+| schedulerJobId      | string  | Optional ID given by the remote     |
+|                     |         | scheduler                           |
++---------------------+---------+-------------------------------------+
+| remoteQueue         | string  | Queue for job on remote system      |
++---------------------+---------+-------------------------------------+
+| remoteSubmitted     | time    | Time job was placed on remote queue |
++---------------------+---------+-------------------------------------+
+| remoteStarted       | time    | Time job started running on remote  |
+|                     |         | system                              |
++---------------------+---------+-------------------------------------+
+| remoteEnded*        | time    | Time job finished running on remote |
+|                     |         | system                              |
++---------------------+---------+-------------------------------------+
+| remoteOutcome*      | string  | Best approximation of remote job's  |
+|                     |         | outcome:                            |
+|                     |         |                                     |
+|                     |         | FINISHED,                           |
+|                     |         | FAILED,                             |
+|                     |         | FAILED_SKIP_ARCHIVE                 |
++---------------------+---------+-------------------------------------+
+|                     |         |                                     |
++---------------------+---------+-------------------------------------+
+| submitRetries       | integer | Number of attempts to submit job    |
+|                     |         | to execution system                 |
++---------------------+---------+-------------------------------------+
+| remoteStatusChecks* | integer | Number of successful times the      |
+|                     |         | remote system was queried for job   |
+|                     |         | status                              |
++---------------------+---------+-------------------------------------+
+| failedStatusChecks* | integer | Number of failed times the remote   |
+|                     |         | system was queried for job status   |
++---------------------+---------+-------------------------------------+
+| lastStatusCheck*    | time    | Last time a status check was        |
+|                     |         | attempted                           |
++---------------------+---------+-------------------------------------+
+|                     |         |                                     |
++---------------------+---------+-------------------------------------+
+| blockedCount*       | integer | Number of times a job has           |
+|                     |         | transitioned to BLOCKED status      |
++---------------------+---------+-------------------------------------+
+| visible             | boolean | User visibility of this job record  |
++---------------------+---------+-------------------------------------+
+| updateToken         | string  | Token used when job running on      |
+|                     |         | execution system calls back to      |
+|                     |         | Jobs Service                        |
++---------------------+---------+-------------------------------------+
 
 
 Job Submission
@@ -212,7 +341,7 @@ The two tables below document changes to the job status definition.  The job sta
 | *New Job State*     | *Description*               |
 +=====================+=============================+ 
 | ACCEPTED            | When a new job is added     |
-|                     | to the persistant job       |
+|                     | to the persistant tenant    |
 |                     | queue but not yet           |
 |                     | tracked in the database.    |
 |                     | The job will advance to the | 
@@ -237,9 +366,11 @@ The two tables below document changes to the job status definition.  The job sta
 +----------------------+---------------------------+
 
 
-The first important change is in the *meaning* of a successful job submission request.  Previously, a successful request meant that a new job was created with PENDING status in the database.  The job was externally visible, which allowed it to be queried or acted upon.  Now, success means that a new job is created with the ACCEPTED status and written to a persistant queue.  The Job Service has accepted responsibility for the job, but the job is not yet externally visible.  External visibility happens only after the job is written to the database and its state changed to PENDING.  Normally, the time between queuing and database insertion is short, but the transition happens asynchronously to the submission request.
+The new ACCEPTED status indicates that a new job request has been written to one of persistent queues defined for that tenant.  ACCEPTED means that Job Service has accepted responsibility for the job, but the job is not yet externally visible.  External visibility happens only after the job is written to the database and its state changed to PENDING.  Normally, the time between queuing and database insertion is short, but the transition happens asynchronously to the submission request. 
 
-Another important change is the introduction of the BLOCKED status to indicate that the job is delayed until a transient error condition clears.  When job is BLOCKED, it is said to be in *recovery*.  Recovery is managed by a new recovery subsystem using a set of tunable policies.      
+Previously, a successful job submission request meant that a new job was created with PENDING status in the database.  The job was immediately visible externally, which allowed it to be queried or acted upon.  Now, success only means that the Job Service has received the request.  
+
+The new BLOCKED status indicates that a job is currently delayed due to a transient error condition.  When job is BLOCKED, it is said to be in *recovery*.  Recovery is managed by a new recovery subsystem using a set of tunable policies.      
 
 
 Job States 
