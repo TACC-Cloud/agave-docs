@@ -3,6 +3,8 @@ Jobs Service Changes
 
 This page discusses what has changed in the Jobs service between Agave 2.2.23 and Aloe 3.0.
 
+.. contents:: Table of Contents
+
 The Job Model
 -------------
 
