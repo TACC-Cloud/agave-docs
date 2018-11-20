@@ -356,9 +356,9 @@ The two tables below document changes to the job status definition.  The job sta
 +----------------------+---------------------------+
 | *Deleted Job State*  | *Reason for Removal*      +
 +======================+===========================+ 
-| ARCHIVING_FINISHED   | Not well-defined          |
+| ARCHIVING_FINISHED   | Usage not well-defined    |
 +----------------------+---------------------------+
-| ARCHIVING_FAILED     | Not well-defined          |
+| ARCHIVING_FAILED     | Usage not well-defined    |
 +----------------------+---------------------------+
 | KILLED               | Redundant, same as STOPPED|
 +----------------------+---------------------------+
@@ -366,17 +366,17 @@ The two tables below document changes to the job status definition.  The job sta
 +----------------------+---------------------------+
 
 
-The new ACCEPTED status indicates that a new job request has been written to one of persistent queues defined for that tenant.  ACCEPTED means that Job Service has accepted responsibility for the job, but the job is not yet externally visible.  External visibility happens only after the job is written to the database and its state changed to PENDING.  Normally, the time between queuing and database insertion is short, but the transition happens asynchronously to the submission request. 
+The new ACCEPTED status indicates that a new job request has been written to one of persistent queues defined for the job's tenant.  ACCEPTED means that the Job Service has accepted responsibility for the job, but the job is not yet externally visible.  External visibility happens only after the job is written to the database and its state changed to PENDING.  Normally, the time between queuing and database insertion is short, but the transition happens asynchronously to the submission request. 
 
-Previously, a successful job submission request meant that a new job was created with PENDING status in the database.  The job was immediately visible externally, which allowed it to be queried or acted upon.  Now, success only means that the Job Service has received the request.  
+Previously, a successful job submission request meant that a new job was created with PENDING status in the database.  The job was immediately visible externally, which allowed it to be queried or acted upon.  Now, success only means that the Job Service has received the request.
 
-The new BLOCKED status indicates that a job is currently delayed due to a transient error condition.  When job is BLOCKED, it is said to be in *recovery*.  Recovery is managed by a new recovery subsystem using a set of tunable policies.      
+The new BLOCKED status indicates that a job is currently delayed due to a transient error condition.  When job is BLOCKED, it is said to be in *recovery*.  Recovery is managed by a new recovery subsystem using a set of tunable policies that detect when error conditions have cleared.
 
 
 Job States 
 """"""""""
 
-The following table provides a short description of each of the possible states that a job can be in.
+The following table provides a short description of each of the possible states that a job can be in.  Terminal states are marked with an asterisk (*).
 
 +---------------------+-----------------------------+
 | *Job State*         | *Description*               |
@@ -411,11 +411,11 @@ The following table provides a short description of each of the possible states 
 | ARCHIVING           | Moving output to archive    |
 |                     | system                      |
 +---------------------+-----------------------------+
-| FINISHED            | Job complete                |
+| FINISHED*           | Job complete                |
 +---------------------+-----------------------------+
-| STOPPED             | Job cancelled by user       |
+| STOPPED*            | Job cancelled by user       |
 +---------------------+-----------------------------+
-| FAILED              | Job failed                  |
+| FAILED*             | Job failed                  |
 +---------------------+-----------------------------+
 | BLOCKED             | Job recovering from a       |
 |                     | transient error condition   |
@@ -443,4 +443,51 @@ As an example, an archiving job with one or more inputs that experiences no fail
 Job Actions
 -----------
 
+The following **POST** actions are supported in the new Jobs service.  Actions in parentheses are aliases for the action's primary name.
 
++-------------+---------------------------+-------------------------------+
+|*Job Action* | *HTTP POST URL Suffix*    | *Description*                 +
++=============+===========================+===============================+ 
+| cancel      | /jobs/v2/<jobuuid>/cancel | Cancel a job that is not in   +
+|             |                           | the ACCEPTED or a terminal    +
+| (kill, stop)|                           | state                         +
+|             |                           |                               +
++-------------+---------------------------+-------------------------------+
+| hide        | /jobs/v2/<jobuuid>/hide   | Mark a job as invisible to    +
+|             |                           | most APIs, such as job listing+
+|             |                           | or history calls              +
++-------------+---------------------------+-------------------------------+
+| unhide      | /jobs/v2/<jobuuid>/unhide | Mark a job as visible (the    +
+|             |                           | default visibility setting)   +
++-------------+---------------------------+-------------------------------+
+| resubmit    |/jobs/v2/<jobuuid>/resubmit| Resubmit a job by the same    +
+|             |                           | user with the same inputs,    +
+|             |                           | parameters and notifications. +
+|             |                           | The specified job             +
+|             |                           | cannot be in the ACCEPTED or  +
+|             |                           | PENDING state. The new job    +
+|             |                           | will be assigned a new UUID.  +
++-------------+---------------------------+-------------------------------+
+
+The following **DELETE** actions are supported in the new Jobs service:
+
++-------------+---------------------------+-------------------------------+
+|*Job Action* | *HTTP DELETTE URL Suffix* | *Description*                 +
++=============+===========================+===============================+ 
+| hide        | /jobs/v2/<jobuuid>/hide   | Mark a job as invisible to    +
+|             |                           | most APIs, such as job listing+
+|             |                           | or history calls (same as     +
+|             |                           | POST)                         +
++-------------+---------------------------+-------------------------------+
+
+
+Job Callbacks
+-------------
+
+Jobs running on execution systems can no longer use the *trigger* API to change the status of a job in the Jobs service.  To avoid confusion, trigger requests that specify one of the job statuses listed in `Job States`_ will be ignored.  For example, a request to the following URL will be ignored because it specifies a status of RUNNING:
+
+::
+
+   https://agave.iplantc.org/jobs/v2/trigger/job/f916db1e-f4ba-4700-b827-453299c9dd3a-007/token/475c599e-f7ce-434d-a572-7ac2d3ba89f7/status/RUNNING
+   
+The Job service continues to automatically insert two trigger requests into every user-supplied wrapper script that it executes.  In the legacy system, these triggers sent the RUNNING and CLEANING_UP status events at the appropriate points during job execution.  The new system substitutes the USER_RUNNING and USER_CLEANING_UP events, respectively, at the same execution points.
