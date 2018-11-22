@@ -44,7 +44,7 @@ The focus of the Jobs service redesign effort is to improve reliability, scalabi
 
 .. image:: Aloe3TierArchitecture.jpg
 
-The Jobs service implements a 3-tiered application with the user interface layer defined by the REST API, the application layer comprised of Java web applications and daemons, and the persistence layer comprised of a MySQL database, a RabbitMQ queue management system and the existing Agave Notifications service.
+The Jobs service implements a 3-tiered application with the user interface layer defined by a REST API, the application layer comprised of Java web applications and daemons, and the persistence layer comprised of a MySQL database, a RabbitMQ queue management system and the existing Agave Notifications service.
 
 REST API Layer
 ^^^^^^^^^^^^^^
@@ -60,14 +60,43 @@ The *Aloe Job Web Application* handles all POST, PUT and DELETE requests except 
 
 Each tenant is configured with at least one *Job Worker* application, which is a standalone Java daemon running in its own JVM.  Each job worker reads job submission requests from a single queue and executes those requests.  Workers can process multiple job requests at a time.  For scalability, multiple workers can service the same queue and tenants can define multiple submission queues for even greater flexibility.
 
-*Job Readers* are standalone Java daemons that run in their own JVM and perform a specialized task related to job execution.  These programs are called readers because they receive their input by reading a specific queue or topic.  The three readers currently implemented are the recovery reader, alternate reader and dead letter reader.  See `Workers and Readers`_ below for details.
+*Job Readers* are standalone Java daemons that run in their own JVM and perform specialized tasks related to job execution.  These programs are called readers because they receive their input by reading a specific queue or topic.  The three readers currently implemented are the recovery reader, alternate reader and dead letter reader.  See `Workers and Readers`_ below for details.
 
 Persistence Layer
 ^^^^^^^^^^^^^^^^^
 
+The web applications, workers, most of the readers and numerous administrative utility programs access the *MySQL* database.  For performance, reliability and  design simplicity, all database access from the Jobs service is via direct JDBC driver calls.  The database schema contains six new tables, modifications to several existing tables and the removal of the Agave *jobs* table.  The contents of the Agave *jobs* table are migrated to the new *aloe_jobs* table to maintain historical continuity.  A single database instance continues to support all tenants defined in the system.
+
+The *RabbitMQ* queue management system was introduced in Aloe to provide reliable, non-polling communication between application layer components.  Most exchanges, queues, topics and messages are specified as durable so that they can be recovered in the event of application or RabbitMQ broker failures.  Unroutable messages are captured and logged.  Expired messages and messages rejected due to capacity constraints are also logged.
  
+The *Legacy Notifications* service continues to support persistent, application-level event notifications.  The new Jobs service integrates calls to the Agave Notification service as it executes jobs, by and large preserving existing Agave behavior from the client's point of view (see `Job Service Changes <aloe-job-changes.html>`_ for details).
 
 Workers and Readers
 -------------------
 
+The application-level worker and reader programs are queue driven Java programs running in individual JVMs.  Some of these programs service a single tenant while others service all tenants.  The following sections describe each of these programs, the queues or topics they service and the messages they process.
+
+Tenant Workers
+^^^^^^^^^^^^^^
+
+
+Tenant Recovery Readers
+^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Site Alternate Readers
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+Site Dead Letter Readers
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+
 .. image:: AloeWorkers.jpg
+
+Runtime Architecture
+--------------------
+
+
