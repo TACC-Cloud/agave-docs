@@ -81,7 +81,7 @@ The application-level worker and reader programs are queue driven Java programs 
 Tenant Workers
 ^^^^^^^^^^^^^^
 
-Worker processes execute jobs and manage job lifecycles.  Every job starts out as a REST request to the Aloe web application, which then creates a submission message and places that message on a tenant-specific *submission queue*.  Here are the basic facts about how workers and their queues are configured: 
+*Tenant worker* processes execute and manage the lifecycles of jobs on a per tenant basis.  Every job starts out as a REST request to the Aloe web application, which then creates a submission message and places that message on a tenant-specific *submission queue*.  Here are the basic facts about how workers and their queues are configured: 
  
 #. Each tenant as a default submission queue.
 #. A tenant can have zero or more other submission queues.
@@ -113,11 +113,11 @@ In addition to the comand topic, the Jobs service designates an *events topic* f
 Reliability
 """""""""""
 
-When a job worker thread reads a submission message from its assigned queue, it takes responsibility for seeing that job through to termination.  After spawning the command thread as described above, job processing begins by creating a job record in the MySQL database with a PENDING status.  At this point, the job is externally visible and can be queried or cancelled.  The worker thread then begins validating the job configuration; locating input file and executables; contacting the execution, storage and archiving systems; staging the inputs and executable package; monitoring the job as it executes on a remote system; cleaning up temporary files after remote execution completes; archives the output and logs; and putting the job in a terminal state. 
+When a job worker thread reads a submission message from its assigned queue, it takes responsibility for seeing that job through to termination.  After spawning the command thread as described above, job processing begins by creating a job record in the MySQL database with PENDING status.  At this point, the job is externally visible and can be queried or cancelled.  The worker thread then begins validating the job configuration; locating input file and executables; contacting the execution, storage and archiving systems; staging the inputs and executable package; monitoring the job as it executes on a remote system; cleaning up temporary files after remote execution completes; archives the job output and logs; and, finally, putting the job into a terminal state. 
 
 A number of events can occur during job processing to delay or stop progress before the job completes.  First and foremost, the job worker thread, the worker process, or the host running the worker could catastrophically fail.  Such a failure could happen at any point during job processing and the requirement is that *job execution should pick up where it left off as soon as possible*.
 
-This requirement to not lose jobs is addressed in two ways.  First, job state is recorded in the database so that any worker restarting the job will know where to begin.  The goal here is to minimize the amount of duplicate work performed during restarts.  Second, and most important, is that the job submission message is still resides in its submission queue during job processing.  If the worker thread that read the message dies, RabbitMQ will automatically push the message to the next worker thread waiting on the queue.  The queue broker guarantees the liveness of a job submission message until is it explicitly acknowledged by the worker responsible for it, and workers only acknowledge their messages when job processing terminates or is blocked.
+This requirement to not lose jobs is addressed in two ways.  First, job state is recorded in the database so that any worker restarting the job will know where to begin.  The goal here is to minimize the amount of duplicate work performed during restarts.  Second, and most important, is that the job submission message still reside in its submission queue during job processing.  If the worker thread that read the message dies, RabbitMQ will automatically push the message to the next worker thread waiting on the queue.  The queue broker guarantees the liveness of a job submission message until is it explicitly acknowledged by the worker responsible for it.  Workers only acknowledge their messages when job processing terminates or is blocked.
 
 Another error mode is the failure of RabbitMQ itself.  This is a systemic failure comparable to the loss of the MySQL database.  The Jobs service's queues, topics, exchanges and messages are defined to be durable so that they can be recovered after a broker failure.
 
@@ -126,6 +126,20 @@ A discussion of the many ways a complex distributed system can fail and the effe
 Tenant Recovery Readers
 ^^^^^^^^^^^^^^^^^^^^^^^
 
+Each tenant runs one *tenant recovery reader* daemon that reads input from the tenant's exclusive *recovery queue*.  Recovery readers manage jobs while they are blocked due to some transient error condition.  The temporary conditions currently recognized by the recovery subsystem are:
+
+- Unavailability of applications
+- Unavailability of execution or storage systems
+- Job quota violations
+- Remote system connection failures
+
+When any of the above conditions are detected during job execution, the worker processing the job will put the job into recovery by (1) setting the job's status to BLOCKED, (2) placing a *recovery message* on the tenant's recovery queue, and (3) removing the job from its submission queue.  Special care is taken to ensure that a job appears on one and only one queue at a time.  Additional error conditions are expected to be handled by the recovery system in the future.
+
+The recovery message contains information collected at the failure site and higher up in the call stack.  This information is used to determine when the error condition clears and how the job should be restarted.  In addition, the recovery message specifies the *policies* and *testers* used to recover the job.  Policies determine when the next error condition check should be made; testers are the code that actually make the checks.  New policies and testers can easily be plugged into the system, but currently they have to ship with the system. 
+
+The recovery reader is a multithreaded Java program that processes the tenant's recovery queue.  Recovery messages are organized into lists based on their error condition---jobs blocked by the same condition are put in the same list.  Recovery jobs are ordered by next check time and the recovery reader waits until that time to test if a blocking condition has cleared.  Recovery information is kept in the MySQL database for resilience against reader failures. 
+
+When a test indicates that a blocking condition has cleared, all jobs blocked by that condition are resubmitted for execution.  Resubmission entails (1) setting the job status to the value specified in the recovery message, (2) creating a job submission message and placing it on the job's original submission queue, and (3) removing the job from the recovery subsystem and its persistent store.  The job is immediately failed if it cannot be resubmitted.  Care is again taken to ensure that a job cannot be both in recovery and executing.
 
 Site Alternate Readers
 ^^^^^^^^^^^^^^^^^^^^^^
