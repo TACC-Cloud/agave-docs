@@ -184,7 +184,7 @@ By splitting the single legacy web application between two new web applications 
     RewriteRule ^/jobs(.*)$ http://proxy.host:8081/jobs/v2$1 [P]
 ::
 
-For capacity planning and management, we recommend putting the workers and readers on different hosts than the web applications.  Daemons for multiple tenants can share the same host.  Since worker and reader daemons communicate only through the persistence layer, they can be moved between hosts without any reconfiguration as long as network connectivity is maintained.
+For capacity planning and management, we recommend putting the workers and readers on different hosts than the web applications.  Worker and reader daemons for multiple tenants can share the same host.  Since these daemons communicate only through the persistence layer, they can be moved between hosts without any reconfiguration as long as network connectivity is maintained.
 
 The number and placement of workers is largely a matter of administrative convenience, expected load and resource availability.  Review the `Scalability`_ section for a discussion of vertical and horizontal scaling options. 
 
