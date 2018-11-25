@@ -493,3 +493,28 @@ Jobs running on execution systems can no longer use the *trigger* API to change 
    https://agave.iplantc.org/jobs/v2/trigger/job/f916db1e-f4ba-4700-b827-453299c9dd3a-007/token/475c599e-f7ce-434d-a572-7ac2d3ba89f7/status/RUNNING
    
 The Job service continues to automatically insert two trigger requests into every user-supplied wrapper script that it executes.  In the legacy system, these triggers sent the RUNNING and CLEANING_UP status events at the appropriate points during job execution.  The new system substitutes the USER_RUNNING and USER_CLEANING_UP events, respectively, at the same execution points.
+
+Tenant Configuration
+--------------------
+
+Two aspects of tenant configuration have changed in the new Jobs service: defining administrator accounts and scaling via multiple queues. 
+
+Administrator Accounts
+^^^^^^^^^^^^^^^^^^^^^^
+
+The legacy Jobs service contained a hardcoded list of administrator IDs that spanned all tenants.  This facility has been replaced by one that uses a database table to define administrator accounts on a tenant-specific basis.  Part of the process of setting up a new tenant is for the database administrator to define zero or more tenant administrators in the *aloe_tenant_admins* table.
+
+Note that the Jobs service continues to honor the roles (including administrative roles) injected into requests by the authentication server.  Thus, there continues to be two ways to define and configure administrative access in the Jobs service: using roles or designating administrator accounts.
+
+Tenant Queues
+^^^^^^^^^^^^^
+
+By default, each tenant is assigned a job submission queue that conforms to the following naming convention:
+
+::
+
+	aloe.jobq.<tenantId>.DefaultQueue
+::
+
+The Jobs service allows tenants to balance and segregate workloads by sending job requests to different queues, each with its own set of worker processes (see `Tenant Workers <aloe-job-architecture.html#tenant-workers>`_ for discussion).  Administrators define new queues or update existing ones using the *ImportQueueDefinitions* utility program.  This program reads tenant queue configuration files and creates or updates queue definition records in the *aloe_queues* database table.  The configuration file content conforms to the JSON schema defined in the *JobQueueDefinitions.json* file that ships with the Jobs service.
+
