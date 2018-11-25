@@ -126,31 +126,43 @@ A discussion of the many ways a complex distributed system can fail and the effe
 Tenant Recovery Readers
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Each tenant runs one *tenant recovery reader* daemon that reads input from the tenant's exclusive *recovery queue*.  Recovery readers manage jobs while they are blocked due to some transient error condition.  The temporary conditions currently recognized by the recovery subsystem are:
+Each tenant runs one *tenant recovery reader* daemon that reads messages from the tenant's exclusive *recovery queue*.  Recovery readers manage jobs while they are blocked due to some transient error condition.  The temporary error conditions currently recognized by the recovery subsystem are:
 
 - Unavailability of applications
 - Unavailability of execution or storage systems
 - Job quota violations
 - Remote system connection failures
 
-When any of the above conditions are detected during job execution, the worker processing the job will put the job into recovery by (1) setting the job's status to BLOCKED, (2) placing a *recovery message* on the tenant's recovery queue, and (3) removing the job from its submission queue.  Special care is taken to ensure that a job appears on one and only one queue at a time.  Additional error conditions are expected to be handled by the recovery system in the future.
+When any of the above conditions are detected during job execution, the worker processing the job will put the job into recovery by (1) setting the job's status to BLOCKED, (2) placing a *recovery message* on the tenant's recovery queue, and (3) removing the job from its submission queue.  When a job is put into recovery responsibility transfers from the worker to the recovery subsystem.  Special care is taken to ensure that a job appears on one and only one queue at a time.  Support for additional error detection and recovery is expected to be added on an ongoing basis.
 
-The recovery message contains information collected at the failure site and higher up in the call stack.  This information is used to determine when the error condition clears and how the job should be restarted.  In addition, the recovery message specifies the *policies* and *testers* used to recover the job.  Policies determine when the next error condition check should be made; testers are the code that actually make the checks.  New policies and testers can be easily plugged into the system, but currently they have to ship with the system. 
+The recovery message contains information collected at the failure site and higher up in the executing job's call stack.  This information characterizes the error condition and specifies how the job will be restarted.  Specifically, the recovery message specifies the *policies* and *testers* used to recover the job.  Policies determine when the next error condition check should be made; testers implement the code that actually makes the checks.  New policies and testers can be easily plugged into the system, though at present they have to ship with the system. 
 
-The recovery reader is a multithreaded Java program that processes the tenant's recovery queue.  Recovery messages are organized into lists based on their error condition---jobs blocked by the same condition are put in the same list.  Recovery jobs are ordered by next check time and the recovery reader waits until that time to test if a blocking condition has cleared.  Recovery information is kept in the MySQL database for resilience against reader failures. 
+The recovery reader is a multithreaded Java program that processes the tenant's recovery queue.  Internally, recovery messages are organized into lists based on their error condition---jobs blocked by the same condition are put in the same list.  Recovery jobs are ordered by next check time and the recovery reader waits until that time to test a blocking condition.  Recovery information is kept in the MySQL database for resilience against reader failures. 
 
-When a test indicates that a blocking condition has cleared, all jobs blocked by that condition are resubmitted for execution.  Resubmission entails (1) setting the job status to the value specified in the recovery message, (2) creating a job submission message and placing it on the job's original submission queue, and (3) removing the job from the recovery subsystem and its persistent store.  The job is immediately failed if it cannot be resubmitted.  Care is again taken to ensure that a job cannot be both in recovery and executing.
+When a test indicates that a blocking condition has cleared, all jobs blocked by that condition are resubmitted for execution.  Resubmission entails (1) setting the job status to the value specified in the original recovery message, (2) creating a job submission message and placing it on the job's original submission queue, and (3) removing the job from the recovery subsystem and its persistent store.  Resubmission transfers responsibility for the job back to the tenant workers.  The job is immediately failed if it cannot be resubmitted.  Care is again taken to ensure that a job cannot be both in recovery and executing.
 
 Site Alternate Readers
 ^^^^^^^^^^^^^^^^^^^^^^
 
+The *alternate reader* daemon reads messages from the site-wide *alternate queue* shared by all tenants.  By specifying this site-wide alternate queue when defining RabbitMQ exchanges, the Jobs service provides a fail-safe destination for unroutable messages.  Currently, the reader simply logs the messages it reads.  See `RabbitMQ Alternate Exchanges <https://www.rabbitmq.com/ae.html>`_ for more information. 
 
 Site Dead Letter Readers
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
+The *dead letter reader* daemon reads messages from the site-wide *dead letter queue* shared by all tenants.  By specifying this site-wide dead letters queue when defining RabbitMQ exchanges, the Jobs service provides a collection point for discarded dead letters.  Dead letters are messages that are rejected by the application without requeuing, messages whose time-to-live expires, or messages pushed to a full queue.  The Jobs service does not currently set message time-to-live values nor does it limit queue capacity.  Currently, the reader simply logs the messages it reads.  See `RabbitMQ Dead Letter Exchanges <https://www.rabbitmq.com/dlx.html>`_ for more information.
 
 
 Runtime Architecture
 --------------------
 
+All Jobs service web applications, workers and readers are delivered as Docker images, so these components can be easily deployed and redeployed at different locations at runtime.  All deployments, however, observe the following constraints:
 
+- The web application URLs are the only external facing interface and should, therefore, be stable. 
+- Web applications, workers and recovery readers must have network access to the site's MySQL and RabbitMQ management systems.
+- Alternate and dead letter readers must have authorized network access to the site's RabbitMQ management system.
+
+For capacity planning and management, we recommend putting the workers and readers on different hosts than the web applications.  Daemons for multiple tenants can share the same host.  Since worker and reader daemons communicate only through the persistence layer, they can be moved between hosts without any reconfiguration as long as network connectivity is maintained.
+
+The number and placement of workers is largely a matter of administrative convenience, expected load and resource availability.  Review the `Scalability`_ section for a discussion of vertical and horizontal scaling options. 
+
+We recommend installing MySQL and RabbitMQ on their own virtual or physical hosts with reliable storage, automated backups, and sufficient network, memory and processing resources.  Whereas application layer components can be easily moved between hosts, the persistence layer components are not expected to change addresses often if at all.  All tenants depend on a stable persistence layer, so there's little benefit in containerizing these components. 
