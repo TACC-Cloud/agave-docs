@@ -155,14 +155,37 @@ The *dead letter reader* daemon reads messages from the site-wide *dead letter q
 Runtime Architecture
 --------------------
 
-All Jobs service web applications, workers and readers are delivered as Docker images, so these components can be easily deployed and redeployed at different locations at runtime.  All deployments, however, observe the following constraints:
+The Aloe Jobs service is essentially a drop in replacement for the Agave Jobs service:  the new service runs in any existing Agave installation minus its legacy Jobs service.  The existing services, including the Notifications service with its own persistence backend, continue to be configured with authentication servers, proxies and load balancers as they have been.  In previous sections we described the components of the new Jobs service; in this section we describe how those components can be arranged in a runtime environment.
 
-- The web application URLs are the only external facing interface and should, therefore, be stable. 
+All Jobs service web applications, workers and readers are delivered as Docker images, so these components can be easily deployed and redeployed on different hosts at runtime.  All deployments, however, observe the following constraints:
+
+- The web application URLs are the only external facing interface and, therefore, should be stable. 
 - Web applications, workers and recovery readers must have network access to the site's MySQL and RabbitMQ management systems.
 - Alternate and dead letter readers must have authorized network access to the site's RabbitMQ management system.
+
+By splitting the single legacy web application between two new web applications (`Application Layer`_), we introduce the need for URL-specific routing within the Jobs service.  One way to achieve this routing is to define URL rewrite rules in a proxy such Apache httpd or nginx.  Below is an example of Apache rewrite rules that route Job service URLs to their proper web application.
+
+::
+
+    # All GET requests for jobs service should go to legacy-jobs service.  
+    RewriteCond %{REQUEST_URI} ^/jobs
+    RewriteCond %{REQUEST_METHOD} =GET
+    RewriteRule ^/jobs(.*)$ http://proxy.host:7999/legacy-jobs$1 [P] 
+    
+    # POST/PUT/DELETE requests for job permission should go to legacy-jobs /pems end-point.
+    RewriteCond %{REQUEST_URI} ^/jobs/.*/pems
+    RewriteCond %{REQUEST_METHOD} !=GET
+    RewriteRule ^/jobs(.*)$ http://proxy.host:7999/legacy-jobs$1 [P]
+
+    # All other none-GET requests for the jobs service should go to aloe-jobs service.
+    RewriteCond %{REQUEST_URI} ^/jobs
+    RewriteCond %{REQUEST_URI} !^/jobs/.*/pems
+    RewriteCond %{REQUEST_METHOD} !=GET
+    RewriteRule ^/jobs(.*)$ http://proxy.host:8081/jobs/v2$1 [P]
+::
 
 For capacity planning and management, we recommend putting the workers and readers on different hosts than the web applications.  Daemons for multiple tenants can share the same host.  Since worker and reader daemons communicate only through the persistence layer, they can be moved between hosts without any reconfiguration as long as network connectivity is maintained.
 
 The number and placement of workers is largely a matter of administrative convenience, expected load and resource availability.  Review the `Scalability`_ section for a discussion of vertical and horizontal scaling options. 
 
-We recommend installing MySQL and RabbitMQ on their own virtual or physical hosts with reliable storage, automated backups, and sufficient network, memory and processing resources.  Whereas application layer components can be easily moved between hosts, the persistence layer components are not expected to change addresses often if at all.  All tenants depend on a stable persistence layer, so there's little benefit in containerizing these components. 
+We recommend installing MySQL and RabbitMQ on their own virtual or physical hosts with reliable storage, automated backups, and sufficient network, memory and processing resources.  Whereas application layer components can be easily moved between hosts, the persistence layer components are not expected to change addresses often if at all.  All tenants depend on a stable persistence layer, so there's little benefit in containerizing these components and native installation is recommended in production environments. 
