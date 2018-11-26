@@ -8,7 +8,7 @@ This page discusses what has changed in the Jobs service between Agave 2.2.23 an
 The Job Model
 -------------
 
-The *Job object* models jobs both in memory and in the database.  The fields in the Job object have changed in the redesigned Job Service when compared to the legacy system.  These differences are visible on APIs that return Job objects, such as job submission or query.  The following tables document changes to the Job object.  
+The *Job object* models jobs both in memory and in the database.  The fields in the Job object have changed in the redesigned Jobs Service when compared to the legacy system.  These differences are visible on APIs that return Job objects, such as job submission or job queries.  The following tables document changes to the Job object.  
 
 **Renamed Job Fields**
 
@@ -216,7 +216,7 @@ Job submission requests are HTTP POST requests that must specify a *Content-Type
 Submission Parameters
 ^^^^^^^^^^^^^^^^^^^^^
 
-The following table lists all parameters that may be specified in a job submission request.  The parameters are transmitted as a JSON object in the HTTP POST payload.  The types are `JSON schema types <https://json-schema.org/>`_; the number following *string* indicates the maximum allowed string length.
+The following table lists all parameters that may be specified in a job submission request.  The parameters are transmitted as a JSON object in the HTTP POST payload.  The types are `JSON schema types <https://json-schema.org/>`_; the number following the *string* type indicates the maximum allowed string length.
 
 Parameters required for job submission are marked with an askerisk (*).
 
@@ -300,7 +300,7 @@ Parameters required for job submission are marked with an askerisk (*).
 |                      |           | HH:mm:ss format.              +
 +----------------------+-----------+-------------------------------+
 
-If present on a job submission request, the notification array contains objects with the following fields (an askerisk (*) indicates required).
+If present on a job submission request, the notification array contains objects with the following fields (askerisk (*) indicates required).
 
 +----------------------+------------+-------------------------------+
 | *JSON Parameter*     |*JSON Type* | *Description*                 +
@@ -364,15 +364,15 @@ The two tables below document changes to the job status definition.  The job sta
 +----------------------+---------------------------+
 | KILLED               | Redundant, same as STOPPED|
 +----------------------+---------------------------+
-| HEARTBEAT            | Mechanism removed         |
+| HEARTBEAT            | Obsolete mechanism        |
 +----------------------+---------------------------+
 
 
-The new ACCEPTED status indicates that a new job request has been written to one of persistent queues defined for the job's tenant.  ACCEPTED means that the Job Service has accepted responsibility for the job, but the job is not yet externally visible.  External visibility happens only after the job is written to the database and its state changed to PENDING.  Normally, the time between queuing and database insertion is short, but the transition happens asynchronously to the submission request. 
+The new ACCEPTED status indicates that a new job request has been written to one of the tenant's persistent queues.  ACCEPTED means that the Job Service has accepted responsibility for the job, but the job is not yet externally visible.  External visibility happens only after the job is written to the database and its state changed to PENDING.  Normally, the time between queuing and database insertion is short, but the transition happens asynchronous to the HTTP submission request. 
 
-Previously, a successful job submission request meant that a new job was created with PENDING status in the database.  The job was immediately visible externally, which allowed it to be queried or acted upon.  Now, success only means that the Job Service has received the request.
+Note that previously a successful job submission request meant that a new job was created with PENDING status in the database.  The job was immediately visible externally, which allowed it to be queried or acted upon.  Now, success only means that the Jobs Service has received the request and won't lose it.
 
-The new BLOCKED status indicates that a job is currently delayed due to a transient error condition.  When job is BLOCKED, it is said to be in *recovery*.  Recovery is managed by a new recovery subsystem using a set of tunable policies that detect when error conditions have cleared.
+The new BLOCKED status indicates that a job is currently delayed due to a transient error condition.  When job is BLOCKED, it is said to be in *recovery*.  Recovery is managed by the new recovery subsystem.  This subsystem uses a set of tunable policies and tester code that detect when error conditions have cleared so that job execution can resume.
 
 
 Job States 
@@ -486,25 +486,25 @@ The following **DELETE** actions are supported in the new Jobs service:
 Job Callbacks
 -------------
 
-Jobs running on execution systems can no longer use the *trigger* API to change the status of a job in the Jobs service.  To avoid confusion, trigger requests that specify one of the job statuses listed in `Job States`_ will be ignored.  For example, a request to the following URL will be ignored because it specifies a status of RUNNING:
+Jobs running on execution systems can no longer use the *trigger* API to change the status of a job in the Jobs service.  To avoid confusion, trigger requests that specify any of the job statuses listed in `Job States`_ will be ignored.  For example, a request to the following URL will be ignored because it specifies a status of RUNNING:
 
 ::
 
    https://agave.iplantc.org/jobs/v2/trigger/job/f916db1e-f4ba-4700-b827-453299c9dd3a-007/token/475c599e-f7ce-434d-a572-7ac2d3ba89f7/status/RUNNING
    
-The Job service continues to automatically insert two trigger requests into every user-supplied wrapper script that it executes.  In the legacy system, these triggers sent the RUNNING and CLEANING_UP status events at the appropriate points during job execution.  The new system substitutes the USER_RUNNING and USER_CLEANING_UP events, respectively, at the same execution points.
+The Job service continues to automatically insert two trigger requests into every user-supplied wrapper script that it executes.  In the legacy system, these triggers sent the RUNNING and CLEANING_UP status events at the appropriate points during job execution.  In the new system, the USER_RUNNING and USER_CLEANING_UP events, respectively, are substituted at the same execution points.
 
 Tenant Configuration
 --------------------
 
-Two aspects of tenant configuration have changed in the new Jobs service: defining administrator accounts and scaling via multiple queues. 
+Two aspects of tenant configuration have changed in the new Jobs service: defining administrator accounts and defining multiple queues. 
 
 Administrator Accounts
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The legacy Jobs service contained a hardcoded list of administrator IDs that spanned all tenants.  This facility has been replaced by one that uses a database table to define administrator accounts on a tenant-specific basis.  Part of the process of setting up a new tenant is for the database administrator to define zero or more tenant administrators in the *aloe_tenant_admins* table.
+The legacy Jobs service used a resource file with a hardcoded list of administrator IDs that spanned all tenants.  This facility has been replaced by one that uses a database table to define administrator accounts on a tenant-specific basis.  Part of the process of setting up a new tenant is for the database administrator to define zero or more tenant administrators in the *aloe_tenant_admins* table.
 
-Note that the Jobs service continues to honor the roles (including administrative roles) injected into requests by the authentication server.  Thus, there continues to be two ways to define and configure administrative access in the Jobs service: using roles or designating administrator accounts.
+Note that the Jobs service continues to honor the roles (including administrative roles) injected into requests by the authentication server.  Thus, there continues to be two ways to define and configure administrative access in the Jobs service: using roles in the authentication server or designating administrator accounts in the Jobs service.
 
 Tenant Queues
 ^^^^^^^^^^^^^
@@ -516,5 +516,5 @@ By default, each tenant is assigned a job submission queue that conforms to the 
 	aloe.jobq.<tenantId>.DefaultQueue
 ::
 
-The Jobs service allows tenants to balance and segregate workloads by sending job requests to different queues, each with its own set of worker processes (see `Tenant Workers <aloe-job-architecture.html#tenant-workers>`_ for discussion).  Administrators define new queues or update existing ones using the *ImportQueueDefinitions* utility program.  This program reads tenant queue configuration files and creates or updates queue definition records in the *aloe_queues* database table.  The configuration file content conforms to the JSON schema defined in the *JobQueueDefinitions.json* file that ships with the Jobs service.
+The Jobs service allows tenants to balance and segregate workloads by sending job requests to different queues, each with its own set of worker processes (see `Tenant Workers <aloe-job-architecture.html#tenant-workers>`_ for discussion).  Administrators define new queues or update existing ones using the provided *ImportQueueDefinitions* utility program.  This program reads tenant queue configuration files and creates or updates queue definition records in the *aloe_queues* database table.  The configuration file content conforms to the JSON schema defined in the *JobQueueDefinitions.json* file that also ships with the Jobs service.
 
