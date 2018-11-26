@@ -11,8 +11,8 @@ A new version of the Jobs service, currently in alpha testing and soon to be in 
 
 The following links discuss details of the new Jobs service:
 
-`New Jobs Architecture </agave/guides/jobs/aloe-job-architecture.html>`_
+`New Jobs Architecture <aloe-job-architecture.html>`_
 
-`Changes </agave/guides/jobs/aloe-job-changes.html>`_
+`Changes <aloe-job-changes.html>`_
 
-`Migration Guide </agave/guides/jobs/aloe-job-migration.html>`_
+`Migration Guide <aloe-job-migration.html>`_
