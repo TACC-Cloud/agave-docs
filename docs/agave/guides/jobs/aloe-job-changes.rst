@@ -513,7 +513,7 @@ By default, each tenant is assigned a job submission queue that conforms to the 
 
 ::
 
-	aloe.jobq.<tenantId>.DefaultQueue
+	aloe.jobq.<tenantId>.submit.DefaultQueue
 ::
 
 The Jobs service allows tenants to balance and segregate workloads by sending job requests to different queues, each with its own set of worker processes (see `Tenant Workers <aloe-job-architecture.html#tenant-workers>`_ for discussion).  Administrators define new queues or update existing ones using the provided *ImportQueueDefinitions* utility program.  This program reads tenant queue configuration files and creates or updates queue definition records in the *aloe_queues* database table.  The configuration file content conforms to the JSON schema defined in the *JobQueueDefinitions.json* file that also ships with the Jobs service.

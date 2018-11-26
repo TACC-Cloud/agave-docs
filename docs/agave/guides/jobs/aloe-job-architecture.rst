@@ -107,7 +107,7 @@ This message routing algorithm allows requests to be segregated by workload char
 Asynchronous Communication
 """"""""""""""""""""""""""
 
-The first thing a job worker thread does when it reads in a job submission message is to spawn a *job-specific command thread* to handle asynchronous communication to that job.  The command thread creates a temporary *job-specific command topic* and waits for asynchronous messages to be sent to the job.  The most common message sent to a job is a cancellation message, usually originating from a REST call sent by the user that originally submitted the job.  The command thread communicates through shared memory to deliver messages to its parent worker thread.
+The first thing a job worker thread does when it reads in a job submission message is to spawn a *job-specific command thread* to handle asynchronous communication to that job.  The command thread creates a temporary *job-specific command topic* and waits for asynchronous messages to be sent to the job.  The most common message sent to a job is a cancellation message, usually originating from a REST call sent by the user that originally submitted the job.  The command thread communicates through shared memory to deliver messages to its parent worker thread.  To cover cases when jobs are in recovery, asynchronous messages destine for jobs are also sent to the *recovery queue* so they can be handled by `Tenant Recovery Readers`_. 
 
 In addition to the comand topic, the Jobs service designates an *events topic* for each tenant.  The idea is that different system components can write well-defined events to the topic and interested parties can subscribe to the topic to receive some subset of those events.  Eventually, a REST API will be developed to allow external subscriptions to the events topic.  *The events topic is not used in the initial Jobs service release.*
 
@@ -138,9 +138,11 @@ When any of the above conditions are detected during job execution, the worker p
 
 The recovery message contains information collected at the failure site and higher up in the executing job's call stack.  This information characterizes the error condition and specifies how the job can be restarted.  Specifically, the recovery message specifies the *policies* and *testers* used to recover the job.  Policies determine when the next error condition check should be made; testers implement the code that actually makes the checks.  New policies and testers can be easily plugged into the system, though at present they have to ship with the system. 
 
-The recovery reader is a multithreaded Java program that processes the tenant's recovery queue.  Internally, recovery messages are organized into lists based on their error condition---jobs blocked by the same condition are put in the same list.  Recovery jobs are ordered by next check time and the recovery reader waits until that time to test a blocking condition.  Recovery information is kept in the MySQL database for resilience against reader failures. 
+The recovery reader is a multithreaded Java program that processes the tenant's recovery queue.  Internally, recovery messages are organized into lists based on their error condition---jobs blocked by the same condition are put in the same list.  Recovery jobs are ordered by next check time and the recovery reader waits until that time to test a blocking condition.  Recovery information is kept in the MySQL database for resilience against reader failures.
 
 When a test indicates that a blocking condition has cleared, all jobs blocked by that condition are resubmitted for execution.  Resubmission entails (1) setting the job status to the value specified in the original recovery message, (2) creating a job submission message and placing it on the job's original submission queue, and (3) removing the job from the recovery subsystem and its persistent store.  The job is immediately failed if it cannot be resubmitted.  Resubmission transfers responsibility for the job back to the tenant workers.  Care is again taken to ensure that a job cannot be both in recovery and executing.
+
+Recovery readers also handle asynchronous requests initiated by users, such as requests to cancel a job.  These requests appear as messages on the recovery queue.
 
 Site Alternate Readers
 ^^^^^^^^^^^^^^^^^^^^^^
