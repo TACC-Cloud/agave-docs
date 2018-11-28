@@ -6,7 +6,7 @@ Migration Guide
 Introduction
 ------------
 
-Our goal is to ensure that client workflows continue to work with the new Jobs service.  Please refer to the `Jobs Service Architecture <aloe-job-architecture.html>`_ page for a discusion of the new design, and the `Jobs Service Changes <aloe-job-changes.html>`_ page for specifics about differences between the old and new systems.  
+Our goal is to ensure that client workflows continue to work with the new Jobs service.  Please refer to the `Jobs Service Architecture <aloe-job-architecture.html>`_ page for a discusion of the new design, and the `Jobs Service Changes <aloe-job-changes.html>`_ page for specifics about differences between the old and new systems.
 
 During testing we will likely discover behavioral differences between the old and new systems.  Some of these differences may require users to change their processes or code, others may require changes to the Jobs service.  All decisions will be made in consultation with users, the goal being to minimize disruption as much as possible. 
 
@@ -19,11 +19,11 @@ To set up a tenant in the new Jobs service, we consider two aspects of configura
 Job Migration
 -------------
 
-Jobs that ran under the legacy system should be able to run under the new Jobs service.  Clients can test if a job continues to run by issuing a REST call to the Jobs service with the proper parameters.  
+Jobs that ran under the legacy system should be able to run under the new Jobs service.  Clients can test if a job continues to run by issuing a REST call to the Jobs service with the proper parameters.
 
-The most basic way to test job execution is by using *curl* or some other HTTP command utility. If a HTTP job submission request works under the old system, it either works under the new system or fails because it relies on a feature that has been deprecated (`Jobs Service Changes <aloe-job-changes.html>`_).  In either case we learn something.  
+The most basic way to test job execution is by using *curl* or some other HTTP command utility. If a HTTP job submission request works under the old system, it either works under the new system or fails because it relies on a feature that has been deprecated (`Jobs Service Changes <aloe-job-changes.html>`_).  In either case we learn something.
 
-In addition to running jobs, all the other REST calls supported under the legacy Jobs service (listings, history, etc.) should continue to work in the new system with, possibly, some documented differences in output.
+In addition to running jobs, all the other REST calls supported under the legacy Jobs service (listings, history, etc.) should continue to work in the new system with, possibly, some documented differences in output (`The Job Model <aloe-job-changes.html#the-job-model>`_).
 
 A more advanced way to test job execution and the other Jobs APIs is to use the `Agave Command Line Interface (CLI) <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/tooling/command-line-interface.html>`_.  The CLI implements a layer of software between the user and the actual HTTP requests made to the Jobs service.  This layer adds its own conventions and requirements, which can sometimes obscure the real source of problems.  For users that rely on the CLI, however, it's important to test all the CLI calls they normally use. 
 

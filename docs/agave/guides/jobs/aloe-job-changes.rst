@@ -218,6 +218,8 @@ Submission Parameters
 
 The following table lists all parameters that may be specified in a job submission request.  The parameters are transmitted as a JSON object in the HTTP POST payload.  The types are `JSON schema types <https://json-schema.org/>`_; the number following the *string* type indicates the maximum allowed string length.
 
+Some parameter types may differ from similar object model types shown above. The former represent types provided by users on input, the latter types used by the Jobs service during job execution.
+
 Parameters required for job submission are marked with an askerisk (*).
 
 +----------------------+-----------+-------------------------------+
@@ -372,7 +374,7 @@ The new ACCEPTED status indicates that a new job request has been written to one
 
 Note that previously a successful job submission request meant that a new job was created with PENDING status in the database.  The job was immediately visible externally, which allowed it to be queried or acted upon.  Now, success only means that the Jobs Service has received the request and won't lose it.
 
-The new BLOCKED status indicates that a job is currently delayed due to a transient error condition.  When job is BLOCKED, it is said to be in *recovery*.  Recovery is managed by the new recovery subsystem.  This subsystem uses a set of tunable policies and tester code that detect when error conditions have cleared so that job execution can resume.
+The new BLOCKED status indicates that a job is currently delayed due to a transient error condition.  When job is BLOCKED, it is said to be *in recovery*.  Recovery is managed by the new recovery subsystem.  This subsystem uses a set of tunable policies and tester code that detect when error conditions have cleared so that job execution can resume.
 
 
 Job States 
@@ -492,7 +494,12 @@ Jobs running on execution systems can no longer use the *trigger* API to change 
 
    https://agave.iplantc.org/jobs/v2/trigger/job/f916db1e-f4ba-4700-b827-453299c9dd3a-007/token/475c599e-f7ce-434d-a572-7ac2d3ba89f7/status/RUNNING
    
-The Job service continues to automatically insert two trigger requests into every user-supplied wrapper script that it executes.  In the legacy system, these triggers sent the RUNNING and CLEANING_UP status events at the appropriate points during job execution.  In the new system, the USER_RUNNING and USER_CLEANING_UP events, respectively, are substituted at the same execution points.
+The Job service continues to automatically insert two trigger requests into every user-supplied wrapper script that it executes.  In the legacy system, these triggers sent the RUNNING and CLEANING_UP status events at the appropriate points during job execution.  In the new system, the new USER_RUNNING and USER_CLEANING_UP events, respectively, are substituted at the same execution points.
+
+UUIDs
+-----
+
+The Agave universally unique identifier generator has been replaced with the `RFC 4122 <https://www.ietf.org/rfc/rfc4122.txt>`_ compliant implementation that ships with Java.  This change will not affect user code that treats UUIDs as opaque identifiers. 
 
 Tenant Configuration
 --------------------
