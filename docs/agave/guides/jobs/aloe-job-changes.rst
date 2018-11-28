@@ -1,7 +1,7 @@
 Jobs Service Changes
 ====================
 
-This page discusses what has changed in the Jobs service between Agave 2.2.23 and Aloe 3.0.
+This page discusses what has changed in the Jobs service between Agave 2.2.23 and Aloe 3.0.  The Aloe source code is `here <https://bitbucket.org/tacc-cic/aloe/src/master/>`_.
 
 .. contents:: Table of Contents
 
