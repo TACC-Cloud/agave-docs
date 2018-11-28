@@ -22,7 +22,7 @@ The focus of the Jobs service redesign is to improve reliability, scalability, p
 - Separation of front and back ends
     - HTTP data types and processing are limited to the new Aloe web application
     - Backend job processing is performed by Java workers running in their own JVMs
-    - Horzontal scaling is achieved by adding more workers
+    - Horizontal scaling is achieved by adding more workers
 - Recovery subsystem 
     - A separate process manages transient errors
     - Aggregation of all jobs blocked on same error condition
@@ -32,7 +32,7 @@ The focus of the Jobs service redesign is to improve reliability, scalability, p
     - Thottled thread restarting during recovery
 - Actionable error messages and log records
     - Capture enough data for root cause analysis
-- Crytographic validation of requests
+- Cryptographic validation of requests
     - JWT signatures are checked
 - Software engineering best practices 
     - Technology choices that simplify design, code, operations and deployment
@@ -57,7 +57,7 @@ Application Layer
 
 The application layer implements job REST endpoints using two web applications.  The *Legacy Job Web Application* supports all HTTP GET requests and all permission requests.  The Legacy web application is a stripped down version of the Agave Jobs front end ported to work with an updated MySQL schema; it does not interact with the queue management system nor does it benefit from a redesign.  The rationale for porting part of the existing application was purely economic:  We were able to significantly reduce development and test effort by reusing existing code for read-only and permission related requests.  By not rewriting the REST APIs that do not directly interact with running jobs we could focus on improving job execution (see `Design Guidelines`_).
 
-The new *Aloe Job Web Application* handles all POST, PUT and DELETE requests except those concerned with permissions.  The main function of this new web application is to accept requests for job execution and cancelation.  In addition, requests to resubmit jobs and requests to change the visibility of jobs are also supported.  This web application interacts with both the MySQL database and the RabbitMQ messaging system.
+The new *Aloe Job Web Application* handles all POST, PUT and DELETE requests except those concerned with permissions.  The main function of this new web application is to accept requests for job execution and cancellation.  In addition, requests to resubmit jobs and requests to change the visibility of jobs are also supported.  This web application interacts with both the MySQL database and the RabbitMQ messaging system.
 
 Each tenant is configured with at least one *Job Worker* application, which is a standalone Java daemon running in its own JVM.  Each job worker reads job submission requests from a single queue and executes those requests.  Workers can process multiple job requests at a time.  For scalability, multiple workers can service the same queue and tenants can define multiple submission queues for even greater flexibility.
 
@@ -109,7 +109,7 @@ Asynchronous Communication
 
 The first thing a job worker thread does when it reads in a job submission message is to spawn a *job-specific command thread* to handle asynchronous communication to that job.  The command thread creates a temporary *job-specific command topic* and waits for asynchronous messages to be sent to the job.  The most common message sent to a job is a cancellation message, usually originating from a REST call sent by the user that originally submitted the job.  The command thread delivers messages through shared memory to its parent worker thread, which is then takes action on the job it's processing.  To cover cases when jobs are in recovery and not assigned a worker, asynchronous messages destine for jobs are also sent to the *recovery queue* so they can be acted upon by `Tenant Recovery Readers`_. 
 
-In addition to the comand topic, the Jobs service designates an *events topic* for each tenant.  The idea is that different system components can write well-defined events to the topic and interested parties can subscribe to the topic to receive some subset of those events.  Eventually, a REST API will be developed to allow external subscriptions to the events topic.  *The events topic is not used in the initial Jobs service release.*
+In addition to the command topic, the Jobs service designates an *events topic* for each tenant.  The idea is that different system components can write well-defined events to the topic and interested parties can subscribe to the topic to receive some subset of those events.  Eventually, a REST API will be developed to allow external subscriptions to the events topic.  *The events topic is not used in the initial Jobs service release.*
 
 Reliability
 """""""""""

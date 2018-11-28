@@ -6,7 +6,7 @@ Migration Guide
 Introduction
 ------------
 
-Our goal is to ensure that client workflows continue to work with the new Jobs service.  Please refer to the `Jobs Service Architecture <aloe-job-architecture.html>`_ page for a discusion of the new design, and the `Jobs Service Changes <aloe-job-changes.html>`_ page for specifics about differences between the old and new systems.
+Our goal is to ensure that client workflows continue to work with the new Jobs service.  Please refer to the `Jobs Service Architecture <aloe-job-architecture.html>`_ page for a discussion of the new design, and the `Jobs Service Changes <aloe-job-changes.html>`_ page for specifics about differences between the old and new systems.
 
 During testing we will likely discover behavioral differences between the old and new systems.  Some of these differences may require users to change their processes or code, others may require changes to the Jobs service.  All decisions will be made in consultation with users, the goal being to minimize disruption as much as possible. 
 

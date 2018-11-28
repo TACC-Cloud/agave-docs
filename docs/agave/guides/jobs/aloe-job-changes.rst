@@ -220,7 +220,7 @@ The following table lists all parameters that may be specified in a job submissi
 
 Some parameter types may differ from similar object model types shown above. The former represent types provided by users on input, the latter types used by the Jobs service during job execution.
 
-Parameters required for job submission are marked with an askerisk (*).
+Parameters required for job submission are marked with an asterisk (*).
 
 +----------------------+-----------+-------------------------------+
 | *JSON Parameter*     |*JSON Type*| *Description*                 +
@@ -302,7 +302,7 @@ Parameters required for job submission are marked with an askerisk (*).
 |                      |           | HH:mm:ss format.              +
 +----------------------+-----------+-------------------------------+
 
-If present on a job submission request, the notification array contains objects with the following fields (askerisk (*) indicates required).
+If present on a job submission request, the notification array contains objects with the following fields (asterisk (*) indicates required).
 
 +----------------------+------------+-------------------------------+
 | *JSON Parameter*     |*JSON Type* | *Description*                 +
@@ -345,7 +345,7 @@ The two tables below document changes to the job status definition.  The job sta
 | *New Job State*     | *Description*               |
 +=====================+=============================+ 
 | ACCEPTED            | When a new job is added     |
-|                     | to the persistant tenant    |
+|                     | to the persistent tenant    |
 |                     | queue but not yet           |
 |                     | tracked in the database.    |
 |                     | The job will advance to the | 
@@ -476,7 +476,7 @@ The following **POST** actions are supported in the new Jobs service.  Actions i
 The following **DELETE** actions are supported in the new Jobs service:
 
 +-------------+---------------------------+-------------------------------+
-|*Job Action* | *HTTP DELETTE URL Suffix* | *Description*                 +
+|*Job Action* | *HTTP DELETE URL Suffix*  | *Description*                 +
 +=============+===========================+===============================+ 
 | hide        | /jobs/v2/<jobuuid>/hide   | Mark a job as invisible to    +
 |             |                           | most APIs, such as job listing+
