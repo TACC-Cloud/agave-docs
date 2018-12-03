@@ -499,7 +499,12 @@ The Job service continues to automatically insert two trigger requests into ever
 UUIDs
 -----
 
-The Agave universally unique identifier generator has been replaced with the `RFC 4122 <https://www.ietf.org/rfc/rfc4122.txt>`_ compliant implementation that ships with Java.  This change will not affect user code that treats UUIDs as opaque identifiers. 
+The Agave universally unique identifier generator has been replaced with the `RFC 4122 <https://www.ietf.org/rfc/rfc4122.txt>`_ compliant implementation that ships with Java.  This change will not affect user code that treats UUIDs as opaque identifiers.
+
+UUID Service
+------------
+
+The collection APIs of the UUID service have been deprecated and are not longer available. 
 
 Tenant Configuration
 --------------------
