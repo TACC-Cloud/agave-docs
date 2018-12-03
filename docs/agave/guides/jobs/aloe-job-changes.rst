@@ -504,7 +504,7 @@ The Agave universally unique identifier generator has been replaced with the `RF
 UUID Service
 ------------
 
-The collection APIs of the UUID service have been deprecated and are not longer available. 
+The collection APIs of the UUID service have been deprecated and are no longer available. 
 
 Tenant Configuration
 --------------------
