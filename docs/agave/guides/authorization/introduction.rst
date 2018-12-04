@@ -123,7 +123,7 @@ The method is suitable for long-running applications in which the user logs in o
 
 .. code-block:: http
 
-   https://public.tenants.agaveapi.co/authorize/?client_id=gTgp...SV8a&response_type=code&redirect_uri=https%3A%2F%2Fexample.com%2Fcallback&scope=PRODUCTION&state=866
+   https://api.tacc.utexas.edu/authorize/?client_id=gTgp...SV8a&response_type=code&redirect_uri=https%3A%2F%2Fexample.com%2Fcallback&scope=PRODUCTION&state=866
 
 The authorization process starts with your application sending a request to the Agave authorization service. (The reason your application sends this request can vary: it may be a step in the initialization of your application or in response to some user action, like a button click.) The request is sent to the /authorize endpoint of the Authorization service:
 
@@ -200,7 +200,7 @@ After the user accepts (or denies) your request, the Agave Authorization service
            </tr>
            <tr>
                <td>access_token </td>
-               <td>An access token that can be provided in subsequent calls, for example to <a href="https://public.agaveapi.co/profiles/v2/me?pretty=true">Agave Profiles API</a>. </td>
+               <td>An access token that can be provided in subsequent calls, for example to <a href="https://api.tacc.utexas.edu/profiles/v2/me?pretty=true">Agave Profiles API</a>. </td>
            </tr>
            <tr>
                <td>token_type </td>
@@ -252,7 +252,7 @@ If the user has denied access, there will be no access token and the final URL w
 
 .. code-block:: bash
 
-   POST https://public.tenants.agaveapi.co/token
+   POST https://api.tacc.utexas.edu/token
 
 When the authorization code has been received, you will need to exchange it with an access token by making a POST request to the Agave Authorization service, this time to its ``/token`` endpoint. The body of this POST request must contain the following parameters:
 
@@ -281,7 +281,7 @@ When the authorization code has been received, you will need to exchange it with
        -d "client_id=gTgp...SV8a"
        -d "client_secret=hZ_z3f...BOD6"
        -d "redirect_uri=https%3A%2F%2Fwww.foo.com%2Fauth"
-       https://public.tenants.agaveapi.co/token
+       https://api.tacc.utexas.edu/token
 
 ..
 
@@ -350,7 +350,7 @@ On success, the response from the Agave Authorization service has the status cod
 .. code-block:: bash
 
    curl -H "Authorization: Bearer a742...12d2"
-       https://public.tenants.agaveapi.co/profiles/v2/me?pretty=true&naked=true
+       https://api.tacc.utexas.edu/profiles/v2/me?pretty=true&naked=true
 
 ..
 
@@ -382,7 +382,7 @@ Once you have a valid access token, you can include it in ``Authorization`` head
    curl -sku "Authorization: Basic Qt3c...Rm1y="
        -d grant_type=refresh_token
        -d refresh_token=d77c...Sacf
-       https://public.tenants.agaveapi.co/token
+       https://api.tacc.utexas.edu/token
 
 ..
 
@@ -403,7 +403,7 @@ The request is sent to the token endpoint of the Agave Authorization service:
 
 .. code-block::
 
-   POST https://public.tenants.agaveapi.co/token
+   POST https://api.tacc.utexas.edu/token
 
 The body of this POST request must contain the following parameters:
 
@@ -444,7 +444,7 @@ Implicit grant flow is for clients that are implemented entirely using JavaScrip
 
 .. code-block:: json
 
-   https://public.tenants.agaveapi.co/authorize?client_id=gTgp...SV8a&redirect_uri=http:%2F%2Fexample.com%2Fcallback&scope=PRODUCTION&response_type=token&state=867
+   https://api.tacc.utexas.edu/authorize?client_id=gTgp...SV8a&redirect_uri=http:%2F%2Fexample.com%2Fcallback&scope=PRODUCTION&response_type=token&state=867
 
 The flow starts off with your application redirecting the user to the ``/authorize`` endpoint of the Authorization service. The request will include parameters in the query string:
 
@@ -529,7 +529,7 @@ After the user grants (or denies) access, the Agave Authorization service redire
            </tr>
            <tr>
                <td>access_token </td>
-               <td>An access token that can be provided in subsequent calls, for example to <a href="https://public.agaveapi.co/profiles/v2/me?pretty=true">Agave Profiles API</a>. </td>
+               <td>An access token that can be provided in subsequent calls, for example to <a href="https://api.tacc.utexas.edu/profiles/v2/me?pretty=true">Agave Profiles API</a>. </td>
            </tr>
            <tr>
                <td>token_type </td>
@@ -585,7 +585,7 @@ If the user has denied access, there will be no access token and the final URL w
 
 .. code-block:: bash
 
-   curl -H "Authorization: Bearer 61e6...Mc96" https://public.tenants.agaveapi.co/profiles/v2/me?pretty=true
+   curl -H "Authorization: Bearer 61e6...Mc96" https://api.tacc.utexas.edu/profiles/v2/me?pretty=true
 
 ..
 
@@ -626,7 +626,7 @@ The method is suitable for scenarios where there is a high degree of trust betwe
        -d username=rjohnson
        -d password=password
        -d scope=PRODUCTION
-       https://public.tenants.agaveapi.co/token
+       https://api.tacc.utexas.edu/token
 
 ..
 
@@ -696,7 +696,7 @@ If the user has not accepted your request or an error has occurred, the response
 .. code-block:: bash
 
    curl -H "Authorization: Bearer 3Dsr...pv21"
-       https://public.tenants.agaveapi.co/profiles/v2/me?pretty=true
+       https://api.tacc.utexas.edu/profiles/v2/me?pretty=true
 
 ..
 
@@ -729,7 +729,7 @@ The access token allows you to make requests to any of the Agave REST APIs on be
        -d grant_type=refresh_token
        -d refresh_token=dyVa...MqR0
        -d scope=PRODUCTION
-       https://public.tenants.agaveapi.co/token
+       https://api.tacc.utexas.edu/token
 
 ..
 
@@ -787,7 +787,7 @@ The method is suitable for authenticating your requests to the Agave REST API. T
    curl -sku "Authorization: Basic Qt3c...Rm1y="
        -d grant_type=client_credentials
        -d scope=PRODUCTION
-       https://public.tenants.agaveapi.co/token
+       https://api.tacc.utexas.edu/token
 
 ..
 
@@ -829,7 +829,7 @@ The request is sent to the ``/token`` endpoint of the Agave Authentication servi
 .. code-block:: bash
 
    curl -H "Authorization: Bearer 61e6...Mc96"
-        https://public.tenants.agaveapi.co/profiles/v2/me
+        https://api.tacc.utexas.edu/profiles/v2/me
 
 ..
 
@@ -840,7 +840,7 @@ The request is sent to the ``/token`` endpoint of the Agave Authentication servi
 
    {
        "email": "nryan@mlb.com",
-       "firstName" : "Nolan",
+       "firstName" : "Nolan", 
        "lastName" : "Ryan",
        "position" : "null",
        "institution" : "Houston Astros",
@@ -854,10 +854,10 @@ The request is sent to the ``/token`` endpoint of the Agave Authentication servi
        "gender" : "M",
        "_links" : {
          "self" : {
-           "href" : "https://public.tenants.agaveapi.co/profiles/v2/nryan"
+           "href" : "https://api.tacc.utexas.edu/profiles/v2/nryan"
          },
          "users" : {
-           "href" : "https://public.tenants.agaveapi.co/profiles/v2/nryan/users"
+           "href" : "https://api.tacc.utexas.edu/profiles/v2/nryan/users"
          }
        }
    }
