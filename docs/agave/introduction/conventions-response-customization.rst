@@ -94,9 +94,9 @@ Customizing Responses
      {
        "id": "docker.tacc.utexas.edu",
        "type": "EXECUTION",
-       "default": true,
+       "default": false,
        "storage": {
-         "host": "stampede2.tacc.utexas.edu"
+         "host": "129.114.6.50"
        }
      }
    ]
