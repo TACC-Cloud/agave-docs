@@ -52,7 +52,7 @@ JSON Notation
 
    .. container:: header
 
-      :fa:`caret-right`
+      
       **Show JSON notation**
 
    .. code-block:: json
