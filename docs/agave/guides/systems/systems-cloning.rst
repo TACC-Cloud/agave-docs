@@ -26,7 +26,7 @@ To clone a system, you make a PUT request on the system's url and pass it a new 
           -H "Content-Type: application/json"
           -X PUT
           --data-binary '{"action":"clone","id":"systest.demo.clone"}'
-          https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+          https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 
    {: .solution}
 
@@ -62,19 +62,19 @@ The response will look something like the following:
      },
      "_links": {
        "roles": {
-         "href": "https://public.agaveapi.co/systems/v2/systest.demo.clone/roles"
+         "href": "https://api.tacc.utexas.edu/systems/v2/systest.demo.clone/roles"
        },
        "owner": {
-         "href": "https://public.agaveapi.co/profiles/v2/nryan"
+         "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
        },
        "credentials": {
-         "href": "https://public.agaveapi.co/systems/v2/systest.demo.clone/credentials"
+         "href": "https://api.tacc.utexas.edu/systems/v2/systest.demo.clone/credentials"
        },
        "self": {
-         "href": "https://public.agaveapi.co/systems/v2/systest.demo.clone"
+         "href": "https://api.tacc.utexas.edu/systems/v2/systest.demo.clone"
        },
        "metadata": {
-         "href": "https://public.agaveapi.co/meta/v2/data/?q=%7B%22associationIds%22%3A%225950027791507722726-242ac117-0001%22%7D"
+         "href": "https://api.tacc.utexas.edu/meta/v2/data/?q=%7B%22associationIds%22%3A%225950027791507722726-242ac117-0001%22%7D"
        }
      }
    }
