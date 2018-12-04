@@ -26,7 +26,7 @@ Discovering systems
 
    .. code-block:: shell
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/
+      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://api.tacc.utexas.edu/systems/v2/
 
 |
 The response will be something like this:
@@ -35,30 +35,30 @@ The response will be something like this:
 
    [
      {
-       "id" : "data.agaveapi.co",
-       "name" : "iPlant Data Store",
+       "id" : "user.storage",
+       "name" : "Storage VM for the drug discovery portal",
        "type" : "STORAGE",
-       "description" : "The iPlant Data Store is where your data are stored. The Data Store is cloud-based and is the central repository from which data is accessed by all of iPlant&#039;s technologies.",
-       "status" : "UP",
-       "public" : true,
-       "default" : true,
-       "_links" : {
-         "self" : {
-           "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
-         }
-       }
-     },
-     {
-       "id" : "docker.iplantcollaborative.org",
-       "name" : "Demo Docker VM",
-       "type" : "EXECUTION",
-       "description" : "Atmosphere VM used for Docker demonstrations and tutorials.",
+       "description" : "SFTP on drugdiscovery for the drug discovery portal",
        "status" : "UP",
        "public" : true,
        "default" : false,
        "_links" : {
          "self" : {
-           "href" : "https://public.tenants.agaveapi.co/systems/v2/docker.iplantcollaborative.org"
+           "href" : "https://api.tacc.utexas.edu/systems/v2/user.storage"
+         }
+       }
+     },
+     {
+       "id" : "docker.tacc.utexas.edu",
+       "name" : "Demo Docker VM",
+       "type" : "EXECUTION",
+       "description" : "Cloud VM used for Docker demonstrations and tutorials.",
+       "status" : "UP",
+       "public" : true,
+       "default" : false,
+       "_links" : {
+         "self" : {
+           "href" : "https://api.tacc.utexas.edu/systems/v2/docker.tacc.utexas.edu"
          }
        }
      }
@@ -88,7 +88,7 @@ List all systems (up to the page limit)
 
    .. code-block:: shell
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/?type=storage
+      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://api.tacc.utexas.edu/systems/v2/?type=storage
 |
 
 
@@ -107,7 +107,7 @@ List only execution systems
 
    .. code-block:: shell
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/?type=execution
+      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://api.tacc.utexas.edu/systems/v2/?type=execution
 |
 
 
@@ -126,7 +126,7 @@ List only public systems
 
    .. code-block:: shell
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/?publicOnly=true
+      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://api.tacc.utexas.edu/systems/v2/?publicOnly=true
 |
 
 
@@ -145,7 +145,7 @@ List only private systems
 
    .. code-block:: shell
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/?privateOnly=true
+      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://api.tacc.utexas.edu/systems/v2/?privateOnly=true
 |
 
 
@@ -164,7 +164,7 @@ Only return default systems
 
    .. code-block:: shell
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/?default=true
+      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://api.tacc.utexas.edu/systems/v2/?default=true
 |
 
 
@@ -186,7 +186,7 @@ System details
 
    .. code-block:: shell
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co
+      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" https://api.tacc.utexas.edu/systems/v2/user.storage
 |
 
 
@@ -195,43 +195,43 @@ The response will be something like this:
 .. code-block:: json
 
    {
-     "site": "agaveapi.co",
-     "id": "data.agaveapi.co",
+     "site": "drugdiscovery.tacc.utexas.edu",
+     "id": "user.storage",
      "revision": 4,
      "default": true,
-     "lastModified": "2016-09-30T21:43:11.000-05:00",
+     "lastModified": "2018-09-30T21:43:11.000-05:00",
      "status": "UP",
-     "description": "Cloud storage system for the Agave Public tenant",
-     "name": "Agave Cloud Storage",
-     "owner": "dooley",
+     "description": "SFTP on drugdiscovery for the drug discovery portal",
+     "name": "Storage VM for the drug discovery portal",
+     "owner": "user",
      "_links": {
        "roles": {
-         "href": "https://public.agaveapi.co/systems/v2/data.agaveapi.co/roles"
+         "href": "https://api.tacc.utexas.edu/systems/v2/user.storage/roles"
        },
        "credentials": {
-         "href": "https://public.agaveapi.co/systems/v2/data.agaveapi.co/credentials"
+         "href": "https://api.tacc.utexas.edu/systems/v2/user.storage/credentials"
        },
        "self": {
-         "href": "https://public.agaveapi.co/systems/v2/data.agaveapi.co"
+         "href": "https://api.tacc.utexas.edu/systems/v2/user.storage"
        },
        "metadata": {
-         "href": "https://public.agaveapi.co/meta/v2/data/?q=%7B%22associationIds%22%3A%224602981590618992154-242ac116-0001-006%22%7D"
+         "href": "https://api.tacc.utexas.edu/meta/v2/data/?q=%7B%22associationIds%22%3A%224602981590618992154-242ac116-0001-006%22%7D"
        }
      },
-     "globalDefault": true,
+     "globalDefault": false,
      "available": true,
-     "uuid": "4602981590618992154-242ac116-0001-006",
+     "uuid": "0001431090358445-5056a550b8-0001-006",
      "public": true,
      "type": "STORAGE",
      "storage": {
        "mirror": false,
        "port": 22,
-       "homeDir": "/home",
+       "homeDir": "/home/user/storage",
        "protocol": "SFTP",
-       "host": "corral.tacc.utexas.edu",
+       "host": "drugdiscovery.tacc.utexas.edu",
        "publicAppsDir": "/apps",
        "proxy": null,
-       "rootDir": "/gpfs/corral3/repl/projects/agave/root",
+       "rootDir": "/",
        "auth": {
          "type": "SSHKEYS"
        }
