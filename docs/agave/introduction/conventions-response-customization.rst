@@ -4,39 +4,6 @@ Customizing Responses
 
 ..
 
-   Returns the user id, name, and email for the authenticated user  
-
-.. container:: foldable
-
-   .. container:: header
-
-      :fa:`caret-right`
-      **Show curl**
-
-   .. code-block:: shell
-
-      curl -sk -H \
-          "Authorization: Bearer ${API_KEY}" \
-          "https://public.tenants.agaveapi.co/profiles/v2/me?filter=username,email
-
-.. code-block:: plaintext
-
-   profiles-list -v --filter=username,email me
-
-..
-
-   The response would look something like the following:  
-
-
-.. code-block:: json
-
-   {
-     "username": "nryan",
-     "email": "nryan@rangers.mlb.com"
-   }
-
-..
-
    Returns the name, status, app id, and the url to the archived job output for every user job   
 
 
@@ -50,7 +17,7 @@ Customizing Responses
 
       curl -sk -H \
           "Authorization: Bearer ${API_KEY}" \
-          "https://public.tenants.agaveapi.co/jobs/v2/?limit=2&filter=name,status,appId,_links.archiveData.href
+          "https://api.tacc.utexas.edu/jobs/v2/?limit=2&filter=name,status,appId,_links.archiveData.href
 
 .. code-block:: plaintext
 
@@ -100,7 +67,9 @@ Customizing Responses
       
    .. code-block:: shell
 
-      /systems/v2/?filter=id,type,default,storage.host
+      curl -sk -H \
+          "Authorization: Bearer ${API_KEY}" \
+          "https://api.tacc.utexas.edu/systems/v2/?filter=id,type,default,storage.host
 
 .. code-block:: plaintext
 
@@ -115,11 +84,11 @@ Customizing Responses
 
    [
      {
-       "id": "data.agaveapi.co",
+       "id": "docking.storage",
        "type": "STORAGE",
        "default": true,
        "storage": {
-         "host": "dtn01.prod.agaveapi.co"
+         "host": "data.tacc.utexas.edu"
        }
      },
      {
@@ -127,7 +96,7 @@ Customizing Responses
        "type": "EXECUTION",
        "default": true,
        "storage": {
-         "host": "129.114.6.50"
+         "host": "stampede2.tacc.utexas.edu"
        }
      }
    ]
