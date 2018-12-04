@@ -18,7 +18,7 @@ Throughout the documentation you will regularly encounter the following variable
      </tr><tr>
        <td>${API_HOST}</td>
        <td align="center">Base hostname of the API</td>
-       <td>public.agaveapi.co</td>
+       <td>api.tacc.utexas.edu</td>
      <tr></tr>
        <td>${API_VERSION}</td>
        <td align="center">Version of the API endpoint</td>
@@ -87,19 +87,19 @@ JSON Notation
           "updateSystemStatus": false,
           "_links": {
               "checks": {
-                  "href": "https://public.tenants.agaveapi.co/monitor/v2/0001409867973952-5056a550b8-0001-014/checks"
+                  "href": "https://api.tacc.utexas.edu/monitor/v2/0001409867973952-5056a550b8-0001-014/checks"
               },
               "notifications": {
-                  "href": "https://public.tenants.agaveapi.co/notifications/v2/?associatedUuid=0001409867973952-5056a550b8-0001-014"
+                  "href": "https://api.tacc.utexas.edu/notifications/v2/?associatedUuid=0001409867973952-5056a550b8-0001-014"
               },
               "owner": {
-                  "href": "https://public.tenants.agaveapi.co/profiles/v2/systest"
+                  "href": "https://api.tacc.utexas.edu/profiles/v2/systest"
               },
               "self": {
-                  "href": "https://public.tenants.agaveapi.co/monitor/v2/0001409867973952-5056a550b8-0001-014"
+                  "href": "https://api.tacc.utexas.edu/monitor/v2/0001409867973952-5056a550b8-0001-014"
               },
               "system": {
-                  "href": "https://public.tenants.agaveapi.co/systems/v2/demo.storage.example.com"
+                  "href": "https://api.tacc.utexas.edu/systems/v2/demo.storage.example.com"
               }
           }
       }
@@ -115,7 +115,7 @@ Javascript dot notation will be used to refer to individual properties of JSON o
 Versioning
 ----------
 
-The current major version of Agave is given in the URI immediately following the API resource name. For example, if the endpoint is ``https://public.tenants.agaveapi.co/jobs/v2/``\ , the API version would be ``v2``. The current major version of Agave is v2. (Full version: 2.2.8)
+The current major version of Agave is given in the URI immediately following the API resource name. For example, if the endpoint is ``https://api.tacc.utexas.edu/jobs/v2/``\ , the API version would be ``v2``. The current major version of Agave is v2. (Full version: 2.2.8)
 
 Special Character Handling
 --------------------------
@@ -338,7 +338,7 @@ Pagination
 
    curl -sk -H \
        "Authorization: Bearer ${API_KEY}" \
-       "https://public.tenants.agaveapi.co/jobs/v2/?offset=50&limit=25"
+       "https://api.tacc.utexas.edu/jobs/v2/?offset=50&limit=25"
 
 .. code-block:: plaintext
 
@@ -376,10 +376,10 @@ Hypermedia
        "value": "red",
        "_links": {
            "self": {
-               "href": "https://public.tenants.agaveapi.co/meta/v2/data/0001384622738900-5056a550b8-0001-012"
+               "href": "https://api.tacc.utexas.edu/meta/v2/data/0001384622738900-5056a550b8-0001-012"
            },
            "owner": {
-               "href": "https://public.tenants.agaveapi.co/profiles/v2/nryan"
+               "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
            }
        }
    }
