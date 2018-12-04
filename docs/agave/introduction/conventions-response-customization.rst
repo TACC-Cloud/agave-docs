@@ -86,7 +86,7 @@ Customizing Responses
      {
        "id": "docking.storage",
        "type": "STORAGE",
-       "default": true,
+       "default": false,
        "storage": {
          "host": "data.tacc.utexas.edu"
        }
