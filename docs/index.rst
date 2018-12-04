@@ -6,7 +6,7 @@
 Agave
 =====
 
-The Agave Platform (`<http://agaveapi.co>`_) is an open source, science-as-a-service API platform for powering your digital lab. Documentation is presented below:
+The Agave Platform is an open source, science-as-a-service API platform for powering your digital lab. Documentation is presented below:
 
 .. toctree::
    :maxdepth: 2
