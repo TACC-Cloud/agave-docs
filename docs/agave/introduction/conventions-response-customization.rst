@@ -84,7 +84,7 @@ Customizing Responses
 
    [
      {
-       "id": "docking.storage",
+       "id": "user.storage",
        "type": "STORAGE",
        "default": false,
        "storage": {
