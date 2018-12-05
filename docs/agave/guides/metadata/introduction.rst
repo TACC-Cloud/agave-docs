@@ -98,7 +98,7 @@ Creating Metadata
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST  
             -H 'Content-Type: application/json'
             --data-binary '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model organism..."}}, "name": "mustard plant"}'
-            https://public.tenants.agaveapi.co/meta/v2/data?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data?pretty=true
 |
 
 .. container:: foldable
@@ -142,13 +142,13 @@ Creating Metadata
           "created": "2016-08-29T04:49:34.532-05:00",
           "_links": {
             "self": {
-              "href": "https://public.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012"
+              "href": "https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012"
             },
             "permissions": {
-              "href": "https://public.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems"
+              "href": "https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems"
             },
             "owner": {
-              "href": "https://public.agaveapi.co/profiles/v2/nryan"
+              "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
             },
           }
         }
@@ -176,7 +176,7 @@ Updating Metadata
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
             -H 'Content-Type: application/json'
             --data-binary '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model plant organism..."}}, "name": "some metadata", "associationIds":["179338873096442342-242ac113-0001-002","6608339759546166810-242ac114-0001-007"]}'
-            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012?pretty=true
 | 
 
 .. container:: foldable
@@ -223,23 +223,23 @@ Updating Metadata
           "owner": "nryan",
           "_links": {
             "self": {
-              "href": "https://public.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012"
+              "href": "https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012"
             },
             "permissions": {
-              "href": "https://public.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems"
+              "href": "https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems"
             },
             "owner": {
-              "href": "https://public.agaveapi.co/profiles/v2/nryan"
+              "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
             },
             "associationIds": [
               {
                 "rel": "179338873096442342-242ac113-0001-002",
-                "href": "https://public.agaveapi.co/files/v2/media/system/storage.example.com//",
+                "href": "https://api.tacc.utexas.edu/files/v2/media/system/storage.example.com//",
                 "title": "file"
               },
               {
                 "rel": "6608339759546166810-242ac114-0001-007",
-                "href": "https://public.agaveapi.co/jobs/v2/6608339759546166810-242ac114-0001-007",
+                "href": "https://api.tacc.utexas.edu/jobs/v2/6608339759546166810-242ac114-0001-007",
                 "title": "job"
               }
             ]
@@ -268,7 +268,7 @@ Deleting Metadata
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
             -X DELETE
-            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012?pretty=true
 |
 
 .. container:: foldable

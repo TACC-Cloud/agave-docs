@@ -9,7 +9,7 @@ Agave provides multiple ways to share your data with your colleagues and the gen
 
 Publishing a file for folder is simply a matter of granting the special ``public`` user ``READ`` permission on a file or folder. Similar to the way listings and permissions are exposed through unique paths in the Files API, published data is served from a custom ``/files/v2/download`` path. The public data URLs have the following structure:
 
-``https://public.agaveapi.co/files/v2/download/<username>/system/<system_id>/<path>``
+``https://api.tacc.utexas.edu/files/v2/download/<username>/system/<system_id>/<path>``
 
 Notice two things. First, a username is inserted after the *download* path element. This is needed because there is no authorized user for whom to validate system or file ownership on a public request. The username gives the context by which to verify the availability of the system and file item being requested. Second, the ``system_id`` is mandatory in public data requests. This ensures that the public URL remains the same even when the default storage system of the user who published it changes.
 
@@ -39,7 +39,7 @@ Publish file item on your default storage system for public access
           -H "Content-Type: application/json" \
           -X POST \
           --data '{"username","public", "permission":"READ"}' \
-          https://public.tenants.agaveapi.co/files/v2/pems/nryan/picksumipsum.txt
+          https://api.tacc.utexas.edu/files/v2/pems/nryan/picksumipsum.txt
 |
 
 
@@ -62,7 +62,7 @@ Publish file item on a named system for public access
           -H "Content-Type: application/json" \
           -X POST \
           --data '{"username","public", "permission":"READ"}' \
-          https://public.tenants.agaveapi.co/files/v2/pems/system/data.agaveapi.co/nryan/picksumipsum.txt
+          https://api.tacc.utexas.edu/files/v2/pems/system/data.agaveapi.co/nryan/picksumipsum.txt
 |
 
 
@@ -80,20 +80,20 @@ The response will look something like the following:
      "recursive": false,
      "_links": {
        "self": {
-         "href": "https://public.tenants.agaveapi.co/files/v2/pems/system/data.agaveapi.co/nryan/picksumipsum.txt?username.eq=public"
+         "href": "https://api.tacc.utexas.edu/files/v2/pems/system/data.agaveapi.co/nryan/picksumipsum.txt?username.eq=public"
        },
        "file": {
-         "href": "https://public.tenants.agaveapi.co/files/v2/pems/system/data.agaveapi.co/nryan/picksumipsum.txt"
+         "href": "https://api.tacc.utexas.edu/files/v2/pems/system/data.agaveapi.co/nryan/picksumipsum.txt"
        },
        "profile": {
-         "href": "https://public.agaveapi.co/profiles/v2/public"
+         "href": "https://api.tacc.utexas.edu/profiles/v2/public"
        }
      }
    }
 
 Publishing a file for folder is simply a matter of giving the special ``public`` user ``READ`` permission on the file. Once published, the file will be available at the following URL:
 
-``https://public.tenants.agaveapi.co/files/v2/download/nryan/system/data.agaveapi.co/nryan/picksumipsum.txt``
+``https://api.tacc.utexas.edu/files/v2/download/nryan/system/data.agaveapi.co/nryan/picksumipsum.txt``
 
 Publishing directories
 ----------------------
@@ -117,7 +117,7 @@ Publish directory on your default storage system for public access
           -H "Content-Type: application/json" \
           -X POST \
           --data '{"username","public", "permission":"READ", "recursive": true}' \
-          https://public.tenants.agaveapi.co/files/v2/pems/nryan/public
+          https://api.tacc.utexas.edu/files/v2/pems/nryan/public
 |
 
 
@@ -140,7 +140,7 @@ Publish directory on a named system for public access
          -H "Content-Type: application/json" \
          -X POST \
          --data '{"username","public", "permission":"READ", "recursive": true}' \
-         https://public.tenants.agaveapi.co/files/v2/pems/system/data.agaveapi.co/nryan/public
+         https://api.tacc.utexas.edu/files/v2/pems/system/data.agaveapi.co/nryan/public
 |
 
 
@@ -158,20 +158,20 @@ The response will look something like the following:
      "recursive": true,
      "_links": {
        "self": {
-         "href": "https://public.tenants.agaveapi.co/files/v2/pems/system/data.agaveapi.co/nryan/public?username.eq=public"
+         "href": "https://api.tacc.utexas.edu/files/v2/pems/system/data.agaveapi.co/nryan/public?username.eq=public"
        },
        "file": {
-         "href": "https://public.tenants.agaveapi.co/files/v2/pems/system/data.agaveapi.co/nryan/public"
+         "href": "https://api.tacc.utexas.edu/files/v2/pems/system/data.agaveapi.co/nryan/public"
        },
        "profile": {
-         "href": "https://public.agaveapi.co/profiles/v2/public"
+         "href": "https://api.tacc.utexas.edu/profiles/v2/public"
        }
      }
    }
 
 Publishing an entire directory is identical to publishing a single file item. To make all the contents of the directory public as well, include a ``recursive`` field to your request with a value of ``true``. Once published, the directory and all its contents will be avaialble for download. The above example will make every file and folder in the "nryan/public" directory of "data.agaveapi.co" available for download at the following URL:
 
- ``https://public.agaveapi.co/files/v2/download/nryan/system/data.agaveapi.co/nryan/public``
+ ``https://papi.tacc.utexas.edu/files/v2/download/nryan/system/data.agaveapi.co/nryan/public``
 
 Remember that whenever you publish a folder, anything you put in that folder becomes publicly available. As with any cloud storage service, think before blindly copying data into your cloud storage. If you want to restrict the duration or frequency which your public data is accessed, you should see the :raw-html-m2r:`<a href="#https://tacc.github.io/developer.tacc.cloud/docs/guides/postits/introduction.html">PostIts Guide</a>` for other ways to securely share your data with others.
 

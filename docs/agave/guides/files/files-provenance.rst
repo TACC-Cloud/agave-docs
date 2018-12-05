@@ -124,7 +124,7 @@ List the history of a file item
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-            https://public.agaveapi.co/files/v2/history/nryan/picksumipsum.txt
+            https://api.tacc.utexas.edu/files/v2/history/nryan/picksumipsum.txt
 |
 
 
@@ -155,7 +155,7 @@ The response to this contains a summary listing all permissions on the
        "status": "TRANSFORMING_COMPLETED",
        "created": "2016-09-20T19:48:17.000-05:00",
        "createdBy": "nryan",
-       "description": "Your scheduled transfer of http://129.114.97.92/picksumipsum.txt completed staging. You can access the raw file on iPlant Data Store at /home/nryan/picksumipsum.txt or via the API at https://public.agaveapi.co/files/v2/media/system/data.agaveapi.co//nryan/picksumipsum.txt."
+       "description": "Your scheduled transfer of http://129.114.97.92/picksumipsum.txt completed staging. You can access the raw file on iPlant Data Store at /home/nryan/picksumipsum.txt or via the API at https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co//nryan/picksumipsum.txt."
      }
    ]
 
