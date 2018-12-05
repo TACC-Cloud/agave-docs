@@ -68,31 +68,31 @@ You can kill a job with the following CLI command:
         },
         "_links" : {
           "self" : {
-            "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+            "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007"
           },
           "app" : {
-            "href" : "https://public.tenants.agaveapi.co/apps/v2/demo-pyplot-demo-advanced-0.1.0"
+            "href" : "https://agave.iplantc.org/apps/v2/demo-pyplot-demo-advanced-0.1.0"
           },
           "executionSystem" : {
-            "href" : "https://public.tenants.agaveapi.co/systems/v2/$PUBLIC_EXECUTION_SYSTEM"
+            "href" : "https://agave.iplantc.org/systems/v2/$PUBLIC_EXECUTION_SYSTEM"
           },
           "archiveData" : {
-            "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/listings"
+            "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/listings"
           },
           "owner" : {
-            "href" : "https://public.tenants.agaveapi.co/profiles/v2/$API_USERNAME"
+            "href" : "https://agave.iplantc.org/profiles/v2/$API_USERNAME"
           },
           "permissions" : {
-            "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/pems"
+            "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/pems"
           },
           "history" : {
-            "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/history"
+            "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/history"
           },
           "metadata" : {
-            "href" : "https://public.tenants.agaveapi.co/meta/v2/data/?q={"associationIds":"0001414144065563-5056a550b8-0001-007"}"
+            "href" : "https://agave.iplantc.org/meta/v2/data/?q={"associationIds":"0001414144065563-5056a550b8-0001-007"}"
           },
           "notifications" : {
-            "href" : "https://public.tenants.agaveapi.co/notifications/v2/?associatedUuid=0001414144065563-5056a550b8-0001-007"
+            "href" : "https://agave.iplantc.org/notifications/v2/?associatedUuid=0001414144065563-5056a550b8-0001-007"
           }
         }
         }
