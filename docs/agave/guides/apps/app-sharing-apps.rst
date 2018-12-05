@@ -494,25 +494,25 @@ To publish an app, make a PUT request on the app resource. In this example, we p
         ],
         "_links": {
           "self": {
-            "href": "https://public.agaveapi.co/apps/v2/wc-osg-1.00u1"
+            "href": "https://api.tacc.utexas.edu/apps/v2/wc-osg-1.00u1"
           },
           "executionSystem": {
-            "href": "https://public.agaveapi.co/systems/v2/condor.opensciencegrid.org"
+            "href": "https://api.tacc.utexas.edu/systems/v2/condor.opensciencegrid.org"
           },
           "storageSystem": {
-            "href": "https://public.agaveapi.co/systems/v2/public.storage.agave"
+            "href": "https://api.tacc.utexas.edu/systems/v2/public.storage.agave"
           },
           "history": {
-            "href": "https://public.agaveapi.co/apps/v2/wc-osg-1.00u1/history"
+            "href": "https://api.tacc.utexas.edu/apps/v2/wc-osg-1.00u1/history"
           },
           "metadata": {
-            "href": "https://public.agaveapi.co/meta/v2/data/?q=%7B%22associationIds%22%3A%228734854070765284890-242ac116-0001-005%22%7D"
+            "href": "https://api.tacc.utexas.edu/meta/v2/data/?q=%7B%22associationIds%22%3A%228734854070765284890-242ac116-0001-005%22%7D"
           },
           "owner": {
-            "href": "https://public.agaveapi.co/profiles/v2/nryan"
+            "href": "https://papi.tacc.utexas.edu/profiles/v2/nryan"
           },
           "permissions": {
-            "href": "https://public.agaveapi.co/apps/v2/wc-osg-1.00u1/pems"
+            "href": "https://api.tacc.utexas.edu/apps/v2/wc-osg-1.00u1/pems"
           }
         }
         }
