@@ -14,7 +14,7 @@ Agave uses :raw-html-m2r:`<a href="http://oauth.net/2" title="OAuth2" target="_b
 Creating a new client application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In order to interact with any of the Agave APIs, you will need to first get a set of API keys. You can get your API keys from the :raw-html-m2r:`<a href="http://agaveapi.co/live-docs/#!/clients/create_post_1" title="Clients API">Clients service</a>`. The example below shows how to get your API keys using both curl and the :raw-html-m2r:`<a href="http://agaveapi.co/agave-cli/" title="Agave CLI">Agave CLI</a>`.
+In order to interact with any of the Agave APIs, you will need to first get a set of API keys. You can get your API keys from the Clients service. The example below shows how to get your API keys using both curl and the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/tooling/command-line-interface.html" title="Agave CLI">Agave CLI</a>`.
 
 .. container:: foldable
 
@@ -211,13 +211,13 @@ Listing current subscriptions
         "tier":"Unlimited"
         "_links":{
            "api":{
-              "href":"https://public.tenants.agaveapi.co/files/v2/"
+              "href":"https://api.tacc.utexas.edu/files/v2/"
            },
            "client":{
-              "href":"https://public.tenants.agaveapi.co/clients/v2/systest_test_client"
+              "href":"https://api.tacc.utexas.edu/clients/v2/systest_test_client"
            },
            "self":{
-              "href":"https://public.tenants.agaveapi.co/clients/v2/systest_test_client/subscriptions/"
+              "href":"https://api.tacc.utexas.edu/clients/v2/systest_test_client/subscriptions/"
            }
         }
      },
