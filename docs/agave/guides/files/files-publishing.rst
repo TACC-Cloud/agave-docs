@@ -15,7 +15,7 @@ Notice two things. First, a username is inserted after the *download* path eleme
 
 The following sections give examples of publishing files and folders in the Agave Platform.
 
-See the :raw-html-m2r:`<a href="https://tacc.github.io/developer.tacc.cloud/docs/guides/postits/introduction.html">PostIts Guide</a>` for other ways to securely share your data with others.
+See the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/postits/introduction.html">PostIts Guide</a>` for other ways to securely share your data with others.
 
 Publishing individual files
 ---------------------------
@@ -173,7 +173,7 @@ Publishing an entire directory is identical to publishing a single file item. To
 
  ``https://papi.tacc.utexas.edu/files/v2/download/nryan/system/data.agaveapi.co/nryan/public``
 
-Remember that whenever you publish a folder, anything you put in that folder becomes publicly available. As with any cloud storage service, think before blindly copying data into your cloud storage. If you want to restrict the duration or frequency which your public data is accessed, you should see the :raw-html-m2r:`<a href="#https://tacc.github.io/developer.tacc.cloud/docs/guides/postits/introduction.html">PostIts Guide</a>` for other ways to securely share your data with others.
+Remember that whenever you publish a folder, anything you put in that folder becomes publicly available. As with any cloud storage service, think before blindly copying data into your cloud storage. If you want to restrict the duration or frequency which your public data is accessed, you should see the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/postits/introduction.html">PostIts Guide</a>` for other ways to securely share your data with others.
 
 Publishing considerations
 -------------------------
