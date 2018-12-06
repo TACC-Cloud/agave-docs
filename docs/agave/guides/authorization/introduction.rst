@@ -200,7 +200,7 @@ After the user accepts (or denies) your request, the Agave Authorization service
            </tr>
            <tr>
                <td>access_token </td>
-               <td>An access token that can be provided in subsequent calls, for example to <a href="https://api.tacc.utexas.edu/profiles/v2/me?pretty=true">Agave Profiles API</a>. </td>
+               <td>An access token that can be provided in subsequent calls, for example to Agave Profiles API. </td>
            </tr>
            <tr>
                <td>token_type </td>
