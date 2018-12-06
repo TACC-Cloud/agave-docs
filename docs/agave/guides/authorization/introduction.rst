@@ -462,7 +462,7 @@ The flow starts off with your application redirecting the user to the ``/authori
            </tr>
            <tr>
                <td>client_id</td>
-               <td><i>Required</i>. The application's client ID, obtained when the client application was registered with Agave (see <a href="../../documentation/user-guide/client-registration/">Client Registration</a>).</td>
+               <td><i>Required</i>. The application's client ID, obtained when the client application was registered with Agave (see <a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/clients/introduction.html#creating-a-new-client-application/">Client Registration</a>).</td>
            </tr>
            <tr>
                <td>redirect_uri</td>
