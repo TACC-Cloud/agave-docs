@@ -746,7 +746,7 @@ The response from the service will be similar to the following:
      }
    }
 
-Congratulations, you just added your first system. This storage system can now be used by the :raw-html-m2r:`<a title="File Management" href="#files">Files service</a>` to manage data, the Transfer service as a source or destination of data movement, the Apps service as a application repository, and the :raw-html-m2r:`<a title="Job Submission" href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/introduction.html">Jobs Service</a>` as both a staging and archiving destination.
+Congratulations, you just added your first system. This storage system can now be used by the :raw-html-m2r:`<a title="File Management" href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/files/introduction.html">Files service</a>` to manage data, the Transfer service as a source or destination of data movement, the Apps service as a application repository, and the :raw-html-m2r:`<a title="Job Submission" href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/introduction.html">Jobs Service</a>` as both a staging and archiving destination.
 
 Notice that the JSON returned from the Systems service is different than what was submitted. Several fields have been added, and several other have been removed. On line 3, the UUID of the system has been added. This is the same UUID that is used in notifications and metadata references. On line 5, the ``status`` value was added in and assigned a default value since we did not specify it. Ditto for the ``site`` attribute on line 8.
 
