@@ -9,7 +9,7 @@ Once you submit your job request, the job will be handed off to Agave's back end
 
 ..
 
-   :information_source: For the sake of brevity, we placed a detailed explanation of the job lifecycle in a separate, aptly title post, :raw-html-m2r:`<a href="the-job-lifecycle" title="The Job Lifecycle">The Job Lifecycle</a>`. There you will find detailed information about how, when, and why everything moves from place to place and how you can peek behind the curtains.
+   :information_source: For the sake of brevity, we placed a detailed explanation of the job lifecycle in a separate, aptly title post, :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/the-job-lifecycle.html" title="The Job Lifecycle">The Job Lifecycle</a>`. There you will find detailed information about how, when, and why everything moves from place to place and how you can peek behind the curtains.
 
 
 Polling
@@ -341,7 +341,7 @@ Webhooks are the alternative, preferred way for your application to monitor the 
 
 ..
 
-   :information_source: For more information about webhooks, events, and notifications in Agave, please see the :raw-html-m2r:`<a href="../notifications/introduction" title="Notifications Guide">Notifications</a>` and :raw-html-m2r:`<a href="../events/introduction" title="Events Guide">Events</a>` Guides.
+   :information_source: For more information about webhooks, events, and notifications in Agave, please see the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/notifications/introduction.html" title="Notifications Guide">Notifications</a>` and :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/events/introduction.html" title="Events Guide">Events</a>` Guides.
 
 
 The Jobs service provides several template variables for constructing dynamic URLs. Template variables can be included anywhere in your URL by surrounding the variable name in the following manner ``${VARIABLE_NAME}``. When an event of interest occurs, the variables will be resolved and the resulting URL called. Several example urls are given below.
