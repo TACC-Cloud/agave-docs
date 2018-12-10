@@ -20,7 +20,7 @@ Create a new notification subscription with the following CLI command:
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST \
           -H "Content-Type: application/json" \
           --data-binary '{"associatedUuid": "7554973644402463206-242ac114-0001-007", "event": "FINISHED", "url": "http://requestbin.agaveapi.co/zyiomxzy?path=${PATH}&system=>{SYSTEM}&event=${EVENT}" }' \
-          https://public.tenants.agaveapi.co/notifications/v2?pretty=true
+          https://api.tacc.utexas.edu/notifications/v2?pretty=true
 |
 
 .. container:: foldable
@@ -55,19 +55,19 @@ Create a new notification subscription with the following CLI command:
         },
         "_links": {
           "self": {
-            "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011"
+            "href": "https://api.tacc.utexas.edu/notifications/v2/7612526206168863206-242ac114-0001-011"
           },
           "history": {
-            "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011/history"
+            "href": "https://api.tacc.utexas.edu/notifications/v2/7612526206168863206-242ac114-0001-011/history"
           },
           "attempts": {
-            "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011/attempts"
+            "href": "https://api.tacc.utexas.edu/notifications/v2/7612526206168863206-242ac114-0001-011/attempts"
           },
           "owner": {
-            "href": "https://public.agaveapi.co/profiles/v2/nryan"
+            "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
           },
           "job": {
-            "href": "https://public.agaveapi.co/jobs/v2/7554973644402463206-242ac114-0001-007"
+            "href": "https://api.tacc.utexas.edu/jobs/v2/7554973644402463206-242ac114-0001-007"
           }
         }
         }
@@ -107,7 +107,7 @@ CLI command to update subscription, using the above JSON:
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST \
           -H "Content-Type: application/json" \
           -F "fileToUpload=@notification.json" \
-          https://public.tenants.agaveapi.co/notifications/v2/2699130208276770330-242ac114-0001-011
+          https://api.tacc.utexas.edu/notifications/v2/2699130208276770330-242ac114-0001-011
 |
 
 .. container:: foldable
@@ -142,19 +142,19 @@ CLI command to update subscription, using the above JSON:
         },
         "_links": {
           "self": {
-            "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011"
+            "href": "https://api.tacc.utexas.edu/notifications/v2/7612526206168863206-242ac114-0001-011"
           },
           "history": {
-            "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011/history"
+            "href": "https://api.tacc.utexas.edu/notifications/v2/7612526206168863206-242ac114-0001-011/history"
           },
           "attempts": {
-            "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011/attempts"
+            "href": "https://api.tacc.utexas.edu/notifications/v2/7612526206168863206-242ac114-0001-011/attempts"
           },
           "owner": {
-            "href": "https://public.agaveapi.co/profiles/v2/nryan"
+            "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
           },
           "job": {
-            "href": "https://public.agaveapi.co/jobs/v2/7554973644402463206-242ac114-0001-007"
+            "href": "https://api.tacc.utexas.edu/jobs/v2/7554973644402463206-242ac114-0001-007"
           }
         }
         }
@@ -182,7 +182,7 @@ List all notificaiton subscriptions with the following CLI command:
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-        https://public.tenants.agaveapi.co/notifications/v2/2699130208276770330-242ac114-0001-011
+        https://api.tacc.utexas.edu/notifications/v2/2699130208276770330-242ac114-0001-011
 |
 
 .. container:: foldable
@@ -202,13 +202,13 @@ List all notificaiton subscriptions with the following CLI command:
           "event": "*",
           "_links": {
             "self": {
-              "href": "https://public.agaveapi.co/notifications/v2/7612526206168863206-242ac114-0001-011"
+              "href": "https://api.tacc.utexas.edu/notifications/v2/7612526206168863206-242ac114-0001-011"
             },
             "profile": {
-              "href": "https://public.agaveapi.co/profiles/v2/nryan"
+              "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
             },
             "job": {
-              "href": "https://public.agaveapi.co/jobs/v2/7554973644402463206-242ac114-0001-007"
+              "href": "https://api.tacc.utexas.edu/jobs/v2/7554973644402463206-242ac114-0001-007"
             }
           }
         },
@@ -219,13 +219,13 @@ List all notificaiton subscriptions with the following CLI command:
           "event": "FINISHED",
           "_links": {
             "self": {
-              "href": "https://public.agaveapi.co/notifications/v2/7404907487080223206-242ac114-0001-011"
+              "href": "https://api.tacc.utexas.edu/notifications/v2/7404907487080223206-242ac114-0001-011"
             },
             "profile": {
-              "href": "https://public.agaveapi.co/profiles/v2/nryan"
+              "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
             },
             "job": {
-              "href": "https://public.agaveapi.co/jobs/v2/6904887394479903206-242ac114-0001-007"
+              "href": "https://api.tacc.utexas.edu/jobs/v2/6904887394479903206-242ac114-0001-007"
             }
           }
         },
@@ -236,13 +236,13 @@ List all notificaiton subscriptions with the following CLI command:
           "event": "FINISHED",
           "_links": {
             "self": {
-              "href": "https://public.agaveapi.co/notifications/v2/3676815741209931290-242ac114-0001-011"
+              "href": "https://api.tacc.utexas.edu/notifications/v2/3676815741209931290-242ac114-0001-011"
             },
             "profile": {
-              "href": "https://public.agaveapi.co/profiles/v2/nryan"
+              "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
             },
             "job": {
-              "href": "https://public.agaveapi.co/jobs/v2/3717016635100491290-242ac114-0001-007"
+              "href": "https://api.tacc.utexas.edu/jobs/v2/3717016635100491290-242ac114-0001-007"
             }
           }
         }
@@ -272,7 +272,7 @@ Unsubscribe from a notification subscription with the following CLI command:
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -X DELETE \
-            https://public.tenants.agaveapi.co/notifications/v2/2699130208276770330-242ac114-0001-011
+            https://api.tacc.utexas.edu/notifications/v2/2699130208276770330-242ac114-0001-011
 |
 
 

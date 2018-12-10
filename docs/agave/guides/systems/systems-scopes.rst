@@ -142,7 +142,7 @@ To publish a system and make it public, you make a PUT request on the system's u
             -H "Content-Type: application/json"
             -X PUT
             --data-binary '{"action":"publish"}'
-            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+            https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 
@@ -168,7 +168,7 @@ Unpublishing a system
             -H "Content-Type: application/json"
             -X PUT
             --data-binary '{"action":"unpublish"}'
-            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+            https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 
@@ -250,7 +250,7 @@ To set a system as the user's default, you make a PUT request on the system's ur
             -H "Content-Type: application/json"
             -X PUT
             --data-binary '{"action":"setDefault"}'
-            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+            https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 
@@ -276,7 +276,7 @@ Unsetting user default system
             -H "Content-Type: application/json"
             -X PUT
             --data-binary '{"action":"unsetDefault"}'
-            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+            https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 
@@ -306,7 +306,7 @@ Tenant administrators may wish to set default storage and execution systems for 
             -H "Content-Type: application/json"
             -X PUT
             --data-binary '{"action":"setGlobalDefault"}'
-            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+            https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 
@@ -333,7 +333,7 @@ To remove a system from being the global default, make the same request with the
             -H "Content-Type: application/json"
             -X PUT
             --data-binary '{"action":"unsetGlobalDefault"}'
-            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+            https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 

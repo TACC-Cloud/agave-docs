@@ -38,7 +38,7 @@ Create a new default monitor with the following CLI command:
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
             -H "Content-Type: application-json" \
             -X POST --data-binary '{"target": "storage.example.com"}' \
-            https://public.agaveapi.co/monitors/v2/
+            https://api.tacc.utexas.edu/monitors/v2/
 |
 
 .. container:: foldable
@@ -65,19 +65,19 @@ Create a new default monitor with the following CLI command:
             "updateSystemStatus": false,
             "_links": {
                 "checks": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
                 },
                 "notifications": {
-                    "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
+                    "href": "https://api.tacc.utexas.edu/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
                 },
                 "owner": {
-                    "href": "https://public.agaveapi.co/profiles/v2/nryan"
+                    "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
                 },
                 "self": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014"
                 },
                 "system": {
-                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                    "href": "https://api.tacc.utexas.edu/systems/v2/storage.example.com"
                 }
             }
         }
@@ -114,7 +114,7 @@ Create a monitor with a custom frequency with the following CLI command:
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
             -H "Content-Type: application-json" \
             -X POST --data-binary '{"target": "storage.example.com","frequency":15}' \
-            https://public.agaveapi.co/monitors/v2/
+            https://api.tacc.utexas.edu/monitors/v2/
 |
 
 .. container:: foldable
@@ -129,19 +129,19 @@ Create a monitor with a custom frequency with the following CLI command:
         {
             "_links": {
                 "checks": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
                 },
                 "notifications": {
-                    "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
+                    "href": "https://api.tacc.utexas.edu/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
                 },
                 "owner": {
-                    "href": "https://public.agaveapi.co/profiles/v2/nryan"
+                    "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
                 },
                 "self": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014"
                 },
                 "system": {
-                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                    "href": "https://api.tacc.utexas.edu/systems/v2/storage.example.com"
                 }
             },
             "active": true,
@@ -199,7 +199,7 @@ Create a monitor that updates system status on change with the following CLI com
             -H "Content-Type: application-json" \
             -X POST \
             --data-binary '{"target": "storage.example.com","frequency":15,"updateSystemStatus"=true}' \
-            https://public.agaveapi.co/monitors/v2/
+            https://api.tacc.utexas.edu/monitors/v2/
 | 
 
 .. container:: foldable
@@ -226,19 +226,19 @@ Create a monitor that updates system status on change with the following CLI com
             "updateSystemStatus": true,
             "_links": {
                 "checks": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
                 },
                 "notifications": {
-                    "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
+                    "href": "https://api.tacc.utexas.edu/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
                 },
                 "owner": {
-                    "href": "https://public.agaveapi.co/profiles/v2/nryan"
+                    "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
                 },
                 "self": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014"
                 },
                 "system": {
-                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                    "href": "https://api.tacc.utexas.edu/systems/v2/storage.example.com"
                 }
             }
         }
@@ -278,7 +278,7 @@ Update an existing monitor with the following CLI command:
             -H "Content-Type: application-json" \
             -X POST \
             --data-binary '{"target": "storage.example.com","frequency":5,"updateSystemStatus"=false}' \
-            https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014
+            https://api.tacc.utexas.edu/monitors/v2/5024717285821443610-242ac11f-0001-014
 | 
 
 .. container:: foldable
@@ -305,19 +305,19 @@ Update an existing monitor with the following CLI command:
             "updateSystemStatus": false,
             "_links": {
                 "checks": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
                 },
                 "notifications": {
-                    "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
+                    "href": "https://api.tacc.utexas.edu/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
                 },
                 "owner": {
-                    "href": "https://public.agaveapi.co/profiles/v2/nryan"
+                    "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
                 },
                 "self": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014"
                 },
                 "system": {
-                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                    "href": "https://api.tacc.utexas.edu/systems/v2/storage.example.com"
                 }
             }
         }
@@ -352,7 +352,7 @@ Disable an existing monitor with the following CLI command:
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
             -H "Content-Type: application/json"
             -X PUT --data-binary '{"action": "disable"}'
-            https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014
+            https://api.tacc.utexas.edu/monitors/v2/5024717285821443610-242ac11f-0001-014
 |
 
 .. container:: foldable
@@ -379,19 +379,19 @@ Disable an existing monitor with the following CLI command:
             "updateSystemStatus": false,
             "_links": {
                 "checks": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
                 },
                 "notifications": {
-                    "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
+                    "href": "https://api.tacc.utexas.edu/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
                 },
                 "owner": {
-                    "href": "https://public.agaveapi.co/profiles/v2/nryan"
+                    "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
                 },
                 "self": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014"
                 },
                 "system": {
-                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                    "href": "https://api.tacc.utexas.edu/systems/v2/storage.example.com"
                 }
             }
         }
@@ -426,7 +426,7 @@ Enable an existing monitor with the following CLI command:
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
             -H "Content-Type: application/json"
             -X PUT --data-binary '{"action": "enable"}'
-            https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014
+            https://api.tacc.utexas.edu/monitors/v2/5024717285821443610-242ac11f-0001-014
 |
 
 .. container:: foldable
@@ -453,19 +453,19 @@ Enable an existing monitor with the following CLI command:
             "updateSystemStatus": false,
             "_links": {
                 "checks": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014/checks"
                 },
                 "notifications": {
-                    "href": "https://public.agaveapi.co/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
+                    "href": "https://api.tacc.utexas.edu/notifications/v2/?associatedUuid=5024717285821443610-242ac11f-0001-014"
                 },
                 "owner": {
-                    "href": "https://public.agaveapi.co/profiles/v2/nryan"
+                    "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
                 },
                 "self": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014"
                 },
                 "system": {
-                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                    "href": "https://api.tacc.utexas.edu/systems/v2/storage.example.com"
                 }
             }
         }
@@ -499,7 +499,7 @@ Deleting an existing monitor with the following CLI command:
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
             -H "Content-Type: application/json"
             -X DELETE
-            https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014
+            https://api.tacc.utexas.edu/monitors/v2/5024717285821443610-242ac11f-0001-014
 |
 
    An empty response will be returned
@@ -530,7 +530,7 @@ Listing past monitor checks with the following CLI command:
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
-            'https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014/checks?limit=1'
+            'https://api.tacc.utexas.edu/monitors/v2/5024717285821443610-242ac11f-0001-014/checks?limit=1'
 |
 
 .. container:: foldable
@@ -551,13 +551,13 @@ Listing past monitor checks with the following CLI command:
                 "type": "STORAGE",
                 "_links": {
                     "monitor": {
-                        "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                        "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014"
                     },
                     "self": {
-                        "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks/4035070921477123610-242ac11f-0001-015"
+                        "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014/checks/4035070921477123610-242ac11f-0001-015"
                     },
                     "system": {
-                        "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                        "href": "https://api.tacc.utexas.edu/systems/v2/storage.example.com"
                     }
                 }
             }
@@ -598,7 +598,7 @@ Searching check history for a monitor with the following CLI command:
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN"   
-            'https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014/checks?limit=1&result.eq=PASSED'
+            'https://api.tacc.utexas.edu/monitors/v2/5024717285821443610-242ac11f-0001-014/checks?limit=1&result.eq=PASSED'
 |
 
 .. container:: foldable
@@ -619,13 +619,13 @@ Searching check history for a monitor with the following CLI command:
                 "type": "STORAGE",
                 "_links": {
                     "monitor": {
-                        "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                        "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014"
                     },
                     "self": {
-                        "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks/4035070921477123610-242ac11f-0001-015"
+                        "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014/checks/4035070921477123610-242ac11f-0001-015"
                     },
                     "system": {
-                        "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                        "href": "https://api.tacc.utexas.edu/systems/v2/storage.example.com"
                     }
                 }
             }
@@ -662,7 +662,7 @@ Force a monitor check to run with the following CLI command:
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
             -H "Content-Type: application-json" \
             -X POST --data-binary '{}' \
-            https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014/checks
+            https://api.tacc.utexas.edu/monitors/v2/5024717285821443610-242ac11f-0001-014/checks
 |
 
 .. container:: foldable
@@ -682,13 +682,13 @@ Force a monitor check to run with the following CLI command:
             "type": "STORAGE",
             "_links": {
                 "monitor": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014"
                 },
                 "self": {
-                    "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/checks/5314048891498786330-242ac11f-0001-015"
+                    "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014/checks/5314048891498786330-242ac11f-0001-015"
                 },
                 "system": {
-                    "href": "https://public.agaveapi.co/systems/v2/storage.example.com"
+                    "href": "https://api.tacc.utexas.edu/systems/v2/storage.example.com"
                 }
             }
         }
@@ -733,7 +733,7 @@ List the change history of a monitor with the following CLI command:
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
             -H "Content-Type: application-json" \
             -X POST --data-binary '{}' \
-            https://public.agaveapi.co/monitors/v2/5024717285821443610-242ac11f-0001-014/history
+            https://api.tacc.utexas.edu/monitors/v2/5024717285821443610-242ac11f-0001-014/history
 |
 
 .. container:: foldable
@@ -754,10 +754,10 @@ List the change history of a monitor with the following CLI command:
             "id": "5705275956568068582-242ac11f-0001-035",
             "_links": {
                 "self": {
-                "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014/history/5705275956568068582-242ac11f-0001-035"
+                "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014/history/5705275956568068582-242ac11f-0001-035"
                 },
                 "monitor_event": {
-                "href": "https://public.agaveapi.co/monitor/v2/5024717285821443610-242ac11f-0001-014"
+                "href": "https://api.tacc.utexas.edu/monitor/v2/5024717285821443610-242ac11f-0001-014"
                 }
             }
             }
