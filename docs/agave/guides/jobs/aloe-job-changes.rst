@@ -488,13 +488,9 @@ The following **DELETE** actions are supported in the new Jobs service:
 Job Callbacks
 -------------
 
-Jobs running on execution systems can no longer use the *trigger* API to change the status of a job in the Jobs service.  To avoid confusion, trigger requests that specify any of the job statuses listed in `Job States`_ will be ignored.  For example, a request to the following URL will be ignored because it specifies a status of RUNNING:
+The little-used *trigger* API has been deprecated.  In Agave, jobs running on execution systems could use this API to change their state on the Jobs server and trigger notifications. This API has been removed due to changes in job lifecycle management, concerns about security and plans for a standalone event service. 
 
-::
-
-   https://agave.iplantc.org/jobs/v2/trigger/job/f916db1e-f4ba-4700-b827-453299c9dd3a-007/token/475c599e-f7ce-434d-a572-7ac2d3ba89f7/status/RUNNING
-   
-The Job service continues to automatically insert two trigger requests into every user-supplied wrapper script that it executes.  In the legacy system, these triggers sent the RUNNING and CLEANING_UP status events at the appropriate points during job execution.  In the new system, the new USER_RUNNING and USER_CLEANING_UP events, respectively, are substituted at the same execution points.
+The Aloe job lifecycle is defined by a state machine that only allows specific state transitions during job execution.  External events, such as cancel requests, can affect job state, but no external input can control the state of a job.  Trigger calls in Agave are unauthenticated, which increases the vulnerability of the Jobs service.  Utimately, we would like to move to an independent event service to provide flexible asynchronous communication to all applications.
 
 UUIDs
 -----
