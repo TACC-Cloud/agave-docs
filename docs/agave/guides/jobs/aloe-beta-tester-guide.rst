@@ -37,7 +37,7 @@ You will need to generate sandbox keys in order to authenticate to the Aloe Jobs
 
 This will prompt you for your password. 
 
-2.	Go to the WSO2 store for your tenant, which is just your tenant’s base URL + /store in your browser (for example, https://agave.iplantc.org/store). Login with the same credentials you just used to create the client.
+2.	Go to the WSO2 store for your tenant, which is just your tenant’s base URL + /store in your browser (for example, Cyverse would look like https://agave.iplantc.org/store). Login with the same credentials you just used to create the client.
  
 3.	Select the “My Subscriptions” tab and find the newly created client in the drop down under “Applications With Subscriptions”.
 
