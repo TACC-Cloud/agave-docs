@@ -3,14 +3,15 @@ Aloe Beta Tester Guide
 
 The purpose of the Aloe Beta is to test the new jobs service in a production-like Agave environment. The Aloe Beta test environment is a snapshot of the production Agave database and a special way to generate credentials to access the Beta environment. This document helps users configure their Aloe Beta test environment.
 
-The documentation on the new Aloe Job service itself can be found :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/introduction.html" title="Jobs Doc">here</a>`.
+The documentation on the new Aloe Job service itself can be found `here <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/introduction.html>`_.
+
 
 .. contents:: Table of Contents
 
 Getting Started
 ---------------
 
-The Aloe Beta relies on the :raw-html-m2r:`<a href="https://docs.wso2.com/display/AM170/Maintaining+Separate+Production+and+Sandbox+Gateways" title="WSO2 Doc">sandbox key facility of WSO2</a>`, which allows existing users to target the Beta environment with their existing credentials. 
+The Aloe Beta relies on the `sandbox key facility of WSO2 <https://docs.wso2.com/display/AM170/Maintaining+Separate+Production+and+Sandbox+Gateways>`_, which allows existing users to target the Beta environment with their existing credentials. 
 
 You will need to generate sandbox keys in order to authenticate to the Aloe Jobs service. 
 
@@ -67,7 +68,7 @@ Getting Help and Providing Feedback
 
 Reporting problems: <Information about the email here, include the link and where else they could find the link>. Please make sure you send a separate email per issue. 
 
-Get Support: You can head over to the TACC-Cloud slack and talk to us on Aloe-Beta channel. If Slack isn’t an option, you can either email CICsupport@tacc.utexas.edu, or create a ticket in the :raw-html-m2r:`<a href="https://portal.tacc.utexas.edu/home" title="Portal">TACC portal</a>` if you have a TACC account. If making a ticket through the TACC portal, choose “Cloud and Interactive Computing (Agave API)” as the System/Resource. 
+Get Support: You can head over to the TACC-Cloud slack and talk to us on Aloe-Beta channel. If Slack isn’t an option, you can either email CICsupport@tacc.utexas.edu, or create a ticket in the `TACC portal <https://portal.tacc.utexas.edu/home>`_ if you have a TACC account. If making a ticket through the TACC portal, choose “Cloud and Interactive Computing (Agave API)” as the System/Resource. 
 
 
 Give feedback: Want to just communicate general ideas/feelings/questions? You can email CICsupport@tacc.utexas.edu, or connect with us on the TACC-Cloud slack where we have a designated Aloe-Beta channel. 
