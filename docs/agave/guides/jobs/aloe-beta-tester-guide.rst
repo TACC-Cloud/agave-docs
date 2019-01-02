@@ -66,7 +66,9 @@ It is also important to verify your outputs after your jobs have completed. Plea
 Getting Help and Providing Feedback
 -----------------------------------
 
-Reporting problems: <Information about the email here, include the link and where else they could find the link>. Please make sure you send a separate email per issue. 
+Reporting problems: Email us using `this link <cic@consult.tacc.utexas.edu>`_.. Please make sure you send a separate email per issue.
+
+
 
 Get Support: You can head over to the TACC-Cloud slack and talk to us on Aloe-Beta channel. If Slack isn’t an option, you can either email CICsupport@tacc.utexas.edu, or create a ticket in the `TACC portal <https://portal.tacc.utexas.edu/home>`_ if you have a TACC account. If making a ticket through the TACC portal, choose “Cloud and Interactive Computing (Agave API)” as the System/Resource. 
 
