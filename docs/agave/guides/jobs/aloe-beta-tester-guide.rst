@@ -58,7 +58,8 @@ Before you start running test jobs, there are a couple of important things to no
 
 1.	The Aloe Beta test database is NOT permanent. Any apps and systems defined and published in this environment will disappear at the end of the beta program. In addition, the history of jobs that you ran will also be discarded at the end of the Beta program. On the other hand, job output archived to your preexisting storage systems will remain. Basically, everything saved to the Beta database will be lost at the conclusion of the Beta program. 
 
-2.	There is a “snapshot” date for the Aloe Beta database. The database will reflect your tenant’s production database up to the snapshot date. Any applications or systems defined after this date (01/06/2019), or any job histories created after this date, will not be reflected in the Aloe Beta environment. 
+2.	There is a “snapshot” date for the Aloe Beta database (01/06/2019). The database will reflect your tenant’s production database up to the snapshot date. Any applications or systems defined after this date, or any job histories created after this date, will not be reflected in the Aloe Beta environment. 
+
 
 
 Running Jobs
