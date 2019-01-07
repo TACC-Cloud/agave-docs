@@ -61,6 +61,7 @@ Before you start running test jobs, there are a couple of important things to no
 2.	There is a “snapshot” date for the Aloe Beta database (01/06/2019). The database will reflect your tenant’s production database up to the snapshot date. Any applications or systems defined after this date, or any job histories created after this date, will not be reflected in the Aloe Beta environment. 
 
 
+
 Running Jobs
 ------------
 
