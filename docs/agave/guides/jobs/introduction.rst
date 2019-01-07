@@ -17,4 +17,4 @@ The following links discuss details of the new Jobs service:
 
 `Migration Guide <aloe-job-migration.html>`_
 
-`Aloe Beta Tester Guide <aloe-beta-tester-guide.rst>`_
+`Aloe Beta Tester Guide <aloe-beta-tester-guide.html>`_
