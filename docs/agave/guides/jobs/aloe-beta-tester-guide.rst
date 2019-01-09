@@ -67,16 +67,15 @@ Getting Help and Providing Feedback
 
 *Give Feedback*: Want to just communicate general ideas/feelings/questions? You can email CICsupport@tacc.utexas.edu, or connect with us on the TACC-Cloud slack where we have a designated Aloe-Beta channel. 
 
+`Click Here to Join the TACC-Cloud Slack <https://join.slack.com/t/tacc-cloud/shared_invite/enQtNTIxMDY2NjUxNjIzLTQwMThkZGI2NWY3NDY2MGM2ODEzZTU5NmE2OWNkYzczOTU0NTNjZDJiNTNmMGZkODc4ZTkyNzQwY2U2M2M2OWQ>`_
+
+
 Known Limitations
 -----------------
 
 1. The new jobs service currently executes forked jobs and Slurm jobs on HPC systems.  Support for other schedulers, such as PBS, Torque and LFS, will be introduced sometime after the Beta program begins. 
 
 
-
----
-
-`Click Here to Join the TACC-Cloud Slack <https://join.slack.com/t/tacc-cloud/shared_invite/enQtNTIxMDY2NjUxNjIzLTQwMThkZGI2NWY3NDY2MGM2ODEzZTU5NmE2OWNkYzczOTU0NTNjZDJiNTNmMGZkODc4ZTkyNzQwY2U2M2M2OWQ>`_
 
 
 
