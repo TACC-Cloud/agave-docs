@@ -15,7 +15,7 @@ The documentation on the new Aloe Job service itself can be found `here <https:/
 Getting Started
 ---------------
 
-The Aloe Beta relies on the `sandbox key facility of WSO2 <https://docs.wso2.com/display/AM170/Maintaining+Separate+Production+and+Sandbox+Gateways>`_, which allows users to target the Beta environment with their existing credentials. You will need to generate sandbox keys in order to authenticate to the Aloe Jobs service. 
+The Aloe Beta relies on the `sandbox key facility of WSO2 <https://docs.wso2.com/display/AM170/Maintaining+Separate+Production+and+Sandbox+Gateways>`_, which allows users to target the Beta environment with their existing credentials. You will need to generate sandbox keys in order to authenticate to the Aloe Jobs service.  Here is the procedure: 
 
 1.	Using your tenant’s production URL, create a client for the Aloe Beta using the command below.  Replace *<username>* with your username in double quotes; replace *<base>* with your tenant's base URL. For example, the Cyverse base URL is https://agave.iplantc.org and the DesignSafe base URL is https://agave.designsafe-ci.org. The command will prompt you for your password. 
  
