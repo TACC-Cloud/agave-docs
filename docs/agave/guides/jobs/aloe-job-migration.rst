@@ -27,6 +27,11 @@ In addition to running jobs, all the other REST calls supported under the legacy
 
 A more advanced way to test job execution and the other Jobs APIs is to use the `Agave Command Line Interface (CLI) <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/tooling/command-line-interface.html>`_.  The CLI implements a layer of software between the user and the actual HTTP requests made to the Jobs service.  This layer adds its own conventions and requirements, which can sometimes obscure the real source of problems.  For users that rely on the CLI, however, it's important to test all the CLI calls they normally use. 
 
+Library Migration
+-----------------
+
+Some applications are built upon libraries such as the `Agave CLI <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/tooling/command-line-interface.html>`_ or `agavepy <https://agavepy.readthedocs.io/en/latest/index.html>`_.  Since these libraries directly interface with the Jobs service, they may need to be modified to accommodate changes to the service.
+
 Workflow Migration
 ------------------
 
