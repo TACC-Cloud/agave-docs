@@ -73,8 +73,9 @@ Getting Help and Providing Feedback
 Known Limitations
 -----------------
 
-1. The new jobs service currently executes forked jobs and Slurm jobs on HPC systems.  Support for other schedulers, such as PBS, Torque and LFS, will be introduced sometime after the Beta program begins. 
+1. The new jobs service currently executes forked jobs and Slurm jobs on HPC systems. Support for other schedulers, such as PBS, Torque and LFS, will be introduced sometime after the Beta program begins.
 
+2. The Profiles endpoint is not available in the Beta test environment due to the difficulty in migrating the production data.
 
 
 
