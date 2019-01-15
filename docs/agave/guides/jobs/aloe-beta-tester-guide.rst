@@ -61,6 +61,9 @@ Getting Help and Providing Feedback
 
 *Reporting Problems*: Email us using `this link <mailto:cic@consult.tacc.utexas.edu?cc=cicsupport@tacc.utexas.edu&Subject=Aloe%20Bug%20Report:%20(Quick%20Description)&body=Created%20Via%20Email%0d%0d-------%0d%0dName:%0d%0d%0dTenant:%0d%0d%0dTenant%20Username:%0d%0d%0dIssue%20Description:%0d%0d%0dSteps%20to%20Reproduce:%0d%0d%0dActual%20Result:%0d%0d%0dExpected%20Result:%0d%0d%0dOther%20Information:>`_. Fill out the subject line and the template provided. Please make sure you send a separate email per issue.
 
+`Current List of Known Bugs and Issues <https://docs.google.com/spreadsheets/d/1iG9K9dDjHg-J1oHMKOtvoaX5fUyNX2HBxj-ovxKfbY8/edit?usp=sharing>`_
+
+
 
 *Get Support*: You can head over to the TACC-Cloud slack and talk to us on Aloe-Beta channel. If Slack isn’t an option, you can either email CICsupport@tacc.utexas.edu, or create a ticket in the `TACC portal <https://portal.tacc.utexas.edu/home>`_ if you have a TACC account. If making a ticket through the TACC portal, choose “Cloud and Interactive Computing (Agave API)” as the System/Resource. 
 
@@ -70,13 +73,14 @@ Getting Help and Providing Feedback
 Known Limitations
 -----------------
 
-1. The new jobs service currently executes forked jobs and Slurm jobs on HPC systems.  Support for other schedulers, such as PBS, Torque and LFS, will be introduced sometime after the Beta program begins.
+
+1. The new jobs service currently executes forked jobs and Slurm jobs on HPC systems. Support for other schedulers, such as PBS, Torque and LFS, will be introduced sometime after the Beta program begins.
 
 2. The Profiles endpoint is not available in the Beta test environment due to the difficulty in migrating the production data.
 
 
-
 ---
+
 
 Slack: <Will insert a 30 day join link>
 
