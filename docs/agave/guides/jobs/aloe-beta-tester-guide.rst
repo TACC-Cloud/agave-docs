@@ -1,6 +1,5 @@
 .. role:: raw-html-m2r(raw)
    :format: html
-**UNDER CONSTRUCTION**
 
 Aloe Beta Tester Guide
 ======================
@@ -81,8 +80,7 @@ Known Limitations
 
 ---
 
-
-Slack: <Will insert a 30 day join link>
+`Click Here to Join TACC-Cloud Slack <https://join.slack.com/t/tacc-cloud/shared_invite/enQtNTIxMDY2NjUxNjIzLTQwMThkZGI2NWY3NDY2MGM2ODEzZTU5NmE2OWNkYzczOTU0NTNjZDJiNTNmMGZkODc4ZTkyNzQwY2U2M2M2OWQ>`_
 
 
 
