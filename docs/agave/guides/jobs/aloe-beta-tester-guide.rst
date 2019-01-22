@@ -1,5 +1,12 @@
 .. role:: raw-html-m2r(raw)
    :format: html
+   
+.. raw:: html
+
+    <style> .red {color:red} </style>
+
+.. role:: red
+
 
 Aloe Beta Tester Guide
 ======================
@@ -73,7 +80,7 @@ Known Limitations
 -----------------
 
 
-1. The new jobs service currently executes forked jobs and Slurm jobs on HPC systems. Support for other schedulers, such as PBS, Torque and LFS, will be introduced sometime after the Beta program begins.
+1. The new jobs service currently executes forked jobs and Slurm jobs on HPC systems. Support for other schedulers, such as PBS, Torque and LFS, will be introduced sometime after the Beta program begins. :red:`Condor, PBS, LFS, Torque, LoadLeveler, and SGE/GridEngine available since version 0.14.`
 
 2. The Profiles endpoint is not available in the Beta test environment due to the difficulty in migrating the production data.
 
