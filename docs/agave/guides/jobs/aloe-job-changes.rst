@@ -335,6 +335,17 @@ If present on a job submission request, the notification array contains objects 
 |                      |            | ${JOB_ERROR}.                 +
 +----------------------+------------+-------------------------------+
 
+Submission Request Gotchas
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The differences between the new job submission request and the legacy request are mostly due to stricter enforcement of parameter names and types.  Parameters marked as deprecated in Agave have been removed from Aloe.  Also, Aloe consistently enforces parameter types so that user intent is clear.  Here are some changes that cause job requests that passed validation in Agave to be flagged in Aloe: 
+
+* executionSystem - was ignored, now disallowed
+* archivePath - required when *archive* is true (can be empty string)
+* memoryPerNode - a string with optional unit designation in suffix
+* parameter - deprecated, use *parameters* instead
+* parameters fields - must conform to types defined in application 
+
 
 Job Lifecycle
 ^^^^^^^^^^^^^
