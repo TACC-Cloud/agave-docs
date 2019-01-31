@@ -346,6 +346,142 @@ The differences between the new job submission request and the legacy request ar
 * parameter - deprecated, use *parameters* instead
 * parameters fields - must conform to types defined in application 
 
+Submission Response
+^^^^^^^^^^^^^^^^^^^
+
+A success response from a job submission request means that the Jobs Service accepts responsibility for the request and won't lose it.  The request, however, has not yet been entered into the database, so it cannot be queried, cancelled or acted upon in any way.  When the job is entered into the database, its status is changed from ACCEPTED to PENDING.
+
+The payload of the submission result object is described in the table below.  The response field types and formats differ from those specified above for the Job model because, though related, the two data structures serve different purposes.
+
+The most notable difference between the model and response is that id field in the model is a sequence number, *but the id field in the response is the UUID of the job*.  This difference reflects the legacy usage convention and is supported to make migration to the new service easier.
+
+All times are strings in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ date/time format. All numbers are integers unless otherwise noted.  Fields marked with an asterisk (*) indicate they are assigned valid values in the response; the other fields have not been processed yet and display their default or uninitialized values. 
+
++---------------------+-----------+-------------------------------------+
+| *Response Field*    |*JSON Type*| *Description*                       |
++=====================+===========+=====================================+
+| id*                 | string    | Unique job id (equals UUID in model)|
++---------------------+-----------+-------------------------------------+
+| name*               | string    | Human readable name for this job    |
++---------------------+-----------+-------------------------------------+
+| tenantId*           | string    | Current user's tenant ID            |
++---------------------+-----------+-------------------------------------+
+| tenantQueue*        | string    | Tenant queue to which job was       |
+|                     |           | assigned                            |
++---------------------+-----------+-------------------------------------+
+| status*             | string    | Current state of job, see           |
+|                     |           | `Job States`_ for details           |
++---------------------+-----------+-------------------------------------+
+| lastStatusMessage*  | string    | Last message logged for this job    |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| accepted*           | string    | Time job was accepted               |
++---------------------+-----------+-------------------------------------+
+| created             | string    | Time job was recorded in database   |
++---------------------+-----------+-------------------------------------+
+| ended               | string    | Time job processing completed       |
++---------------------+-----------+-------------------------------------+
+| lastUpdated*        | string    | Time job record was last updated    |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| owner*              | string    | User who submitted job              |
++---------------------+-----------+-------------------------------------+
+| roles*              | string    | Roles assigned by authentication    |
+|                     |           | server to owner (comma-separated)   |
++---------------------+-----------+-------------------------------------+
+| systemId            | string    | Execution system ID on which this   |
+|                     |           | job runs (tenant-unique)            |
++---------------------+-----------+-------------------------------------+
+| appId*              | string    | Fully qualified application name    |
+|                     |           | that will be run by this job        |
++---------------------+-----------+-------------------------------------+
+| appUuid*            | string    | Unique application ID               |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| workPath            | string    | Temporary work directory            |
++---------------------+-----------+-------------------------------------+
+| archive*            | boolean   | Whether or not to archive output    |
++---------------------+-----------+-------------------------------------+
+| archivePath*        | string    | Archive location on archive system  |
++---------------------+-----------+-------------------------------------+
+| archiveSystem*      | string    | Storage system ID to which this job |
+|                     |           | archives (tenant-unique)            |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| nodeCount           | number    | Number of nodes requested by job    |
++---------------------+-----------+-------------------------------------+
+| processorsPerNode   | number    | Number of processors per node       |
++---------------------+-----------+-------------------------------------+
+| memoryPerNode       | number    | GB of memory per node (decimal)     |
++---------------------+-----------+-------------------------------------+
+| maxHours            | number    | Maximum hours for job to run        |
+|                     |           | (decimal)                           |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| inputs*             | object    | JSON encoded list of inputs         |
++---------------------+-----------+-------------------------------------+
+| parameters*         | object    | JSON encoded list of parameters     |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| remoteJobId	      | string    | Job or process ID of the job on the |
+|                     |           | remote (execution) system           |
++---------------------+-----------+-------------------------------------+
+| schedulerJobId      | string    | Optional ID given by the remote     |
+|                     |           | scheduler                           |
++---------------------+-----------+-------------------------------------+
+| remoteQueue         | string    | Queue for job on remote system      |
++---------------------+-----------+-------------------------------------+
+| remoteSubmitted     | string    | Time job was placed on remote queue |
++---------------------+-----------+-------------------------------------+
+| remoteStarted       | string    | Time job started running on remote  |
+|                     |           | system                              |
++---------------------+-----------+-------------------------------------+
+| remoteEnded         | string    | Time job finished running on remote |
+|                     |           | system                              |
++---------------------+-----------+-------------------------------------+
+| remoteOutcome       | string    | Best approximation of remote job's  |
+|                     |           | outcome:                            |
+|                     |           |                                     |
+|                     |           | FINISHED,                           |
+|                     |           | FAILED,                             |
+|                     |           | FAILED_SKIP_ARCHIVE                 |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| submitRetries       | number    | Number of attempts to submit job    |
+|                     |           | to execution system                 |
++---------------------+-----------+-------------------------------------+
+| remoteStatusChecks  | number    | Number of successful times the      |
+|                     |           | remote system was queried for job   |
+|                     |           | status                              |
++---------------------+-----------+-------------------------------------+
+| failedStatusChecks  | number    | Number of failed times the remote   |
+|                     |           | system was queried for job status   |
++---------------------+-----------+-------------------------------------+
+| lastStatusCheck     | string    | Last time a status check was        |
+|                     |           | attempted                           |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| blockedCount        | number    | Number of times a job has           |
+|                     |           | transitioned to BLOCKED status      |
++---------------------+-----------+-------------------------------------+
+| visible             | boolean   | User visibility of this job record  |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| _links*             | object    | links to resources related to job,  |
+|                     |           | some of which may not exist yet     |
++---------------------+-----------+-------------------------------------+
+
+
+
 
 Job Lifecycle
 ^^^^^^^^^^^^^
