@@ -213,8 +213,8 @@ Content-Type
 
 Job submission requests are HTTP POST requests that must specify a *Content-Type* header of *application/json*. 
 
-Submission Parameters
-^^^^^^^^^^^^^^^^^^^^^
+Submission Request Parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following table lists all parameters that may be specified in a job submission request.  The parameters are transmitted as a JSON object in the HTTP POST payload.  The types are `JSON schema types <https://json-schema.org/>`_; the number following the *string* type indicates the maximum allowed string length.
 
@@ -349,13 +349,13 @@ The differences between the new job submission request and the legacy request ar
 Submission Response
 ^^^^^^^^^^^^^^^^^^^
 
-A success response from a job submission request means that the Jobs Service accepts responsibility for the request and won't lose it.  The request, however, has not yet been entered into the database, so it cannot be queried, cancelled or acted upon in any way.  When the job is entered into the database, its status is changed from ACCEPTED to PENDING.
+A success response from a job submission request means that the Jobs Service accepts responsibility for the request and won't lose it.  The request, however, has not yet been entered into the database, so it cannot be queried, cancelled or acted upon in any way.  When the job is entered into the database, its status changes from ACCEPTED to PENDING.
 
-The payload of the submission result object is described in the table below.  The response field types and formats differ from those specified above for the Job model because, though related, the two data structures serve different purposes.
+The payload of the submission result object is described in the table below.  The response fields, their types and their formats differ from those specified above for the Job model.  Though related, the two data structures serve distinct purposes.
 
-The most notable difference between the model and response is that id field in the model is a sequence number, *but the id field in the response is the UUID of the job*.  This difference reflects the legacy usage convention and is supported to make migration to the new service easier.
+The most notable difference between the model and response data structures is that **id** field in the model is a sequence number, *but in the response it's the UUID of the job*.  This difference maintains the legacy usage convention to ease migration to the new service.
 
-All times are strings in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ date/time format. All numbers are integers unless otherwise noted.  Fields marked with an asterisk (*) indicate they are assigned valid values in the response; the other fields have not been processed yet and display their default or uninitialized values. 
+All timestamps are strings in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ date/time format. All numbers are integers unless otherwise noted.  Fields marked with an asterisk (*) indicate they are assigned valid values in the response; the other fields have not been processed yet and display their default or uninitialized values. 
 
 +---------------------+-----------+-------------------------------------+
 | *Response Field*    |*JSON Type*| *Description*                       |
@@ -476,8 +476,8 @@ All times are strings in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ da
 +---------------------+-----------+-------------------------------------+
 |                     |           |                                     |
 +---------------------+-----------+-------------------------------------+
-| _links*             | object    | links to resources related to job,  |
-|                     |           | some of which may not exist yet     |
+| _links*             | object    | links to resources related to the   |
+|                     |           | job, some of which may not exist yet|
 +---------------------+-----------+-------------------------------------+
 
 
