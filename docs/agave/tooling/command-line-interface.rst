@@ -9,6 +9,6 @@ The Agave command-line interface (CLI) is an complete interface to the Agave RES
 
 .. code-block:: shell
 
-   git clone https://bitbucket.org/agaveapi/cli
+   git clone https://github.com/TACC/agavepy
 
-For more information on using the Agave CLI in common tasks, please consult the :raw-html-m2r:`<a href="#tutorials" title="Tutorials">Tutorials Section</a>` which reference it in all their examples, or check out the :raw-html-m2r:`<a href="https://bitbucket.org/agaveapi/science-api-samples" title="Agave Tutorials Samples" target="_blank">Agave Samples project</a>` for sample data and examples of how to use it to populate and interact with your tenant.
+For more information on using the Agave CLI in common tasks, please consult the :raw-html-m2r:`<a href="#tutorials" title="Tutorials">Tutorials Section</a>` which reference it in all their examples, or check out the :raw-html-m2r:`<a href="https://bitbucket.org/agaveapi/science-api-samples" title="Agave Tutorials Samples" target="_blank">Agave Samples project</a>` for sample data and examples of how to use it to populate and interact with your tenant. You can also check out the :raw-html-m2r:`<a href="https://github.com/TACC-Cloud/agave-cli" title="Agave CLI Documentation" target="_blank">Agave CLI Documentation</a>`.
