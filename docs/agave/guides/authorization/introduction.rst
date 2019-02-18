@@ -143,7 +143,7 @@ The request will include parameters in the query string:
            </tr>
            <tr>
                <td>client_id</td>
-               <td><i>Required</i>. The application's client ID, obtained when the client application was registered with Agave (see <a href="../../documentation/user-guide/client-registration/">Client Registration</a>).</td>
+               <td><i>Required</i>. The application's client ID, obtained when the client application was registered with Agave (see <a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/clients/introduction.html#creating-a-new-client-application">Client Registration</a>).</td>
            </tr>
            <tr>
                <td>redirect_uri</td>
@@ -200,7 +200,7 @@ After the user accepts (or denies) your request, the Agave Authorization service
            </tr>
            <tr>
                <td>access_token </td>
-               <td>An access token that can be provided in subsequent calls, for example to <a href="https://api.tacc.utexas.edu/profiles/v2/me?pretty=true">Agave Profiles API</a>. </td>
+               <td>An access token that can be provided in subsequent calls, for example to Agave Profiles API. </td>
            </tr>
            <tr>
                <td>token_type </td>
@@ -462,7 +462,7 @@ The flow starts off with your application redirecting the user to the ``/authori
            </tr>
            <tr>
                <td>client_id</td>
-               <td><i>Required</i>. The application's client ID, obtained when the client application was registered with Agave (see <a href="../../documentation/user-guide/client-registration/">Client Registration</a>).</td>
+               <td><i>Required</i>. The application's client ID, obtained when the client application was registered with Agave (see <a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/clients/introduction.html#creating-a-new-client-application/">Client Registration</a>).</td>
            </tr>
            <tr>
                <td>redirect_uri</td>

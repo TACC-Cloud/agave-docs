@@ -95,7 +95,7 @@ Agave provides information about the job, system, and user as predefined macros 
    </tr>
    <tr>
    <td>AGAVE_JOB_NAME</td>
-   <td>The slugified version of the name of the job. See the section on <a href="../../introduction/conventions">Special Characters</a> for more information about slugs.</td>
+   <td>The slugified version of the name of the job. See the section on <a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/introduction/conventions.html?highlight=special%20characters">Special Characters</a> for more information about slugs.</td>
    </tr>
    <tr>
    <td>AGAVE_JOB_NAME_RAW</td>

@@ -116,7 +116,7 @@ Javascript dot notation will be used to refer to individual properties of JSON o
 Versioning
 ----------
 
-The current major version of Agave is given in the URI immediately following the API resource name. For example, if the endpoint is ``https://api.tacc.utexas.edu/jobs/v2/``\ , the API version would be ``v2``. The current major version of Agave is v2. (Full version: 2.2.8)
+The current major version of Agave is given in the URI immediately following the API resource name. For example, if the endpoint is ``https://api.tacc.utexas.edu/jobs/v2/``\ , the API version would be ``v2``. The current major version of Agave is v2. (Full version: 2.2.23)
 
 Special Character Handling
 --------------------------

@@ -99,10 +99,10 @@ As mentioned previously, jobs are submitted by making a HTTP POST request either
 ..
 
 .. note::
-    In this tutorial we will use JSON for our examples, however, one could replace the JSON object with a HTML form mapping JSON attribute and values to HTML form attributes and values one for one and get the same results, with the exception of the ``notifications`` attribute which is not accepted using HTML form submission and would need to be added after submitting the job request by sending each of the notification objects with the returned job id to the :raw-html-m2r:`<a href="../notifications/introduction" title="Notification Management Tutorial">Notifications API</a>`.
-    In addition to the standard fields for all jobs, the application you specify in the ``appId`` field will also have its own set of inputs and parameters specified during registration that are unique to that app. (For more information about app registration and descriptions, see the `Apps section <../apps/introduction>`_\ ).
+    In this tutorial we will use JSON for our examples, however, one could replace the JSON object with a HTML form mapping JSON attribute and values to HTML form attributes and values one for one and get the same results, with the exception of the ``notifications`` attribute which is not accepted using HTML form submission and would need to be added after submitting the job request by sending each of the notification objects with the returned job id to the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/notifications/introduction.html" title="Notification Management Tutorial">Notifications API</a>`.
+    In addition to the standard fields for all jobs, the application you specify in the ``appId`` field will also have its own set of inputs and parameters specified during registration that are unique to that app. (For more information about app registration and descriptions, see the :raw-html-m2r:`<a href="
+https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/apps/introduction.html" title="Apps API">Apps section</a>`..
     The following snippet shows a sample JSON job request that could be submitted to the Jobs service to run the ``pyplot-0.1.0`` app. :raw-html-m2r:`<!-- from the <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/advanced-app-example/" title="Advanced App Example">Advanced App Example</a> tutorial. -->`
-
 ..
 
 .. container:: foldable
@@ -159,7 +159,7 @@ As mentioned previously, jobs are submitted by making a HTTP POST request either
 
 |
 
-Notice that this example specifies a single input attribute, ``dataset``. The ``pyplot-0.1.0`` app definition specified that the ``dataset`` input attribute could accept more than one value (maxCardinality = 2). In the job request object, that translates to an array of string values. Each string represents a piece of data that Agave will transfer into the job work directory prior to job execution. Any value accepted by the Files service when `importing data  <../files/introduction#importing-data>`_ is accepted here. Some examples of valid values are given in the following table.
+Notice that this example specifies a single input attribute, ``dataset``. The ``pyplot-0.1.0`` app definition specified that the ``dataset`` input attribute could accept more than one value (maxCardinality = 2). In the job request object, that translates to an array of string values. Each string represents a piece of data that Agave will transfer into the job work directory prior to job execution. Any value accepted by the Files service when `importing data  <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/files/introduction.html#transferring-data>`_ is accepted here. Some examples of valid values are given in the following table.
 
 
 .. raw:: html
@@ -189,7 +189,7 @@ Notice that this example specifies a single input attribute, ``dataset``. The ``
    </tr>
    <tr>
    <td>http://example.com/inputs/pyplot/testdata.csv</td>
-   <td>Standard url with any <a href="../files/introduction#importing-data">supported transfer protocol</a>.</td>
+   <td>Standard url with any <a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/files/introduction.html#transferring-data">supported transfer protocol</a>.</td>
    </tr>
    </table>
 

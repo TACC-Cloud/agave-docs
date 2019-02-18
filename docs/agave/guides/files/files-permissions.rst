@@ -66,13 +66,13 @@ The response will look something like the following:
        "recursive": true,
        "_links": {
          "self": {
-           "href": "https://tacc.cloud/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username.eq=nryan"
+           "href": "https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username.eq=nryan"
          },
          "file": {
-           "href": "https://tacc.cloud/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
+           "href": "https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
          },
          "profile": {
-           "href": "https://tacc.cloud/profiles/v2/nryan"
+           "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
          }
        }
      }

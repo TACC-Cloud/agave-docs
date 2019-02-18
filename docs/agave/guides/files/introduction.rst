@@ -91,7 +91,7 @@ One powerful, but potentially confusing feature of Agave is its support for virt
    </table>
 |
 
-``homeDir`` specifies the path, relative to ``rootDir``\ , that Agave should use for relative paths. Since Agave is stateless, there is no concept of a current working directory. Thus, when you specify a path to Agave that does not begin with a ``/``\ , Agave will always prefix the path with the value of ``homeDir``. The following table gives several examples of how different combinations of ``rootDir``\ , ``homeDir``\ , and URL paths will be resolved by Agave. For a deeper dive into this subject, please see the :raw-html-m2r:`<a href="#understanding-agave-file-paths" title="Understanding Agave File Paths">Understanding Agave File Paths</a>` section.
+``homeDir`` specifies the path, relative to ``rootDir``\ , that Agave should use for relative paths. Since Agave is stateless, there is no concept of a current working directory. Thus, when you specify a path to Agave that does not begin with a ``/``\ , Agave will always prefix the path with the value of ``homeDir``. The following table gives several examples of how different combinations of ``rootDir``\ , ``homeDir``\ , and URL paths will be resolved by Agave. 
 
 
 .. raw:: html

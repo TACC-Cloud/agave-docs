@@ -5,7 +5,7 @@
 Permissions
 ===========
 
-Apps have fine grained permissions similar to those found in the `Jobs <../jobs/job-permissions>`_ and `Files <../files/files-permissions>`_ services. Using these, you can share your app other Agave users. App permissions are private by default, so when you first POST your app to the Apps service, you are the only one who can see it. You may share your app with other users by granting them varying degrees of permissions. The full list of app permission values are listed in the following table.
+Apps have fine grained permissions similar to those found in the `Jobs <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/job-permissions.html>`_ and `Files <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/files/files-permissions.html>`_ services. Using these, you can share your app other Agave users. App permissions are private by default, so when you first POST your app to the Apps service, you are the only one who can see it. You may share your app with other users by granting them varying degrees of permissions. The full list of app permission values are listed in the following table.
 
 
 .. raw:: html

@@ -20,8 +20,8 @@ In addition to the web service, there is also a basic front-end web application 
 user sign up. The web application will suffice for basic user profiles and can be used 
 as a starting point for more advanced use cases.
 
-*This service should **NOT** be used for authenticating users. For details on using OAuth 
-for authentication, see the `Authorization Guide <../authorization/introduction.md>`_\ *
+This service should **NOT** be used for authenticating users. For details on using OAuth 
+for authentication, see the `Authorization Guide <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/authorization/introduction.html>`_\ 
 
 ----
 
@@ -219,7 +219,7 @@ Save the extended profile document to the metadata service with the following CL
 
 We do not expect the fields above to provide full support for anything but the most basic 
 profiles. The recommended strategy is to use the profiles service in combination with the 
-metadata service (see `Metadata Guide <../metadata/introduction.md>`_\ ) to store additional 
+metadata service (see `Metadata Guide <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/metadata/introduction.html>`_\ ) to store additional 
 information. The metadata service allows you to create custom types using JSON schema, 
 making it more flexible than standard LDAP from within a self-service model. Additionally, 
 the metadata service includes a rich query interface for retrieving users based on 
