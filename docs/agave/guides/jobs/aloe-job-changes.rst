@@ -220,6 +220,8 @@ The following table lists all parameters that may be specified in a job submissi
 
 Some parameter types may differ from similar object model types shown above. The former represent types provided by users on input, the latter types used by the Jobs service during job execution.
 
+It should be noted that Aloe is tighter with parameter checking than Agave. Certain "loose" parameters that may have slipped through with Agave will likely cause errors with Aloe. For example, defining queues with some fields having a `-1` value, meaning there would be no limit, worked with Agave. Aloe does not allow negative values and will cause such queue to be dropped from the job submission. 
+
 Parameters required for job submission are marked with an asterisk (*).
 
 +----------------------+-----------+-------------------------------+
