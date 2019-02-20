@@ -16,3 +16,5 @@ The following links discuss details of the new Jobs service:
 `Changes <aloe-job-changes.html>`_
 
 `Migration Guide <aloe-job-migration.html>`_
+
+`Aloe Beta Tester Guide <aloe-beta-tester-guide.html>`_

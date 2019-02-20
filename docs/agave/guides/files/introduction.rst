@@ -57,7 +57,7 @@ is equivalent to this:
 
 This comes in especially handy when referencing your default system paths in other contexts such as job requests and when interacting with the Agave CLI. A good example of this situation is when you have a global default storage system accessible to all your users. In this case, most users will use that for all of their data staging and archiving needs. These users may find it easier not to even think about the system they are using. The default system support in the Files service allows them to do just that.
 
-When building applications against the Files service, it is considered a best practice to always specify the intended system ID when constructing URL paths to avoid situations where users change their default systems. This will also provide long-term stability to your data references and make debugging much easier. You can read more about default systems in the :raw-html-m2r:`<a href="https://tacc.github.io/developer.tacc.cloud/docs/guides/systems/introduction.html" title="System Management">Systems Guide</a>`.
+When building applications against the Files service, it is considered a best practice to always specify the intended system ID when constructing URL paths to avoid situations where users change their default systems. This will also provide long-term stability to your data references and make debugging much easier. You can read more about default systems in the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/introduction.html" title="System Management">Systems Guide</a>`.
 
 Understanding file paths
 ------------------------
