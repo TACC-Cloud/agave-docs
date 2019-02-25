@@ -641,6 +641,19 @@ The little-used *trigger* API has been deprecated.  In Agave, jobs running on ex
 
 The Aloe job lifecycle is defined by a state machine that only allows specific state transitions during job execution.  External events, such as cancel requests, can affect job state, but no external input can control the state of a job.  Trigger calls in Agave are unauthenticated, which increases the vulnerability of the Jobs service.  Utimately, we would like to move to an independent event service to provide flexible asynchronous communication to all applications.
 
+Storage Protocol Types
+----------------------
+
+Aloe continues to support the following storage protocol types:
+
+*FTP, SFTP, IRODS, IRODS4, HTTP, HTTPS*
+
+Aloe does **not** support the following protocol types that had uncertain support in Agave: 
+
+*GRIDFTP, AZURE, S3*
+
+
+
 UUIDs
 -----
 
