@@ -566,7 +566,7 @@ Copying files and directories
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
-            -X POST \
+            -X PUT \
             --data-binary '{"action":"copy","path":"$DESTPATH"}' \
             https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/$PATH
 |
@@ -594,7 +594,7 @@ Moving files and directories
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
-            -X POST \
+            -X PUT \
             --data-binary '{"action":"move","path":"$DESTPATH"}' \
             https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/$PATH
 |
@@ -620,7 +620,7 @@ Renaming files and directories
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
-            -X POST \
+            -X PUT \
             --data-binary '{"action":"rename","path":"$NEWNAME"}' \
             https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/$PATH
 |
@@ -646,7 +646,7 @@ Creating a new directory
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
-            -X POST \
+            -X PUT \
             --data-binary '{"action":"mkdir","path":"$NEWDIR"}' \
             https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/$PATH
 |
