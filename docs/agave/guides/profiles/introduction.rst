@@ -2,8 +2,8 @@
 User Profiles
 =============
 
-The Agave hosted identity service (profiles service) is a RESTful web service that gives 
-organizations a way to create and manage the user accounts within their Agave tenant. 
+The Tapis (Agave) hosted identity service (profiles service) is a RESTful web service that gives 
+organizations a way to create and manage the user accounts within their Tapis (Agave) tenant. 
 The service is backed by a redundant LDAP instance hosted in multiple datacenters making 
 it highly available. Additionally, passwords are stored using the openldap md5crypt algorithm.
 
@@ -13,7 +13,7 @@ the metadata service. See the section on `Extending the Basic Profile with the M
 Service <#extending-with-metadata>`_ below.
 
 The service uses OAuth2 for authentication, and user's must have special privileges to 
-create and update user accounts within the tenant. Please work with the Agave development 
+create and update user accounts within the tenant. Please work with the Tapis (Agave) development 
 team to make sure your admins have the user-account-manager role.
 
 In addition to the web service, there is also a basic front-end web application providing 
@@ -85,7 +85,7 @@ and email are required to create a new user.
 
 *Creating and managing accounts requires a special **user-account-manager** role. As a best 
 practice, we recommend setting up a separate, dedicated, account to handle user management. 
-Please work with the Agave developer team if this is of interest to your organization.*
+Please work with the Tapis (Agave) developer team if this is of interest to your organization.*
 
 The complete list of available fields and their descriptions is provided in the table below.
 
@@ -369,7 +369,7 @@ The account creation web app provides a simple form to enable user self-sign.
 
 .. image:: ../../../_static/images/self-signup-screenshot.png
   :target: ../../../_static/images/self-signup-screenshot.png
-  :alt: Agave web app sign in
+  :alt: Tapis (Agave) web app sign in
 |
 
 
@@ -378,5 +378,5 @@ The code is open source and freely available from bitbucket:
 `Account Creation Web Application <https://bitbucket.org/jstubbs/agave_id>`_
 
 Most likely you will want to customize the branding and other aspects of the application, 
-but for simple use cases, the Agave team can deploy a stock instance of the application 
-in your tenant. Work with the Agave developer team if this is of interest to your organization.
+but for simple use cases, the Tapis (Agave) team can deploy a stock instance of the application 
+in your tenant. Work with the Tapis (Agave) developer team if this is of interest to your organization.
