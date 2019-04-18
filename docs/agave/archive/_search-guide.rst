@@ -2,7 +2,7 @@
 Search Guide
 ============
 
-Search is a fundamental feature of the Agave Platform. Each of the core science APIs support a mature, URL-based query mechanism allowing you to search using a sql-inspired json syntax.
+Search is a fundamental feature of the Tapis (Agave) Platform. Each of the core science APIs support a mature, URL-based query mechanism allowing you to search using a sql-inspired json syntax.
 
 By default, search is enabled on each collection endpoint allowing you to trim the response down to the results you care about most. The list of available search terms is identical to the attributes included in the JSON returned when requesting the full resource description.
 
