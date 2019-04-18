@@ -2,17 +2,17 @@
 Monitors
 ========
 
-The Agave Monitors API provides a familiar paradigm for monitoring the usability and 
-accessibility of storage and execution systems you registered with Agave. 
+The Tapis (Agave) Monitors API provides a familiar paradigm for monitoring the usability and 
+accessibility of storage and execution systems you registered with Tapis (Agave). 
 
 Similar to services like Pingdom, Pagerduty, and WebCron, the Monitors API allows you to to 
 create regular health checks on a registered system. Unlike standard uptime services, 
-Agave will check that your system is responsive and accessible by performing 
+Tapis (Agave) will check that your system is responsive and accessible by performing 
 proactive tests on availability (ping), accessibility (authentication), and 
 functionality (listing or echo). Each check result is persisted and the check 
 history of a given monitor is queryable through the API. 
 
-As with all resources in the Agave Platform, a full event model is available so you can subscribe to 
+As with all resources in the Tapis (Agave) Platform, a full event model is available so you can subscribe to 
 event you care about such as failed checks, restored system availability, and system disablement. 
 
 ----
@@ -167,10 +167,10 @@ By providing a time expression in the ``interval`` field, you can control the fr
 which a monitor runs. The maximum interval you can set for a monitor is one month. The 
 minimum interval varies from tenant to tenant, but is generally no less than 5 minutes. 
 
-The ``startTime`` field allows you to schedule when you would like Agave to start the 
+The ``startTime`` field allows you to schedule when you would like Tapis (Agave) to start the 
 monitor on your system. Any date or time expression representing a moment between the 
 current time and one month from then is acceptable. If you do not specify a value for 
-``startTime``\ , Agave will add the value of ``interval`` to the current time and use that as 
+``startTime``\ , Tapis (Agave) will add the value of ``interval`` to the current time and use that as 
 the ``startTIme``. 
 
 *Setting stop times or "off hours" is not currently supported.*
@@ -247,7 +247,7 @@ Create a monitor that updates system status on change with the following CLI com
 
 In the Events and Notifications sections, we cover the ways in which you can get alerted about events 
 pertaining to a monitor. Here we will simply point out that a convenience field, ``updateStatus``\ , 
-is built into all monitors. Setting this field to ``true`` will authorize Agave to update the status 
+is built into all monitors. Setting this field to ``true`` will authorize Tapis (Agave) to update the status 
 of the monitored system based on the result of the monitor checks. This is a convenient way to 
 ensure that the status value in your system description matches the actual operational status of the system.
 
