@@ -1,7 +1,7 @@
 Jobs Service Changes
 ====================
 
-This page discusses what has changed in the Jobs service between Agave 2.2.23 and Aloe 3.0.  The Aloe source code is `here <https://bitbucket.org/tacc-cic/aloe/src/master/>`_.  A spreadsheet that documents all changes across all Aloe APIs is `here <https://docs.google.com/spreadsheets/d/1mlK2EXYAzGI6z7BVu8tfhXQHwnZJkwgWiNxVD4k5u_Q/edit#gid=0>`_.
+This page discusses what has changed in the Jobs service between Tapis (Agave) 2.2.23 and Aloe 3.0.  The Aloe source code is `here <https://bitbucket.org/tacc-cic/aloe/src/master/>`_.  A spreadsheet that documents all changes across all Aloe APIs is `here <https://docs.google.com/spreadsheets/d/1mlK2EXYAzGI6z7BVu8tfhXQHwnZJkwgWiNxVD4k5u_Q/edit#gid=0>`_.
 
 .. contents:: Table of Contents
 
@@ -220,7 +220,7 @@ The following table lists all parameters that may be specified in a job submissi
 
 Some parameter types may differ from similar object model types shown above. The former represent types provided by users on input, the latter types used by the Jobs service during job execution.
 
-It should be noted that Aloe is tighter with parameter checking than Agave. Certain "loose" parameters that may have slipped through with Agave will likely cause errors with Aloe. For example, defining queues with some fields having a `-1` value, meaning there would be no limit, worked with Agave. Aloe does not allow negative values and will cause such queue to be dropped from the job submission. 
+It should be noted that Aloe is tighter with parameter checking than Tapis (Agave). Certain "loose" parameters that may have slipped through with Agave will likely cause errors with Aloe. For example, defining queues with some fields having a `-1` value, meaning there would be no limit, worked with Agave. Aloe does not allow negative values and will cause such queue to be dropped from the job submission. 
 
 Parameters required for job submission are marked with an asterisk (*).
 
@@ -340,7 +340,7 @@ If present on a job submission request, the notification array contains objects 
 Submission Request Gotchas
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The differences between the new job submission request and the legacy request are mostly due to stricter enforcement of parameter names and types.  Parameters marked as deprecated in Agave have been removed from Aloe.  Also, Aloe consistently enforces parameter types so that user intent is clear.  Here are some changes that cause job requests that passed validation in Agave to be flagged in Aloe: 
+The differences between the new job submission request and the legacy request are mostly due to stricter enforcement of parameter names and types.  Parameters marked as deprecated in Tapis (Agave) have been removed from Aloe.  Also, Aloe consistently enforces parameter types so that user intent is clear.  Here are some changes that cause job requests that passed validation in Agave to be flagged in Aloe: 
 
 * executionSystem - was ignored, now disallowed
 * archivePath - required when *archive* is true (can be empty string)
@@ -637,9 +637,9 @@ The following **DELETE** actions are supported in the new Jobs service:
 Job Callbacks
 -------------
 
-The little-used *trigger* API has been deprecated.  In Agave, jobs running on execution systems could use this API to change their state on the Jobs server and trigger notifications. This API has been removed due to changes in job lifecycle management, concerns about security and plans for a standalone event service. 
+The little-used *trigger* API has been deprecated.  In Tapis (Agave), jobs running on execution systems could use this API to change their state on the Jobs server and trigger notifications. This API has been removed due to changes in job lifecycle management, concerns about security and plans for a standalone event service. 
 
-The Aloe job lifecycle is defined by a state machine that only allows specific state transitions during job execution.  External events, such as cancel requests, can affect job state, but no external input can control the state of a job.  Trigger calls in Agave are unauthenticated, which increases the vulnerability of the Jobs service.  Utimately, we would like to move to an independent event service to provide flexible asynchronous communication to all applications.
+The Aloe job lifecycle is defined by a state machine that only allows specific state transitions during job execution.  External events, such as cancel requests, can affect job state, but no external input can control the state of a job.  Trigger calls in Tapis (Agave) are unauthenticated, which increases the vulnerability of the Jobs service.  Utimately, we would like to move to an independent event service to provide flexible asynchronous communication to all applications.
 
 Storage Protocol Types
 ----------------------
@@ -648,7 +648,7 @@ Aloe continues to support the following storage protocol types:
 
 *FTP, SFTP, IRODS, IRODS4, HTTP, HTTPS*
 
-Aloe does **not** support the following protocol types that had uncertain support in Agave: 
+Aloe does **not** support the following protocol types that had uncertain support in Tapis (Agave): 
 
 *GRIDFTP, AZURE, S3*
 
@@ -657,7 +657,7 @@ Aloe does **not** support the following protocol types that had uncertain suppor
 UUIDs
 -----
 
-The Agave universally unique identifier generator has been replaced with the `RFC 4122 <https://www.ietf.org/rfc/rfc4122.txt>`_ compliant implementation that ships with Java.  This change will not affect user code that treats UUIDs as opaque identifiers.
+The Tapis (Agave) universally unique identifier generator has been replaced with the `RFC 4122 <https://www.ietf.org/rfc/rfc4122.txt>`_ compliant implementation that ships with Java.  This change will not affect user code that treats UUIDs as opaque identifiers.
 
 UUID Service
 ------------
