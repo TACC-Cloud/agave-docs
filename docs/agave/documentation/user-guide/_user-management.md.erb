@@ -1,10 +1,10 @@
 ## User Management
 
-The Agave hosted identity service (profiles service) is a RESTful web service that gives organizations a way to create and manage the user accounts within their Agave tenant. The service is backed by a redundant LDAP instance hosted in multiple datacenters making it highly available. Additionally, passwords are stored using the openldap md5crypt algorithm.
+The Tapis (Agave) hosted identity service (profiles service) is a RESTful web service that gives organizations a way to create and manage the user accounts within their Agave tenant. The service is backed by a redundant LDAP instance hosted in multiple datacenters making it highly available. Additionally, passwords are stored using the openldap md5crypt algorithm.
 
 Tenant administrators can manage only a basic set of fields on each user account within LDAP itself. For more complex profiles, we recommend combing the profiles service with the metadata service. See the section on Extending the Basic Profile with the Metadata Service below.
 
-The service uses OAuth2 for authentication, and user's must have special privileges to create and update user accounts within the tenant. Please work with the Agave development team to make sure your admins have the user-account-manager role.
+The service uses OAuth2 for authentication, and user's must have special privileges to create and update user accounts within the tenant. Please work with the Tapis (Agave) development team to make sure your admins have the user-account-manager role.
 
 In addition to the web service, there is also a basic front-end web application providing user sign up. The web application will suffice for basic user profiles and can be used as a starting point for more advanced use cases.
 
@@ -14,7 +14,7 @@ In addition to the web service, there is also a basic front-end web application 
 
 Create a user account by sending a POST request to the profiles service, providing an access token of a user with the user-account-manager role. The fields username, password and email are required to create a new user.
 
-<aside class="notice">Creating and managing accounts requires a special <span class="code">user-account-manager</span> role. As a best practice, we recommend setting up a separate, dedicated, account to handle user management. Please work with the Agave developer team if this is of interest to your organization.</aside>
+<aside class="notice">Creating and managing accounts requires a special <span class="code">user-account-manager</span> role. As a best practice, we recommend setting up a separate, dedicated, account to handle user management. Please work with the Tapis (Agave) developer team if this is of interest to your organization.</aside>
 
 ```shell
 curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "username=testuser&amp;password=abcd123&amp;email=testuser@test.com" https://public.tenants.agaveapi.co/profiles/v2
@@ -206,4 +206,4 @@ The account creation web app provides a simple form to enable user self-sign. He
 
 The web application also provides an email loop for verification of new accounts. The code is open source and freely available from bitbucket: <a href="https://bitbucket.org/jstubbs/agave_id">Account Creation Web Application</a>
 
-Most likely you will want to customize the branding and other aspects of the application, but for simple use cases, the Agave team can deploy a stock instance of the application in your tenant. Work with the Agave developer team if this is of interest to your organization.
+Most likely you will want to customize the branding and other aspects of the application, but for simple use cases, the Tapis (Agave) team can deploy a stock instance of the application in your tenant. Work with the Agave developer team if this is of interest to your organization.
