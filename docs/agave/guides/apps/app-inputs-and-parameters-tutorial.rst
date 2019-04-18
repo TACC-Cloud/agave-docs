@@ -251,7 +251,7 @@ In most situations you will want some descriptive information and validation of 
      - A description of the anticipated value and the situations when it is required.
    * - value.default
      - string, JSON array
-     - The default value for this parameter. This value is optional except when ``value.required`` is *true* and ``value.visible`` is *false*. If the ``value.type`` is of this parameter is *enumeration*\ , this value must be one of the specified ``value.enumValues``. If the ``value.type`` is of this parameter is *bool* or *flag*\ , then only boolean values are accepted here.
+     - The default value for this parameter. This value can be left blank except when ``value.required`` is *true* and ``value.visible`` is *false*. If the ``value.type`` is of this parameter is *enumeration*\ , this value must be one of the specified ``value.enumValues``. If the ``value.type`` is of this parameter is *bool* or *flag*\ , then only boolean values are accepted here.
    * - value.enumValues
      - JSON array
      - An array of values specifying the possible values this parameter may have when ``value.type`` is *enumeration*. Both JSON Objects and strings are supported in the array. If a JSON Object is given, the object must be a single value attribute. The key will be the value passed into the wrapper template. The value will be the display value shown when auto-generating the option element in the select box representing this input.

@@ -14,7 +14,7 @@ Metadata Validation
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
             -H 'Content-Type: application/json'
             --data-binary '{"schemaId": "4736020169528054246-242ac11f-0001-013", "value": {"title": "Example Metadata", "properties": {"description": "A model organism..."}}, "name": "some metadata"}'
-            https://public.tenants.agaveapi.co/meta/v2/data
+            https://api.tacc.utexas.edu/meta/v2/data
 |
 
 .. container:: foldable

@@ -785,7 +785,7 @@ Creating a new execution system
 
      .. code-block:: shell
 
-        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -F "fileToUpload=@ssh-password.json" https://public.tenants.agaveapi.co/systems/v2
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -F "fileToUpload=@ssh-password.json" https://api.tacc.utexas.edu/systems/v2
 |
 
 

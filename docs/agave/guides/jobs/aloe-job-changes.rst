@@ -1,7 +1,7 @@
 Jobs Service Changes
 ====================
 
-This page discusses what has changed in the Jobs service between Agave 2.2.23 and Aloe 3.0.  The Aloe source code is `here <https://bitbucket.org/tacc-cic/aloe/src/master/>`_.
+This page discusses what has changed in the Jobs service between Agave 2.2.23 and Aloe 3.0.  The Aloe source code is `here <https://bitbucket.org/tacc-cic/aloe/src/master/>`_.  A spreadsheet that documents all changes across all Aloe APIs is `here <https://docs.google.com/spreadsheets/d/1mlK2EXYAzGI6z7BVu8tfhXQHwnZJkwgWiNxVD4k5u_Q/edit#gid=0>`_.
 
 .. contents:: Table of Contents
 
@@ -213,12 +213,14 @@ Content-Type
 
 Job submission requests are HTTP POST requests that must specify a *Content-Type* header of *application/json*. 
 
-Submission Parameters
-^^^^^^^^^^^^^^^^^^^^^
+Submission Request Parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following table lists all parameters that may be specified in a job submission request.  The parameters are transmitted as a JSON object in the HTTP POST payload.  The types are `JSON schema types <https://json-schema.org/>`_; the number following the *string* type indicates the maximum allowed string length.
 
 Some parameter types may differ from similar object model types shown above. The former represent types provided by users on input, the latter types used by the Jobs service during job execution.
+
+It should be noted that Aloe is tighter with parameter checking than Agave. Certain "loose" parameters that may have slipped through with Agave will likely cause errors with Aloe. For example, defining queues with some fields having a `-1` value, meaning there would be no limit, worked with Agave. Aloe does not allow negative values and will cause such queue to be dropped from the job submission. 
 
 Parameters required for job submission are marked with an asterisk (*).
 
@@ -334,6 +336,153 @@ If present on a job submission request, the notification array contains objects 
 |                      |            | ${JOB_ARCHIVE_URL},           +
 |                      |            | ${JOB_ERROR}.                 +
 +----------------------+------------+-------------------------------+
+
+Submission Request Gotchas
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The differences between the new job submission request and the legacy request are mostly due to stricter enforcement of parameter names and types.  Parameters marked as deprecated in Agave have been removed from Aloe.  Also, Aloe consistently enforces parameter types so that user intent is clear.  Here are some changes that cause job requests that passed validation in Agave to be flagged in Aloe: 
+
+* executionSystem - was ignored, now disallowed
+* archivePath - required when *archive* is true (can be empty string)
+* memoryPerNode - a string with optional unit designation in suffix
+* parameter - deprecated, use *parameters* instead
+* parameters fields - must conform to types defined in application 
+
+Submission Response
+^^^^^^^^^^^^^^^^^^^
+
+A success response from a job submission request means that the Jobs Service accepts responsibility for the request and won't lose it.  The request, however, has not yet been entered into the database, so it cannot be queried, cancelled or acted upon in any way.  When the job is entered into the database, its status changes from ACCEPTED to PENDING.
+
+The payload of the submission result object is described in the table below.  The response fields, their types and their formats differ from those specified above for the Job model.  Though related, the two data structures serve distinct purposes.
+
+The most notable difference between the model and response data structures is that **id** field in the model is a sequence number, *but in the response it's the UUID of the job*.  This difference maintains the legacy usage convention to ease migration to the new service.
+
+All timestamps are strings in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ date/time format. All numbers are integers unless otherwise noted.  Fields marked with an asterisk (*) indicate they are assigned valid values in the response; the other fields have not been processed yet and display their default or uninitialized values. 
+
++---------------------+-----------+-------------------------------------+
+| *Response Field*    |*JSON Type*| *Description*                       |
++=====================+===========+=====================================+
+| id*                 | string    | Unique job id (equals UUID in model)|
++---------------------+-----------+-------------------------------------+
+| name*               | string    | Human readable name for this job    |
++---------------------+-----------+-------------------------------------+
+| tenantId*           | string    | Current user's tenant ID            |
++---------------------+-----------+-------------------------------------+
+| tenantQueue*        | string    | Tenant queue to which job was       |
+|                     |           | assigned                            |
++---------------------+-----------+-------------------------------------+
+| status*             | string    | Current state of job, see           |
+|                     |           | `Job States`_ for details           |
++---------------------+-----------+-------------------------------------+
+| lastStatusMessage*  | string    | Last message logged for this job    |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| accepted*           | string    | Time job was accepted               |
++---------------------+-----------+-------------------------------------+
+| created             | string    | Time job was recorded in database   |
++---------------------+-----------+-------------------------------------+
+| ended               | string    | Time job processing completed       |
++---------------------+-----------+-------------------------------------+
+| lastUpdated*        | string    | Time job record was last updated    |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| owner*              | string    | User who submitted job              |
++---------------------+-----------+-------------------------------------+
+| roles*              | string    | Roles assigned by authentication    |
+|                     |           | server to owner (comma-separated)   |
++---------------------+-----------+-------------------------------------+
+| systemId            | string    | Execution system ID on which this   |
+|                     |           | job runs (tenant-unique)            |
++---------------------+-----------+-------------------------------------+
+| appId*              | string    | Fully qualified application name    |
+|                     |           | that will be run by this job        |
++---------------------+-----------+-------------------------------------+
+| appUuid*            | string    | Unique application ID               |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| workPath            | string    | Temporary work directory            |
++---------------------+-----------+-------------------------------------+
+| archive*            | boolean   | Whether or not to archive output    |
++---------------------+-----------+-------------------------------------+
+| archivePath*        | string    | Archive location on archive system  |
++---------------------+-----------+-------------------------------------+
+| archiveSystem*      | string    | Storage system ID to which this job |
+|                     |           | archives (tenant-unique)            |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| nodeCount           | number    | Number of nodes requested by job    |
++---------------------+-----------+-------------------------------------+
+| processorsPerNode   | number    | Number of processors per node       |
++---------------------+-----------+-------------------------------------+
+| memoryPerNode       | number    | GB of memory per node (decimal)     |
++---------------------+-----------+-------------------------------------+
+| maxHours            | number    | Maximum hours for job to run        |
+|                     |           | (decimal)                           |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| inputs*             | object    | JSON encoded list of inputs         |
++---------------------+-----------+-------------------------------------+
+| parameters*         | object    | JSON encoded list of parameters     |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| remoteJobId	      | string    | Job or process ID of the job on the |
+|                     |           | remote (execution) system           |
++---------------------+-----------+-------------------------------------+
+| schedulerJobId      | string    | Optional ID given by the remote     |
+|                     |           | scheduler                           |
++---------------------+-----------+-------------------------------------+
+| remoteQueue         | string    | Queue for job on remote system      |
++---------------------+-----------+-------------------------------------+
+| remoteSubmitted     | string    | Time job was placed on remote queue |
++---------------------+-----------+-------------------------------------+
+| remoteStarted       | string    | Time job started running on remote  |
+|                     |           | system                              |
++---------------------+-----------+-------------------------------------+
+| remoteEnded         | string    | Time job finished running on remote |
+|                     |           | system                              |
++---------------------+-----------+-------------------------------------+
+| remoteOutcome       | string    | Best approximation of remote job's  |
+|                     |           | outcome:                            |
+|                     |           |                                     |
+|                     |           | FINISHED,                           |
+|                     |           | FAILED,                             |
+|                     |           | FAILED_SKIP_ARCHIVE                 |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| submitRetries       | number    | Number of attempts to submit job    |
+|                     |           | to execution system                 |
++---------------------+-----------+-------------------------------------+
+| remoteStatusChecks  | number    | Number of successful times the      |
+|                     |           | remote system was queried for job   |
+|                     |           | status                              |
++---------------------+-----------+-------------------------------------+
+| failedStatusChecks  | number    | Number of failed times the remote   |
+|                     |           | system was queried for job status   |
++---------------------+-----------+-------------------------------------+
+| lastStatusCheck     | string    | Last time a status check was        |
+|                     |           | attempted                           |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| blockedCount        | number    | Number of times a job has           |
+|                     |           | transitioned to BLOCKED status      |
++---------------------+-----------+-------------------------------------+
+| visible             | boolean   | User visibility of this job record  |
++---------------------+-----------+-------------------------------------+
+|                     |           |                                     |
++---------------------+-----------+-------------------------------------+
+| _links*             | object    | links to resources related to the   |
+|                     |           | job, some of which may not exist yet|
++---------------------+-----------+-------------------------------------+
+
+
 
 
 Job Lifecycle
@@ -488,18 +637,32 @@ The following **DELETE** actions are supported in the new Jobs service:
 Job Callbacks
 -------------
 
-Jobs running on execution systems can no longer use the *trigger* API to change the status of a job in the Jobs service.  To avoid confusion, trigger requests that specify any of the job statuses listed in `Job States`_ will be ignored.  For example, a request to the following URL will be ignored because it specifies a status of RUNNING:
+The little-used *trigger* API has been deprecated.  In Agave, jobs running on execution systems could use this API to change their state on the Jobs server and trigger notifications. This API has been removed due to changes in job lifecycle management, concerns about security and plans for a standalone event service. 
 
-::
+The Aloe job lifecycle is defined by a state machine that only allows specific state transitions during job execution.  External events, such as cancel requests, can affect job state, but no external input can control the state of a job.  Trigger calls in Agave are unauthenticated, which increases the vulnerability of the Jobs service.  Utimately, we would like to move to an independent event service to provide flexible asynchronous communication to all applications.
 
-   https://agave.iplantc.org/jobs/v2/trigger/job/f916db1e-f4ba-4700-b827-453299c9dd3a-007/token/475c599e-f7ce-434d-a572-7ac2d3ba89f7/status/RUNNING
-   
-The Job service continues to automatically insert two trigger requests into every user-supplied wrapper script that it executes.  In the legacy system, these triggers sent the RUNNING and CLEANING_UP status events at the appropriate points during job execution.  In the new system, the new USER_RUNNING and USER_CLEANING_UP events, respectively, are substituted at the same execution points.
+Storage Protocol Types
+----------------------
+
+Aloe continues to support the following storage protocol types:
+
+*FTP, SFTP, IRODS, IRODS4, HTTP, HTTPS*
+
+Aloe does **not** support the following protocol types that had uncertain support in Agave: 
+
+*GRIDFTP, AZURE, S3*
+
+
 
 UUIDs
 -----
 
-The Agave universally unique identifier generator has been replaced with the `RFC 4122 <https://www.ietf.org/rfc/rfc4122.txt>`_ compliant implementation that ships with Java.  This change will not affect user code that treats UUIDs as opaque identifiers. 
+The Agave universally unique identifier generator has been replaced with the `RFC 4122 <https://www.ietf.org/rfc/rfc4122.txt>`_ compliant implementation that ships with Java.  This change will not affect user code that treats UUIDs as opaque identifiers.
+
+UUID Service
+------------
+
+The collection APIs of the UUID service have been deprecated and are no longer available. 
 
 Tenant Configuration
 --------------------

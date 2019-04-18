@@ -6,4 +6,4 @@ Jupyter notebooks (formerly iPython notebooks) provide users with interactive co
 
 JupyterHub is an open source project to provide multi-user hosted notebook servers as a service. When a user signs in to JupyterHub, a notebook server with pre-configured software is automatically launched for them. The Agave team integrated JupyterHub into its identity and access management stack and made several other additional enhancements and customizations to enable the use of Agave's language SDKs such as agavepy and the CLI, persistent storage, and multiple kernel support, directly from their notebooks with very minimal setup. Agave’s deployment of JupyterHub, which runs each user’s notebook server in a Docker container to further enhance reproducibility, is freely available for use in Agave's Public Tenant. 
 
-You can get started with JupyterHub today at `https://jupyter.agaveapi.co <https://jupyter.agaveapi.co>`_.
+You can get started with JupyterHub today at `https://jupyter.tacc.cloud <https://jupyter.tacc.cloud>`_.

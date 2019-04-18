@@ -691,7 +691,7 @@ Creating a new storage system
 
      .. code-block:: shell
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -F "fileToUpload=@sftp-password.json" https://public.tenants.agaveapi.co/systems/v2
+      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -F "fileToUpload=@sftp-password.json" https://api.tacc.utexas.edu/systems/v2
 |
 
 
@@ -729,24 +729,24 @@ The response from the service will be similar to the following:
      },
      "_links": {
        "roles": {
-         "href": "https://public.agaveapi.co/systems/v2/sftp.storage.example.com/roles"
+         "href": "https://api.tacc.utexas.edu/systems/v2/sftp.storage.example.com/roles"
        },
        "owner": {
-         "href": "https://public.agaveapi.co/profiles/v2/nryan"
+         "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
        },
        "credentials": {
-         "href": "https://public.agaveapi.co/systems/v2/sftp.storage.example.com/credentials"
+         "href": "https://api.tacc.utexas.edu/systems/v2/sftp.storage.example.com/credentials"
        },
        "self": {
-         "href": "https://public.agaveapi.co/systems/v2/sftp.storage.example.com"
+         "href": "https://api.tacc.utexas.edu/systems/v2/sftp.storage.example.com"
        },
        "metadata": {
-         "href": "https://public.agaveapi.co/meta/v2/data/?q=%7B%22associationIds%22%3A%224036169328045649434-242ac117-0001-006%22%7D"
+         "href": "https://api.tacc.utexas.edu/meta/v2/data/?q=%7B%22associationIds%22%3A%224036169328045649434-242ac117-0001-006%22%7D"
        }
      }
    }
 
-Congratulations, you just added your first system. This storage system can now be used by the :raw-html-m2r:`<a title="File Management" href="#files">Files service</a>` to manage data, the Transfer service as a source or destination of data movement, the Apps service as a application repository, and the :raw-html-m2r:`<a title="Job Submission" href="http://agaveapi.co/documentation/tutorials/job-managment/">Jobs Service</a>` as both a staging and archiving destination.
+Congratulations, you just added your first system. This storage system can now be used by the :raw-html-m2r:`<a title="File Management" href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/files/introduction.html">Files service</a>` to manage data, the Transfer service as a source or destination of data movement, the Apps service as a application repository, and the :raw-html-m2r:`<a title="Job Submission" href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/introduction.html">Jobs Service</a>` as both a staging and archiving destination.
 
 Notice that the JSON returned from the Systems service is different than what was submitted. Several fields have been added, and several other have been removed. On line 3, the UUID of the system has been added. This is the same UUID that is used in notifications and metadata references. On line 5, the ``status`` value was added in and assigned a default value since we did not specify it. Ditto for the ``site`` attribute on line 8.
 

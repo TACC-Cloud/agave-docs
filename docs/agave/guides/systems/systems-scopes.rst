@@ -5,7 +5,7 @@
 System scope
 ============
 
-Throughout these tutorials and :raw-html-m2r:`<a href="https://tacc.github.io/developer.tacc.cloud/docs/guides/introduction.html" title="Beginner’s Guides">Beginner's Guides</a>`\ , we have referred to both public and private systems. In addition to roles, systems have a concept of scope associated with them. Not to be confused with OAuth scope mentioned in the :raw-html-m2r:`<a href="https://tacc.github.io/developer.tacc.cloud/docs/guides/authorization/introduction.html" title="Authorization Guide">Authentication Guide</a>`\ , system scope refers to the availability of a system to the general user community. The following table lists the available scopes and their meanings.
+Throughout these tutorials and :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/introduction.html" title="Beginner’s Guides">Beginner's Guides</a>`\ , we have referred to both public and private systems. In addition to roles, systems have a concept of scope associated with them. Not to be confused with OAuth scope mentioned in the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/authorization/introduction.html" title="Authorization Guide">Authentication Guide</a>`\ , system scope refers to the availability of a system to the general user community. The following table lists the available scopes and their meanings.
 
 
 .. raw:: html
@@ -56,7 +56,7 @@ Public systems are available for use by every API user within your tenant. Once 
 Public Storage Systems
 ----------------------
 
-Public storage systems enforce a virtual user home directory with implied user permissions. The following table gives a brief summary of the permission implications. You can read more about data permissions in the :raw-html-m2r:`<a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/data-permissions-tutorial/" title="Data Permissions Tutorial">Data Permissions</a>` tutorial.
+Public storage systems enforce a virtual user home directory with implied user permissions. The following table gives a brief summary of the permission implications. You can read more about chan in the :raw-html-m2r:`<a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/data-permissions-tutorial/" title="Data Permissions Tutorial">Data Permissions</a>` tutorial.
 
 
 .. raw:: html
@@ -142,7 +142,7 @@ To publish a system and make it public, you make a PUT request on the system's u
             -H "Content-Type: application/json"
             -X PUT
             --data-binary '{"action":"publish"}'
-            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+            https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 
@@ -168,7 +168,7 @@ Unpublishing a system
             -H "Content-Type: application/json"
             -X PUT
             --data-binary '{"action":"unpublish"}'
-            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+            https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 
@@ -250,7 +250,7 @@ To set a system as the user's default, you make a PUT request on the system's ur
             -H "Content-Type: application/json"
             -X PUT
             --data-binary '{"action":"setDefault"}'
-            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+            https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 
@@ -276,7 +276,7 @@ Unsetting user default system
             -H "Content-Type: application/json"
             -X PUT
             --data-binary '{"action":"unsetDefault"}'
-            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+            https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 
@@ -306,7 +306,7 @@ Tenant administrators may wish to set default storage and execution systems for 
             -H "Content-Type: application/json"
             -X PUT
             --data-binary '{"action":"setGlobalDefault"}'
-            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+            https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 
@@ -333,7 +333,7 @@ To remove a system from being the global default, make the same request with the
             -H "Content-Type: application/json"
             -X PUT
             --data-binary '{"action":"unsetGlobalDefault"}'
-            https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+            https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 

@@ -66,13 +66,13 @@ The response will look something like the following:
        "recursive": true,
        "_links": {
          "self": {
-           "href": "https://tacc.cloud/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username.eq=nryan"
+           "href": "https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username.eq=nryan"
          },
          "file": {
-           "href": "https://tacc.cloud/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
+           "href": "https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
          },
          "profile": {
-           "href": "https://tacc.cloud/profiles/v2/nryan"
+           "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
          }
        }
      }
@@ -99,7 +99,7 @@ List the permissions on a file item for a given user
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-          https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username=rclemens
+          https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username=rclemens
 |
 
 
@@ -115,13 +115,13 @@ The response will look something like the following:
      },
      "_links":{
        "self":{
-         "href":"https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username=rclemens"
+         "href":"https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username=rclemens"
        },
        "parent":{
-         "href":"https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt"
+         "href":"https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt"
        },
        "profile":{
-         "href":"https://tacc.cloud/profiles/v2/rclemens"
+         "href":"https://api.tacc.utexas.edu/profiles/v2/rclemens"
        }
      }
    }
@@ -150,7 +150,7 @@ Grant read access to a file item
           -H "Content-Type: application/json" \
           -X POST \
           --data '{"username":"rclemens", "permission":"READ"}' \
-          https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+          https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
 |
 
 
@@ -173,7 +173,7 @@ Grant read and write access to a file item
           -H "Content-Type: application/json" \
           -X POST \
           --data '{"username","rclemens", "permission":"READ_WRITE"}' \
-          https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+          https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
 |
 
 
@@ -193,13 +193,13 @@ The response will look something like the following
        "recursive": false,
        "_links": {
          "self": {
-           "href": "https://tacc.cloud/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username.eq=rclemens"
+           "href": "https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username.eq=rclemens"
          },
          "file": {
-           "href": "https://tacc.cloud/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
+           "href": "https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
          },
          "profile": {
-           "href": "https://tacc.cloud/profiles/v2/rclemens"
+           "href": "https://api.tacc.utexas.edu/profiles/v2/rclemens"
          }
        }
      }
@@ -229,7 +229,7 @@ Delete permission for single user on a file item
             -H "Content-Type: application/json" \
             -X POST \
             --data '{"username","rclemens", "permission":"NONE"}' \
-            https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+            https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
 |
 
 
@@ -249,13 +249,13 @@ A response similiar to the following will be returned
        "recursive": false,
        "_links": {
          "self": {
-           "href": "https://tacc.cloud/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username.eq=rclemens"
+           "href": "https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username.eq=rclemens"
          },
          "file": {
-           "href": "https://tacc.cloud/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
+           "href": "https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
          },
          "profile": {
-           "href": "https://tacc.cloud/profiles/v2/rclemens"
+           "href": "https://api.tacc.utexas.edu/profiles/v2/rclemens"
          }
        }
      }
@@ -287,11 +287,11 @@ Delete all permissions on a file item
             -H "Content-Type: application/json" \
             -X POST \
             --data '{"username","*", "permission":"NONE"}' \
-            https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+            https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -X DELETE \
-            https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
+            https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt
 |
 
 
@@ -321,11 +321,11 @@ Recursively delete all permissions on a directory
             -H "Content-Type: application/json" \
             -X POST \
             --data '{"username","*", "permission":"READ_WRITE", "recursive": true}' \
-            https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/directory/
+            https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/directory/
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -X DELETE \
-            https://public.tenants.agaveapi.co/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?recursive=true
+            https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?recursive=true
 |
 
 
@@ -345,13 +345,13 @@ An empty response will be returned from the service on delete. Update will retur
        "recursive": true,
        "_links": {
          "self": {
-           "href": "https://tacc.cloud/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username.eq=nryan"
+           "href": "https://api.tacc.utexas.edu/files/v2/pems/system/api.tacc.cloud/nryan/picksumipsum.txt?username.eq=nryan"
          },
          "file": {
-           "href": "https://tacc.cloud/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
+           "href": "https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
          },
          "profile": {
-           "href": "https://tacc.cloud/profiles/v2/nryan"
+           "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
          }
        }
      }

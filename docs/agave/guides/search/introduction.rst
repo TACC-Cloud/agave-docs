@@ -9,7 +9,7 @@ Query syntax
 
 .. code-block:: json
 
-   http://public.agaveapi.co/jobs/v2?name=test%20job
+   http://api.tacc.utexas.edu/jobs/v2?name=test%20job
 
 ..
 
@@ -18,7 +18,7 @@ Query syntax
 
 .. code-block:: json
 
-   http://public.agaveapi.co/jobs/v2?name=test%20job&executionSystem=aws-demo&status=FAILED
+   http://api.tacc.utexas.edu/jobs/v2?name=test%20job&executionSystem=aws-demo&status=FAILED
 
 By default, search is enabled on each collection endpoint allowing you to trim the response down to the results you care about most. The list of available search terms is identical to the attributes included in the JSON returned when requesting the full resource description.
 

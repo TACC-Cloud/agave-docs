@@ -52,7 +52,7 @@ Creating schemata
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
             -X POST -H "Content-Type: application/json"
             --data-binary '{ "title": "Example Schema", "type": "object", "properties": { "species": { "type": "string" } },"required": ["species"] }'
-            https://public.tenants.agaveapi.co/meta/v2/schemas/
+            https://api.tacc.utexas.edu/meta/v2/schemas/
 |
 
 .. container:: foldable
@@ -98,13 +98,13 @@ Creating schemata
           "owner": "nryan",
           "_links": {
             "self": {
-              "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
+              "href": "https://api.tacc.utexas.edu/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
             },
             "permissions": {
-              "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
+              "href": "https://papi.tacc.utexas.edu/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
             },
             "owner": {
-              "href": "https://public.agaveapi.co/profiles/v2/nryan"
+              "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
             }
           }
         }
@@ -134,7 +134,7 @@ Updating schema
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
             -H 'Content-Type: application/json'
             --data-binary '{ "title": "Example Schema", "type": "object", "properties": { "species": { "type": "string" }, "description": {"type":"string"} },"required": ["species"] }'
-            https://public.tenants.agaveapi.co/meta/v2/data/4736020169528054246-242ac11f-0001-013
+            https://api.tacc.utexas.edu/meta/v2/data/4736020169528054246-242ac11f-0001-013
 |
 
 .. container:: foldable
@@ -180,13 +180,13 @@ Updating schema
           "owner": "nryan",
           "_links": {
             "self": {
-              "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
+              "href": "https://api.tacc.utexas.edu/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
             },
             "permissions": {
-              "href": "https://public.agaveapi.co/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
+              "href": "https://api.tacc.utexas.edu/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
             },
             "owner": {
-              "href": "https://public.agaveapi.co/profiles/v2/nryan"
+              "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
             }
           }
         }
@@ -213,7 +213,7 @@ Deleting schema
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
             -X DELETE
-            https://public.tenants.agaveapi.co/meta/v2/data/4736020169528054246-242ac11f-0001-013
+            https://api.tacc.utexas.edu/meta/v2/data/4736020169528054246-242ac11f-0001-013
 |
 
 .. container:: foldable

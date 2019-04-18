@@ -42,7 +42,7 @@ Listing all permissions
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
 |
 
 .. container:: foldable
@@ -78,13 +78,13 @@ Listing all permissions
             },
             "_links": {
               "self": {
-                "href": "https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012/pems/nryan"
+                "href": "https://api.tacc.utexas.edu/meta/v2/7341557475441971686-242ac11f-0001-012/pems/nryan"
               },
               "parent": {
-                "href": "https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012"
+                "href": "https://api.tacc.utexas.edu/meta/v2/7341557475441971686-242ac11f-0001-012"
               },
               "profile": {
-                "href": "https://public.agaveapi.co/meta/v2/nryan"
+                "href": "https://api.tacc.utexas.edu/meta/v2/nryan"
               }
             }
           }
@@ -111,7 +111,7 @@ List permissions for a specific user
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/nryan?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/nryan?pretty=true
 |
 
 .. container:: foldable
@@ -146,13 +146,13 @@ List permissions for a specific user
           },
           "_links":{
             "self":{
-              "href":"https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012/pems/nryan"
+              "href":"https://api.tacc.utexas.edu/meta/v2/7341557475441971686-242ac11f-0001-012/pems/nryan"
             },
             "parent":{
-              "href":"https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012"
+              "href":"https://api.tacc.utexas.edu/meta/v2/7341557475441971686-242ac11f-0001-012"
             },
             "profile":{
-              "href":"https://public.agaveapi.co/meta/v2/nryan"
+              "href":"https://api.tacc.utexas.edu/meta/v2/nryan"
             }
           }
         }
@@ -179,7 +179,7 @@ Grant permissions
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
             --data '{"permission":"READ"}'
-            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
 |
 
 .. container:: foldable
@@ -208,7 +208,7 @@ Grant permissions
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
             --data '{"permission":"READ_WRITE"}'
-            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
 |
 
 .. container:: foldable
@@ -243,13 +243,13 @@ Grant permissions
           },
           "_links": {
             "self": {
-              "href": "https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012/pems/rclemens"
+              "href": "https://api.tacc.utexas.edu/meta/v2/7341557475441971686-242ac11f-0001-012/pems/rclemens"
             },
             "parent": {
-              "href": "https://public.agaveapi.co/meta/v2/7341557475441971686-242ac11f-0001-012"
+              "href": "https://api.tacc.utexas.edu/meta/v2/7341557475441971686-242ac11f-0001-012"
             },
             "profile": {
-              "href": "https://public.agaveapi.co/meta/v2/jstubbs"
+              "href": "https://api.tacc.utexas.edu/meta/v2/jstubbs"
             }
           }
         }
@@ -276,7 +276,7 @@ Delete single user permissions
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
             -X DELETE
-            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
 |
 
 .. container:: foldable
@@ -316,7 +316,7 @@ Deleting all permissions
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
             -X DELETE
-            https://public.tenants.agaveapi.co/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems?pretty=true
 |
 
 .. container:: foldable

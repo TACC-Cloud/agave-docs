@@ -156,7 +156,7 @@ Craft an Agave app description
 
 In order for Agave to know how to run an instance of the application, we need to provide quite a bit of metadata about the application. This includes a unique name and version, the location of the application bundle, the identities of the execution system and destination system for results, whether its an HPC or other kind of job, the default number of processors and memory it needs to run, and of course, all the inputs and parameters for the actual program. It seems a bit over-complicated, but only because you're comfortable with the command line already. Your goal here is to allow your applications to be portable across systems and present a web-enabled, rationalized interface for your code to consumers.
 
-Rather than have you write a description for "samtools sort" from scratch, let's systematically dissect an existing file provided with the SDK. Go ahead and copy the file into place and open it in your text editor of choice. If you don't have the SDK installed, you can `download the JSON descriptions here <samtools-sort.json>`_.
+Rather than have you write a description for "samtools sort" from scratch, let's systematically dissect an existing file provided with the SDK. Go ahead and copy the file into place and open it in your text editor of choice. If you don't have the SDK installed, you can `download the JSON descriptions :raw-html-m2r:`<a href="https://github.com/TACC-Cloud/agave-docs/blob/doc_changes/docs/agave/guides/apps/samtools-sort.json" title="samtools-sort.json">here</a>`_.
 
 .. code-block:: shell
 
@@ -189,7 +189,7 @@ All Agave application descriptions have the following structure:
      "outputs":[]
    }
 
-There is a defined list of application metadata fields, some of which are mandatory. Inputs, parameters, and outputs are specified as an array of simple data structures, which are described earlier in the `Application metadata section <app-wrapper-templates>`_.
+There is a defined list of application metadata fields, some of which are mandatory. Inputs, parameters, and outputs are specified as an array of simple data structures, which are described earlier in the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/apps/app-inputs-and-parameters-tutorial.html" title="Params and Inputs">Application metadata section</a>`.
 
 Inputs
 ------
@@ -224,11 +224,12 @@ To tell Agave what files to stage into place before job execution, you need to d
    }
    }
 
-For information on what these fields mean, see the `Input metadata table <app-wrapper-templates>`_.
+For information on what these fields mean, see the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/apps/app-inputs-and-parameters-tutorial.html" title="Params and Inputs">input metadata table</a>`.
+
 
 ..
 
-   :information_source: A note on paths: In this iPlant-oriented tutorial, we assume you will stage data to and from "data.agaveapi.co", the default storage system for iPlant users. In this case, you can use relative paths relative to homeDir on that system (i.e. vaughn/analyses/foobar). To add portability, marshal data from other storageSystems, or import from public servers, you can also specify fully qualified URIs as follows:
+   :information_source: A note on paths: In this CyVerse-oriented tutorial, we assume you will stage data to and from "data.iplantcollaborative.org", the default storage system for CyVerse users. In this case, you can use relative paths relative to homeDir on that system (i.e. vaughn/analyses/foobar). To add portability, marshal data from other storageSystems, or import from public servers, you can also specify fully qualified URIs as follows:
 
 
    * storageSystem namespace: agave://storage-system-name/path/to/file
@@ -265,7 +266,7 @@ Parameters are specified in a JSON array, and are broadly similar to inputs. Her
      }
    }
 
-For more info on these fields, see `Parameters metadata table <app-wrapper-templates>`_.
+For information on what these fields mean, see the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/apps/app-inputs-and-parameters-tutorial.html" title="Params and Inputs">parameters metadata table</a>`.
 
 Outputs
 -------

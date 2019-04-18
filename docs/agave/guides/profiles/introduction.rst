@@ -20,8 +20,8 @@ In addition to the web service, there is also a basic front-end web application 
 user sign up. The web application will suffice for basic user profiles and can be used 
 as a starting point for more advanced use cases.
 
-*This service should **NOT** be used for authenticating users. For details on using OAuth 
-for authentication, see the `Authorization Guide <../authorization/introduction.md>`_\ *
+This service should **NOT** be used for authenticating users. For details on using OAuth 
+for authentication, see the `Authorization Guide <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/authorization/introduction.html>`_\ 
 
 ----
 
@@ -48,7 +48,7 @@ Create a user account with the following CLI command:
             -d "username=testuser" \
             -d "password=abcd123" \
             -d "email=testuser@test.com" \
-            https://public.tenants.agaveapi.co/profiles/v2
+            https://api.tacc.utexas.edu/profiles/v2
 | 
 
 .. container:: foldable
@@ -172,7 +172,7 @@ Save the extended profile document to the metadata service with the following CL
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -X POST \
             -F "fileToUpload=@profile_ex" \
-            https://public.tenants.agaveapi.co/meta/v2/data/?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/?pretty=true
 |
 
 .. container:: foldable
@@ -209,7 +209,7 @@ Save the extended profile document to the metadata service with the following CL
             "created" : "2015-04-22T12:34:03.698-05:00",
             "_links" : {
               "self" : {
-                "href" : "https://public.tenants.agaveapi.co/meta/v2/data/0001429724043699-5056a550b8-0001-012"
+                "href" : "https://api.tacc.utexas.edu/meta/v2/data/0001429724043699-5056a550b8-0001-012"
               }
             }
           }
@@ -219,7 +219,7 @@ Save the extended profile document to the metadata service with the following CL
 
 We do not expect the fields above to provide full support for anything but the most basic 
 profiles. The recommended strategy is to use the profiles service in combination with the 
-metadata service (see `Metadata Guide <../metadata/introduction.md>`_\ ) to store additional 
+metadata service (see `Metadata Guide <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/metadata/introduction.html>`_\ ) to store additional 
 information. The metadata service allows you to create custom types using JSON schema, 
 making it more flexible than standard LDAP from within a self-service model. Additionally, 
 the metadata service includes a rich query interface for retrieving users based on 
@@ -275,7 +275,7 @@ Update a user profile with the following CLI command:
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -X PUT 
             -d "password=abcd123&email=testuser@test.com&first_name=Test&last_name=User" \
-            https://public.tenants.agaveapi.co/profiles/v2/testuser
+            https://api.tacc.utexas.edu/profiles/v2/testuser
 |
 
 .. container:: foldable
@@ -308,7 +308,7 @@ Update a user profile with the following CLI command:
 
 
 Updates to existing users can be made by sending a PUT request to 
-https://public.tenants.agaveapi.co/profiles/v2/ and passing the fields to update. 
+https://api.tacc.utexas.edu/profiles/v2/ and passing the fields to update. 
 For example, we can add a ``gravatar`` attribute to the account we created above.
 
 ----
@@ -332,7 +332,7 @@ Delete a user profile with the following CLI command:
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" 
-          -X DELETE https://public.tenants.agaveapi.co/profiles/v2/testuser
+          -X DELETE https://api.tacc.utexas.edu/profiles/v2/testuser
 |
 
 .. container:: foldable

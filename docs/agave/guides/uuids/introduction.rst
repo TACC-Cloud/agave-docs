@@ -26,7 +26,7 @@ Resolving a single UUID
 .. code-block:: shell
 
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-       https://public.tenants.agaveapi.co/uuid/v2/0001409758089943-5056a550b8-0001-002
+       https://api.tacc.utexas.edu/uuid/v2/0001409758089943-5056a550b8-0001-002
 
 .. code-block:: plaintext
 
@@ -44,7 +44,7 @@ Resolving a single UUID
      "type":"FILE",
      "_links":{
        "file":{
-         "href":"https://public.tenants.agaveapi.co/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt"
+         "href":"https://api.tacc.utexas.edu/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt"
        }
      }
    }
@@ -62,7 +62,7 @@ Expanding a UUID query
 .. code-block:: shell
 
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-       https://public.tenants.agaveapi.co/uuid/v2/0001409758089943-5056a550b8-0001-002?expand=true&pretty=true
+       https://api.tacc.utexas.edu/uuid/v2/0001409758089943-5056a550b8-0001-002?expand=true&pretty=true
 
 .. code-block:: plaintext
 
@@ -88,13 +88,13 @@ Expanding a UUID query
      "uuid":"0001409758089943-5056a550b8-0001-002",
      "_links":{
        "history":{
-         "href":"https://public.tenants.agaveapi.co/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt"
+         "href":"https://api.tacc.utexas.edu/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt"
        },
        "self":{
-         "href":"https://public.tenants.agaveapi.co/files/v2/media/system/data.agaveapi.co/nryan/picksumipsum.txt"
+         "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co/nryan/picksumipsum.txt"
        },
        "system":{
-         "href":"https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+         "href":"https://api.tacc.utexas.edu/systems/v2/data.agaveapi.co"
        }
      }
    }
@@ -118,7 +118,7 @@ Resolving multiple UUID
 .. code-block:: shell
 
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-       https://public.tenants.agaveapi.co/uuid/v2/?uuids.eq=0001409758089943-5056a550b8-0001-002,0001414144065563-5056a550b8-0001-007?expand=true&pretty=true
+       https://api.tacc.utexas.edu/uuid/v2/?uuids.eq=0001409758089943-5056a550b8-0001-002,0001414144065563-5056a550b8-0001-007?expand=true&pretty=true
 
 .. code-block:: plaintext
 
@@ -135,20 +135,20 @@ Resolving multiple UUID
      {
        "uuid":"0001409758089943-5056a550b8-0001-002",
        "type":"FILE",
-       "url":"https://public.tenants.agaveapi.co/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt",
+       "url":"https://api.tacc.utexas.edu/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt",
        "_links":{
          "file":{
-           "href":"https://public.tenants.agaveapi.co/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt"
+           "href":"https://api.tacc.utexas.edu/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt"
          }
        }
      },
      {
        "uuid":"0001414144065563-5056a550b8-0001-007",
        "type":"JOB",
-       "url":"https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007",
+       "url":"https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007",
        "_links":{
          "file":{
-           "href":"https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+           "href":"https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007"
          }
        }
      }
@@ -167,7 +167,7 @@ Expanding multiple UUID
 .. code-block:: shell
 
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-       https://public.tenants.agaveapi.co/uuid/v2/?uuids.eq=0001409758089943-5056a550b8-0001-002,0001414144065563-5056a550b8-0001-007?expand=true&pretty=true
+       https://api.tacc.utexas.edu/uuid/v2/?uuids.eq=0001409758089943-5056a550b8-0001-002,0001414144065563-5056a550b8-0001-007?expand=true&pretty=true
 
 .. code-block:: plaintext
 
@@ -225,31 +225,31 @@ Expanding multiple UUID
             },
             "_links":{
               "self":{
-                "href":"https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+                "href":"https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007"
               },
               "app":{
-                "href":"https://public.tenants.agaveapi.co/apps/v2/demo-pyplot-demo-advanced-0.1.0"
+                "href":"https://api.tacc.utexas.edu/apps/v2/demo-pyplot-demo-advanced-0.1.0"
               },
               "executionSystem":{
-                "href":"https://public.tenants.agaveapi.co/systems/v2/$PUBLIC_EXECUTION_SYSTEM"
+                "href":"https://api.tacc.utexas.edu/systems/v2/$PUBLIC_EXECUTION_SYSTEM"
               },
               "archiveData":{
-                "href":"https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/listings"
+                "href":"https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/listings"
               },
               "owner":{
-                "href":"https://public.tenants.agaveapi.co/profiles/v2/$API_USERNAME"
+                "href":"https://api.tacc.utexas.edu/profiles/v2/$API_USERNAME"
               },
               "permissions":{
-                "href":"https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/pems"
+                "href":"https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007/pems"
               },
               "history":{
-                "href":"https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/history"
+                "href":"https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007/history"
               },
               "metadata":{
-                "href":"https://public.tenants.agaveapi.co/meta/v2/data/?q=%7b%22associationIds%22%3a%220001414144065563-5056a550b8-0001-007%22%7d"
+                "href":"https://api.tacc.utexas.edu/meta/v2/data/?q=%7b%22associationIds%22%3a%220001414144065563-5056a550b8-0001-007%22%7d"
               },
               "notifications":{
-                "href":"https://public.tenants.agaveapi.co/notifications/v2/?associatedUuid=0001414144065563-5056a550b8-0001-007"
+                "href":"https://api.tacc.utexas.edu/notifications/v2/?associatedUuid=0001414144065563-5056a550b8-0001-007"
               }
             }
           },
@@ -266,13 +266,13 @@ Expanding multiple UUID
             "uuid":"0001409758089943-5056a550b8-0001-002",
             "_links":{
               "history":{
-                "href":"https://public.tenants.agaveapi.co/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt"
+                "href":"https://api.tacc.utexas.edu/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt"
               },
               "self":{
-                "href":"https://public.tenants.agaveapi.co/files/v2/media/system/data.agaveapi.co/nryan/picksumipsum.txt"
+                "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co/nryan/picksumipsum.txt"
               },
               "system":{
-                "href":"https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+                "href":"https://api.tacc.utexas.edu/systems/v2/data.agaveapi.co"
               }
             }
           }

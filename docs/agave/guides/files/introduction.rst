@@ -14,7 +14,7 @@ Canonical URL for all file items accessible in the Platform
 
 .. code-block:: plaintext
 
-   https://tacc.cloud/files/v2/media/system/$SYSTEM_ID/$PATH
+   https://api.tacc.utexas.edu/files/v2/media/system/$SYSTEM_ID/$PATH
 
 Every file and directory referenced through the Files service has a canonical URL show in the first example. The following table defines each component:
 
@@ -47,17 +47,17 @@ If ``api.tacc.cloud`` is your default storage system then
 
 .. code-block:: plaintext
 
-   https://tacc.cloud/files/v2/media/shared
+   https://api.tacc.utexas.edu/files/v2/media/shared
 
 is equivalent to this:
 
 .. code-block:: plaintext
 
-   https://tacc.cloud/files/v2/media/system/api.tacc.cloud/shared
+   https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/shared
 
 This comes in especially handy when referencing your default system paths in other contexts such as job requests and when interacting with the Agave CLI. A good example of this situation is when you have a global default storage system accessible to all your users. In this case, most users will use that for all of their data staging and archiving needs. These users may find it easier not to even think about the system they are using. The default system support in the Files service allows them to do just that.
 
-When building applications against the Files service, it is considered a best practice to always specify the intended system ID when constructing URL paths to avoid situations where users change their default systems. This will also provide long-term stability to your data references and make debugging much easier. You can read more about default systems in the :raw-html-m2r:`<a href="https://tacc.github.io/developer.tacc.cloud/docs/guides/systems/introduction.html" title="System Management">Systems Guide</a>`.
+When building applications against the Files service, it is considered a best practice to always specify the intended system ID when constructing URL paths to avoid situations where users change their default systems. This will also provide long-term stability to your data references and make debugging much easier. You can read more about default systems in the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/introduction.html" title="System Management">Systems Guide</a>`.
 
 Understanding file paths
 ------------------------
@@ -91,7 +91,7 @@ One powerful, but potentially confusing feature of Agave is its support for virt
    </table>
 |
 
-``homeDir`` specifies the path, relative to ``rootDir``\ , that Agave should use for relative paths. Since Agave is stateless, there is no concept of a current working directory. Thus, when you specify a path to Agave that does not begin with a ``/``\ , Agave will always prefix the path with the value of ``homeDir``. The following table gives several examples of how different combinations of ``rootDir``\ , ``homeDir``\ , and URL paths will be resolved by Agave. For a deeper dive into this subject, please see the :raw-html-m2r:`<a href="#understanding-agave-file-paths" title="Understanding Agave File Paths">Understanding Agave File Paths</a>` section.
+``homeDir`` specifies the path, relative to ``rootDir``\ , that Agave should use for relative paths. Since Agave is stateless, there is no concept of a current working directory. Thus, when you specify a path to Agave that does not begin with a ``/``\ , Agave will always prefix the path with the value of ``homeDir``. The following table gives several examples of how different combinations of ``rootDir``\ , ``homeDir``\ , and URL paths will be resolved by Agave. 
 
 
 .. raw:: html
@@ -226,7 +226,7 @@ Uploading a file
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -X POST \
             -F "fileToUpload=@files/picksumipsum.txt" \
-            https://tacc.cloud/files/v2/media/api.tacc.cloud/nryan
+            https://api.tacc.utexas.edu/files/v2/media/api.tacc.cloud/nryan
 |
 
 
@@ -247,13 +247,13 @@ The response will look something like this:
        "uuid": "0001409758089943-5056a550b8-0001-002",
        "_links": {
            "history": {
-               "href": "https://tacc.cloud/files/v2/history/system/api.tacc.cloud/nryan/picksumipsum.txt"
+               "href": "https://api.tacc.utexas.edu/files/v2/history/system/api.tacc.cloud/nryan/picksumipsum.txt"
            },
            "self": {
-               "href": "https://tacc.cloud/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
+               "href": "https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
            },
            "system": {
-               "href": "https://tacc.cloud/systems/v2/api.tacc.cloud"
+               "href": "https://api.tacc.utexas.edu/systems/v2/api.tacc.cloud"
            }
        }
    }
@@ -322,7 +322,7 @@ Download a file from a web accessible URL
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
             -- data &#039;{ "url":"https://bitbucket.org/agaveapi/science-api-samples/raw/master/README.md"}&#039;
-            https://tacc.cloud/files/v2/media/api.tacc.cloud/nryan
+            https://api.tacc.utexas.edu/files/v2/media/api.tacc.cloud/nryan
 |
 
 
@@ -343,13 +343,13 @@ The response will look something like this:
        "nativeFormat" : "raw",
        "_links" : {
          "self" : {
-           "href" : "https://tacc.cloud/files/v2/media/system/api.tacc.cloud/nryan/README.md"
+           "href" : "https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/nryan/README.md"
          },
          "system" : {
-           "href" : "https://tacc.cloud/systems/v2/api.tacc.cloud"
+           "href" : "https://api.tacc.utexas.edu/systems/v2/api.tacc.cloud"
          },
          "history" : {
-           "href" : "https://tacc.cloud/files/v2/history/system/api.tacc.cloud/nryan/README.md"
+           "href" : "https://api.tacc.utexas.edu/files/v2/history/system/api.tacc.cloud/nryan/README.md"
          }
        }
    }
@@ -382,13 +382,13 @@ Transferring data between systems
             -H "Content-Type: application/json" \
             -X POST \
             --data-binary '{"url":"agave://stampede.tacc.utexas.edu//etc/motd"}' \
-            https://tacc.cloud/files/v2/media/api.tacc.cloud/nryan
+            https://api.tacc.utexas.edu/files/v2/media/api.tacc.cloud/nryan
 |
 
 
 The response from the service will be the same as the one we received importing a file.
 
-Much like downloading data, Agave can manage the transfer of data between registered systems. This is, in fact, how data is staged prior to running a simulation. Data transfers are carried out asynchronously, so you can simply start a transfer and go about your business. Agave will ensure it completes. If you would like a notification when the transfer completes or reaches a certain stage, you can subscribe for one or more emails, :raw-html-m2r:`<a href="http://webhooks.org" title="Webhooks" target="_blank">webhooks</a>`\ , and/or :raw-html-m2r:`<a href="#reatime-notifications" title="Realtime Notifications">realtime</a>` notifications, and Agave will alert them when as the transfer progresses. The following table lists the available file events. For more information about the events and notifications systems, please see the :raw-html-m2r:`<a href="#notifications" title="Notifications Guide" target="_blank">Notifications Guide</a>` and :raw-html-m2r:`<a href="#event-reference" title="Event Reference" target="_blank">Event Reference</a>`.
+Much like downloading data, Agave can manage the transfer of data between registered systems. This is, in fact, how data is staged prior to running a simulation. Data transfers are carried out asynchronously, so you can simply start a transfer and go about your business. Agave will ensure it completes. If you would like a notification when the transfer completes or reaches a certain stage, you can subscribe for one or more emails, :raw-html-m2r:`<a href="http://webhooks.org" title="Webhooks" target="_blank">webhooks</a>`\ , and/or realtime notifications, and Agave will alert them when as the transfer progresses. The following table lists the available file events. For more information about the events and notifications systems, please see the :raw-html-m2r:`<a href="#notifications" title="Notifications Guide" target="_blank">Notifications Guide</a>` and :raw-html-m2r:`<a href="#event-reference" title="Event Reference" target="_blank">Event Reference</a>`.
 
 In the example below, we will transfer a file from ``stampede.tacc.utexas.edu`` to ``api.tacc.cloud``. While the request looks pretty basic, there is a lot going on behind the scenes. Agave will authenticate to both systems, check permissions, stream data out of Stampede using GridFTP and proxy it into ``api.tacc.cloud`` using the SFTP protocol, adjusting the transfer buffer size along the way to optimize throughput. Doing this by hand is both painful and error prone. Doing it with Agave is nearly identical to copying a file from one directory to another on your local system.
 
@@ -411,7 +411,7 @@ One of the benefits of the Files service is that it frees you up to work in para
             -H "Content-Type: application/json" \
             -X POST \
             --data-binary '{"url":"agave://api.tacc.cloud/nryan/foo_project"}' \
-            https://tacc.cloud/files/v2/media/system/nryan.storage1/
+            https://api.tacc.utexas.edu/files/v2/media/system/nryan.storage1/
 |
 
 
@@ -432,7 +432,7 @@ One of the benefits of the Files service is that it frees you up to work in para
             -H "Content-Type: application/json" \
             -X POST \
             --data-binary '{"url":"agave://api.tacc.cloud/nryan/foo_project"}' \
-            https://tacc.cloud/files/v2/media/system/nryan.storage2/
+            https://api.tacc.utexas.edu/files/v2/media/system/nryan.storage2/
 |
 
 
@@ -462,7 +462,7 @@ Listing a file or directory
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-            https://tacc.cloud/files/v2/listings/api.tacc.cloud/nryan
+            https://api.tacc.utexas.edu/files/v2/listings/api.tacc.cloud/nryan
 |
 
 
@@ -483,10 +483,10 @@ The response would look something like this:
            "type": "dir",
            "_links": {
                "self": {
-                   "href": "https://tacc.cloud/files/v2/media/system/api.tacc.cloud/nryan"
+                   "href": "https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/nryan"
                },
                "system": {
-                   "href": "https://tacc.cloud/systems/v2/api.tacc.cloud"
+                   "href": "https://api.tacc.utexas.edu/systems/v2/api.tacc.cloud"
                }
            }
        },
@@ -502,10 +502,10 @@ The response would look something like this:
        "type": "file",
        "_links": {
                "self": {
-                   "href": "https://tacc.cloud/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
+                   "href": "https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/nryan/picksumipsum.txt"
            },
            "system": {
-               "href": "https://tacc.cloud/systems/v2/api.tacc.cloud"
+               "href": "https://api.tacc.utexas.edu/systems/v2/api.tacc.cloud"
            }
        }
        }
@@ -566,9 +566,9 @@ Copying files and directories
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
-            -X POST \
+            -X PUT \
             --data-binary '{"action":"copy","path":"$DESTPATH"}' \
-            https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+            https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/$PATH
 |
 
 
@@ -594,9 +594,9 @@ Moving files and directories
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
-            -X POST \
+            -X PUT \
             --data-binary '{"action":"move","path":"$DESTPATH"}' \
-            https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+            https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/$PATH
 |
 
 
@@ -620,9 +620,9 @@ Renaming files and directories
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
-            -X POST \
+            -X PUT \
             --data-binary '{"action":"rename","path":"$NEWNAME"}' \
-            https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+            https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/$PATH
 |
 
 
@@ -646,9 +646,9 @@ Creating a new directory
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
-            -X POST \
+            -X PUT \
             --data-binary '{"action":"mkdir","path":"$NEWDIR"}' \
-            https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+            https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/$PATH
 |
 
 
@@ -672,7 +672,7 @@ Deleting a file item
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -X DELETE \
-            https://tacc.cloud/files/v2/media/system/api.tacc.cloud/$PATH
+            https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/$PATH
 |
 
 

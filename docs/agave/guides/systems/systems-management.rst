@@ -23,7 +23,7 @@ Disable a system
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
           -H "Content-Type: application/json"
           -X PUT --data-binary '{"action": "disable"}'
-          https://public.agaveapi.co/systems/v2/$SYSTEM_ID
+          https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 
@@ -61,19 +61,19 @@ The response will look something like the following:
      },
      "_links": {
        "roles": {
-         "href": "https://public.agaveapi.co/systems/v2/sftp.storage.example.com/roles"
+         "href": "https://api.tacc.utexas.edu/systems/v2/sftp.storage.example.com/roles"
        },
        "owner": {
-         "href": "https://public.agaveapi.co/profiles/v2/nryan"
+         "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
        },
        "credentials": {
-         "href": "https://public.agaveapi.co/systems/v2/sftp.storage.example.com/credentials"
+         "href": "https://api.tacc.utexas.edu/systems/v2/sftp.storage.example.com/credentials"
        },
        "self": {
-         "href": "https://public.agaveapi.co/systems/v2/sftp.storage.example.com"
+         "href": "https://api.tacc.utexas.edu/systems/v2/sftp.storage.example.com"
        },
        "metadata": {
-         "href": "https://public.agaveapi.co/meta/v2/data/?q=%7B%22associationIds%22%3A%224036169328045649434-242ac117-0001-006%22%7D"
+         "href": "https://api.tacc.utexas.edu/meta/v2/data/?q=%7B%22associationIds%22%3A%224036169328045649434-242ac117-0001-006%22%7D"
        }
      }
    }
@@ -101,7 +101,7 @@ Enable a system
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
           -H "Content-Type: application/json"
           -X PUT --data-binary '{"action": "enable"}'
-          https://public.agaveapi.co/systems/v2/$SYSTEM_ID
+          https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 
@@ -139,19 +139,19 @@ The response will look something like the following:
      },
      "_links": {
        "roles": {
-         "href": "https://public.agaveapi.co/systems/v2/sftp.storage.example.com/roles"
+         "href": "https://api.tacc.utexas.edu/systems/v2/sftp.storage.example.com/roles"
        },
        "owner": {
-         "href": "https://public.agaveapi.co/profiles/v2/nryan"
+         "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
        },
        "credentials": {
-         "href": "https://public.agaveapi.co/systems/v2/sftp.storage.example.com/credentials"
+         "href": "https://api.tacc.utexas.edu/systems/v2/sftp.storage.example.com/credentials"
        },
        "self": {
-         "href": "https://public.agaveapi.co/systems/v2/sftp.storage.example.com"
+         "href": "https://api.tacc.utexas.edu/systems/v2/sftp.storage.example.com"
        },
        "metadata": {
-         "href": "https://public.agaveapi.co/meta/v2/data/?q=%7B%22associationIds%22%3A%224036169328045649434-242ac117-0001-006%22%7D"
+         "href": "https://api.tacc.utexas.edu/meta/v2/data/?q=%7B%22associationIds%22%3A%224036169328045649434-242ac117-0001-006%22%7D"
        }
      }
    }
@@ -174,7 +174,7 @@ Deleting systems
 
      .. code-block:: shell
 
-        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://public.tenants.agaveapi.co/systems/v2/$SYSTEM_ID
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
 
 

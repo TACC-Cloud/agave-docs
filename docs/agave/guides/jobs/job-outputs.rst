@@ -50,13 +50,13 @@ The syntax of this service is consistent with the Files service syntax, as is th
           "type" : "dir",
           "_links" : {
             "self" : {
-              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/output"
+              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/output"
             },
             "system" : {
-              "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+              "href" : "https://agave.iplantc.org/systems/v2/data.iplantcollaborative.org"
             },
             "parent" : {
-              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007"
             }
           }
         }, {
@@ -70,13 +70,13 @@ The syntax of this service is consistent with the Files service syntax, as is th
           "type" : "file",
           "_links" : {
             "self" : {
-              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.err"
+              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.err"
             },
             "system" : {
-              "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+              "href" : "https://agave.iplantc.org/systems/v2/data.iplantcollaborative.org"
             },
             "parent" : {
-              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007"
             }
           }
         }, {
@@ -90,13 +90,13 @@ The syntax of this service is consistent with the Files service syntax, as is th
           "type" : "file",
           "_links" : {
             "self" : {
-              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.out"
+              "href" : "https://pagave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.out"
             },
             "system" : {
-              "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+              "href" : "https://agave.iplantc.org/systems/v2/data.iplantcollaborative.org"
             },
             "parent" : {
-              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007"
             }
           }
         }, {
@@ -110,13 +110,13 @@ The syntax of this service is consistent with the Files service syntax, as is th
           "type" : "file",
           "_links" : {
             "self" : {
-              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.pid"
+              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.pid"
             },
             "system" : {
-              "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+              "href" : "https://agave.iplantc.org/systems/v2/data.iplantcollaborative.org"
             },
             "parent" : {
-              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007"
             }
           }
         }, {
@@ -130,13 +130,13 @@ The syntax of this service is consistent with the Files service syntax, as is th
           "type" : "file",
           "_links" : {
             "self" : {
-              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/testdata.csv"
+              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/testdata.csv"
             },
             "system" : {
-              "href" : "https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
+              "href" : "https://agave.iplantc.org/systems/v2/data.iplantcollaborative.org"
             },
             "parent" : {
-              "href" : "https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007"
+              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007"
             }
           }
         } ]
