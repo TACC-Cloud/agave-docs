@@ -5,7 +5,7 @@
 Metadata
 ========
 
-The Tapis (Agave) Metadata service allows you to manage metadata and associate it with Agave entities via associated UUIDs. It supports JSON schema for structured JSON metadata; it also accepts any valid JSON-formatted metadata or plain text String when no schema is specified. As with other Agave services, a full access control layer is available, enabling you to keep your metadata private or share it with your colleagues.
+The Tapis (Agave) Metadata service allows you to manage metadata and associate it with Tapis (Agave) entities via associated UUIDs. It supports JSON schema for structured JSON metadata; it also accepts any valid JSON-formatted metadata or plain text String when no schema is specified. As with other Tapis (Agave) services, a full access control layer is available, enabling you to keep your metadata private or share it with your colleagues.
 
 Metadata Structure
 ------------------
