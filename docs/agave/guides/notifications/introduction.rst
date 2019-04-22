@@ -5,7 +5,7 @@
 Notifications
 =============
 
-Under the covers, the Tapis (Agave) API is an event-driven distributed system implemented on top of a reliable, cloud-based messaging system. This means that every action either observed or taken by Agave is tied to an event. The changing of a job from one status to another is an event. The granting of permissions on a file is an event. Editing a piece of metadata is an event, and to be sure, the moment you created an account with Agave was an event. You get the idea.
+Under the covers, the Tapis (Agave) API is an event-driven distributed system implemented on top of a reliable, cloud-based messaging system. This means that every action either observed or taken by Tapis (Agave) is tied to an event. The changing of a job from one status to another is an event. The granting of permissions on a file is an event. Editing a piece of metadata is an event, and to be sure, the moment you created an account with Tapis (Agave) was an event. You get the idea.
 
 Having such a fine-grain event system is helpful for the same reason that having a fine-grain permission model is helpful. It affords you the highest degree of flexibility and control possible to achieve the behavior you desire. With Tapis (Agave)'s event system, you have the ability to alert your users (or yourself) the instant something occurs. You can be proactive rather than reactive, and you can begin orchestrating your complex tasks in a loosely coupled, asynchronous way.
 
