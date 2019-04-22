@@ -5,7 +5,7 @@
 Wrapper Templates
 =================
 
-In order to run your application, you will need to create a wrapper template that calls your executable code. The wrapper template is a simple script that Tapis (Agave) will filter and execute to start your app. The filtering Agave applies to your wrapper script is to inject runtime values from a job request into the script to replace the template variables representing the inputs and parameters of your app.
+In order to run your application, you will need to create a wrapper template that calls your executable code. The wrapper template is a simple script that Tapis (Agave) will filter and execute to start your app. The filtering Tapis (Agave) applies to your wrapper script is to inject runtime values from a job request into the script to replace the template variables representing the inputs and parameters of your app.
 
 The order in which wrapper templates are processed in HPC and Condor apps is as follows.
 
@@ -152,7 +152,7 @@ Tapis (Agave) provides information about the job, system, and user as predefined
 Input data
 ----------
 
-Tapis (Agave) will stage the files and folders you specify as inputs to your app. These will be available in the top level of your job directory at runtime. Additionally, the names of each of the inputs will be injected into your wrapper template for you to use in your application logic. Please be aware that Agave will not attempt to resolve namespace conflicts between your app inputs. That means that if a job specifies two inputs with the same name, one will overwrite the other during the input staging phase of the job and, though the variable names will be correctly injected to the wrapper script, your job will most likely fail due to missing data.
+Tapis (Agave) will stage the files and folders you specify as inputs to your app. These will be available in the top level of your job directory at runtime. Additionally, the names of each of the inputs will be injected into your wrapper template for you to use in your application logic. Please be aware that Tapis (Agave) will not attempt to resolve namespace conflicts between your app inputs. That means that if a job specifies two inputs with the same name, one will overwrite the other during the input staging phase of the job and, though the variable names will be correctly injected to the wrapper script, your job will most likely fail due to missing data.
 
 See the table below for fields that must be defined for an app's inputs:
 
@@ -265,7 +265,7 @@ If you refer back to the app definition we used in the App Management Tutorial, 
 Type declarations
 -----------------
 
-During the jobs submission process, Tapis (Agave) will store your inputs and parameters as serialized JSON. At the point that variable injection occurs, Agave will replace all occurrences of your input and parameter with their value provided in the job request. In order for Agave to properly identify your input and parameter ids, wrap them in brackets and prepend a dollar sign. For example, if you have a parameter with id ``param1``\ , you would include it in your wrapper script as ``${param1}``. Case sensitivity is honored at all times.
+During the jobs submission process, Tapis (Agave) will store your inputs and parameters as serialized JSON. At the point that variable injection occurs, Tapis (Agave) will replace all occurrences of your input and parameter with their value provided in the job request. In order for Tapis (Agave) to properly identify your input and parameter ids, wrap them in brackets and prepend a dollar sign. For example, if you have a parameter with id ``param1``\ , you would include it in your wrapper script as ``${param1}``. Case sensitivity is honored at all times.
 
 Boolean values
 --------------
@@ -285,7 +285,7 @@ If your parameter was of type "flag", Tapis (Agave) will replace all occurences 
 App packaging
 -------------
 
-Tapis (Agave) API apps have a generalized structure that allows them to carry dependencies around with them. In the case below, ``package-name-version.dot.dot</em>`` is a folder that you build on your local system, then store in your Agave Cloud Storage in a designated location (we recommend ``/home/username/applications/app_folder_name``\ ). It contains binaries, support scripts, test data, etc. all in one package. Agave basically uses a very rough form of containerized applications (more on this later). We suggest you set your apps up to look something like the following:
+Tapis (Agave) API apps have a generalized structure that allows them to carry dependencies around with them. In the case below, ``package-name-version.dot.dot</em>`` is a folder that you build on your local system, then store in your Tapis (Agave) Cloud Storage in a designated location (we recommend ``/home/username/applications/app_folder_name``\ ). It contains binaries, support scripts, test data, etc. all in one package. Tapis (Agave) basically uses a very rough form of containerized applications (more on this later). We suggest you set your apps up to look something like the following:
 
 .. code-block::
 
@@ -299,7 +299,7 @@ Tapis (Agave) API apps have a generalized structure that allows them to carry de
    |----test_data (optional)
    |----app.json
 
-Tapis (Agave) runs a job by first transferring a copy of this directory into temporary directory on the target ``executionSystem``. Then, the input data files (we'll show you how to specify those are later) are staged into place automatically. Next, Agave writes a scheduler submit script (using a template you provide i.e. script.template) and puts it in the queue on the target system. The Agave service then monitors progress of the job and, assuming it completes, copies all newly-created files to the location specified when the job was submitted. Along the way, critical milestones and metadata are recorded in the job's history.
+Tapis (Agave) runs a job by first transferring a copy of this directory into temporary directory on the target ``executionSystem``. Then, the input data files (we'll show you how to specify those are later) are staged into place automatically. Next, Tapis (Agave) writes a scheduler submit script (using a template you provide i.e. script.template) and puts it in the queue on the target system. The Tapis (Agave) service then monitors progress of the job and, assuming it completes, copies all newly-created files to the location specified when the job was submitted. Along the way, critical milestones and metadata are recorded in the job's history.
 
 :raw-html-m2r:`<em>Tapis (Agave) app development proceeds via the following steps:</em>`
 

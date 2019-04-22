@@ -11,11 +11,11 @@ Originally the batch scheduler was a person and the term batch came from their a
 
 A user submits a request for a unit of work to be done. The primary difference is that today, often times, the wait time between submission and execution is considerably less. On shared systems, such as many of the HPC systems originally targeted by Tapis (Agave), waiting for your job to start is the price you pay for the incredible performance you get once your job starts.
 
-Tapis (Agave), too, adopts the concept of job submission, though it is not in and of itself a scheduler. In the context of Agave's Job service, the process of running an application registered with the Apps service is referred to as submitting a job.
+Tapis (Agave), too, adopts the concept of job submission, though it is not in and of itself a scheduler. In the context of Tapis' (Agave) Job service, the process of running an application registered with the Apps service is referred to as submitting a job.
 
 Unlike in the batch scheduling world where each scheduler has its own job submission syntax and its own idiosyncrasies, the mechanism for submitting a job to Tapis (Agave) is consistent regardless of the application or system on which you run. A HTML form or JSON object are posted to the Jobs service. The submission is validated, and the job is forwarded to the scheduling and execution services for processing.
 
-Because Tapis (Agave) takes an app-centric view of science, execution does not require knowing about the underlying systems on which an application runs. Simply knowing how the parameters and inputs you want to use when running an app is sufficient to define a job. Agave will handle the rest.
+Because Tapis (Agave) takes an app-centric view of science, execution does not require knowing about the underlying systems on which an application runs. Simply knowing how the parameters and inputs you want to use when running an app is sufficient to define a job. Tapis (Agave) will handle the rest.
 
 As mentioned previously, jobs are submitted by making a HTTP POST request either a HTML form or a JSON object to the Jobs service. All job submissions must include a few mandatory values that are used to define a basic unit of work. Table 1 lists the optional and required attributes of all job submissions.
 
