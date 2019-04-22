@@ -5,7 +5,7 @@
 Publishing data
 ===============
 
-Tapis (Agave) provides multiple ways to share your data with your colleagues and the general public. In addition to the standard permission model enabling you to share your data with one or more authenticated users within the Platform, you also have the ability to publish your data and make it available via an unauthenticated public URL. Unlike traditional web and cloud hosting, your data remains in its original location and is served in situ by Agave upon user request.
+Tapis (Agave) provides multiple ways to share your data with your colleagues and the general public. In addition to the standard permission model enabling you to share your data with one or more authenticated users within the Platform, you also have the ability to publish your data and make it available via an unauthenticated public URL. Unlike traditional web and cloud hosting, your data remains in its original location and is served in situ by Tapis (Agave) upon user request.
 
 Publishing a file for folder is simply a matter of granting the special ``public`` user ``READ`` permission on a file or folder. Similar to the way listings and permissions are exposed through unique paths in the Files API, published data is served from a custom ``/files/v2/download`` path. The public data URLs have the following structure:
 
@@ -47,7 +47,7 @@ Publish file item on a named system for public access
 
 .. code-block:: plaintext
 
-   files-pems-update -u public -p READ -S data.agaveapi.co nryan/picksumipsum.txt
+   files-pems-update -u public -p READ -S data.iplantcollaborative.org nryan/picksumipsum.txt
 
 .. container:: foldable
 
@@ -62,7 +62,7 @@ Publish file item on a named system for public access
           -H "Content-Type: application/json" \
           -X POST \
           --data '{"username","public", "permission":"READ"}' \
-          https://api.tacc.utexas.edu/files/v2/pems/system/data.agaveapi.co/nryan/picksumipsum.txt
+          https://api.tacc.utexas.edu/files/v2/pems/system/data.iplantcollaborative.org/nryan/picksumipsum.txt
 |
 
 
@@ -80,10 +80,10 @@ The response will look something like the following:
      "recursive": false,
      "_links": {
        "self": {
-         "href": "https://api.tacc.utexas.edu/files/v2/pems/system/data.agaveapi.co/nryan/picksumipsum.txt?username.eq=public"
+         "href": "https://api.tacc.utexas.edu/files/v2/pems/system/data.iplantcollaborative.org/nryan/picksumipsum.txt?username.eq=public"
        },
        "file": {
-         "href": "https://api.tacc.utexas.edu/files/v2/pems/system/data.agaveapi.co/nryan/picksumipsum.txt"
+         "href": "https://api.tacc.utexas.edu/files/v2/pems/system/data.iplantcollaborative.org/nryan/picksumipsum.txt"
        },
        "profile": {
          "href": "https://api.tacc.utexas.edu/profiles/v2/public"
@@ -93,7 +93,7 @@ The response will look something like the following:
 
 Publishing a file for folder is simply a matter of giving the special ``public`` user ``READ`` permission on the file. Once published, the file will be available at the following URL:
 
-``https://api.tacc.utexas.edu/files/v2/download/nryan/system/data.agaveapi.co/nryan/picksumipsum.txt``
+``https://api.tacc.utexas.edu/files/v2/download/nryan/system/data.iplantcollaborative.org/nryan/picksumipsum.txt``
 
 Publishing directories
 ----------------------
@@ -125,7 +125,7 @@ Publish directory on a named system for public access
 
 .. code-block:: plaintext
 
-   files-pems-update --recursive -u public -p READ -S data.agaveapi.co nryan/public
+   files-pems-update --recursive -u public -p READ -S data.iplantcollaborative.org nryan/public
 
 .. container:: foldable
 
@@ -140,7 +140,7 @@ Publish directory on a named system for public access
          -H "Content-Type: application/json" \
          -X POST \
          --data '{"username","public", "permission":"READ", "recursive": true}' \
-         https://api.tacc.utexas.edu/files/v2/pems/system/data.agaveapi.co/nryan/public
+         https://api.tacc.utexas.edu/files/v2/pems/system/data.iplantcollaborative.org/nryan/public
 |
 
 
@@ -158,10 +158,10 @@ The response will look something like the following:
      "recursive": true,
      "_links": {
        "self": {
-         "href": "https://api.tacc.utexas.edu/files/v2/pems/system/data.agaveapi.co/nryan/public?username.eq=public"
+         "href": "https://api.tacc.utexas.edu/files/v2/pems/system/data.iplantcollaborative.org/nryan/public?username.eq=public"
        },
        "file": {
-         "href": "https://api.tacc.utexas.edu/files/v2/pems/system/data.agaveapi.co/nryan/public"
+         "href": "https://api.tacc.utexas.edu/files/v2/pems/system/data.iplantcollaborative.org/nryan/public"
        },
        "profile": {
          "href": "https://api.tacc.utexas.edu/profiles/v2/public"
@@ -169,9 +169,9 @@ The response will look something like the following:
      }
    }
 
-Publishing an entire directory is identical to publishing a single file item. To make all the contents of the directory public as well, include a ``recursive`` field to your request with a value of ``true``. Once published, the directory and all its contents will be avaialble for download. The above example will make every file and folder in the "nryan/public" directory of "data.agaveapi.co" available for download at the following URL:
+Publishing an entire directory is identical to publishing a single file item. To make all the contents of the directory public as well, include a ``recursive`` field to your request with a value of ``true``. Once published, the directory and all its contents will be avaialble for download. The above example will make every file and folder in the "nryan/public" directory of "data.iplantcollaborative.org" available for download at the following URL:
 
- ``https://papi.tacc.utexas.edu/files/v2/download/nryan/system/data.agaveapi.co/nryan/public``
+ ``https://papi.tacc.utexas.edu/files/v2/download/nryan/system/data.iplantcollaborative.org/nryan/public``
 
 Remember that whenever you publish a folder, anything you put in that folder becomes publicly available. As with any cloud storage service, think before blindly copying data into your cloud storage. If you want to restrict the duration or frequency which your public data is accessed, you should see the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/postits/introduction.html">PostIts Guide</a>` for other ways to securely share your data with others.
 

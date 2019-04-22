@@ -181,7 +181,7 @@ Default systems
 
 As you continue to use Tapis (Agave) over time, it will not be uncommon for you to accumulate additional storage and execution systems through both self-registration and other people sharing their systems with you. It may even be the case that you have multiple public systems available to you. In this situation, it is helpful for both you and your users to specify what the default systems should be.
 
-Default systems are the systems that are used when the user does not specify a system to use when performing a remote action in Tapis (Agave). For example, specifying an ``archivePath`` in a job request, but no ``archiveSystem``\ , or specifying a ``deploymentPath`` in an app description, but no ``deploymentSystem``. In these situations, Agave will use the user's default storage system.
+Default systems are the systems that are used when the user does not specify a system to use when performing a remote action in Tapis (Agave). For example, specifying an ``archivePath`` in a job request, but no ``archiveSystem``\ , or specifying a ``deploymentPath`` in an app description, but no ``deploymentSystem``. In these situations, Tapis (Agave) will use the user's default storage system.
 
 Four types of default systems are possible. The following table describes them.
 

@@ -103,7 +103,7 @@ Tapis (Agave) will record both direct and indirect events made on a file item. E
 Out of band file system changes
 -------------------------------
 
-Tapis (Agave) does not own the storage and execution systems you access through the Science APIs, so it cannot guarantee that everything that every possible change made to the file system is recorded. Thus, Agave takes a best-effort approach to provenance allowing you to choose, through your own use of best practices, how thorough you want the provenance trail of your data to be.
+Tapis (Agave) does not own the storage and execution systems you access through the Science APIs, so it cannot guarantee that everything that every possible change made to the file system is recorded. Thus, Tapis (Agave) takes a best-effort approach to provenance allowing you to choose, through your own use of best practices, how thorough you want the provenance trail of your data to be.
 
 Listing file history
 --------------------

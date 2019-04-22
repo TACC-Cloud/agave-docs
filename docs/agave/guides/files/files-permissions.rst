@@ -126,7 +126,7 @@ The response will look something like the following:
      }
    }
 
-Checking permissions for a single user is done using agave URL query search syntax.
+Checking permissions for a single user is done using Tapis (Agave) URL query search syntax.
 
 Grant permissions
 -----------------

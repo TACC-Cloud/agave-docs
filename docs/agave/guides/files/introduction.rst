@@ -62,7 +62,7 @@ When building applications against the Files service, it is considered a best pr
 Understanding file paths
 ------------------------
 
-One powerful, but potentially confusing feature of Tapis (Agave) is its support for virtualizing systems paths. Every registered system specifies both a root directory, ``rootDir``\ , and a home directory, ``homeDir`` attribute in its storage configuration. ``rootDir`` tells Agave the absolute path on the remote system that it should treat as ``/``. Similar to the Linux ``chroot`` command; no requests made to Agave will ever be resolved to locations outside of ``rootDir``.
+One powerful, but potentially confusing feature of Tapis (Agave) is its support for virtualizing systems paths. Every registered system specifies both a root directory, ``rootDir``\ , and a home directory, ``homeDir`` attribute in its storage configuration. ``rootDir`` tells Tapis (Agave) the absolute path on the remote system that it should treat as ``/``. Similar to the Linux ``chroot`` command; no requests made to Tapis (Agave) will ever be resolved to locations outside of ``rootDir``.
 
 
 .. raw:: html
@@ -91,7 +91,7 @@ One powerful, but potentially confusing feature of Tapis (Agave) is its support 
    </table>
 |
 
-``homeDir`` specifies the path, relative to ``rootDir``\ , that Tapis (Agave) should use for relative paths. Since Agave is stateless, there is no concept of a current working directory. Thus, when you specify a path to Agave that does not begin with a ``/``\ , Agave will always prefix the path with the value of ``homeDir``. The following table gives several examples of how different combinations of ``rootDir``\ , ``homeDir``\ , and URL paths will be resolved by Agave. 
+``homeDir`` specifies the path, relative to ``rootDir``\ , that Tapis (Agave) should use for relative paths. Since Tapis (Agave) is stateless, there is no concept of a current working directory. Thus, when you specify a path to Tapis (Agave) that does not begin with a ``/``\ , Tapis (Agave) will always prefix the path with the value of ``homeDir``. The following table gives several examples of how different combinations of ``rootDir``\ , ``homeDir``\ , and URL paths will be resolved by Agave. 
 
 
 .. raw:: html
@@ -258,14 +258,14 @@ The response will look something like this:
        }
    }
 
-You may upload data to a remote systems by performing a multipart POST on the FILES service. If you are using the Tapis (Agave) CLI, you can perform recursive directory uploads. If you are manually calling curl or building an app with the Agave SDK, you will need to implement the recursion yourself. You can take a look in the ``files-upload`` script to see how this is done. The following is an example of how to upload a file that we will use in the remainder of this tutorial.
+You may upload data to a remote systems by performing a multipart POST on the FILES service. If you are using the Tapis (Agave) CLI, you can perform recursive directory uploads. If you are manually calling curl or building an app with the Tapis (Agave) SDK, you will need to implement the recursion yourself. You can take a look in the ``files-upload`` script to see how this is done. The following is an example of how to upload a file that we will use in the remainder of this tutorial.
 
 You will see a progress bar while the file uploads, followed by a response from the server with a description of the uploaded file. Tapis (Agave) does not block during data movement operations, so it may be just a moment before the file physically shows up on the remote system.
 
 Importing data
 --------------
 
-You can also have Tapis (Agave) download data from an external URL. Rather than making a multipart file upload request, you can pass in a JSON object with the URL and an optional target file name, type, and array of notifications subscriptions. Agave supports several protocols for ingestion listed in the next table.
+You can also have Tapis (Agave) download data from an external URL. Rather than making a multipart file upload request, you can pass in a JSON object with the URL and an optional target file name, type, and array of notifications subscriptions. Tapis (Agave) supports several protocols for ingestion listed in the next table.
 
 
 .. raw:: html
@@ -302,7 +302,7 @@ You can also have Tapis (Agave) download data from an external URL. Rather than 
    </table>
 |
 
-To demonstrate how this works, we will import a README.md file from the :raw-html-m2r:`<a href="https://bitbucket.org/agaveapi/science-api-samples" title="Tapis (Agave) Samples" target="_blank">Agave Samples</a>` git repository in Bitbucket.
+To demonstrate how this works, we will import a README.md file from the :raw-html-m2r:`<a href="https://bitbucket.org/agaveapi/science-api-samples" title="Tapis (Agave) Samples" target="_blank">Tapis (Agave) Samples</a>` git repository in Bitbucket.
 
 Download a file from a web accessible URL  
 
@@ -356,7 +356,7 @@ The response will look something like this:
 
 Downloading data from a third party is done offline as an asynchronous activity, so the response from the server will come right away. One thing worth noting is that the file length given in the response will always be -1. This is because, generally speaking, Tapis (Agave) does not know what the actual source file size is until after the repsonse is send back. The file size will be updated as the download progresses. You can track the progress by querying the destination file item's history. An entry will be present showing the progress of the download.
 
-For this exercise, the file we just downloaded is just a few KB, so you should see it appear in your home folder on ``api.tacc.cloud`` almost immediately. If you were importing larger datasets, the transfer could take significantly longer depending on the network quality between Tapis (Agave) and the source location. In this case, you would see the file size continue to increase until it completed. In the event of a failed transfer, Agave will retry several times before canceling the transfer.
+For this exercise, the file we just downloaded is just a few KB, so you should see it appear in your home folder on ``api.tacc.cloud`` almost immediately. If you were importing larger datasets, the transfer could take significantly longer depending on the network quality between Tapis (Agave) and the source location. In this case, you would see the file size continue to increase until it completed. In the event of a failed transfer, Tapis (Agave) will retry several times before canceling the transfer.
 
 Tapis (Agave) attempts to make smart decisions about how and when to transfer data. This includes leveraging third-party transfers whenever possible, scaling directory copies out horizontally, and taking advantage of chunked or parallel uploads. As a result, data may arrive in a non-deterministic way on the target system. This is normal and should be expected.
 
@@ -390,7 +390,7 @@ The response from the service will be the same as the one we received importing 
 
 Much like downloading data, Tapis (Agave) can manage the transfer of data between registered systems. This is, in fact, how data is staged prior to running a simulation. Data transfers are carried out asynchronously, so you can simply start a transfer and go about your business. Tapis (Agave) will ensure it completes. If you would like a notification when the transfer completes or reaches a certain stage, you can subscribe for one or more emails, :raw-html-m2r:`<a href="http://webhooks.org" title="Webhooks" target="_blank">webhooks</a>`\ , and/or realtime notifications, and Tapis (Agave) will alert them when as the transfer progresses. The following table lists the available file events. For more information about the events and notifications systems, please see the :raw-html-m2r:`<a href="#notifications" title="Notifications Guide" target="_blank">Notifications Guide</a>` and :raw-html-m2r:`<a href="#event-reference" title="Event Reference" target="_blank">Event Reference</a>`.
 
-In the example below, we will transfer a file from ``stampede.tacc.utexas.edu`` to ``api.tacc.cloud``. While the request looks pretty basic, there is a lot going on behind the scenes. Tapis (Agave) will authenticate to both systems, check permissions, stream data out of Stampede using GridFTP and proxy it into ``api.tacc.cloud`` using the SFTP protocol, adjusting the transfer buffer size along the way to optimize throughput. Doing this by hand is both painful and error prone. Doing it with Agave is nearly identical to copying a file from one directory to another on your local system.
+In the example below, we will transfer a file from ``stampede.tacc.utexas.edu`` to ``api.tacc.cloud``. While the request looks pretty basic, there is a lot going on behind the scenes. Tapis (Agave) will authenticate to both systems, check permissions, stream data out of Stampede using GridFTP and proxy it into ``api.tacc.cloud`` using the SFTP protocol, adjusting the transfer buffer size along the way to optimize throughput. Doing this by hand is both painful and error prone. Doing it with Tapis (Agave) is nearly identical to copying a file from one directory to another on your local system.
 
 One of the benefits of the Files service is that it frees you up to work in parallel and scale with your application demands. In the next example we will use the Files service to create redundant archives of a shared project directory.
 
@@ -676,4 +676,4 @@ Deleting a file item
 |
 
 
-A standard Tapis (Agave) response with an empty result value will be returned. As with creating a directory, deleting a file or directory is a recursive action in Agave. No prompt or warning will be given once the request is sent. It is up to you to implement such checks in your application logic and/or user interface.
+A standard Tapis (Agave) response with an empty result value will be returned. As with creating a directory, deleting a file or directory is a recursive action in Tapis (Agave). No prompt or warning will be given once the request is sent. It is up to you to implement such checks in your application logic and/or user interface.
