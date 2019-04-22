@@ -28,9 +28,9 @@ A storage systems can be thought of as an individual data repository that you wa
       }
    }
 
-The first four attributes are common to both storage and execution systems. The ``storage`` attribute describes the connectivity and authentication information needed to connect to the remote system. Here we describe a SFTP server accessible on ``port`` 22 at ``host`` storage.example.com. We specify that we want the ``rootDir``\ , or virtual system root exposed through Tapis (Tapis (Agave)), to be the system's physical root directory, and we want the authenticated user's home directory to be the ``homeDir``\ , or virtual home directory and base of all relative paths given to Agave. Finally, we tell Agave to use password based authentication and provided the necessary credentials.
+The first four attributes are common to both storage and execution systems. The ``storage`` attribute describes the connectivity and authentication information needed to connect to the remote system. Here we describe a SFTP server accessible on ``port`` 22 at ``host`` storage.example.com. We specify that we want the ``rootDir``\ , or virtual system root exposed through Tapis (Agave), to be the system's physical root directory, and we want the authenticated user's home directory to be the ``homeDir``\ , or virtual home directory and base of all relative paths given to Agave. Finally, we tell Tapis (Agave) to use password based authentication and provided the necessary credentials.
 
-This example is given as a simple illustration of how to describe a systems for use by Tapis (Agave). In most situations you should **NOT** provide your username and password. In fact, if you are using a compute or storage systems from your university or government-funded labs it is, at best, against the user agreement and, at worst, illegal to give your password to a third party service such as Agave. In these situations, use one of the many other authentication options such as SSH keys, X509 authentication, or a 3rd party authentication service like the MyProxy Gateway.
+This example is given as a simple illustration of how to describe a systems for use by Tapis (Agave). In most situations you should **NOT** provide your username and password. In fact, if you are using a compute or storage systems from your university or government-funded labs it is, at best, against the user agreement and, at worst, illegal to give your password to a third party service such as Tapis (Agave). In these situations, use one of the many other authentication options such as SSH keys, X509 authentication, or a 3rd party authentication service like the MyProxy Gateway.
 
 The full list of storage system attributes is described in the following table.
 
@@ -49,7 +49,7 @@ The full list of storage system attributes is described in the following table.
            <tr>
                <td>available</td>
                <td>boolean</td>
-               <td>Whether the system is currently available for use in the API. Unavailable systems will not be visible to anyone but the owner. This differs from the `status` attribute in that a system may be UP, but not available for use in Tapis (Tapis (Agave)). Defaults to true</td>
+               <td>Whether the system is currently available for use in the API. Unavailable systems will not be visible to anyone but the owner. This differs from the `status` attribute in that a system may be UP, but not available for use in Tapis (Agave). Defaults to true</td>
            </tr>
            <tr>
                <td>description</td>
@@ -523,7 +523,7 @@ In each of the examples above, the ``storage`` objects were slightly different, 
            <tr>
                <td>proxy</td>
                <td>JSON Object</td>
-               <td>The proxy server through with Tapis (Tapis (Agave)) will tunnel when submitting jobs. Currently proxy servers will use the same authentication mechanism as the target server.</td>
+               <td>The proxy server through with Tapis (Agave) will tunnel when submitting jobs. Currently proxy servers will use the same authentication mechanism as the target server.</td>
            </tr>
            <tr>
                <td>resource</td>
