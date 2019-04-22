@@ -164,7 +164,7 @@ Search Examples
             "value.description":{
                "$regex":[
                   ".*prickly pear.*",
-                  ".*agave.*",
+                  ".*tapis.*",
                   ".*century.*"
                ],
                "$options":"i"

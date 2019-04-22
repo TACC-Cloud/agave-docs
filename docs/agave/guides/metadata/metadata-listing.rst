@@ -114,7 +114,7 @@ Metadata browsing
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-            'https://api.sd2e.org/meta/v2/data?limit=1&pretty=true'
+            'https://api.tacc.utexas.edu/meta/v2/data?limit=1&pretty=true'
 |
 
 .. container:: foldable

@@ -106,7 +106,7 @@ Creating Metadata
      .. container:: header
 
         :fa:`caret-right`
-        **Show Tapis (Agave)CLI**
+        **Show Tapis (Agave) CLI**
 
      .. code-block:: shell
 

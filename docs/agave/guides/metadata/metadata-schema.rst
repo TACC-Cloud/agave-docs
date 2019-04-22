@@ -240,4 +240,4 @@ Specifying schemata as $ref
 
 When building new JSON Schema definitions, it is often helpful to break each object out into its own definition and use ``$ref`` fields to reference them. The metadata service supports such references between metadata schema resources. Simply provide the fully qualified URL of another valid metadata schema resources as the value to a ``$ref`` field and Tapis (Agave) will resolve the reference internally, applying the appropriate authentication and authorization for the requesting user to the request to the referenced resource.
 
-:warning: When using Tapis (Agave) Metadata Schema as external references in a JSON Schema definition, make sure you grant at READ permission or greater to every referenced Agave Metadata Schema resource needed to resolved the JSON Schema definition. 
+:warning: When using Tapis (Agave) Metadata Schema as external references in a JSON Schema definition, make sure you grant at READ permission or greater to every referenced Tapis (Agave) Metadata Schema resource needed to resolved the JSON Schema definition. 
