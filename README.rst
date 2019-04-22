@@ -1,5 +1,5 @@
 ===================
-Agave Documentation
+Tapis (Agave) Documentation
 ===================
 
 Quickstart

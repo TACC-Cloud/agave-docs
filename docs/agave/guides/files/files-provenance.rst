@@ -5,12 +5,12 @@
 File history
 ============
 
-A full history of changes, permissions changes, and access events made through the Files API is recorded for every file and folder on registered :raw-html-m2r:`<a href="https://tacc.github.io/developer.tacc.cloud/docs/guides/systems/introduction.html">Agave systems</a>`. The recorded history events represent a subset of the events thrown by the Files API. Generally speaking, the events saved in a file item's history represent mutations on the physical file item or its metadata.
+A full history of changes, permissions changes, and access events made through the Files API is recorded for every file and folder on registered :raw-html-m2r:`<a href="https://tacc.github.io/developer.tacc.cloud/docs/guides/systems/introduction.html">Tapis (Agave) systems</a>`. The recorded history events represent a subset of the events thrown by the Files API. Generally speaking, the events saved in a file item's history represent mutations on the physical file item or its metadata.
 
 Direct vs indirect events
 -------------------------
 
-Agave will record both direct and indirect events made on a file item. Examples of direct events are transferring a directory from one system to another or renaming a file. Examples of indirect events are a user manually deleting a file from the command line. The table below contains a list of all the provenance actions recorded.
+Tapis (Agave) will record both direct and indirect events made on a file item. Examples of direct events are transferring a directory from one system to another or renaming a file. Examples of indirect events are a user manually deleting a file from the command line. The table below contains a list of all the provenance actions recorded.
 
 
 .. raw:: html
@@ -103,7 +103,7 @@ Agave will record both direct and indirect events made on a file item. Examples 
 Out of band file system changes
 -------------------------------
 
-Agave does not own the storage and execution systems you access through the Science APIs, so it cannot guarantee that everything that every possible change made to the file system is recorded. Thus, Agave takes a best-effort approach to provenance allowing you to choose, through your own use of best practices, how thorough you want the provenance trail of your data to be.
+Tapis (Agave) does not own the storage and execution systems you access through the Science APIs, so it cannot guarantee that everything that every possible change made to the file system is recorded. Thus, Agave takes a best-effort approach to provenance allowing you to choose, through your own use of best practices, how thorough you want the provenance trail of your data to be.
 
 Listing file history
 --------------------

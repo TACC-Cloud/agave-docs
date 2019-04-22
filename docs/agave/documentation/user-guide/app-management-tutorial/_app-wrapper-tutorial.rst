@@ -5,7 +5,7 @@
 Wrapper Templates
 ^^^^^^^^^^^^^^^^^
 
-In order to run your application, you will need to create a wrapper template that calls your executable code. The wrapper template is a simple script that Agave will filter and execute to start your app. The filtering Agave applies to your wrapper script is to inject runtime values from a job request into the script to replace the template variables representing the inputs and parameters of your app.
+In order to run your application, you will need to create a wrapper template that calls your executable code. The wrapper template is a simple script that Tapis (Agave) will filter and execute to start your app. The filtering Agave applies to your wrapper script is to inject runtime values from a job request into the script to replace the template variables representing the inputs and parameters of your app.
 
 The order in which wrapper templates are processed in HPC and CLI apps is as follows.
 
@@ -44,19 +44,19 @@ The order in which wrapper templates are processed in HPC and CLI apps is as fol
 
    #### Modules  
 
-   See more about <a href="http://modules.sourceforge.net/" title="The Environment Modules Project" target="_blank">Modules</a> and <a href="https://github.com/TACC/Lmod" title="Lmod: An Environment Module System based on Lua" target="_blank">Lmod</a>. Can be used to customize your environment, locate your application, and improve portability between systems. Agave does not install or manage the module installation on a particular system, however it does know how to interact with it. Specifying the modules needed to run your app either in your wrapper template or in your system definition can greatly help you during the development process.
+   See more about <a href="http://modules.sourceforge.net/" title="The Environment Modules Project" target="_blank">Modules</a> and <a href="https://github.com/TACC/Lmod" title="Lmod: An Environment Module System based on Lua" target="_blank">Lmod</a>. Can be used to customize your environment, locate your application, and improve portability between systems. Tapis (Agave) does not install or manage the module installation on a particular system, however it does know how to interact with it. Specifying the modules needed to run your app either in your wrapper template or in your system definition can greatly help you during the development process.
 
    #### Input data  
 
-   Agave will stage the files and folders you specify as inputs to your app. These will be available in the top level of your job directory at runtime. Additionally, the names of each of the inputs will be injected into your wrapper template for you to use in your application logic. Please be aware that Agave will not attempt to resolve namespace conflicts between your app inputs. That means that if a job specifies two inputs with the same name, one will overwrite the other during the input staging phase of the job and, though the variable names will be correctly injected to the wrapper script, your job will most likely fail due to missing data.
+   Tapis (Agave) will stage the files and folders you specify as inputs to your app. These will be available in the top level of your job directory at runtime. Additionally, the names of each of the inputs will be injected into your wrapper template for you to use in your application logic. Please be aware that Agave will not attempt to resolve namespace conflicts between your app inputs. That means that if a job specifies two inputs with the same name, one will overwrite the other during the input staging phase of the job and, though the variable names will be correctly injected to the wrapper script, your job will most likely fail due to missing data.
 
    #### Variable injection  
 
-   If you refer back to the app definition we used in the App Management Tutorial, you will see there are multiple inputs and parameters defined for that app. Each input and parameter object had an `id` attribute. That `id` value is the attribute name you use to associate runtime values with app inputs and parameters. When a job is submitted to Agave, prior to physically running the wrapper template, all instances of that `id` are replaced with the actual value from the job request. For example, the following example shows our app description, a job request, and the resulting wrapper template at run time.
+   If you refer back to the app definition we used in the App Management Tutorial, you will see there are multiple inputs and parameters defined for that app. Each input and parameter object had an `id` attribute. That `id` value is the attribute name you use to associate runtime values with app inputs and parameters. When a job is submitted to Tapis (Agave), prior to physically running the wrapper template, all instances of that `id` are replaced with the actual value from the job request. For example, the following example shows our app description, a job request, and the resulting wrapper template at run time.
 
    #### Type declarations  
 
-   During the jobs submission process, Agave will store your inputs and parameters as serialized JSON. At the point that variable injection occurs, Agave will
+   During the jobs submission process, Tapis (Agave) will store your inputs and parameters as serialized JSON. At the point that variable injection occurs, Agave will
 
    #### Boolean values  
 
@@ -68,7 +68,7 @@ The order in which wrapper templates are processed in HPC and CLI apps is as fol
 
    ### App packaging  
 
-   Agave API apps have a generalized structure that allows them to carry dependencies around with them. In the case below, <em>package-name-version.dot.dot</em> is a folder that you build on your local system, then store in the iPlant Data Store in a designated location (we recommend /iplant/home/IPLANTUSERNAME/applications/APPFOLDER). It contains binaries, support scripts, test data, etc. all in one package. Agave basically uses a very rough form of containerized applications (more on this later). We suggest you set your apps up to look something like the following:
+   Tapis (Agave) API apps have a generalized structure that allows them to carry dependencies around with them. In the case below, <em>package-name-version.dot.dot</em> is a folder that you build on your local system, then store in the iPlant Data Store in a designated location (we recommend /iplant/home/IPLANTUSERNAME/applications/APPFOLDER). It contains binaries, support scripts, test data, etc. all in one package. Agave basically uses a very rough form of containerized applications (more on this later). We suggest you set your apps up to look something like the following:
 
 package-name-version.dot.dot
 |--system_name
@@ -83,16 +83,16 @@ package-name-version.dot.dot
 .. code-block::
 
 
-   Agave runs a job by first transferring a copy of this directory into temporary directory on the target executionSystem. Then, the input data files (we'll show you how to specify those are later) are staged into place automatically. Next, Agave writes a scheduler submit script (using a template you provide i.e. script.template) and puts it in the queue on the target system. The Agave service then monitors progress of the job and, assuming it completes, copies all newly-created files to the location specified when the job was submitted. Along the way, critical milestones and metadata are recorded in the job's history.
+   Tapis (Agave) runs a job by first transferring a copy of this directory into temporary directory on the target executionSystem. Then, the input data files (we'll show you how to specify those are later) are staged into place automatically. Next, Agave writes a scheduler submit script (using a template you provide i.e. script.template) and puts it in the queue on the target system. The Agave service then monitors progress of the job and, assuming it completes, copies all newly-created files to the location specified when the job was submitted. Along the way, critical milestones and metadata are recorded in the job's history.
 
-   <em>Agave app development proceeds via the following steps:</em>
+   <em>Tapis (Agave) app development proceeds via the following steps:</em>
 
    1. Build the application locally on the executionSystem
    2. Ensure that you are able to run it directly on the executionSystem
-   3. Describe the application using an Agave app description
+   3. Describe the application using an Tapis (Agave) app description
    4. Create a shell template for running the app
    5. Upload the application directory to a storageSystem
-   6. Post the app description to the Agave apps service
+   6. Post the app description to the Tapis (Agave) apps service
    7. Debug your app by running jobs and updating the app until it works as intended
    8. (Optional) Share the app with some friends to let them test it
 
@@ -153,7 +153,7 @@ Your first objective is to create a script that you know will run to completion 
 
 * Unpack binaries from bin.tgz
 * Extend your PATH to contain bin
-* Craft some option-handling logic to accept parameters from Agave
+* Craft some option-handling logic to accept parameters from Tapis (Agave)
 * Craft a command line invocation of the application you will run
 * Clean up when you're done
 
@@ -171,7 +171,7 @@ Now, author your script. You can paste the following code into a file called :ra
 
    #!/bin/bash
 
-   # Agave automatically writes these scheduler
+   # Tapis (Agave) automatically writes these scheduler
    # directives when you submit a job but we have to
    # do it by hand when writing our test
 
@@ -183,7 +183,7 @@ Now, author your script. You can paste the following code into a file called :ra
    #SBATCH -o test-samtools.o%j
 
    # Set up inputs and parameters
-   # We&#039;re emulating passing these in from Agave
+   # We&#039;re emulating passing these in from Tapis (Agave)
    # inputBam is the name of the file to be sorted
    inputBam="ex1.bam"
    # outputPrefix is a parameter that establishes
@@ -207,9 +207,9 @@ Now, author your script. You can paste the following code into a file called :ra
    # by building an ARGS string then
    # adding the command, file specifications, etc
    #
-   # We&#039;re doing this in a way familar to Agave V1 users
+   # We&#039;re doing this in a way familar to Tapis (Agave) V1 users
    # first. Later, we&#039;ll illustrate how to make use of
-   # Agave V2&#039;s new parameter passing functions
+   # Tapis (Agave) V2&#039;s new parameter passing functions
    #
    # Start with empty ARGS...
    ARGS=""
@@ -241,12 +241,12 @@ You can monitor your jobs in the queue using
 
    showq -u your_tacc_username
 
-Assuming all goes according to plan, you'll end up with a sorted BAM called :raw-html-m2r:`<em>sorted.bam</em>`\ , and your bin directory (but not the bin.tgz file) should be erased. Congratulations, you're in the home stretch: it's time to turn the test script into an Agave app.
+Assuming all goes according to plan, you'll end up with a sorted BAM called :raw-html-m2r:`<em>sorted.bam</em>`\ , and your bin directory (but not the bin.tgz file) should be erased. Congratulations, you're in the home stretch: it's time to turn the test script into an Tapis (Agave) app.
 
-Craft an Agave app description
+Craft an Tapis (Agave) app description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In order for Agave to know how to run an instance of the application, we need to provide quite a bit of metadata about the application. This includes a unique name and version, the location of the application bundle, the identities of the execution system and destination system for results, whether its an HPC or other kind of job, the default number of processors and memory it needs to run, and of course, all the inputs and parameters for the actual program. It seems a bit over-complicated, but only because you're comfortable with the command line already. Your goal here is to allow your applications to be portable across systems and present a web-enabled, rationalized interface for your code to consumers.
+In order for Tapis (Agave) to know how to run an instance of the application, we need to provide quite a bit of metadata about the application. This includes a unique name and version, the location of the application bundle, the identities of the execution system and destination system for results, whether its an HPC or other kind of job, the default number of processors and memory it needs to run, and of course, all the inputs and parameters for the actual program. It seems a bit over-complicated, but only because you're comfortable with the command line already. Your goal here is to allow your applications to be portable across systems and present a web-enabled, rationalized interface for your code to consumers.
 
 Rather than have you write a description for "samtools sort" from scratch, let's systematically dissect an existing file provided with the SDK. Go ahead and copy the file into place and open it in your text editor of choice. If you don't have the SDK installed, you can :raw-html-m2r:`<a href="../examples/samtools-0.1.19/stampede/samtools-sort.json">grab it here</a>`.
 
@@ -260,7 +260,7 @@ Open up samtools-sort.json in a text editor or :raw-html-m2r:`<a href="../exampl
 Overview
 ^^^^^^^^
 
-Your file :raw-html-m2r:`<em>samtools-sort.json</em>` is written in :raw-html-m2r:`<a href="http://www.json.org/">JSON</a>`\ , and conforms to an Agave-specific data model. You can find fully fleshed out details about all fields under :raw-html-m2r:`<em>Parameters -> Data Type -> Model</em>` at the :raw-html-m2r:`<a href="http://agaveapi.co/live-docs/#!/apps/add_post_1">Agave API live docs on the /apps service</a>`. We will dive into key elements here:
+Your file :raw-html-m2r:`<em>samtools-sort.json</em>` is written in :raw-html-m2r:`<a href="http://www.json.org/">JSON</a>`\ , and conforms to an Tapis (Agave)-specific data model. You can find fully fleshed out details about all fields under :raw-html-m2r:`<em>Parameters -> Data Type -> Model</em>` at the :raw-html-m2r:`<a href="http://agaveapi.co/live-docs/#!/apps/add_post_1">Agave API live docs on the /apps service</a>`. We will dive into key elements here:
 
 To make this file work for you, you will be, at a minimum, editting:
 
@@ -271,7 +271,7 @@ To make this file work for you, you will be, at a minimum, editting:
 
 Instructions for making these changes will follow.
 
-All Agave application descriptions have the following structure:
+All Tapis (Agave) application descriptions have the following structure:
 
 .. code-block:: javascript
 
@@ -345,13 +345,13 @@ Application metadata
      <td>deployementSystem</td>
      <td>X</td>
      <td>string</td>
-     <td>The Agave-registered STORAGE system upon which you have write permissions where the app bundle resides</td>
+     <td>The Tapis (Agave)-registered STORAGE system upon which you have write permissions where the app bundle resides</td>
    </tr>
    <tr>
      <td>executionSystem</td>
      <td>X</td>
      <td>string</td>
-     <td>An Agave-registered EXECUTION system upon which you have execute and app registration permissions where jobs will run</td>
+     <td>An Tapis (Agave)-registered EXECUTION system upon which you have execute and app registration permissions where jobs will run</td>
    </tr>
    <tr>
      <td>helpURI</td>
@@ -405,7 +405,7 @@ Application metadata
      <td>storageSystem</td>
      <td>X</td>
      <td>string</td>
-     <td>The Agave-registered STORAGE system upon which you have write permissions. Default source of and destination for data consumed and emitted by the app</td>
+     <td>The Tapis (Agave)-registered STORAGE system upon which you have write permissions. Default source of and destination for data consumed and emitted by the app</td>
    </tr>
    <tr>
      <td>tags</td>
@@ -444,7 +444,7 @@ Application metadata
 Inputs
 ^^^^^^
 
-To tell Agave what files to stage into place before job execution, you need to define the app's inputs in a JSON array. To implement the SAMtools sort app, you need to tell Agave that a BAM file is needed to act as the subject of our sort:
+To tell Tapis (Agave) what files to stage into place before job execution, you need to define the app's inputs in a JSON array. To implement the SAMtools sort app, you need to tell Agave that a BAM file is needed to act as the subject of our sort:
 
 .. code-block:: javascript
 
@@ -547,7 +547,7 @@ Here's a walkthrough of what these fields mean:
      <td>semantics.fileTypes</td>
      <td>X</td>
      <td>array[string]</td>
-     <td>List of Agave file types accepted. Always use "raw-0" for the time being</td>
+     <td>List of Tapis (Agave) file types accepted. Always use "raw-0" for the time being</td>
    </tr>
    <tr>
      <td>details.description</td>
@@ -571,7 +571,7 @@ Here's a walkthrough of what these fields mean:
      <td>details.showArgument</td>
      <td></td>
      <td>boolean</td>
-     <td>Include the argument in the substitution done by Agave when a run script is generated</td>
+     <td>Include the argument in the substitution done by Tapis (Agave) when a run script is generated</td>
    </tr>
    </tbody>
    </table>
@@ -696,7 +696,7 @@ Parameters are specified in a JSON array, and are broadly similar to inputs. Her
      <td>details.showArgument</td>
      <td></td>
      <td>boolean</td>
-     <td>Include the argument in the substitution done by Agave when a run script is generated</td>
+     <td>Include the argument in the substitution done by Tapis (Agave) when a run script is generated</td>
    </tr>
    </tbody>
    </table>
@@ -705,7 +705,7 @@ Parameters are specified in a JSON array, and are broadly similar to inputs. Her
 Outputs
 ^^^^^^^
 
-While we don't support outputs 100% yet, Agave apps are designed to participate in workflows. Thus, just as we define the list of valid and required inputs to an app, we also must (when we know them) define a list of its outputs. This allows it to "advertise" to consumers of Agave services what it expects to emit, allowing apps to be chained together. Note that unlike inputs and parameters, output "id"s are NOT passed to the template file.  If you must specify an output filename in the application json, do it as a parameter!  Outputs are defined basically the same way as inputs:
+While we don't support outputs 100% yet, Tapis (Agave) apps are designed to participate in workflows. Thus, just as we define the list of valid and required inputs to an app, we also must (when we know them) define a list of its outputs. This allows it to "advertise" to consumers of Agave services what it expects to emit, allowing apps to be chained together. Note that unlike inputs and parameters, output "id"s are NOT passed to the template file.  If you must specify an output filename in the application json, do it as a parameter!  Outputs are defined basically the same way as inputs:
 
 .. code-block:: javascript
 
@@ -808,7 +808,7 @@ Obligatory field walk-through:
      <td>semantics.fileTypes</td>
      <td>X</td>
      <td>array[string]</td>
-     <td>List of Agave file types that may apply to the output. Always use "raw-0" for the time being</td>
+     <td>List of Tapis (Agave) file types that may apply to the output. Always use "raw-0" for the time being</td>
    </tr>
    <tr>
      <td>details.description</td>
@@ -832,7 +832,7 @@ Obligatory field walk-through:
      <td>details.showArgument</td>
      <td></td>
      <td>boolean</td>
-     <td>Include the argument in the substitution done by Agave when a run script is generated (not currently used)</td>
+     <td>Include the argument in the substitution done by Tapis (Agave) when a run script is generated (not currently used)</td>
    </tr>
    </tbody>
    </table>
@@ -847,7 +847,7 @@ Tools and Utilities
 .. raw:: html
 
    <ol>
-   <li>Stumped for ontology terms to apply to your Agave app inputs, outputs, and parameters? SSWAPmeet has many URI-format terms for <a href="http://sswapmeet.sswap.info/mime/">MIME</a> types, and BioPortal can provide links to <a href="http://bioportal.bioontology.org/ontologies/EDAM">EDAM</a>.
+   <li>Stumped for ontology terms to apply to your Tapis (Agave) app inputs, outputs, and parameters? SSWAPmeet has many URI-format terms for <a href="http://sswapmeet.sswap.info/mime/">MIME</a> types, and BioPortal can provide links to <a href="http://bioportal.bioontology.org/ontologies/EDAM">EDAM</a>.
    <li>Need to validate JSON files? Try <a href="http://jsonlint.com/">JSONlint</a> or <a href="http://json.parser.online.fr/">JSONparser</a>
    </ol>
 
@@ -872,7 +872,7 @@ Now, open sort.template in the text editor of your choice. Delete the bash sheba
    # and parameters
    outputPrefix=${outputPrefix}
    # Maximum memory for sort, in bytes
-   # Be careful, Neither Agave nor scheduler will
+   # Be careful, Neither Tapis (Agave) nor scheduler will
    # check that this is a reasonable value. In production
    # you might want to code min/max for this value
    maxMemSort=${maxMemSort}

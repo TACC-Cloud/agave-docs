@@ -2,7 +2,7 @@
 System Discovery
 ================
 
-Agave enables you to group together one or more compute and storage systems to assemble the infrastructure you need to power your digital lab. To help you get started with Agave, we provide several sandbox environments you can use to walk through these tutorials. These compute and storage resources are available to all users and will be used throughout the tutorials and examples on this site. Let's start out by querying the systems service to see what we already have.
+Tapis (Agave) enables you to group together one or more compute and storage systems to assemble the infrastructure you need to power your digital lab. To help you get started with Agave, we provide several sandbox environments you can use to walk through these tutorials. These compute and storage resources are available to all users and will be used throughout the tutorials and examples on this site. Let's start out by querying the systems service to see what we already have.
 
 Find all systems available to you
 ---------------------------------
@@ -92,7 +92,7 @@ The response to this call for our example user looks like this:
       }
    ]
 
-The response contains a list of abbreviated system descriptions. Notice that there are two kinds of systems returned: ``EXECUTION`` and ``STORAGE``. Execution systems are used to run your simulations and optionally store and cache data. Storage systems are used to exclusively to store data. Agave speaks multiple data, scheduling, and authentication protocols, so chances are that whatever mechanism you are using to interact with your data and compute resources today, Agave can use those same mechanisms out of the box with no installation needed. The systems in the above example all use different combinations of protocols.
+The response contains a list of abbreviated system descriptions. Notice that there are two kinds of systems returned: ``EXECUTION`` and ``STORAGE``. Execution systems are used to run your simulations and optionally store and cache data. Storage systems are used to exclusively to store data. Tapis (Agave) speaks multiple data, scheduling, and authentication protocols, so chances are that whatever mechanism you are using to interact with your data and compute resources today, Agave can use those same mechanisms out of the box with no installation needed. The systems in the above example all use different combinations of protocols.
 
 Viewing system details
 ----------------------

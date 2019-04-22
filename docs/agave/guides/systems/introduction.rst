@@ -2,11 +2,11 @@
 Systems
 =======
 
-A system in Agave represents a server or collection of servers. A server can be physical, virtual, or a collection of servers exposed through a single hostname or ip address. Systems are identified and referenced in Agave by a unique ID unrelated to their ip address or hostname. Because of this, a single physical system may be registered multiple times. This allows different users to configure and use a system in whatever way they need to for their specific needs.
+A system in Tapis (Agave) represents a server or collection of servers. A server can be physical, virtual, or a collection of servers exposed through a single hostname or ip address. Systems are identified and referenced in Agave by a unique ID unrelated to their ip address or hostname. Because of this, a single physical system may be registered multiple times. This allows different users to configure and use a system in whatever way they need to for their specific needs.
 
 Systems come in two flavors: storage and execution. Storage systems are only used for storing and interacting with data. Execution systems are used for running apps (aka jobs or batch jobs) as well as storing and interacting with data.
 
-The Systems service gives you the ability to add and discover storage and compute resources for use in the rest of the API. You may add as many or as few storage systems as you need to power your digital lab. When you register a system, it is private to you and you alone. Systems can also be published into the public space for all users to use. Depending on who is administering Agave for your organization, this may have already happened and you may already have one or more storage systems available to you by default.
+The Systems service gives you the ability to add and discover storage and compute resources for use in the rest of the API. You may add as many or as few storage systems as you need to power your digital lab. When you register a system, it is private to you and you alone. Systems can also be published into the public space for all users to use. Depending on who is administering Tapis (Agave) for your organization, this may have already happened and you may already have one or more storage systems available to you by default.
 
 In this tutorial we walk you through how to discovery, manage, share, and configure systems for your specific needs. This tutorial is best done in a hands-on manner, so if you do not have a compute or storage system of your own to use, you can grab a VM from our sandbox.
 
@@ -68,7 +68,7 @@ The Systems service allows you to list and search for systems you have registere
 
 System description can get rather verbose, so a summary object is returned when listing a resource collection. The summary object contains the most critical fields in order to reduce response size when retrieving a user's systems. You can customize this behavior using the ``filter`` query parameter.
 
-The above response my vary depending on who administers Agave for your organization. To customize this tutorial for your specific account, login.
+The above response my vary depending on who administers Tapis (Agave) for your organization. To customize this tutorial for your specific account, login.
 
 Filtering results
 -----------------

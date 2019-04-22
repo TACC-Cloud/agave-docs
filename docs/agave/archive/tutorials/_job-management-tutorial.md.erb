@@ -10,13 +10,13 @@ Job submission is a term recycled from shared batch computing environments where
 
 Originally the batch scheduler was a person and the term batch came from their ability to process several submissions together. Later on, as human schedulers were replaced by software, the term stuck even though the process remained unchanged. Today the term job submission is essentially unchanged.
 
-A user submits a request for a unit of work to be done. The primary difference is that today, often times, the wait time between submission and execution is considerably less. On shared systems, such as many of the HPC systems originally targeted by Agave, waiting for your job to start is the price you pay for the incredible performance you get once your job starts.
+A user submits a request for a unit of work to be done. The primary difference is that today, often times, the wait time between submission and execution is considerably less. On shared systems, such as many of the HPC systems originally targeted by Tapis (Agave), waiting for your job to start is the price you pay for the incredible performance you get once your job starts.
 
-Agave, too, adopts the concept of job submission, though it is not in and of itself a scheduler. In the context of Agave's Job service, the process of running an application registered with the Apps service is referred to as submitting a job.
+Tapis (Agave), too, adopts the concept of job submission, though it is not in and of itself a scheduler. In the context of Agave's Job service, the process of running an application registered with the Apps service is referred to as submitting a job.
 
-Unlike in the batch scheduling world where each scheduler has its own job submission syntax and its own idiosyncrasies, the mechanism for submitting a job to Agave is consistent regardless of the application or system on which you run. A HTML form or JSON object are posted to the Jobs service. The submission is validated, and the job is forwarded to the scheduling and execution services for processing.
+Unlike in the batch scheduling world where each scheduler has its own job submission syntax and its own idiosyncrasies, the mechanism for submitting a job to Tapis (Agave) is consistent regardless of the application or system on which you run. A HTML form or JSON object are posted to the Jobs service. The submission is validated, and the job is forwarded to the scheduling and execution services for processing.
 
-Because Agave takes an app-centric view of science, execution does not require knowing about the underlying systems on which an application runs. Simply knowing how the parameters and inputs you want to use when running an app is sufficient to define a job. Agave will handle the rest.
+Because Tapis (Agave) takes an app-centric view of science, execution does not require knowing about the underlying systems on which an application runs. Simply knowing how the parameters and inputs you want to use when running an app is sufficient to define a job. Agave will handle the rest.
 
 As mentioned previously, jobs are submitted by making a HTTP POST request either a HTML form or a JSON object to the Jobs service. All job submissions must include a few mandatory values that are used to define a basic unit of work. Table 1 lists the optional and required attributes of all job submissions.
 
@@ -75,7 +75,7 @@ The following snippet shows a sample JSON job request that could be submitted to
 }
 ```
 
-Notice that this example specifies a single input attribute, `dataset`. The `pyplot-0.1.0` app definition specified that the `dataset` input attribute could accept more than one value (maxCardinality = 2). In the job request object, that translates to an array of string values. Each string represents a piece of data that Agave will transfer into the job work directory prior to job execution. Any value accepted by the Files service when <a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/#importing-data">importing data</a> is accepted here. Some examples of valid values are given in the following table.
+Notice that this example specifies a single input attribute, `dataset`. The `pyplot-0.1.0` app definition specified that the `dataset` input attribute could accept more than one value (maxCardinality = 2). In the job request object, that translates to an array of string values. Each string represents a piece of data that Tapis (Agave) will transfer into the job work directory prior to job execution. Any value accepted by the Files service when <a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/#importing-data">importing data</a> is accepted here. Some examples of valid values are given in the following table.
 
 <%= partial "includes/tables/73" %>
 
@@ -83,7 +83,7 @@ Notice that this example specifies a single input attribute, `dataset`. The `pyp
 
 The example job request also specifies `parameters` object with the parameters defined in the `pyplot-0.1.0` app description. Notice that the parameter `type` value specified in the app description is reflected here. Numbers are given as numbers, not strings. Boolean and flag attributes are given as boolean true and false values. As with the input section, there is also a parameter `chartType` that accepts multiple values. In this case that translates to an array of string value. Had the parameter type required another primary type, that would be used in the array instead.
 
-Finally, we see a `notifications` array specifying that we want Agave send three notifications related to this job. The first is a one-time email when the job starts running. The second is a one-time email when the job reaches a terminal state. The third is a webhook to the url we specified. More on notifications in the section on monitoring below.
+Finally, we see a `notifications` array specifying that we want Tapis (Agave) send three notifications related to this job. The first is a one-time email when the job starts running. The second is a one-time email when the job reaches a terminal state. The third is a webhook to the url we specified. More on notifications in the section on monitoring below.
 
 ### Job submission validation  
 
@@ -174,7 +174,7 @@ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -F "fileToUpload=@job.
 
 ### Job monitoring  
 
-Once you submit your job request, the job will be handed off to Agave's back end execution service. Your job may run right away, or it may wait in a batch queue on the execution system until the required resources are available. Either way, the execution process occurs completely asynchronous to the submission process. To monitor the status of your job, Agave supports two different mechanisms: polling and webhooks.
+Once you submit your job request, the job will be handed off to Tapis (Agave)'s back end execution service. Your job may run right away, or it may wait in a batch queue on the execution system until the required resources are available. Either way, the execution process occurs completely asynchronous to the submission process. To monitor the status of your job, Agave supports two different mechanisms: polling and webhooks.
 
 <aside class="notice">For the sake of brevity, we placed a detailed explanation of the job lifecycle in a separate, aptly title post, <a href="http://agaveapi.co/documentation/tutorials/job-management-tutorial/the-job-lifecycle" title="The Job Lifecycle">The Job Lifecycle</a>. There you will find detailed information about how, when, and why everything moves from place to place and how you can peek behind the curtains.</aside>
 
@@ -215,7 +215,7 @@ The list of all possible job statuses is given in table 2.
 
 <p class="table-caption">Table 2. Job statuses listed in progressive order from job submission to completion.</p>
 
-Polling is an incredibly effective approach, but it is bad practice for two reasons. First, it does not scale well. Querying for one job status every few seconds does not take much effort, but querying for 100 takes quite a bit of time and puts unnecessary load on Agave's servers. Second, polling provides what is effectively a binary response. It tells you whether a job is done or not done, it does not give you any information on what is actually going on with the job or where it is in the overall execution process.
+Polling is an incredibly effective approach, but it is bad practice for two reasons. First, it does not scale well. Querying for one job status every few seconds does not take much effort, but querying for 100 takes quite a bit of time and puts unnecessary load on Tapis (Agave)'s servers. Second, polling provides what is effectively a binary response. It tells you whether a job is done or not done, it does not give you any information on what is actually going on with the job or where it is in the overall execution process.
 
 The job history URL provides much more detailed information on the various state changes, system messages, and progress information associated with data staging. The syntax of the job history URL is as follows
 
@@ -303,9 +303,9 @@ Often times, however, polling is unavoidable. In these situations, we recommend 
 
 #### Webhooks  
 
-Webhooks are the alternative, preferred way for your application to monitor the status of asynchronous actions in Agave. If you are a <a href="http://en.wikipedia.org/wiki/Design_Patterns_(book)" title="Gang of Four" target="_blank">Gang of Four</a> disciple, webhooks are a mechanism for implementing the <a href="http://en.wikipedia.org/wiki/Observer%5Fpattern" title="Observer Pattern" target="_blank">Observer Pattern</a>. They are widely used across the web and chances are that something you're using right now is leveraging them. In the context of Agave, a webhook is a URL that you give to Agave in advance of an event which it later POSTs a response to when that event occurs. A webhook can be any web accessible URL.
+Webhooks are the alternative, preferred way for your application to monitor the status of asynchronous actions in Tapis (Agave). If you are a <a href="http://en.wikipedia.org/wiki/Design_Patterns_(book)" title="Gang of Four" target="_blank">Gang of Four</a> disciple, webhooks are a mechanism for implementing the <a href="http://en.wikipedia.org/wiki/Observer%5Fpattern" title="Observer Pattern" target="_blank">Observer Pattern</a>. They are widely used across the web and chances are that something you're using right now is leveraging them. In the context of Agave, a webhook is a URL that you give to Agave in advance of an event which it later POSTs a response to when that event occurs. A webhook can be any web accessible URL.
 
-<aside class="notice">For more information about webhooks, events, and notifications in Agave, please see the <a href="http://agaveapi.co/notifications-and-events/" title="Notifications and Events">Notifications and Events</a> page.</aside>
+<aside class="notice">For more information about webhooks, events, and notifications in Tapis (Agave), please see the <a href="http://agaveapi.co/notifications-and-events/" title="Notifications and Events">Notifications and Events</a> page.</aside>
 
 The Jobs service provides several template variables for constructing dynamic URLs. Template variables can be included anywhere in your URL by surrounding the variable name in the following manner `${VARIABLE_NAME}`. When an event of interest occurs, the variables will be resolved and the resulting URL called. Several example urls are given below.
 
@@ -329,7 +329,7 @@ The full list of template variables are listed in Table 3.
 
 #### Email  
 
-In situations where you do not have a persistent web address, or access to a backend service, you may find it more convenient to subscribe for email notifications rather then providing a webhook. Agave supports email notifications support as well. Simply specify a valid email address in the `url` field in your job submission notification object and an email will be sent to that address when a relevant event occurs. A sample email message is given below.
+In situations where you do not have a persistent web address, or access to a backend service, you may find it more convenient to subscribe for email notifications rather then providing a webhook. Tapis (Agave) supports email notifications support as well. Simply specify a valid email address in the `url` field in your job submission notification object and an email will be sent to that address when a relevant event occurs. A sample email message is given below.
 
 [code lang=text]
 The status of job 0001414144065563-5056a550b8-0001-007, "demo-pyplot-demo-advanced test-1414139896," has changed to FINISHED.
@@ -473,7 +473,7 @@ curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://public.tenants.agavea
 
 <aside class="notice">The Jobs output service follows the same conventions of the Files service. Thus, you may specify a range header to retrieve a specific byte range. This is particularly helpful when tracking job progress since it gives you a mechanism to tail the output and error log files.</aside>
 
-Regardless of job status, the above services will always point to the most recent location of the job data. If you choose for the Jobs service to archive your job after completion, the URL will point to the archive folder of the job. If you do not choose to archive your data, or if archiving fails, the URL will point to the execution folder created for your job at runtime. Because Agave does not own any of the underlying hardware, it cannot guarantee that those locations will always exist. If, for example, the execution system enforces a purge policy, the output data may be deleted by the system administrators. Agave will let you know if the data is no longer present, however, it cannot prevent it from being deleted. This is another reason that it is important to archive data you feel will be needed in the future.
+Regardless of job status, the above services will always point to the most recent location of the job data. If you choose for the Jobs service to archive your job after completion, the URL will point to the archive folder of the job. If you do not choose to archive your data, or if archiving fails, the URL will point to the execution folder created for your job at runtime. Because Tapis (Agave) does not own any of the underlying hardware, it cannot guarantee that those locations will always exist. If, for example, the execution system enforces a purge policy, the output data may be deleted by the system administrators. Agave will let you know if the data is no longer present, however, it cannot prevent it from being deleted. This is another reason that it is important to archive data you feel will be needed in the future.
 
 ### Managing your job  
 
@@ -499,7 +499,7 @@ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "action=resubmit" h
 
 ### Permissions and sharing  
 
-As with the <a title="System Registration" href="http://agaveapi.co/system-registration/">Systems</a>, <a title="Application Management" href="http://agaveapi.co/application-management/">Apps</a>, and <a title="File Management" href="http://agaveapi.co/file-management/">Files</a> services, your jobs have their own set of access controls. Using these, you can share your job and its data with other Agave users. Job permissions are private by default. The permissions you give a job apply both to the job, its outputs, its metadata, and the permissions themselves. Thus, by sharing a job with another user, you share all aspects of that job.
+As with the <a title="System Registration" href="http://agaveapi.co/system-registration/">Systems</a>, <a title="Application Management" href="http://agaveapi.co/application-management/">Apps</a>, and <a title="File Management" href="http://agaveapi.co/file-management/">Files</a> services, your jobs have their own set of access controls. Using these, you can share your job and its data with other Tapis (Agave) users. Job permissions are private by default. The permissions you give a job apply both to the job, its outputs, its metadata, and the permissions themselves. Thus, by sharing a job with another user, you share all aspects of that job.
 
 Job permissions are managed through a set of URLs consistent with the permissions URL elsewhere in the API.
 

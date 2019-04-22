@@ -2,7 +2,7 @@
 Tags
 ====
 
-The Agave Tags service provides free form tagging of any addressable resource in the platform. 
+The Tapis (Agave) Tags service provides free form tagging of any addressable resource in the platform. 
 A Tag is similiar to a `Metadata <../metadata/introduction.md>`_ object in that 
 it has ``name`` and ``associatedIds`` fields, but Tags do not contain any other data. 
 Tags have permissions just like tags, but unlike the Tags service, Tag names must be unique 
@@ -62,7 +62,7 @@ Associations
 ^^^^^^^^^^^^
 
 Each tag also has an optional ``associationIds`` field. This field contains a JSON array of 
-Agave UUID for which this tag applies. We refer to the resources in this array as the 
+Tapis (Agave) UUID for which this tag applies. We refer to the resources in this array as the 
 tagged resources. No implied behavior comes with this relationship, it is simply a way to 
 define arbitrary associations between resources.
 

@@ -22,7 +22,7 @@ Metadata Validation
      .. container:: header
 
         :fa:`caret-right`
-        **Show Agave CLI**
+        **Show Tapis (Agave) CLI**
 
      .. code-block:: shell
 

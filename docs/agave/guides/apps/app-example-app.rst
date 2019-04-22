@@ -61,7 +61,7 @@ Your first objective is to create a script that you know will run to completion 
 
 * Unpack binaries from bin.tgz
 * Extend your PATH to contain bin
-* Craft some option-handling logic to accept parameters from Agave
+* Craft some option-handling logic to accept parameters from Tapis (Agave)
 * Craft a command line invocation of the application you will run
 * Clean up when you're done
 
@@ -79,7 +79,7 @@ Now, author your script. You can paste the following code into a file called :ra
 
    #!/bin/bash
 
-   # Agave automatically writes these scheduler
+   # Tapis (Agave) automatically writes these scheduler
    # directives when you submit a job but we have to
    # do it by hand when writing our test
 
@@ -91,7 +91,7 @@ Now, author your script. You can paste the following code into a file called :ra
    #SBATCH -o test-samtools.o%j
 
    # Set up inputs and parameters
-   # We're emulating passing these in from Agave
+   # We're emulating passing these in from Tapis (Agave)
    # inputBam is the name of the file to be sorted
    inputBam="ex1.bam"
    # outputPrefix is a parameter that establishes
@@ -115,9 +115,9 @@ Now, author your script. You can paste the following code into a file called :ra
    # by building an ARGS string then
    # adding the command, file specifications, etc
    #
-   # We're doing this in a way familar to Agave V1 users
+   # We're doing this in a way familar to Tapis (Agave) V1 users
    # first. Later, we'll illustrate how to make use of
-   # Agave V2's new parameter passing functions
+   # Tapis (Agave) V2's new parameter passing functions
    #
    # Start with empty ARGS...
    ARGS=""
@@ -149,12 +149,12 @@ You can monitor your jobs in the queue using
 
    showq -u your_tacc_username
 
-Assuming all goes according to plan, you'll end up with a sorted BAM called :raw-html-m2r:`<em>sorted.bam</em>`\ , and your bin directory (but not the bin.tgz file) should be erased. Congratulations, you're in the home stretch: it's time to turn the test script into an Agave app.
+Assuming all goes according to plan, you'll end up with a sorted BAM called :raw-html-m2r:`<em>sorted.bam</em>`\ , and your bin directory (but not the bin.tgz file) should be erased. Congratulations, you're in the home stretch: it's time to turn the test script into an Tapis (Agave) app.
 
-Craft an Agave app description
+Craft an Tapis (Agave) app description
 ------------------------------
 
-In order for Agave to know how to run an instance of the application, we need to provide quite a bit of metadata about the application. This includes a unique name and version, the location of the application bundle, the identities of the execution system and destination system for results, whether its an HPC or other kind of job, the default number of processors and memory it needs to run, and of course, all the inputs and parameters for the actual program. It seems a bit over-complicated, but only because you're comfortable with the command line already. Your goal here is to allow your applications to be portable across systems and present a web-enabled, rationalized interface for your code to consumers.
+In order for Tapis (Agave) to know how to run an instance of the application, we need to provide quite a bit of metadata about the application. This includes a unique name and version, the location of the application bundle, the identities of the execution system and destination system for results, whether its an HPC or other kind of job, the default number of processors and memory it needs to run, and of course, all the inputs and parameters for the actual program. It seems a bit over-complicated, but only because you're comfortable with the command line already. Your goal here is to allow your applications to be portable across systems and present a web-enabled, rationalized interface for your code to consumers.
 
 Rather than have you write a description for "samtools sort" from scratch, let's systematically dissect an existing file provided with the SDK. Go ahead and copy the file into place and open it in your text editor of choice. If you don't have the SDK installed, you can `download the JSON descriptions :raw-html-m2r:`<a href="https://github.com/TACC-Cloud/agave-docs/blob/doc_changes/docs/agave/guides/apps/samtools-sort.json" title="samtools-sort.json">here</a>`_.
 
@@ -168,7 +168,7 @@ Open up samtools-sort.json in a text editor or in your web browser and follow al
 Overview
 --------
 
-Your file *samtools-sort.json* is written in `JSON <http://www.json.org/>`_\ , and conforms to an Agave-specific data model. We will dive into key elements here:
+Your file *samtools-sort.json* is written in `JSON <http://www.json.org/>`_\ , and conforms to an Tapis (Agave)-specific data model. We will dive into key elements here:
 
 To make this file work for you, you will be, at a minimum, editing:
 
@@ -179,7 +179,7 @@ To make this file work for you, you will be, at a minimum, editing:
 
 Instructions for making these changes will follow.
 
-All Agave application descriptions have the following structure:
+All Tapis (Agave) application descriptions have the following structure:
 
 .. code-block:: json
 
@@ -194,7 +194,7 @@ There is a defined list of application metadata fields, some of which are mandat
 Inputs
 ------
 
-To tell Agave what files to stage into place before job execution, you need to define the app's inputs in a JSON array. To implement the SAMtools sort app, you need to tell Agave that a BAM file is needed to act as the subject of our sort:
+To tell Tapis (Agave) what files to stage into place before job execution, you need to define the app's inputs in a JSON array. To implement the SAMtools sort app, you need to tell Agave that a BAM file is needed to act as the subject of our sort:
 
 .. code-block:: json
 
@@ -271,7 +271,7 @@ For information on what these fields mean, see the :raw-html-m2r:`<a href="https
 Outputs
 -------
 
-While we don't support outputs 100% yet, Agave apps are designed to participate in workflows. Thus, just as we define the list of valid and required inputs to an app, we also must (when we know them) define a list of its outputs. This allows it to "advertise" to consumers of Agave services what it expects to emit, allowing apps to be chained together. Note that unlike inputs and parameters, output "id"s are NOT passed to the template file.  If you must specify an output filename in the application json, do it as a parameter!  Outputs are defined basically the same way as inputs:
+While we don't support outputs 100% yet, Tapis (Agave) apps are designed to participate in workflows. Thus, just as we define the list of valid and required inputs to an app, we also must (when we know them) define a list of its outputs. This allows it to "advertise" to consumers of Agave services what it expects to emit, allowing apps to be chained together. Note that unlike inputs and parameters, output "id"s are NOT passed to the template file.  If you must specify an output filename in the application json, do it as a parameter!  Outputs are defined basically the same way as inputs:
 
 .. code-block:: json
 
@@ -323,7 +323,7 @@ Now, open sort.template in the text editor of your choice. Delete the bash sheba
    # and parameters
    outputPrefix=${outputPrefix}
    # Maximum memory for sort, in bytes
-   # Be careful, Neither Agave nor scheduler will
+   # Be careful, Neither Tapis (Agave) nor scheduler will
    # check that this is a reasonable value. In production
    # you might want to code min/max for this value
    maxMemSort=${maxMemSort}

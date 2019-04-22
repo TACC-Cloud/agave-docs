@@ -2,7 +2,7 @@
 Tag Permissions
 ^^^^^^^^^^^^^^^
 
-The Tags service supports permissions fconsistent with that of a number of other Agave services. If no permissions are explicitly set, only the owner of the Tag and tenant administrators can access it.
+The Tags service supports permissions fconsistent with that of a number of other Tapis (Agave) services. If no permissions are explicitly set, only the owner of the Tag and tenant administrators can access it.
 
 The permissions available for Tags listed in the following table. Please note that a user must have WRITE permissions to grant or revoke permissions on a tag.
 

@@ -2,7 +2,7 @@
 Introduction
 ------------
 
-Agave supports cloud storage systems. System Management tutorial covers in detail.
+Tapis (Agave) supports cloud storage systems. System Management tutorial covers in detail.
 
 
 .. raw:: html
@@ -18,7 +18,7 @@ Multiple clouds, single interface
 .. raw:: html
 
    <ul>
-   <li>Agave Files services</li>
+   <li>Tapis (Agave) Files services</li>
    <li>jClouds</li>
    <li>Common permission model</li>
    <li>Build your own dropbox, or use the real one</li>

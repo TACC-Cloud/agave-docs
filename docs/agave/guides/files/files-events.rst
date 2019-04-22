@@ -2,7 +2,7 @@
 File events
 ===========
 
-Agave throws file events on every content change, permission change, and file item access request in the platform. A list of the file events thrown is given in the following table.
+Tapis (Agave) throws file events on every content change, permission change, and file item access request in the platform. A list of the file events thrown is given in the following table.
 
 
 .. raw:: html

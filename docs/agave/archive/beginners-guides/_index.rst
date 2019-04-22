@@ -5,9 +5,9 @@
 Beginners Guides
 ================
 
-The Agave REST APIs enable applications to create and manage digital laboratories that spans campuses, the cloud, and multiple data centers using a cohesive set of web-friendly interfaces. In order for an application to access user-related data through Agave's REST API, it must get the user’s authorization to access that data.
+The Tapis (Agave) REST APIs enable applications to create and manage digital laboratories that spans campuses, the cloud, and multiple data centers using a cohesive set of web-friendly interfaces. In order for an application to access user-related data through Agave's REST API, it must get the user’s authorization to access that data.
 
-This tutorial is focused familiarizing you with the REST API through the use of the :raw-html-m2r:`<a href="http://preview.agaveapi.co/tools/command-line-interface/" title="Agave Command Line Interface (CLI)">Agave Command Line Interface (CLI)</a>` and the Unix ``curl`` command. We will show you how to:
+This tutorial is focused familiarizing you with the REST API through the use of the :raw-html-m2r:`<a href="http://preview.agaveapi.co/tools/command-line-interface/" title="Tapis (Agave) Command Line Interface (CLI)">Agave Command Line Interface (CLI)</a>` and the Unix ``curl`` command. We will show you how to:
 
 
 * :raw-html-m2r:`<a href="/documentation/beginners-guides/user-discovery/" title="User Discovery">Discover other users</a>`
@@ -22,12 +22,12 @@ The authorization flow we will use in this tutorial is the Client Credentials Fl
 
 The data that we will retrieve will come from the Profiles, Systems, Files, Apps, Jobs, Metadata, and PostIts services, and will include information specific to the authenticated user. To customize this tutorial for your personal user account, please :raw-html-m2r:`<a class="federated-login" href="#" title="Login" target="_blank">Login</a>`. If you do not already have an account, you can create one :raw-html-m2r:`<a href="https://user.iplantcollaborative.org" title="iPlant User Portal" target="_blank">here</a>`.
 
-The step by step instructions and sample data we will use in these lessons is available :raw-html-m2r:`<a href="https://bitbucket.org/taccaci/agave-beginners-guide" title="Agave Beginner's Guide" target="_blank">here</a>`.
+The step by step instructions and sample data we will use in these lessons is available :raw-html-m2r:`<a href="https://bitbucket.org/taccaci/agave-beginners-guide" title="Tapis (Agave) Beginner's Guide" target="_blank">here</a>`.
 
 Setting Up Your Account
 -----------------------
 
-To use the REST APIs, the first thing you will need is a user account. If your organization is already using Agave to power its infrastructure, you can :raw-html-m2r:`<a class="federated-login" href="#" title="Login" target="_blank">Login</a>` with that account. If not, you can create a free :raw-html-m2r:`<a href="https://user.iplantcollaborative.org" title="iPlant User Portal" target="_blank">iPlant user account</a>` and take advantage of their world class cyberinfrastructure while kicking the tires.
+To use the REST APIs, the first thing you will need is a user account. If your organization is already using Tapis (Agave) to power its infrastructure, you can :raw-html-m2r:`<a class="federated-login" href="#" title="Login" target="_blank">Login</a>` with that account. If not, you can create a free :raw-html-m2r:`<a href="https://user.iplantcollaborative.org" title="iPlant User Portal" target="_blank">iPlant user account</a>` and take advantage of their world class cyberinfrastructure while kicking the tires.
 
 Getting Your Client API Keys
 ----------------------------

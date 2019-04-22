@@ -16,19 +16,19 @@ When a user submits a job request in step 1, they specify the inputs and paramet
 
 ..
 
-   :information_source: Notice that Agave will not handle variable quoting for you. It is up to you to handle any type casting, escaping, and quoting of template values necessary for your app's logic.
+   :information_source: Notice that Tapis (Agave) will not handle variable quoting for you. It is up to you to handle any type casting, escaping, and quoting of template values necessary for your app's logic.
 
 
-As we look at how to define inputs and parameters for your app, keep this big picture in mind. The purpose of inputs is to specify data that needs to be staged prior to your job running and to tell your wrapper script about them. The purpose of parameters is to specify variables that need to be passed to your wrapper script. To do this, we only need a simple id by which to reference the values in a job request. The rest of what we will discuss in this tutorial is the mechanism that Agave provides for you to validate, describe, discover, and restrict application inputs and parameters to provider better user and developer experiences using your app.
+As we look at how to define inputs and parameters for your app, keep this big picture in mind. The purpose of inputs is to specify data that needs to be staged prior to your job running and to tell your wrapper script about them. The purpose of parameters is to specify variables that need to be passed to your wrapper script. To do this, we only need a simple id by which to reference the values in a job request. The rest of what we will discuss in this tutorial is the mechanism that Tapis (Agave) provides for you to validate, describe, discover, and restrict application inputs and parameters to provider better user and developer experiences using your app.
 
 Inputs
 ------
 
-The ``inputs`` attribute of your app description contains a JSON array of input objects. An input represents one or more pieces of data that your app will use at runtime. That data can be a single file, a directory, or a response from a web service. It can reside on a system that Agave knows about, or at a publicly accessible URL. Regardless of where it lives and what it is, Agave will grab the data (recursively if need be) and copy it to your job's working directory just before execution.
+The ``inputs`` attribute of your app description contains a JSON array of input objects. An input represents one or more pieces of data that your app will use at runtime. That data can be a single file, a directory, or a response from a web service. It can reside on a system that Tapis (Agave) knows about, or at a publicly accessible URL. Regardless of where it lives and what it is, Agave will grab the data (recursively if need be) and copy it to your job's working directory just before execution.
 
 ..
 
-   :information_source: In the Job management tutorial, we talk in detail about the job lifecycle. Here we simply point out that Agave will handle the staging of your app's ``deploymentPath`` separately from the staging of your assets. Thus, as a best practice, it is preferable to include all of the assets your app needs to run in your ``deploymentPath`` rather than defining them as inputs. This will allow Agave to make better caching decisions and reduce the overall throughput when running a job.
+   :information_source: In the Job management tutorial, we talk in detail about the job lifecycle. Here we simply point out that Tapis (Agave) will handle the staging of your app's ``deploymentPath`` separately from the staging of your assets. Thus, as a best practice, it is preferable to include all of the assets your app needs to run in your ``deploymentPath`` rather than defining them as inputs. This will allow Agave to make better caching decisions and reduce the overall throughput when running a job.
 
 
 A minimal input object contains a single ``inputs.[].id`` attribute that uniquely identifies it within the context of your app. Any alphanumeric value under 64 characters can be an identifier, but it must be unique among all the inputs and parameters in that app.
@@ -111,7 +111,7 @@ Input details section
 
 The ``inputs.[].details`` object contains information specifying how to describe an input in different contexts. The ``description`` and ``label`` values provide human readable information appropriate for a tool tip and form label respectively. Neither of these attributes are required, however they dramatically improve the readability of your app description if you include them.
 
-Often times you will need to translate your input value into actual command line arguments. By default, Agave will replace all occurrences of your attribute ``inputs.[].id`` in your wrapper script with the value of that attribute in your job description. That means that you are responsible for inserting any command line flags or arguments into the wrapper script yourself. This is a pretty straightforward process, however in situations where an input is optional, the resulting command line could be broken if the user does not specify an input value in their job request. One way to work around this is to add a conditional check to the variable assignment and exclude the command line flag or argument if it does not have a value set. Another is to use the ``inputs.[].details.argument`` attribute.
+Often times you will need to translate your input value into actual command line arguments. By default, Tapis (Agave) will replace all occurrences of your attribute ``inputs.[].id`` in your wrapper script with the value of that attribute in your job description. That means that you are responsible for inserting any command line flags or arguments into the wrapper script yourself. This is a pretty straightforward process, however in situations where an input is optional, the resulting command line could be broken if the user does not specify an input value in their job request. One way to work around this is to add a conditional check to the variable assignment and exclude the command line flag or argument if it does not have a value set. Another is to use the ``inputs.[].details.argument`` attribute.
 
 The ``inputs.[].details.argument`` value describes the command line argument that corresponds to this input, and the ``inputs.[].details.showArgument`` attribute specifies whether the ``inputs.[].details.argument`` value should be injected into the wrapper template in front of the actual runtime value. The following table illustrates the result of these attributes in different scenarios.
 
@@ -178,7 +178,7 @@ The ``order`` attribute is used to specify the order in which inputs should be l
 Validating inputs
 -----------------
 
-The previous section covered different ways you can specify for Agave to validate and restrict the data inputs to your app. When a user submits an job request, the order in which they are applied is as follows.
+The previous section covered different ways you can specify for Tapis (Agave) to validate and restrict the data inputs to your app. When a user submits an job request, the order in which they are applied is as follows.
 
 
 #. visible
@@ -187,12 +187,12 @@ The previous section covered different ways you can specify for Agave to validat
 #. maxCardinality
 #. validator
 
-Once an input passes these tests, Agave will check that it exists and that the user has permission to access the data. Assuming everything passes, the input is accepted and scheduled for staging.
+Once an input passes these tests, Tapis (Agave) will check that it exists and that the user has permission to access the data. Assuming everything passes, the input is accepted and scheduled for staging.
 
 Parameters
 ----------
 
-The ``parameters`` attribute of your app description contains a JSON array of parameter objects. A parameter represents one or more arguments that your app will use at runtime. Those arguments can be more or less anything you want them to be. If, for some reason, your app handles data staging on its own and you do not want Agave to move the data on your behalf, but you do need a data reference passed in, you can define it as a parameter rather than an input.
+The ``parameters`` attribute of your app description contains a JSON array of parameter objects. A parameter represents one or more arguments that your app will use at runtime. Those arguments can be more or less anything you want them to be. If, for some reason, your app handles data staging on its own and you do not want Tapis (Agave) to move the data on your behalf, but you do need a data reference passed in, you can define it as a parameter rather than an input.
 
 A minimal parameter object contains a single ``id`` attribute that uniquely identifies it within the context of your app and a ``value.type`` attribute specifying the primary type of the parameter. Any alphanumeric value under 64 characters can be an identifier, but it must be unique among all the inputs and parameters in that app. The parameter type is restricted to a handful of primary types listed in the table below.
 
@@ -328,7 +328,7 @@ The ``order`` attribute is used to specify the order in which parameters should 
 Validating parameters
 ---------------------
 
-The previous section covered different ways you can tell for Agave to validate and restrict the parameters to your app. When a user submits an job request, the order in which they are applied is as follows.
+The previous section covered different ways you can tell for Tapis (Agave) to validate and restrict the parameters to your app. When a user submits an job request, the order in which they are applied is as follows.
 
 
 #. visible

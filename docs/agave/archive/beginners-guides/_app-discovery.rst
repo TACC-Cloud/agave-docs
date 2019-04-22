@@ -12,7 +12,7 @@ App Tutorial
 
 We saw in the :raw-html-m2r:`<a href="http://agaveapi.co/documentation/beginners-guides/system-discovery/" title="System Discovery">System Discovery</a>` guide that there were both storage and execution systems. The :raw-html-m2r:`<a href="http://agaveapi.co/documentation/beginners-guides/managing-data/" title="Managing Data">Data Management</a>` guide covered interacting with storage systems. In this section we look at Apps, which are the primary point of interaction with execution systems.
 
-An app in Agave is most easily thought of as the installation of a simulation code on a physical resource. For example, the official installation of Blast on Stampede would be described by a single app. Your personally compiled version of Blast on Stampede would be described by a different app. Ditto for the same two codes on Lonestar.
+An app in Tapis (Agave) is most easily thought of as the installation of a simulation code on a physical resource. For example, the official installation of Blast on Stampede would be described by a single app. Your personally compiled version of Blast on Stampede would be described by a different app. Ditto for the same two codes on Lonestar.
 
 Discovering Apps
 ----------------
@@ -67,7 +67,7 @@ The response is a JSON array of summary app descriptions.
 
 .. raw:: html
 
-   <aside class="notice">Depending on who is administering the Agave platform for your organization, you may see many or few apps returned from the above response. This is normal and has to do with what systems and apps they have chosen to make publicly available. If you don't see any apps there by default, no worries, see the <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/" title="App Management Tutorial">App Management Tutorial</a> for a quick reference on how to add your own.</aside>
+   <aside class="notice">Depending on who is administering the Tapis (Agave) platform for your organization, you may see many or few apps returned from the above response. This is normal and has to do with what systems and apps they have chosen to make publicly available. If you don't see any apps there by default, no worries, see the <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/" title="App Management Tutorial">App Management Tutorial</a> for a quick reference on how to add your own.</aside>
 
 
 Viewing app details

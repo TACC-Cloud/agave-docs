@@ -27,7 +27,7 @@ Metadata details
      .. container:: header
 
         :fa:`caret-right`
-        **Show Agave CLI**
+        **Show Tapis (Agave) CLI**
 
      .. code-block:: shell
 
@@ -122,7 +122,7 @@ Metadata browsing
      .. container:: header
 
         :fa:`caret-right`
-        **Show Agave CLI**
+        **Show Tapis (Agave) CLI**
 
      .. code-block:: plaintext
 
