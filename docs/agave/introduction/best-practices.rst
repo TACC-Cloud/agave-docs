@@ -9,7 +9,7 @@ General
 .. raw:: html
 
    <ul>
-   <li>Alway use SSL. Tapis (Tapis (Agave)) services will force SSL if you don't specify it, but it's best to protect your application with SSL as a best practice.</li>
+   <li>Always use SSL. Tapis (Agave) services will force SSL if you don't specify it, but it's best to protect your application with SSL as a best practice.</li>
    </ul>
 
 
