@@ -22,7 +22,7 @@ on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
 # -- Project information -----------------------------------------------------
 
-project = 'Agave'
+project = 'Tapis'
 copyright = '2018, Texas Advanced Computing Center, University of Texas, Austin'
 author = 'Joe Stubbs, Joseph Jaffe, Erik Ferlanti'
 
@@ -148,7 +148,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'agave.tex', 'Agave Documentation',
+    (master_doc, 'agave.tex', 'Tapis Documentation',
      author, 'manual'),
 ]
 
@@ -158,7 +158,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'agave', 'Agave Documentation',
+    (master_doc, 'agave', 'Tapis Documentation',
      author, 1)
 ]
 
@@ -169,8 +169,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Agave', 'Agave Documentation',
-     'TACC', 'Agave', 'One line description of project.',
+    (master_doc, 'Tapis', 'Tapis Documentation',
+     'TACC', 'Tapis', 'One line description of project.',
      'Miscellaneous'),
 ]
 
