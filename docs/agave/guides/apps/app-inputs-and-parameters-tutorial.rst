@@ -24,11 +24,11 @@ As we look at how to define inputs and parameters for your app, keep this big pi
 Inputs
 ------
 
-The ``inputs`` attribute of your app description contains a JSON array of input objects. An input represents one or more pieces of data that your app will use at runtime. That data can be a single file, a directory, or a response from a web service. It can reside on a system that Tapis (Agave) knows about, or at a publicly accessible URL. Regardless of where it lives and what it is, Agave will grab the data (recursively if need be) and copy it to your job's working directory just before execution.
+The ``inputs`` attribute of your app description contains a JSON array of input objects. An input represents one or more pieces of data that your app will use at runtime. That data can be a single file, a directory, or a response from a web service. It can reside on a system that Tapis (Agave) knows about, or at a publicly accessible URL. Regardless of where it lives and what it is, Tapis (Agave) will grab the data (recursively if need be) and copy it to your job's working directory just before execution.
 
 ..
 
-   :information_source: In the Job management tutorial, we talk in detail about the job lifecycle. Here we simply point out that Tapis (Agave) will handle the staging of your app's ``deploymentPath`` separately from the staging of your assets. Thus, as a best practice, it is preferable to include all of the assets your app needs to run in your ``deploymentPath`` rather than defining them as inputs. This will allow Agave to make better caching decisions and reduce the overall throughput when running a job.
+   :information_source: In the Job management tutorial, we talk in detail about the job lifecycle. Here we simply point out that Tapis (Agave) will handle the staging of your app's ``deploymentPath`` separately from the staging of your assets. Thus, as a best practice, it is preferable to include all of the assets your app needs to run in your ``deploymentPath`` rather than defining them as inputs. This will allow Tapis (Agave) to make better caching decisions and reduce the overall throughput when running a job.
 
 
 A minimal input object contains a single ``inputs.[].id`` attribute that uniquely identifies it within the context of your app. Any alphanumeric value under 64 characters can be an identifier, but it must be unique among all the inputs and parameters in that app.
@@ -88,7 +88,7 @@ Most of the time, such a minimal definition is not helpful. At the very least, y
      - A description of the anticipated value and the situations when it is required.
    * - value.default
      - string, JSON array
-     - The default value for this input. This value is optional except when ``value.required`` is *true* and ``value.visible`` is *false*. Values may be absolute or relative paths on the user’s default storage sytem, an agave URI, or any valid URL with a supported schema.
+     - The default value for this input. This value is optional except when ``value.required`` is *true* and ``value.visible`` is *false*. Values may be absolute or relative paths on the user’s default storage sytem, a Tapis (Agave) URI, or any valid URL with a supported schema.
    * - value.order
      - integer
      - The order in which this input should appear when auto-generating a command line invocation.

@@ -5,7 +5,7 @@
 Jobs Permissions and Sharing
 ============================
 
-As with the :raw-html-m2r:`<a title="System Registration" href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/introduction.html">Systems</a>`\ , :raw-html-m2r:`<a title="Application Management" href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/apps/introduction.html">Apps</a>`\ , and :raw-html-m2r:`<a title="File Management" href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/files/introduction.html">Files</a>` services, your jobs have their own set of access controls. Using these, you can share your job and its data with other Agave users. Job permissions are private by default. The permissions you give a job apply both to the job, its outputs, its metadata, and the permissions themselves. Thus, by sharing a job with another user, you share all aspects of that job.
+As with the :raw-html-m2r:`<a title="System Registration" href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/introduction.html">Systems</a>`\ , :raw-html-m2r:`<a title="Application Management" href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/apps/introduction.html">Apps</a>`\ , and :raw-html-m2r:`<a title="File Management" href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/files/introduction.html">Files</a>` services, your jobs have their own set of access controls. Using these, you can share your job and its data with other Tapis (Agave) users. Job permissions are private by default. The permissions you give a job apply both to the job, its outputs, its metadata, and the permissions themselves. Thus, by sharing a job with another user, you share all aspects of that job.
 
 Job permissions are managed through a set of URLs consistent with the permissions URL elsewhere in the API.
 
@@ -31,13 +31,13 @@ Granting permissions is simply a matter of issuing a ``POST`` with the desired p
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
             -X POST --data-binary '{"permission":"READ","username":"$USERNAME"}' \
-            https://agave.iplantc.org/jobs/v2/$JOB_ID/pems
+            https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/pems
 
         # Custom url grant
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
             -X POST --data-binary '{"permission":"READ"}' \
-            https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/$USERNAME
+            https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/pems/$USERNAME
 |
 
 .. container:: foldable
@@ -58,13 +58,13 @@ Granting permissions is simply a matter of issuing a ``POST`` with the desired p
         },
         "_links": {
           "self": {
-            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/$USERNAME"
+            "href": "https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/pems/$USERNAME"
           },
           "parent": {
-            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID"
+            "href": "https://api.tacc.utexas.edu/jobs/v2/$JOB_ID"
           },
           "profile": {
-            "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
+            "href": "https://api.tacc.utexas.edu/profiles/v2/$USERNAME"
           }
         }
         }
@@ -134,7 +134,7 @@ To find the permissions for a given job, make a GET on the job's ``pems`` collec
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
-          'https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/'
+          'https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/pems/'
 |
 
 .. container:: foldable
@@ -156,13 +156,13 @@ To find the permissions for a given job, make a GET on the job's ``pems`` collec
           },
           "_links": {
             "self": {
-              "href": "https://agave.iplantc.org/jobs/v2/6608339759546166810-242ac114-0001-007/pems/$API_USERNAME"
+              "href": "https://api.tacc.utexas.edu/jobs/v2/6608339759546166810-242ac114-0001-007/pems/$API_USERNAME"
             },
             "parent": {
-              "href": "https://agave.iplantc.org/jobs/v2/6608339759546166810-242ac114-0001-007"
+              "href": "https://api.tacc.utexas.edu/jobs/v2/6608339759546166810-242ac114-0001-007"
             },
             "profile": {
-              "href": "https://agave.iplantc.org/profiles/v2/$API_USERNAME"
+              "href": "https://api.tacc.utexas.edu/profiles/v2/$API_USERNAME"
             }
           }
         },
@@ -175,13 +175,13 @@ To find the permissions for a given job, make a GET on the job's ``pems`` collec
           },
           "_links": {
             "self": {
-              "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/$USERNAME"
+              "href": "https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/pems/$USERNAME"
             },
             "parent": {
-              "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID"
+              "href": "https://api.tacc.utexas.edu/jobs/v2/$JOB_ID"
             },
             "profile": {
-              "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
+              "href": "https://api.tacc.utexas.edu/profiles/v2/$USERNAME"
             }
           }
         }
@@ -210,7 +210,7 @@ Updating is exactly like granting permissions. Just POST to the same job's ``pem
         curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
             -X POST --data-binary {"permission":"READ_WRITE}" \
-            https://agave.iplantc.org/jobs/v2/$JOB_ID/$USERNAME
+            https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/$USERNAME
 |
 
 .. container:: foldable
@@ -231,13 +231,13 @@ Updating is exactly like granting permissions. Just POST to the same job's ``pem
         },
         "_links": {
           "self": {
-            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/pems/$USERNAME"
+            "href": "https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/pems/$USERNAME"
           },
           "parent": {
-            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID"
+            "href": "https://api.tacc.utexas.edu/jobs/v2/$JOB_ID"
           },
           "profile": {
-            "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
+            "href": "https://api.tacc.utexas.edu/profiles/v2/$USERNAME"
           }
         }
         }
@@ -264,6 +264,6 @@ To delete a permission, you can issue a DELETE request on the user permission re
 
         curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" \
             -X DELETE \
-            https://agave.iplantc.org/jobs/v2/$JOB_ID/$USERNAME
+            https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/$USERNAME
 |
 

@@ -23,7 +23,7 @@ CLI command to create a PostIt:
    postits-create \
    -m 10 \
    -l 86400 \
-   https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co/nryan/picksumipsum.txt
+   https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org/nryan/picksumipsum.txt
 
 .. container:: foldable
 
@@ -39,7 +39,7 @@ CLI command to create a PostIt:
           -d "lifetime=3600" \
           -d "maxUses=10" \
           -d "method=GET" \
-          -d "url=https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co/nryan/picksumipsum.txt" \
+          -d "url=https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org/nryan/picksumipsum.txt" \
           'https://api.tacc.utexas.edu/postits/v2/?pretty=true'
 |
 
@@ -61,7 +61,7 @@ CLI command to create a PostIt:
         "remainingUses":10,
         "postit":"f61256c53bf3744185de4ac6c0c839b4",
         "noauth":false,
-        "url":"https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt",
+        "url":"https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org//home/nryan/picksumipsum.txt",
         "method":"GET",
         "_links":{
           "self":{
@@ -71,7 +71,7 @@ CLI command to create a PostIt:
             "href":"https://api.tacc.utexas.edu/profiles/v2/nryan"
           },
           "file":{
-            "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt"
+            "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org//home/nryan/picksumipsum.txt"
           }
         }
         }
@@ -188,7 +188,7 @@ To list all currently active PostIts, enter the following CLI command:
           "remainingUses":10,
           "postit":"f61256c53bf3744185de4ac6c0c839b4",
           "noauth":false,
-          "url":"https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt",
+          "url":"https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org//home/nryan/picksumipsum.txt",
           "method":"GET",
           "_links":{
             "self":{
@@ -198,7 +198,7 @@ To list all currently active PostIts, enter the following CLI command:
               "href":"https://api.tacc.utexas.edu/profiles/v2/nryan"
             },
             "file":{
-              "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt"
+              "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org//home/nryan/picksumipsum.txt"
             }
           }
         }
@@ -209,7 +209,7 @@ To list all currently active PostIts, enter the following CLI command:
 Redeeming PostIts
 -----------------
 
-You redeem a PostIt by making a non-authenticated HTTP request on the PostIt URL. In the above example, that would be ``https://public.agaveapi.co/postits/v2/ead227bace394790e56beb07e7c3ff4d``. Every time you make a get request on the PostIt, the ``remainingUses`` field decrements by 1. This continues until the value hits 0 or the PostIt outlives its ``expires`` field.
+You redeem a PostIt by making a non-authenticated HTTP request on the PostIt URL. In the above example, that would be ``https://api.tacc.utexas.edu/postits/v2/ead227bace394790e56beb07e7c3ff4d``. Every time you make a get request on the PostIt, the ``remainingUses`` field decrements by 1. This continues until the value hits 0 or the PostIt outlives its ``expires`` field.
 
 cURL command for redeeming a PostIt:
 

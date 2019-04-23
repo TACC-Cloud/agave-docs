@@ -101,6 +101,6 @@ Customizing Responses
      }
    ]
 
-In many situations, Agave may return back too much or too little information in the response to a query. For example, when searching jobs, the ``inputs`` and ``parameters`` fields are not included in the default summary response objects. You can customize the responses you receive from all the Science APIs using the ``filter`` query parameter.   
+In many situations, Tapis (Agave) may return back too much or too little information in the response to a query. For example, when searching jobs, the ``inputs`` and ``parameters`` fields are not included in the default summary response objects. You can customize the responses you receive from all the Science APIs using the ``filter`` query parameter.   
 
 The ``filter`` query parameter takes a comma-delimited list of fields to return for each object in the response. Each field may be referenced using JSON notation similar to the search syntax (minus the ``.[operation]`` suffix. 

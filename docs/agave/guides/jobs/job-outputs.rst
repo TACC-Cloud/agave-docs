@@ -20,7 +20,7 @@ To make tracking the output of a specific job easier to do, the Jobs service pro
 
      .. code-block:: shell
 
-        curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/$JOB_ID/outputs/listings/?pretty=true
+        curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/outputs/listings/?pretty=true
 |
 
 
@@ -50,13 +50,13 @@ The syntax of this service is consistent with the Files service syntax, as is th
           "type" : "dir",
           "_links" : {
             "self" : {
-              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/output"
+              "href" : "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/output"
             },
             "system" : {
-              "href" : "https://agave.iplantc.org/systems/v2/data.iplantcollaborative.org"
+              "href" : "https://api.tacc.utexas.edu/systems/v2/data.iplantcollaborative.org"
             },
             "parent" : {
-              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007"
+              "href" : "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007"
             }
           }
         }, {
@@ -70,13 +70,13 @@ The syntax of this service is consistent with the Files service syntax, as is th
           "type" : "file",
           "_links" : {
             "self" : {
-              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.err"
+              "href" : "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.err"
             },
             "system" : {
-              "href" : "https://agave.iplantc.org/systems/v2/data.iplantcollaborative.org"
+              "href" : "https://api.tacc.utexas.edu/systems/v2/data.iplantcollaborative.org"
             },
             "parent" : {
-              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007"
+              "href" : "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007"
             }
           }
         }, {
@@ -90,13 +90,13 @@ The syntax of this service is consistent with the Files service syntax, as is th
           "type" : "file",
           "_links" : {
             "self" : {
-              "href" : "https://pagave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.out"
+              "href" : "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.out"
             },
             "system" : {
-              "href" : "https://agave.iplantc.org/systems/v2/data.iplantcollaborative.org"
+              "href" : "https://api.tacc.utexas.edu/systems/v2/data.iplantcollaborative.org"
             },
             "parent" : {
-              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007"
+              "href" : "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007"
             }
           }
         }, {
@@ -110,13 +110,13 @@ The syntax of this service is consistent with the Files service syntax, as is th
           "type" : "file",
           "_links" : {
             "self" : {
-              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.pid"
+              "href" : "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/demo-pyplot-demo-advanced-test-1414139896.pid"
             },
             "system" : {
-              "href" : "https://agave.iplantc.org/systems/v2/data.iplantcollaborative.org"
+              "href" : "https://api.tacc.utexas.edu/systems/v2/data.iplantcollaborative.org"
             },
             "parent" : {
-              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007"
+              "href" : "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007"
             }
           }
         }, {
@@ -130,13 +130,13 @@ The syntax of this service is consistent with the Files service syntax, as is th
           "type" : "file",
           "_links" : {
             "self" : {
-              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/testdata.csv"
+              "href" : "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/media/testdata.csv"
             },
             "system" : {
-              "href" : "https://agave.iplantc.org/systems/v2/data.iplantcollaborative.org"
+              "href" : "https://api.tacc.utexas.edu/systems/v2/data.iplantcollaborative.org"
             },
             "parent" : {
-              "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007"
+              "href" : "https://api.tacc.utexas.edujobs/v2/0001414144065563-5056a550b8-0001-007"
             }
           }
         } ]
@@ -159,10 +159,10 @@ To download a file you would use the following syntax
 
      .. code-block:: shell
 
-        curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://agave.iplantc.org/jobs/v2/$JOB_ID/outputs/media/$PATH
+        curl -sk -H "Authorization: Bearer  $ACCESS_TOKEN" https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/outputs/media/$PATH
 |
 
    :information_source: The Jobs output service follows the same conventions of the Files service. Thus, you may specify a range header to retrieve a specific byte range. This is particularly helpful when tracking job progress since it gives you a mechanism to tail the output and error log files.
 
 
-Regardless of job status, the above services will always point to the most recent location of the job data. If you choose for the Jobs service to archive your job after completion, the URL will point to the archive folder of the job. If you do not choose to archive your data, or if archiving fails, the URL will point to the execution folder created for your job at runtime. Because Agave does not own any of the underlying hardware, it cannot guarantee that those locations will always exist. If, for example, the execution system enforces a purge policy, the output data may be deleted by the system administrators. Agave will let you know if the data is no longer present, however, it cannot prevent it from being deleted. This is another reason that it is important to archive data you feel will be needed in the future.
+Regardless of job status, the above services will always point to the most recent location of the job data. If you choose for the Jobs service to archive your job after completion, the URL will point to the archive folder of the job. If you do not choose to archive your data, or if archiving fails, the URL will point to the execution folder created for your job at runtime. Because Tapis (Agave) does not own any of the underlying hardware, it cannot guarantee that those locations will always exist. If, for example, the execution system enforces a purge policy, the output data may be deleted by the system administrators. Tapis (Agave) will let you know if the data is no longer present, however, it cannot prevent it from being deleted. This is another reason that it is important to archive data you feel will be needed in the future.

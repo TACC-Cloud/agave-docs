@@ -2,7 +2,7 @@
 URL Macros
 ----------
 
-In the context of Agave, a webhook is a URL to which Agave will send a POST request when that event occurs. A webhook can be any web accessible URL. While you cannot customize the POST content that Agave sends (it is unique to the event), you can take advantage of the many template variables that Agave provides to customize the URL at run time. The following tables show the webhook template variables available for each resource. Use the select box to view the macros for different resources.
+In the context of Tapis (Agave), a webhook is a URL to which Tapis (Agave) will send a POST request when that event occurs. A webhook can be any web accessible URL. While you cannot customize the POST content that Tapis (Agave) sends (it is unique to the event), you can take advantage of the many template variables that Agave provides to customize the URL at run time. The following tables show the webhook template variables available for each resource. Use the select box to view the macros for different resources.
 
 
 .. raw:: html
@@ -76,7 +76,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
    </tr>
    <tr>
    <td>JOB_ID</td>
-   <td>The unique id used to reference the job within Agave.</td>
+   <td>The unique id used to reference the job within Tapis (Agave).</td>
    </tr>
    <tr>
    <td>JOB_SYSTEM</td>
@@ -96,7 +96,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
    </tr>
    <tr>
    <td>JOB_SUBMIT_TIME</td>
-   <td>The time when the job was submitted to Agave for execution by the user in ISO8601 format.</td>
+   <td>The time when the job was submitted to Tapis (Agave) for execution by the user in ISO8601 format.</td>
    </tr>
    <tr>
    <td>JOB_ARCHIVE_PATH</td>
@@ -104,7 +104,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
    </tr>
    <tr>
    <td>JOB_ARCHIVE_URL</td>
-   <td>The Agave URL for the archived data.</td>
+   <td>The Tapis (Agave) URL for the archived data.</td>
    </tr>
    <tr>
    <td>JOB_ERROR</td>
@@ -647,7 +647,7 @@ In the context of Agave, a webhook is a URL to which Agave will send a POST requ
    </tr>
    <tr>
    <td>CREATED</td>
-   <td>The time the transfer was submitted to Agave in ISO8601 format</td>
+   <td>The time the transfer was submitted to Tapis (Agave) in ISO8601 format</td>
    </tr>
    <tr>
    <td>START_TIME</td>
@@ -704,7 +704,7 @@ The value of webhook template variables is that they allow you to build custom c
 
 .. code-block:: html
 
-   https://example.com/sendWelcome.php?username=${USERNAME}&email=${EMAIL}&firstName=${FIRST_NAME}&lastName=${LAST_NAME}&src=agaveapi.co&nonce=1234567
+   https://example.com/sendWelcome.php?username=${USERNAME}&email=${EMAIL}&firstName=${FIRST_NAME}&lastName=${LAST_NAME}&src=api.tacc.utexas.edu&nonce=1234567
 
 ..
 
@@ -732,7 +732,7 @@ The value of webhook template variables is that they allow you to build custom c
 
 .. code-block:: html
 
-   https://$AGAVE_BASE_URL/jobs/v2/a32487q98wasdfa9-09090b0b-007?action=resubmit
+   https://$TAPIS_BASE_URL/jobs/v2/a32487q98wasdfa9-09090b0b-007?action=resubmit
 
 ..
 

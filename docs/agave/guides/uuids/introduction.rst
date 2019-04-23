@@ -13,7 +13,7 @@ UUID
    |  $$$$$$/|  $$$$$$/ /$$$$$$| $$$$$$$/
     \______/  \______/ |______/|_______/
 
-The Tapis (Agave) UUID service resolves the type and representation of one or more Agave UUID. This is helpful, for instance, when you need to expand the hypermedia response of another resource, get the URL corresponding to a UUID, or fetch the representations of multiple resources in a single request.
+The Tapis (Agave) UUID service resolves the type and representation of one or more Tapis (Agave) UUID. This is helpful, for instance, when you need to expand the hypermedia response of another resource, get the URL corresponding to a UUID, or fetch the representations of multiple resources in a single request.
 
 Resolving a single UUID
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -44,7 +44,7 @@ Resolving a single UUID
      "type":"FILE",
      "_links":{
        "file":{
-         "href":"https://api.tacc.utexas.edu/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt"
+         "href":"https://api.tacc.utexas.edu/files/v2/history/system/data.iplantcollaborative.org/nryan/picksumipsum.txt"
        }
      }
    }
@@ -84,17 +84,17 @@ Expanding a UUID query
      "path":"/home/nryan/picksumipsum.txt",
      "source":"http://127.0.0.1/picksumipsum.txt",
      "status":"STAGING_QUEUED",
-     "systemId":"data.agaveapi.co",
+     "systemId":"data.iplantcollaborative.org",
      "uuid":"0001409758089943-5056a550b8-0001-002",
      "_links":{
        "history":{
-         "href":"https://api.tacc.utexas.edu/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt"
+         "href":"https://api.tacc.utexas.edu/files/v2/history/system/data.iplantcollaborative.org/nryan/picksumipsum.txt"
        },
        "self":{
-         "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co/nryan/picksumipsum.txt"
+         "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org/nryan/picksumipsum.txt"
        },
        "system":{
-         "href":"https://api.tacc.utexas.edu/systems/v2/data.agaveapi.co"
+         "href":"https://api.tacc.utexas.edu/systems/v2/data.iplantcollaborative.org"
        }
      }
    }
@@ -135,10 +135,10 @@ Resolving multiple UUID
      {
        "uuid":"0001409758089943-5056a550b8-0001-002",
        "type":"FILE",
-       "url":"https://api.tacc.utexas.edu/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt",
+       "url":"https://api.tacc.utexas.edu/files/v2/history/system/data.iplantcollaborative.org/nryan/picksumipsum.txt",
        "_links":{
          "file":{
-           "href":"https://api.tacc.utexas.edu/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt"
+           "href":"https://api.tacc.utexas.edu/files/v2/history/system/data.iplantcollaborative.org/nryan/picksumipsum.txt"
          }
        }
      },
@@ -262,17 +262,17 @@ Expanding multiple UUID
             "path":"/home/nryan/picksumipsum.txt",
             "source":"http://127.0.0.1/picksumipsum.txt",
             "status":"STAGING_QUEUED",
-            "systemId":"data.agaveapi.co",
+            "systemId":"data.iplantcollaborative.org",
             "uuid":"0001409758089943-5056a550b8-0001-002",
             "_links":{
               "history":{
-                "href":"https://api.tacc.utexas.edu/files/v2/history/system/data.agaveapi.co/nryan/picksumipsum.txt"
+                "href":"https://api.tacc.utexas.edu/files/v2/history/system/data.iplantcollaborative.org/nryan/picksumipsum.txt"
               },
               "self":{
-                "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co/nryan/picksumipsum.txt"
+                "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org/nryan/picksumipsum.txt"
               },
               "system":{
-                "href":"https://api.tacc.utexas.edu/systems/v2/data.agaveapi.co"
+                "href":"https://api.tacc.utexas.edu/systems/v2/data.iplantcollaborative.org"
               }
             }
           }

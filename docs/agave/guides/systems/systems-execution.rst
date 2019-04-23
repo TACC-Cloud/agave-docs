@@ -245,7 +245,7 @@ The ``startupScript`` is :raw-html-m2r:`<strong>NOT</strong>` a virtual path rel
 Schedulers and system execution types
 -------------------------------------
 
-Tapis (Agave) supports job execution both interactively and through :raw-html-m2r:`<a href="http://en.wikipedia.org/wiki/Job_scheduler" title="Job Scheduler" target="_blank">batch queueing systems</a>` (aka schedulers). We cover the mechanics of job submission in the Job Management tutorial. Here we just point out that regardless of how your job is actually run on the underlying system, the process of submitting, monitoring, sharing, and otherwise interacting with your job through Agave is identical. Describing the scheduler and execution types for your system is really just a matter of picking the most efficient and/or available mechanism for running jobs on your system.
+Tapis (Agave) supports job execution both interactively and through :raw-html-m2r:`<a href="http://en.wikipedia.org/wiki/Job_scheduler" title="Job Scheduler" target="_blank">batch queueing systems</a>` (aka schedulers). We cover the mechanics of job submission in the Job Management tutorial. Here we just point out that regardless of how your job is actually run on the underlying system, the process of submitting, monitoring, sharing, and otherwise interacting with your job through Tapis (Agave) is identical. Describing the scheduler and execution types for your system is really just a matter of picking the most efficient and/or available mechanism for running jobs on your system.
 
 As you saw in the table above, ``executionType`` refers to the classification of jobs going into the system and ``scheduler`` refers to the type of batch scheduler used on a system. These two fields help limit the range of job submission options used on a specific system. For example, it is not uncommon for a HPC system to accept jobs from both a Condor scheduler and a batch scheduler. It is also possible, though generally discouraged, to fork jobs directly on the command line. With so many options, how would users publishing apps on such a system know what mechanism to use? Specifying the execution type and scheduler help narrow down the options to a single execution mechanism.
 
@@ -287,7 +287,7 @@ When you are describing your system, consider the policies put in place by your 
 Defining batch queues
 ---------------------
 
-Tapis (Agave) supports the notion of multiple submit queues. On HPC systems, queues should map to actual batch scheduler queues on the target server. Additionally, queues are used by Agave as a mechanism for implementing quotas on job throughput in a given queue or across an entire system. Queues are defined as a JSON array of objects assigned to the ``queues`` attribute. The following table summarizes all supported queue parameters.
+Tapis (Agave) supports the notion of multiple submit queues. On HPC systems, queues should map to actual batch scheduler queues on the target server. Additionally, queues are used by Tapis (Agave) as a mechanism for implementing quotas on job throughput in a given queue or across an entire system. Queues are defined as a JSON array of objects assigned to the ``queues`` attribute. The following table summarizes all supported queue parameters.
 
 
 .. raw:: html
@@ -353,7 +353,7 @@ Tapis (Agave) supports the notion of multiple submit queues. On HPC systems, que
 Configuring quotas
 ------------------
 
-In the batch queues table above, several attributes exist to specify limits on the number of total jobs and user jobs in a given queue. Corresponding attributes exist in the execution system to specify limits on the number of total and user jobs across an entire system. These attributes, when used appropriately, can be used to tell Tapis (Agave) how to enforce limits on the concurrent activity of any given user. They can also ensure that Agave will not unfairly monopolize your systems as your application usage grows.
+In the batch queues table above, several attributes exist to specify limits on the number of total jobs and user jobs in a given queue. Corresponding attributes exist in the execution system to specify limits on the number of total and user jobs across an entire system. These attributes, when used appropriately, can be used to tell Tapis (Agave) how to enforce limits on the concurrent activity of any given user. They can also ensure that Tapis (Agave) will not unfairly monopolize your systems as your application usage grows.
 
 If you have ever used a shared HPC system before, you should be familiar with batch queue quotas. If not, the important thing to understand is that they are a critical tool to ensure fair usage of any shared resource. As the owner/administrator for your registered system, you can use the batch queues you define to enforce whatever usage policy you deem appropriate.
 
@@ -672,7 +672,7 @@ The full list of login configuration options is given in the following table. We
 Scratch and work directories
 ----------------------------
 
-In the Job Management tutorial we will dive into how Tapis (Agave) manages the end-to-end lifecycle of running a job. Here we point out two relevant attributes that control where data is staged and where your job will physically run. The ``scratchDir`` and ``workDir`` attributes control where the working directories for each job will be created on an execution system. The following table summarizes the decision making process Agave uses to determine where the working directories should be created.
+In the Job Management tutorial we will dive into how Tapis (Agave) manages the end-to-end lifecycle of running a job. Here we point out two relevant attributes that control where data is staged and where your job will physically run. The ``scratchDir`` and ``workDir`` attributes control where the working directories for each job will be created on an execution system. The following table summarizes the decision making process Tapis (Agave) uses to determine where the working directories should be created.
 
 
 .. raw:: html

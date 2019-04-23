@@ -156,7 +156,7 @@ Craft an Tapis (Agave) app description
 
 In order for Tapis (Agave) to know how to run an instance of the application, we need to provide quite a bit of metadata about the application. This includes a unique name and version, the location of the application bundle, the identities of the execution system and destination system for results, whether its an HPC or other kind of job, the default number of processors and memory it needs to run, and of course, all the inputs and parameters for the actual program. It seems a bit over-complicated, but only because you're comfortable with the command line already. Your goal here is to allow your applications to be portable across systems and present a web-enabled, rationalized interface for your code to consumers.
 
-Rather than have you write a description for "samtools sort" from scratch, let's systematically dissect an existing file provided with the SDK. Go ahead and copy the file into place and open it in your text editor of choice. If you don't have the SDK installed, you can `download the JSON descriptions :raw-html-m2r:`<a href="https://github.com/TACC-Cloud/agave-docs/blob/doc_changes/docs/agave/guides/apps/samtools-sort.json" title="samtools-sort.json">here</a>`_.
+Rather than have you write a description for "samtools sort" from scratch, let's systematically dissect an existing file provided with the SDK. Go ahead and copy the file into place and open it in your text editor of choice. If you don't have the SDK installed, you can download the JSON descriptions :raw-html-m2r:`<a href="https://github.com/TACC-Cloud/agave-docs/blob/doc_changes/docs/agave/guides/apps/samtools-sort.json" title="samtools-sort.json">here</a>`.
 
 .. code-block:: shell
 
@@ -194,7 +194,7 @@ There is a defined list of application metadata fields, some of which are mandat
 Inputs
 ------
 
-To tell Tapis (Agave) what files to stage into place before job execution, you need to define the app's inputs in a JSON array. To implement the SAMtools sort app, you need to tell Agave that a BAM file is needed to act as the subject of our sort:
+To tell Tapis (Agave) what files to stage into place before job execution, you need to define the app's inputs in a JSON array. To implement the SAMtools sort app, you need to tell Tapis (Agave) that a BAM file is needed to act as the subject of our sort:
 
 .. code-block:: json
 
@@ -271,7 +271,7 @@ For information on what these fields mean, see the :raw-html-m2r:`<a href="https
 Outputs
 -------
 
-While we don't support outputs 100% yet, Tapis (Agave) apps are designed to participate in workflows. Thus, just as we define the list of valid and required inputs to an app, we also must (when we know them) define a list of its outputs. This allows it to "advertise" to consumers of Agave services what it expects to emit, allowing apps to be chained together. Note that unlike inputs and parameters, output "id"s are NOT passed to the template file.  If you must specify an output filename in the application json, do it as a parameter!  Outputs are defined basically the same way as inputs:
+While we don't support outputs 100% yet, Tapis (Agave) apps are designed to participate in workflows. Thus, just as we define the list of valid and required inputs to an app, we also must (when we know them) define a list of its outputs. This allows it to "advertise" to consumers of Tapis (Agave) services what it expects to emit, allowing apps to be chained together. Note that unlike inputs and parameters, output "id"s are NOT passed to the template file.  If you must specify an output filename in the application json, do it as a parameter!  Outputs are defined basically the same way as inputs:
 
 .. code-block:: json
 

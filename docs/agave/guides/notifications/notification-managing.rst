@@ -276,4 +276,4 @@ Unsubscribe from a notification subscription with the following CLI command:
 |
 
 
-A standard Agave response with an empty result will be returned.
+A standard Tapis (Agave) response with an empty result will be returned.
