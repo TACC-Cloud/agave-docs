@@ -37,7 +37,7 @@ Customizing Responses
        "appId" : "demo-pyplot-demo-advanced-0.1.0",
        "_links": {
          "archiveData": {
-           "href": "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/listings"
+           "href": "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/listings"
          }
        }
      },
@@ -47,7 +47,7 @@ Customizing Responses
        "appId" : "demo-pyplot-demo-advanced-0.1.0",
        "_links": {
          "archiveData": {
-           "href": "https://agave.iplantc.org/jobs/v2/3259859908028273126-242ac115-0001-007/outputs/listings"
+           "href": "https://api.tacc.utexas.edu/jobs/v2/3259859908028273126-242ac115-0001-007/outputs/listings"
          }
        }
      }
