@@ -28,9 +28,9 @@ Parameters required for job submission are marked with an asterisk (*).
 +----------------------+-----------+-------------------------------+
 | *JSON Parameter*     |*JSON Type*| *Description*                 +
 +======================+===========+===============================+ 
-| appId*               | string(80)| The unique name of the        +
-|                      |           | application being run by this +
-|                      |           | job. This must be a valid     +
+| appId*               | string(80)| The unique ID (name + version)+ 
+|                      |           | of the application run by     +
+|                      |           | this job. This must be a valid+
 |                      |           | application that the user     +
 |                      |           | has permission to run.        +
 +----------------------+-----------+-------------------------------+
