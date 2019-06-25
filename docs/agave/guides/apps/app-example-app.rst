@@ -161,7 +161,7 @@ Rather than have you write a description for "samtools sort" from scratch, let's
 .. code-block:: shell
 
    cd $WORK/iPlant/samtools-0.1.19/stampede2/
-   wget 'https://tacc.github.io/developer.tacc.cloud/docs/guides/apps/samtools-sort.json'
+   wget 'https://github.com/TACC-Cloud/agave-docs/blob/doc_changes/docs/agave/guides/apps/samtools-sort.json'
 
 Open up samtools-sort.json in a text editor or in your web browser and follow along below.
 
