@@ -426,17 +426,6 @@ The following **POST** actions are supported in the new Jobs service.  Actions i
 |             |                           | will be assigned a new UUID.  +
 +-------------+---------------------------+-------------------------------+
 
-The following **DELETE** actions are supported in the new Jobs service:
-
-+-------------+---------------------------+-------------------------------+
-|*Job Action* | *HTTP DELETE URL Suffix*  | *Description*                 +
-+=============+===========================+===============================+ 
-| hide        | /jobs/v2/<jobuuid>/hide   | Mark a job as invisible to    +
-|             |                           | most APIs, such as job listing+
-|             |                           | or history calls (same as     +
-|             |                           | POST)                         +
-+-------------+---------------------------+-------------------------------+
-
 
 Job Callbacks
 -------------
