@@ -2,7 +2,7 @@
 Metadata Permissions
 ====================
 
-The Metadata service supports permissions for both Metadata and Schemata consistent with that of a number of other Tapis (Agave) services. If no permissions are explicitly set, only the owner of the Metadata and tenant administrators can access it.
+The Metadata service supports permissions for both Metadata and Schemata consistent with that of a number of other Tapis services. If no permissions are explicitly set, only the owner of the Metadata and tenant administrators can access it.
 
 The permissions available for Metadata and Metadata Schemata are listed in the following table. Please note that a user must have WRITE permissions to grant or revoke permissions on a metadata or schema item.
 
@@ -50,7 +50,7 @@ Listing all permissions
      .. container:: header
 
         :fa:`caret-right`
-        **Show Tapis (Agave) CLI**
+        **Show Tapis CLI**
 
      .. code-block:: shell
 
@@ -119,7 +119,7 @@ List permissions for a specific user
      .. container:: header
 
         :fa:`caret-right`
-        **Show Tapis (Agave) CLI**
+        **Show Tapis CLI**
 
      .. code-block:: shell
 
@@ -187,7 +187,7 @@ Grant permissions
      .. container:: header
 
         :fa:`caret-right`
-        **Show Tapis (Agave) CLI**
+        **Show Tapis CLI**
 
      .. code-block:: plaintext
 
@@ -216,7 +216,7 @@ Grant permissions
      .. container:: header
 
         :fa:`caret-right`
-        **Show Tapis (Agave) CLI**
+        **Show Tapis CLI**
 
      .. code-block:: shell
 
@@ -284,7 +284,7 @@ Delete single user permissions
      .. container:: header
 
         :fa:`caret-right`
-        **Show Tapis (Agave) CLI**
+        **Show Tapis CLI**
 
      .. code-block:: shell
 
@@ -324,7 +324,7 @@ Deleting all permissions
      .. container:: header
 
         :fa:`caret-right`
-        **Show Tapis (Agave) CLI**
+        **Show Tapis CLI**
 
      .. code-block:: shell
 

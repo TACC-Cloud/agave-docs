@@ -142,18 +142,18 @@ When we described our job in the first section, we pointed out a ``notifications
    "persistent":true
    }
 
-Tapis (Agave) supports two kinds of notifications: :raw-html-m2r:`<a title="Webhooks" href="http://webhooks.org" target="_blank">webhooks</a>` and email. In the job notification we created, we specified a webhook. Webhooks are just HTTP endpoints that will receive a POST from Agave's Notification service when the desired event occurs. Agave supports a rich set of template variables that allow you to craft informative, custom URLS to suite your particular application needs. Our URL will be resolved at run time to include the job's id, ``${JOB_ID}``\ , and status, ``${JOB_STATUS}`` before being called.
+Tapis supports two kinds of notifications: :raw-html-m2r:`<a title="Webhooks" href="http://webhooks.org" target="_blank">webhooks</a>` and email. In the job notification we created, we specified a webhook. Webhooks are just HTTP endpoints that will receive a POST from Tapis's Notification service when the desired event occurs. Tapis supports a rich set of template variables that allow you to craft informative, custom URLS to suite your particular application needs. Our URL will be resolved at run time to include the job's id, ``${JOB_ID}``\ , and status, ``${JOB_STATUS}`` before being called.
 
 
 .. raw:: html
 
-   <aside class="notice">There are several good services available online for testing webhooks. Runscope's <a title="Request Bin by Runscope" href="http://requestb.in" target="_blank">RequestBin</a> is a good, free hosted service. A simple, self-hosted node listener is available <a href="https://github.com/deardooley/node-http-post-listener">here</a>. You can also create a <a title="Tapis (Agave) Request Bin" href="http://requestbin.agaveapi.co" target="_blank">request bin</a> on this site to use in your development.</aside>
+   <aside class="notice">There are several good services available online for testing webhooks. Runscope's <a title="Request Bin by Runscope" href="http://requestb.in" target="_blank">RequestBin</a> is a good, free hosted service. A simple, self-hosted node listener is available <a href="https://github.com/deardooley/node-http-post-listener">here</a>. You can also create a <a title="Tapis Request Bin" href="http://requestbin.agaveapi.co" target="_blank">request bin</a> on this site to use in your development.</aside>
 
 
 Job history
 -----------
 
-As with the Files service, Tapis (Agave) keeps a complete history of all activity related to your jobs. You can access this provenance trail through the job history.
+As with the Files service, Tapis keeps a complete history of all activity related to your jobs. You can access this provenance trail through the job history.
 
 .. code-block:: shell
 
@@ -450,4 +450,4 @@ Downloading job data is just as easy and uses the same conventions from the File
 
    jobs-output -D -P output.txt 0001409784588509-5056a550b8-0001-007
 
-HTTP isn't the best way to download directories, so if you need to pull down your entire job directory, try using the ``files-get`` command in the CLI. Alternatively, if you need to move your job output to another system you've registered in Tapis (Agave), you can have Agave transfer the entire directory for you.
+HTTP isn't the best way to download directories, so if you need to pull down your entire job directory, try using the ``files-get`` command in the CLI. Alternatively, if you need to move your job output to another system you've registered in Tapis, you can have Tapis transfer the entire directory for you.

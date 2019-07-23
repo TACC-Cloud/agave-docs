@@ -1,10 +1,10 @@
 ## Introduction  
 
-A system in Tapis (Agave) represents a server or collection of servers. A server can be physical, virtual, or a collection of servers exposed through a single hostname or ip address. Systems are identified and referenced in Agave by a unique ID unrelated to their ip address or hostname. Because of this, a single physical system may be registered multiple times. This allows different users to configure and use a system in whatever way they need to for their specific needs.
+A system in Tapis represents a server or collection of servers. A server can be physical, virtual, or a collection of servers exposed through a single hostname or ip address. Systems are identified and referenced in Tapis by a unique ID unrelated to their ip address or hostname. Because of this, a single physical system may be registered multiple times. This allows different users to configure and use a system in whatever way they need to for their specific needs.
 
 Systems come in two flavors: storage and execution. Storage systems are only used for storing and interacting with data. Execution systems are used for running apps (aka jobs or batch jobs) as well as storing and interacting with data.
 
-The Systems service gives you the ability to add and discover storage and compute resources for use in the rest of the API. You may add as many or as few storage systems as you need to power your digital lab. When you register a system, it is private to you and you alone. Systems can also be published into the public space for all users to use. Depending on who is administering Tapis (Agave) for your organization, this may have already happened and you may already have one or more storage systems available to you by default.
+The Systems service gives you the ability to add and discover storage and compute resources for use in the rest of the API. You may add as many or as few storage systems as you need to power your digital lab. When you register a system, it is private to you and you alone. Systems can also be published into the public space for all users to use. Depending on who is administering Tapis for your organization, this may have already happened and you may already have one or more storage systems available to you by default.
 
 In this tutorial we walk you through how to discovery, manage, share, and configure systems for your specific needs. This tutorial is best done in a hands-on manner, so if you do not have a compute or storage system of your own to use, you can grab a VM from our sandbox.
 
@@ -57,7 +57,7 @@ The response will be a JSON array of summary system objects. The full system des
 ]
 ```
 
-<aside class="notice">The above response my vary depending on who administers Tapis (Agave) for your organization. To customize this tutorial for your specific account, login.</aside>
+<aside class="notice">The above response my vary depending on who administers Tapis for your organization. To customize this tutorial for your specific account, login.</aside>
 
 You can further filter the results by type, scope, and default status.
 
@@ -166,7 +166,7 @@ This time, the response will be a JSON object with a full system description. Th
 
 ## Storage systems  
 
-A storage systems can be thought of as an individual data repository that you want to access through Tapis (Agave). The following JSON object shows how a basic storage systems is described.
+A storage systems can be thought of as an individual data repository that you want to access through Tapis. The following JSON object shows how a basic storage systems is described.
 
 ```javascript
 {
@@ -189,9 +189,9 @@ A storage systems can be thought of as an individual data repository that you wa
 }
 ```
 
-The first four attribute are common to both storage and execution systems. The `storage` attribute describes the connectivity and authentication information needed to connect to the remote system. Here we describe a SFTP server accessible on `port` 22 at `host` storage.example.com. We specify that we want the `rootDir`, or virtual system root exposed through Tapis (Agave), to be the system's physical root directory, and we want the authenticated user's home directory to be the `homeDir`, or virtual home directory and base of all relative paths given to Agave. Finally, we tell Agave to use password based authentication and provided the necessary credentials.
+The first four attribute are common to both storage and execution systems. The `storage` attribute describes the connectivity and authentication information needed to connect to the remote system. Here we describe a SFTP server accessible on `port` 22 at `host` storage.example.com. We specify that we want the `rootDir`, or virtual system root exposed through Tapis, to be the system's physical root directory, and we want the authenticated user's home directory to be the `homeDir`, or virtual home directory and base of all relative paths given to Tapis. Finally, we tell Tapis to use password based authentication and provided the necessary credentials.
 
-<aside class="notice">This example is given as a simple illustration of how to describe a systems for use by Tapis (Agave). In most situations you should **NOT** provide your username and password. In fact, if you are using a compute or storage systems from your university or government-funded labs it is, at best, against the user agreement and, at worst, illegal to give your password to a third party service such as Agave. In these situations, use one of the many other authentication options such as SSH keys, X509 authentication, or a 3rd party authentication service like the MyProxy Gateway.</aside>
+<aside class="notice">This example is given as a simple illustration of how to describe a systems for use by Tapis. In most situations you should **NOT** provide your username and password. In fact, if you are using a compute or storage systems from your university or government-funded labs it is, at best, against the user agreement and, at worst, illegal to give your password to a third party service such as Tapis. In these situations, use one of the many other authentication options such as SSH keys, X509 authentication, or a 3rd party authentication service like the MyProxy Gateway.</aside>
 
 The full list of storage system attributes is described in the following table.
 
@@ -199,7 +199,7 @@ The full list of storage system attributes is described in the following table.
 
 ### Supported data and authentication protocols  
 
-The example above described a system accessible by SFTP. Tapis (Agave) supports many different data and authentication protocols for interacting with your data. Sample configurations for many protocol combinations are given below.
+The example above described a system accessible by SFTP. Tapis supports many different data and authentication protocols for interacting with your data. Sample configurations for many protocol combinations are given below.
 
 ```shell
 {
@@ -571,13 +571,13 @@ In the `storage` object, the `publicAppsDir` and `mirror` fields were both added
 
 ## Execution Systems  
 
-In contrast to storage systems, execution systems specify compute resources where application binaries can be run. In addition to the `storage` attribute found in storage systems, execution systems also have a `login` attribute describing how to connect to the remote system to submit jobs as well as several other attributes that allow Tapis (Agave) to determine how to stage data and run software on the system. The full list of execution system attributes is given in the following tables.
+In contrast to storage systems, execution systems specify compute resources where application binaries can be run. In addition to the `storage` attribute found in storage systems, execution systems also have a `login` attribute describing how to connect to the remote system to submit jobs as well as several other attributes that allow Tapis to determine how to stage data and run software on the system. The full list of execution system attributes is given in the following tables.
 
 <%= partial "includes/tables/49" %>
 
 ### Schedulers and system execution types  
 
-Tapis (Agave) supports job execution both interactively and through <a href="http://en.wikipedia.org/wiki/Job_scheduler" title="Job Scheduler" target="_blank">batch queueing systems</a> (aka schedulers). We cover the mechanics of job submission in the Job Management tutorial. Here we just point out that regardless of how your job is actually run on the underlying system, the process of submitting, monitoring, sharing, and otherwise interacting with your job through Agave is identical. Describing the scheduler and execution types for your system is really just a matter of picking the most efficient and/or available mechanism for running jobs on your system.
+Tapis supports job execution both interactively and through <a href="http://en.wikipedia.org/wiki/Job_scheduler" title="Job Scheduler" target="_blank">batch queueing systems</a> (aka schedulers). We cover the mechanics of job submission in the Job Management tutorial. Here we just point out that regardless of how your job is actually run on the underlying system, the process of submitting, monitoring, sharing, and otherwise interacting with your job through Tapis is identical. Describing the scheduler and execution types for your system is really just a matter of picking the most efficient and/or available mechanism for running jobs on your system.
 
 As you saw in the table above, `executionType` refers to the classification of jobs going into the system and `scheduler` refers to the type of batch scheduler used on a system. These two fields help limit the range of job submission options used on a specific system. For example, it is not uncommon for a HPC system to accept jobs from both a Condor scheduler and a batch scheduler. It is also possible, though generally discouraged, to fork jobs directly on the command line. With so many options, how would users publishing apps on such a system know what mechanism to use? Specifying the execution type and scheduler help narrow down the options to a single execution mechanism.
 
@@ -589,17 +589,17 @@ Thankfully, picking the right combination is pretty simple. The following table 
 
 ### Defining batch queues <a name="defining-batch-queues">&nbsp;</a>  
 
-Tapis (Agave) supports the notion of multiple submit queues. On HPC systems, queues should map to actual batch scheduler queues on the target server. Additionally, queues are used by Agave as a mechanism for implementing quotas on job throughput in a given queue or across an entire system. Queues are defined as a JSON array of objects assigned to the `queues` attribute. The following table summarizes all supported queue parameters.
+Tapis supports the notion of multiple submit queues. On HPC systems, queues should map to actual batch scheduler queues on the target server. Additionally, queues are used by Tapis as a mechanism for implementing quotas on job throughput in a given queue or across an entire system. Queues are defined as a JSON array of objects assigned to the `queues` attribute. The following table summarizes all supported queue parameters.
 
 <%= partial "includes/tables/48" %>
 
 ### Configuring quotas  
 
-In the batch queues table above, several attributes exist to specify limits on the number of total jobs and user jobs in a given queue. Corresponding attributes exist in the execution system to specify limits on the number of total and user jobs across an entire system. These attributes, when used appropriately, can be used to tell Tapis (Agave) how to enforce limits on the concurrent activity of any given user. They can also ensure that Agave will not unfairly monopolize your systems as your application usage grows.
+In the batch queues table above, several attributes exist to specify limits on the number of total jobs and user jobs in a given queue. Corresponding attributes exist in the execution system to specify limits on the number of total and user jobs across an entire system. These attributes, when used appropriately, can be used to tell Tapis how to enforce limits on the concurrent activity of any given user. They can also ensure that Tapis will not unfairly monopolize your systems as your application usage grows.
 
 If you have ever used a shared HPC system before, you should be familiar with batch queue quotas. If not, the important thing to understand is that they are a critical tool to ensure fair usage of any shared resource. As the owner/administrator for your registered system, you can use the batch queues you define to enforce whatever usage policy you deem appropriate.
 
-Consider one example where you are using a VM to run image analysis routines on demand through Tapis (Agave), your server will become memory bound and experience performance degradation if too many processes are running at once. To avoid this, you can set a limit using a batch queue configuration that limits the number of simultaneous tasks that can run at once on your server.
+Consider one example where you are using a VM to run image analysis routines on demand through Tapis, your server will become memory bound and experience performance degradation if too many processes are running at once. To avoid this, you can set a limit using a batch queue configuration that limits the number of simultaneous tasks that can run at once on your server.
 
 Another example where quotas can be helpful is to help you properly partitioning your system resources. Consider a user analyzing unstructured data. The problem is computationally and memory intensive. To preserve resources, you could create one queue with a moderate value of `maxJobs` and conservative `maxMemoryPerNode`, `maxProcessorsPerNode`, and `maxNodes` values to allow good throughput of small job. You could then create another queue with large `maxMemoryPerNode`, `maxProcessorsPerNode`, and `maxNodes` values while only allowing a single job to run at a time. This gives you both high throughput and high capacity on a single system.
 
@@ -689,7 +689,7 @@ Create two queues. "big_mem" allows single node jobs with memory up to 1TB. "big
 
 ### System login protocols  
 
-As with storage systems, Tapis (Agave) supports several different protocols and mechanisms for job submission. We already covered scheduler and queue support. Here we illustrate the different login configurations possible. For brevity, only the value of the `login` JSON object is shown.
+As with storage systems, Tapis supports several different protocols and mechanisms for job submission. We already covered scheduler and queue support. Here we illustrate the different login configurations possible. For brevity, only the value of the `login` JSON object is shown.
 
 ```shell
 {  
@@ -801,11 +801,11 @@ The full list of login configuration options is given in the following table. We
 
 ### Scratch and work directories  
 
-In the Job Management tutorial we will dive into how Tapis (Agave) manages the end-to-end lifecycle of running a job. Here we point out two relevant attributes that control where data is staged and where your job will physically run. The `scratchDir` and `workDir` attributes control where the working directories for each job will be created on an execution system. The following table summarizes the decision making process Agave uses to determine where the working directories should be created.
+In the Job Management tutorial we will dive into how Tapis manages the end-to-end lifecycle of running a job. Here we point out two relevant attributes that control where data is staged and where your job will physically run. The `scratchDir` and `workDir` attributes control where the working directories for each job will be created on an execution system. The following table summarizes the decision making process Tapis uses to determine where the working directories should be created.
 
 <%= partial "includes/tables/52" %>
 
-While it is not required, it is a best practice to always specify `scratchDir` and `workDir` values for your execution systems and, whenever possible, place them outside of the system `homeDir` to ensure data privacy. The reason for this is that the file system available on many servers is actually made up of a combination of physically attached storage, mounted volumes, and network mounts. Often times, your home directory will have a very conservative quota while the mounted storage will essentially be quota free. As the above table shows, when you do not specify a `scratchDir` or `workDir`, Tapis (Agave) will attempt to create your job work directories in your system `homeDir`. It is very likely that, in the course of running simulations, you will reach the quota on your home directory, thereby causing that job and all future jobs to fail on the system until you clear up more space. To avoid this, we recommend specifying a location with sufficient available space to handle the work you want to do.
+While it is not required, it is a best practice to always specify `scratchDir` and `workDir` values for your execution systems and, whenever possible, place them outside of the system `homeDir` to ensure data privacy. The reason for this is that the file system available on many servers is actually made up of a combination of physically attached storage, mounted volumes, and network mounts. Often times, your home directory will have a very conservative quota while the mounted storage will essentially be quota free. As the above table shows, when you do not specify a `scratchDir` or `workDir`, Tapis will attempt to create your job work directories in your system `homeDir`. It is very likely that, in the course of running simulations, you will reach the quota on your home directory, thereby causing that job and all future jobs to fail on the system until you clear up more space. To avoid this, we recommend specifying a location with sufficient available space to handle the work you want to do.
 
 Another common error that arises from not specifying thoughtful `scratchDir` and `workDir` values for your execution systems is jobs failing due to "permission denied" errors. This often happens when your `scratchDir` and/or `workDir` resolve to the actual system root. Usually the account you are using to access the system will not have permission to write to `/`, so all attempts to create a job working directory fail, accurately, due to a "permission denied" error.
 
@@ -894,7 +894,7 @@ The response from the server will be similar to the following.
 
 ## System roles  
 
-Systems you register are private to you and you alone. You can, however, allow other Tapis (Agave) clients to utilize the system you define by granting them a role on the system using the systems roles services. The available roles are given in the table below.
+Systems you register are private to you and you alone. You can, however, allow other Tapis clients to utilize the system you define by granting them a role on the system using the systems roles services. The available roles are given in the table below.
 
 <%= partial "includes/tables/51" %>
 
@@ -980,15 +980,15 @@ systems-unpublish -v $SYSTEM_ID
 
 ## Default systems  
 
-As you continue to use Tapis (Agave) over time, it will not be uncommon for you to accumulate additional storage and execution systems through both self-registration and other people sharing their systems with you. It may even be the case that you have multiple public systems available to you. In this situation, it is helpful for both you and your users to specify what the default systems should be.
+As you continue to use Tapis over time, it will not be uncommon for you to accumulate additional storage and execution systems through both self-registration and other people sharing their systems with you. It may even be the case that you have multiple public systems available to you. In this situation, it is helpful for both you and your users to specify what the default systems should be.
 
-Default systems are the systems that are used when the user does not specify a system to use when performing a remote action in Tapis (Agave). For example, specifying an `archivePath` in a job request, but no `archiveSystem`, or specifying a `deploymentPath` in an app description, but no `deploymentSystem`. In these situations, Agave will use the user's default storage system.
+Default systems are the systems that are used when the user does not specify a system to use when performing a remote action in Tapis. For example, specifying an `archivePath` in a job request, but no `archiveSystem`, or specifying a `deploymentPath` in an app description, but no `deploymentSystem`. In these situations, Tapis will use the user's default storage system.
 
 Four types of default systems are possible. The following table describes them.
 
 <%= partial "includes/tables/55" %>
 
-<aside class="notice">As a best practice, it is recommended to always specify the system you intend to use when interacting with Tapis (Agave). This will eliminate ambiguity in each request and make your actions more repeatable over time as the availability and configuration of the global and user default systems may change.</aside>
+<aside class="notice">As a best practice, it is recommended to always specify the system you intend to use when interacting with Tapis. This will eliminate ambiguity in each request and make your actions more repeatable over time as the availability and configuration of the global and user default systems may change.</aside>
 
 ### Setting user default system  
 
@@ -1074,4 +1074,4 @@ Deleting a system will disable the system and all applications published on that
 
 ## Multi-user environments  
 
-If your application supports a multi-user environment and those users do not have API accounts, then you may run into a situation where you are juggling multiple user credentials for a single system. Tapis (Agave) has a solution for this problem in the for of its Internal User feature. You can map your application users into a private user store Agave provides you and assign those users credentials on your systems. This allows you to move seamlessly from community users to private users and back without having to alter your application code. For a deep discussion on the mechanics and implications of credential management with internal users, see the <a href="http://agaveapi.co/documentation/tutorials/system-management/internal-user-credential-management/" title="Internal User Credential Management">Internal User Credential Management</a> tutorial.
+If your application supports a multi-user environment and those users do not have API accounts, then you may run into a situation where you are juggling multiple user credentials for a single system. Tapis has a solution for this problem in the for of its Internal User feature. You can map your application users into a private user store Tapis provides you and assign those users credentials on your systems. This allows you to move seamlessly from community users to private users and back without having to alter your application code. For a deep discussion on the mechanics and implications of credential management with internal users, see the <a href="http://agaveapi.co/documentation/tutorials/system-management/internal-user-credential-management/" title="Internal User Credential Management">Internal User Credential Management</a> tutorial.

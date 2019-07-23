@@ -9,7 +9,7 @@ Aloe Jobs Service (now in production)
 
 Version 2.4 of the Jobs service is now in production.  This version, code-named Aloe, is the rearchitected Jobs service with improved reliability, scalability, performance and serviceability.  
 
-A new version of the Jobs service documentation is being developed.  Until the unified documentation is ready, please see the old Agave Jobs service documentation for a basic understanding of the interface and the Aloe documentation in the links below for the up-to-date details.
+A new version of the Jobs service documentation is being developed.  Until the unified documentation is ready, please see the old Tapis Jobs service documentation for a basic understanding of the interface and the Aloe documentation in the links below for the up-to-date details.
 
 The following links discuss details of the new production Jobs service:
 

@@ -2,7 +2,7 @@
 Retry Policies
 --------------
 
-In some situations, Tapis (Agave) may be unable to publish a specific notification. When this happens, Tapis (Agave) will immediately retry the notification 5 times in an attempt to deliver it successfully. When delivery fails for a 5th time, the notification is abandoned. If your application requires a more tenacious or methodical approach to retry delivery, you may provide a notification policy.
+In some situations, Tapis may be unable to publish a specific notification. When this happens, Tapis will immediately retry the notification 5 times in an attempt to deliver it successfully. When delivery fails for a 5th time, the notification is abandoned. If your application requires a more tenacious or methodical approach to retry delivery, you may provide a notification policy.
 
 Example notification subscription object with custom retry policy:
 

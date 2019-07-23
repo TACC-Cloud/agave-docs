@@ -7,7 +7,7 @@ Overview
 
 In the :raw-html-m2r:`<a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/" title="App Management Tutorial">App Management Tutorial</a>` you learned about how to register apps for your own personal use and share them with other users to enable collaborative research. In this section, we will learn about the concept of app publication and what it means to promote an app into the public space.
 
-In addition to traditional permissions, Agave also has a concept of scope. By default, every app you personally register with Agave has a private scope. For individual users, this is usually sufficient for all your needs. At an organizational level, however, it is a very common requirement to provide a curated collection of apps that are publicly available to everyone. Such a collection of apps would reside in the public scope. The process of moving an app from the (default) private scope into the public scope is called :raw-html-m2r:`<strong><em>publishing</em></strong>`.
+In addition to traditional permissions, Tapis also has a concept of scope. By default, every app you personally register with Tapis has a private scope. For individual users, this is usually sufficient for all your needs. At an organizational level, however, it is a very common requirement to provide a curated collection of apps that are publicly available to everyone. Such a collection of apps would reside in the public scope. The process of moving an app from the (default) private scope into the public scope is called :raw-html-m2r:`<strong><em>publishing</em></strong>`.
 
 Implications of publishing an app :raw-html-m2r:`<a name="implications-of-publishing-an-app">&nbsp;</a>`
 ------------------------------------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ Once you have a working app that you have verified runs correctly, you contact y
 Admins create a public version of the app :raw-html-m2r:`<a name="admins-create-a-public-version-of-the-app">&nbsp;</a>`
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Once the app is vetted, your tenant admins will tell Agave to publish the app. This can be done with a single call the the Apps API. An example of publishing the ``demo-pyplot-demo-advanced-0.1.0`` app from our :raw-html-m2r:`<a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/" title="App Management Tutorial">App Management Tutorial</a>` is shown below.
+Once the app is vetted, your tenant admins will tell Tapis to publish the app. This can be done with a single call the the Apps API. An example of publishing the ``demo-pyplot-demo-advanced-0.1.0`` app from our :raw-html-m2r:`<a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/" title="App Management Tutorial">App Management Tutorial</a>` is shown below.
 
 .. code-block:: shell
 
@@ -397,7 +397,7 @@ Once the app is vetted, your tenant admins will tell Agave to publish the app. T
 
    Notice a few things about the response above. First, a new app was created. Our existing private app is still available and in place, however we now have a new app, `demo-pyplot-demo-advanced-0.1.0u1` with its own id. We should also point out that the id structure of public apps is different than that of private apps. In this example, the newly published app has a `u1` appended to the end of the private app id. The `u1` refers to the revision number of the public app. This is rest to 1 the first time you publish an app. Unlike private apps which can be updated over and over again without chagning the canonical URL, the canonical URL for public apps changes ever time the app is updated. This ensures that the behavior of an app never change. You can be assured that as long as a public app is available, it will always behave the same.
 
-   Second, notice that the `deploymentPath` has changed. Previously the app's assets were hosted out of a folder on the user's private storage system. Now, the `deploymentPath` points to a zip archive off the root of a public storage system. The location where public app archives are stored is determined by the `system.storage.publicAppsDir` value of the public `deploymentSystem`. By default, if no value is provided, Agave will attempt to store the archive in `/api/v2/apps`. If this folder does not exist and cannot be created, then publication will fail.
+   Second, notice that the `deploymentPath` has changed. Previously the app's assets were hosted out of a folder on the user's private storage system. Now, the `deploymentPath` points to a zip archive off the root of a public storage system. The location where public app archives are stored is determined by the `system.storage.publicAppsDir` value of the public `deploymentSystem`. By default, if no value is provided, Tapis will attempt to store the archive in `/api/v2/apps`. If this folder does not exist and cannot be created, then publication will fail.
 
    <pre>`When an app is published, a zip archive is created of the private apps's &lt;span class="code"&gt;deploymentPath&lt;/span&gt; and coped to the public apps directory of the &lt;span class="code"&gt;deploymentSystem&lt;/span&gt;. 
    `</pre>

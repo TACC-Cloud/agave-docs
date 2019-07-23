@@ -2,15 +2,15 @@
 
 ## Introduction  
 
-Under the covers, the Tapis (Agave) API is an event-driven distributed system implemented on top of a reliable, cloud-based messaging system. This means that every action either observed or taken by Agave is tied to an event. The changing of a job from one status to another is an event. The granting of permissions on a file is an event. Editing a piece of metadata is an event, and to be sure, the moment you created an account with Agave was an event. You get the idea.
+Under the covers, the Tapis API is an event-driven distributed system implemented on top of a reliable, cloud-based messaging system. This means that every action either observed or taken by Tapis is tied to an event. The changing of a job from one status to another is an event. The granting of permissions on a file is an event. Editing a piece of metadata is an event, and to be sure, the moment you created an account with Tapis was an event. You get the idea.
 
 ## Events  
 
-Having such a fine-grain event system is helpful for the same reason that having a fine-grain permission model is helpful: it affords you the highest degree of flexibility and control possible to achieve the behavior you desire. With Tapis (Agave)'s event system, you have the ability to alert your users (or yourself) the instant something occurs. You can be proactive rather than reactive, and you can begin orchestrating your complex tasks in a loosely coupled, asynchronous way.
+Having such a fine-grain event system is helpful for the same reason that having a fine-grain permission model is helpful: it affords you the highest degree of flexibility and control possible to achieve the behavior you desire. With Tapis's event system, you have the ability to alert your users (or yourself) the instant something occurs. You can be proactive rather than reactive, and you can begin orchestrating your complex tasks in a loosely coupled, asynchronous way.
 
 ## Notifications  
 
-As consumers of Tapis (Agave), you have the ability to subscribe to events occurring on any resource to which you have access. By that we mean, for example, you could subscribe to events on your job and a job that someone shared with you, but you could not subscribe to events on a job submitted by someone else who has not shared the job with you. Basically, if you can see a resource, you can subscribe to its events.
+As consumers of Tapis, you have the ability to subscribe to events occurring on any resource to which you have access. By that we mean, for example, you could subscribe to events on your job and a job that someone shared with you, but you could not subscribe to events on a job submitted by someone else who has not shared the job with you. Basically, if you can see a resource, you can subscribe to its events.
 
 The Notifications service is the primary mechanism by which you create and manage your event subscriptions. A typical use case is a user subscribing for an email alert when her job completes. The JSON object below represents a request for such a notification.
 
@@ -29,7 +29,7 @@ The `persistent` value specifies whether the notification should fire more than 
 
 <aside class="notice">In certain situations you may wish to subscribe to multiple events. You are free to add as many subscriptions as you wish, however in the event that you want to subscribe to all possible events for a given resource, use the wildcard value, `*`, as the event. This tells the Notifications service that you wanted to be notified of every event for that resource.</aside>
 
-The following table shows a list of all Tapis (Agave)'s resource-level grouped by resource.
+The following table shows a list of all Tapis's resource-level grouped by resource.
 
 ```shell
 
@@ -53,9 +53,9 @@ The following table shows a list of all Tapis (Agave)'s resource-level grouped b
 
 [/tabgroup]
 
-Continuing to work through the example, the `url` value specifies where the notification should be sent. In this example, our example user specified that she would like to be notified via email. Tapis (Agave) supports both email and webhook notifications. If you are unfamiliar with webhooks, take a moment to glance at the <a href="http://webhooks.org" target="_blank">webhooks.org</a> page for a brief overview. If you are a <a href="http://en.wikipedia.org/wiki/Design_Patterns_(book)" title="Gang of Four" target="_blank">Gang of Four</a> disciple, webhooks are a mechanism for implementing the <a href="http://en.wikipedia.org/wiki/Observer%5Fpattern" title="Observer Pattern" target="_blank">Observer Pattern</a>. Webhooks are widely used across the web and chances are that something you're using right now is leveraging them.
+Continuing to work through the example, the `url` value specifies where the notification should be sent. In this example, our example user specified that she would like to be notified via email. Tapis supports both email and webhook notifications. If you are unfamiliar with webhooks, take a moment to glance at the <a href="http://webhooks.org" target="_blank">webhooks.org</a> page for a brief overview. If you are a <a href="http://en.wikipedia.org/wiki/Design_Patterns_(book)" title="Gang of Four" target="_blank">Gang of Four</a> disciple, webhooks are a mechanism for implementing the <a href="http://en.wikipedia.org/wiki/Observer%5Fpattern" title="Observer Pattern" target="_blank">Observer Pattern</a>. Webhooks are widely used across the web and chances are that something you're using right now is leveraging them.
 
-In the context of Tapis (Agave), a webhook is a URL to which Agave will send a POST request when that event occurs. A webhook can be any web accessible URL. While you cannot customize the POST content that Agave sends (it's unique to the event), you can take advantage of the many template variables that Agave provides to customize the URL at run time. The following table show the webhook template variables available for each resource.
+In the context of Tapis, a webhook is a URL to which Tapis will send a POST request when that event occurs. A webhook can be any web accessible URL. While you cannot customize the POST content that Tapis sends (it's unique to the event), you can take advantage of the many template variables that Tapis provides to customize the URL at run time. The following table show the webhook template variables available for each resource.
 
 ```shell
 

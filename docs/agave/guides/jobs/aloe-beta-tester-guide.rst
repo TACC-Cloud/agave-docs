@@ -11,7 +11,7 @@
 Aloe Beta Tester Guide
 ======================
 
-The Aloe Beta program allows users to test the new **Jobs Service** in a production-like Tapis (Agave) environment before it gets deployed to production. The Aloe Beta test environment includes a snapshot of the production Agave database along with a way to generate credentials to access that environment. This document explains how to configure and use the Aloe Beta test environment.
+The Aloe Beta program allows users to test the new **Jobs Service** in a production-like Tapis environment before it gets deployed to production. The Aloe Beta test environment includes a snapshot of the production Tapis database along with a way to generate credentials to access that environment. This document explains how to configure and use the Aloe Beta test environment.
 
 The documentation on the new Aloe Job service itself can be found `here <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/introduction.html>`_.
 
@@ -71,7 +71,7 @@ Getting Help and Providing Feedback
 
 
 
-*Get Support*: You can head over to the TACC-Cloud slack and talk to us on Aloe-Beta channel. If Slack isn’t an option, you can either email CICsupport@tacc.utexas.edu, or create a ticket in the `TACC portal <https://portal.tacc.utexas.edu/home>`_ if you have a TACC account. If making a ticket through the TACC portal, choose “Cloud and Interactive Computing (Tapis (Agave) API)” as the System/Resource. 
+*Get Support*: You can head over to the TACC-Cloud slack and talk to us on Aloe-Beta channel. If Slack isn’t an option, you can either email CICsupport@tacc.utexas.edu, or create a ticket in the `TACC portal <https://portal.tacc.utexas.edu/home>`_ if you have a TACC account. If making a ticket through the TACC portal, choose “Cloud and Interactive Computing (Tapis API)” as the System/Resource. 
 
 
 *Give Feedback*: Want to just communicate general ideas/feelings/questions? You can email CICsupport@tacc.utexas.edu, or connect with us on the TACC-Cloud slack where we have a designated Aloe-Beta channel. 

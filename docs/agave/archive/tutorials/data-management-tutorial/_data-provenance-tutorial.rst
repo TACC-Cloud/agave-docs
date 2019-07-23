@@ -13,7 +13,7 @@ Provenance is:
 What information is available
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Tapis (Agave) tracks every direct action it takes on a file or directory. Additionally, it will make note of any indirect action it observes about file or directory. Examples of direct action are transferring a directory from one system to another or renaming a file. Examples of indirect action are a user manually deleting a file from the command line. The table below contains a list of all the provenance actions recorded.
+Tapis tracks every direct action it takes on a file or directory. Additionally, it will make note of any indirect action it observes about file or directory. Examples of direct action are transferring a directory from one system to another or renaming a file. Examples of indirect action are a user manually deleting a file from the command line. The table below contains a list of all the provenance actions recorded.
 
 
 .. raw:: html
@@ -25,7 +25,7 @@ Tapis (Agave) tracks every direct action it takes on a file or directory. Additi
 How accurate is this information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Tapis (Agave) does not own the storage and execution systems you access through the REST APIs, so it cannot guarantee that it will be aware of everything that happens on that file system. Thus, Agave takes a best-effort approach to provenance allowing you to choose, through your own use of best practices, how thorough you want the provenance trail of your data to be.
+Tapis does not own the storage and execution systems you access through the REST APIs, so it cannot guarantee that it will be aware of everything that happens on that file system. Thus, Tapis takes a best-effort approach to provenance allowing you to choose, through your own use of best practices, how thorough you want the provenance trail of your data to be.
 
 Why is this useful?
 ^^^^^^^^^^^^^^^^^^^

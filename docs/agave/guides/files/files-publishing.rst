@@ -5,7 +5,7 @@
 Publishing data
 ===============
 
-Tapis (Agave) provides multiple ways to share your data with your colleagues and the general public. In addition to the standard permission model enabling you to share your data with one or more authenticated users within the Platform, you also have the ability to publish your data and make it available via an unauthenticated public URL. Unlike traditional web and cloud hosting, your data remains in its original location and is served in situ by Tapis (Agave) upon user request.
+Tapis provides multiple ways to share your data with your colleagues and the general public. In addition to the standard permission model enabling you to share your data with one or more authenticated users within the Platform, you also have the ability to publish your data and make it available via an unauthenticated public URL. Unlike traditional web and cloud hosting, your data remains in its original location and is served in situ by Tapis upon user request.
 
 Publishing a file for folder is simply a matter of granting the special ``public`` user ``READ`` permission on a file or folder. Similar to the way listings and permissions are exposed through unique paths in the Files API, published data is served from a custom ``/files/v2/download`` path. The public data URLs have the following structure:
 
@@ -13,7 +13,7 @@ Publishing a file for folder is simply a matter of granting the special ``public
 
 Notice two things. First, a username is inserted after the *download* path element. This is needed because there is no authorized user for whom to validate system or file ownership on a public request. The username gives the context by which to verify the availability of the system and file item being requested. Second, the ``system_id`` is mandatory in public data requests. This ensures that the public URL remains the same even when the default storage system of the user who published it changes.
 
-The following sections give examples of publishing files and folders in the Tapis (Agave) Platform.
+The following sections give examples of publishing files and folders in the Tapis Platform.
 
 See the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/postits/introduction.html">PostIts Guide</a>` for other ways to securely share your data with others.
 
@@ -178,7 +178,7 @@ Remember that whenever you publish a folder, anything you put in that folder bec
 Publishing considerations
 -------------------------
 
-Publishing data through Tapis (Agave) can be a great way to share and access data. There are situations in which it may not be an ideal choice. We list several of the pitfalls user run into when publishing their data.
+Publishing data through Tapis can be a great way to share and access data. There are situations in which it may not be an ideal choice. We list several of the pitfalls user run into when publishing their data.
 
 Large file publishing
 ^^^^^^^^^^^^^^^^^^^^^

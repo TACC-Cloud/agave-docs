@@ -13,4 +13,4 @@ Events
    | $$$$$$$ $/ |  $$$$$$| $$  | $$ |  $$$$/$$$$$$$/
    |________/\_/   \_______|__/  |__/  \___/|_______/
 
-Events underpin everything in the Tapis (Agave) Platform. This section covers the events available to each resource.
+Events underpin everything in the Tapis Platform. This section covers the events available to each resource.

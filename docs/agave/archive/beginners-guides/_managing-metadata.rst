@@ -2,7 +2,7 @@
    :format: html
 
 
-Until now we have see how to interact with :raw-html-m2r:`<a href="http://agaveapi.co/documentation/beginners-guides/system-discovery/" title="System Discovery">systems</a>`\ , :raw-html-m2r:`<a href="http://agaveapi.co/documentation/beginners-guides/managing-data/" title="Managing Data">data</a>`\ , :raw-html-m2r:`<a href="http://agaveapi.co/documentation/beginners-guides/app-discovery/" title="App Discovery">apps</a>`\ , and :raw-html-m2r:`<a href="http://agaveapi.co/documentation/beginners-guides/running-a-simulation/" title="Running a Simulation">jobs</a>`. These are a few of the core resources in the Tapis (Agave) APIs. Individually these services give you tremendous flexibility and capability to carry out your digital science. However, the process of conducting science is more than just a series of :raw-html-m2r:`<em>hows</em>`. Tying together all the different data and activities that constitute a computational experiment in a way that adds understanding to the process is just as important as the activities themselves. This is one of the key roles of the Metadata service.
+Until now we have see how to interact with :raw-html-m2r:`<a href="http://agaveapi.co/documentation/beginners-guides/system-discovery/" title="System Discovery">systems</a>`\ , :raw-html-m2r:`<a href="http://agaveapi.co/documentation/beginners-guides/managing-data/" title="Managing Data">data</a>`\ , :raw-html-m2r:`<a href="http://agaveapi.co/documentation/beginners-guides/app-discovery/" title="App Discovery">apps</a>`\ , and :raw-html-m2r:`<a href="http://agaveapi.co/documentation/beginners-guides/running-a-simulation/" title="Running a Simulation">jobs</a>`. These are a few of the core resources in the Tapis APIs. Individually these services give you tremendous flexibility and capability to carry out your digital science. However, the process of conducting science is more than just a series of :raw-html-m2r:`<em>hows</em>`. Tying together all the different data and activities that constitute a computational experiment in a way that adds understanding to the process is just as important as the activities themselves. This is one of the key roles of the Metadata service.
 
 The Metadata service is an unstructured document store supporting object relationships, advanced search, schema definitions, and optional validation. Let's create two pieces of metadata to tie together what we've done in this lesson. First, we will create a new "project" and associate the input data, job, and app we used to run our simulation with it by including each uuid in the list of ``associatedIds`` for this metadata object.
 
@@ -72,7 +72,7 @@ Next we will add the following "note" to the "project" we just created and POST 
 
    {
      "name": "note",
-     "value": "This was my first lesson with the Tapis (Agave) API.",
+     "value": "This was my first lesson with the Tapis API.",
      "schemaId": null,
      "associatedIds": [
        "0001409788737810-5056a550b8-0001-012"
@@ -103,7 +103,7 @@ This time the response will be a JSON object describing the metadata item, but o
       ],
       "lastUpdated":"2014-09-03T20:13:22.286-05:00",
       "name":"note",
-      "value":"This was my first lesson with the Tapis (Agave) API.",
+      "value":"This was my first lesson with the Tapis API.",
       "created":"2014-09-03T20:12:11.587-05:00",
       "_links":{  
          "self":{  
