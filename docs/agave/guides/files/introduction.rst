@@ -226,7 +226,7 @@ Uploading a file
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -X POST \
             -F "fileToUpload=@files/picksumipsum.txt" \
-            https://api.tacc.utexas.edu/files/v2/media/api.tacc.cloud/nryan
+            https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/nryan
 |
 
 
