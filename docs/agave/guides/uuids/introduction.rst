@@ -13,7 +13,7 @@ UUID
    |  $$$$$$/|  $$$$$$/ /$$$$$$| $$$$$$$/
     \______/  \______/ |______/|_______/
 
-The Tapis (Agave) UUID service resolves the type and representation of one or more Tapis (Agave) UUID. This is helpful, for instance, when you need to expand the hypermedia response of another resource, get the URL corresponding to a UUID, or fetch the representations of multiple resources in a single request.
+The Tapis UUID service resolves the type and representation of one or more Tapis UUID. This is helpful, for instance, when you need to expand the hypermedia response of another resource, get the URL corresponding to a UUID, or fetch the representations of multiple resources in a single request.
 
 Resolving a single UUID
 ^^^^^^^^^^^^^^^^^^^^^^^

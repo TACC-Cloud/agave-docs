@@ -5,14 +5,14 @@
 PostIts
 =======
 
-The PostIts service is a URL shortening service similar to `bit.ly <https://bit.ly>`_\ , `goo.gl <https://goo.gl/>`_\ , and `t.co <http://t.co>`_. It allows you to create pre-authenticated, disposable URLs to any resource in the Tapis (Agave) Platform. You have control over the lifetime and number of times the URL can be redeemed, and you can expire a PostIt at any time. As with all Science API resources, a full set of events is available for you to track usage and integrate the lifecycle of a PostIt into external applications as needed.
+The PostIts service is a URL shortening service similar to `bit.ly <https://bit.ly>`_\ , `goo.gl <https://goo.gl/>`_\ , and `t.co <http://t.co>`_. It allows you to create pre-authenticated, disposable URLs to any resource in the Tapis Platform. You have control over the lifetime and number of times the URL can be redeemed, and you can expire a PostIt at any time. As with all Science API resources, a full set of events is available for you to track usage and integrate the lifecycle of a PostIt into external applications as needed.
 
 The most common use of PostIts is to create URLs to files and folders you can share with others without having to upload them to a third-party service. Other uses cases for the PostIts service include creating "drop" folders to which anyone with the link can upload data, allowing a job to be reproducibly rerun for peer review, publishing metadata for public consumption, publishing a canonical reference to your user profile. The possibilities go on and on. Anytime you need to share your science with your world, PostIts can help you.
 
 Creating PostIts
 ----------------
 
-To create a PostIt, send a POST request to the PostIts service with the target url you want to share. In this example, we are sharing a file we have in Tapis (Agave)'s cloud storage account.
+To create a PostIt, send a POST request to the PostIts service with the target url you want to share. In this example, we are sharing a file we have in Tapis's cloud storage account.
 
 In the response you see standard fields such as ``created`` timestamp and the ``postit`` token. You also see several fields that lead into the discussion of another aspect of PostIts, the ability to restrict usage and expire them on demand.
 

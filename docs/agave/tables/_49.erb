@@ -10,7 +10,7 @@
 		<tr>
 			<td>available</td>
 			<td>boolean</td>
-			<td>Whether the system is currently available for use in the API. Unavailable systems will not be visible to anyone but the owner. This differs from the <code>status</code> attribute in that a system may be UP, but not available for use in Tapis (Agave). Defaults to true</td>
+			<td>Whether the system is currently available for use in the API. Unavailable systems will not be visible to anyone but the owner. This differs from the <code>status</code> attribute in that a system may be UP, but not available for use in Tapis. Defaults to true</td>
 		</tr>
 		<tr>
 			<td>description</td>
@@ -57,7 +57,7 @@
 			<td>LSF, LOADLEVELER, PBS, SGE, CONDOR, FORK, COBALT, TORQUE, MOAB, SLURM,
 			CUSTOM_LSF, CUSTOM_LOADLEVELER, CUSTOM_PBS, CUSTOM_SGE, CUSTOM_CONDOR,
 			FORK, CUSTOM_COBALT, CUSTOM_TORQUE, CUSTOM_MOAB, CUSTOM_SLURM, UNKNOWN</td>
-			<td><b>Required:</b> The type of batch scheduler available on the system. This only applies to systems with executionType HPC and CONDOR. The *_CUSTOM version of each scheduler provides a mechanism for you to override the default scheduler directives added by Tapis (Agave) and explicitly add your own through the <span style="code">customDirectives</span> field in each of the batchQueue definitions for your system.</td>
+			<td><b>Required:</b> The type of batch scheduler available on the system. This only applies to systems with executionType HPC and CONDOR. The *_CUSTOM version of each scheduler provides a mechanism for you to override the default scheduler directives added by Tapis and explicitly add your own through the <span style="code">customDirectives</span> field in each of the batchQueue definitions for your system.</td>
 		</tr>
 		<tr>
 			<td>scratchDir</td>

@@ -5,14 +5,14 @@
 Authorization
 -------------
 
-Most requests to the Tapis (Agave) REST APIs require authorization; that is, the user must have granted permission for an application to access the requested data. To prove that the user has granted permission, the request header sent by the application must include a valid access token.
+Most requests to the Tapis REST APIs require authorization; that is, the user must have granted permission for an application to access the requested data. To prove that the user has granted permission, the request header sent by the application must include a valid access token.
 
 Before you can begin the authorization process, you will need to register your client application. That will give you a unique client key and secret key to use in the authorization flows.
 
 Supported Authorization Flows
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Tapis (Agave) REST APIs currently supports four authorization flows:
+The Tapis REST APIs currently supports four authorization flows:
 
 
 #. The :raw-html-m2r:`<a href="#authorization-code">Authorization Code</a>` flow first gets a code then exchanges it for an access token and a refresh token. Since the exchange uses your client secret key, you should make that request server-side to keep the integrity of the key. An advantage of this flow is that you can use refresh tokens to extend the validity of the access token.
@@ -125,7 +125,7 @@ The method is suitable for long-running applications in which the user logs in o
 
    https://api.tacc.utexas.edu/authorize/?client_id=gTgp...SV8a&response_type=code&redirect_uri=https%3A%2F%2Fexample.com%2Fcallback&scope=PRODUCTION&state=866
 
-The authorization process starts with your application sending a request to the Tapis (Agave) authorization service. (The reason your application sends this request can vary: it may be a step in the initialization of your application or in response to some user action, like a button click.) The request is sent to the /authorize endpoint of the Authorization service:
+The authorization process starts with your application sending a request to the Tapis authorization service. (The reason your application sends this request can vary: it may be a step in the initialization of your application or in response to some user action, like a button click.) The request is sent to the /authorize endpoint of the Authorization service:
 
 The request will include parameters in the query string:
 
@@ -143,7 +143,7 @@ The request will include parameters in the query string:
            </tr>
            <tr>
                <td>client_id</td>
-               <td><i>Required</i>. The application's client ID, obtained when the client application was registered with Tapis (Agave) (see <a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/clients/introduction.html#creating-a-new-client-application">Client Registration</a>).</td>
+               <td><i>Required</i>. The application's client ID, obtained when the client application was registered with Tapis (see <a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/clients/introduction.html#creating-a-new-client-application">Client Registration</a>).</td>
            </tr>
            <tr>
                <td>redirect_uri</td>
@@ -163,7 +163,7 @@ The request will include parameters in the query string:
 2. The user is asked to authorize access within the scopes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Tapis (Agave) Authorization service presents details of the scopes for which access is being sought. If the user is not logged in, they are prompted to do so using their API username and password.
+The Tapis Authorization service presents details of the scopes for which access is being sought. If the user is not logged in, they are prompted to do so using their API username and password.
 
 When the user is logged in, they are asked to authorize access to the actions and services defined in the scopes.
 
@@ -179,7 +179,7 @@ When the user is logged in, they are asked to authorize access to the actions an
 
    https://example.com/callback
 
-After the user accepts (or denies) your request, the Tapis (Agave) Authorization service redirects back to the redirect_uri. If the user has accepted your request, the response query string contains a ``code`` parameter with the access code you will use in the next step to retrieve an access token.
+After the user accepts (or denies) your request, the Tapis Authorization service redirects back to the redirect_uri. If the user has accepted your request, the response query string contains a ``code`` parameter with the access code you will use in the next step to retrieve an access token.
 
 ..
 
@@ -200,7 +200,7 @@ After the user accepts (or denies) your request, the Tapis (Agave) Authorization
            </tr>
            <tr>
                <td>access_token </td>
-               <td>An access token that can be provided in subsequent calls, for example to Tapis (Agave) Profiles API. </td>
+               <td>An access token that can be provided in subsequent calls, for example to Tapis Profiles API. </td>
            </tr>
            <tr>
                <td>token_type </td>
@@ -254,7 +254,7 @@ If the user has denied access, there will be no access token and the final URL w
 
    POST https://api.tacc.utexas.edu/token
 
-When the authorization code has been received, you will need to exchange it with an access token by making a POST request to the Tapis (Agave) Authorization service, this time to its ``/token`` endpoint. The body of this POST request must contain the following parameters:
+When the authorization code has been received, you will need to exchange it with an access token by making a POST request to the Tapis Authorization service, this time to its ``/token`` endpoint. The body of this POST request must contain the following parameters:
 
 
 .. raw:: html
@@ -297,7 +297,7 @@ When the authorization code has been received, you will need to exchange it with
        "token_type": "bearer"
    }
 
-On success, the response from the Tapis (Agave) Authorization service has the status code 200 OK in the response header, and a JSON object with the fields in the following table in the response body:
+On success, the response from the Tapis Authorization service has the status code 200 OK in the response header, and a JSON object with the fields in the following table in the response body:
 
 
 .. raw:: html
@@ -314,7 +314,7 @@ On success, the response from the Tapis (Agave) Authorization service has the st
                <td>access_token 
    </td>
                <td>string</td>
-               <td>An access token that can be provided in subsequent calls, for example to Tapis (Agave) REST APIs. 
+               <td>An access token that can be provided in subsequent calls, for example to Tapis REST APIs. 
    </td>
            </tr>
            <tr>
@@ -339,7 +339,7 @@ On success, the response from the Tapis (Agave) Authorization service has the st
    </table>
 |
 
-6. Use the access token to access the Tapis (Agave) REST APIs
+6. Use the access token to access the Tapis REST APIs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ..
@@ -399,7 +399,7 @@ Once you have a valid access token, you can include it in ``Authorization`` head
 
 Access tokens are deliberately set to expire after a short time, usually 4 hours, after which new tokens may be granted by supplying the refresh token originally obtained during the authorization code exchange.
 
-The request is sent to the token endpoint of the Tapis (Agave) Authorization service:
+The request is sent to the token endpoint of the Tapis Authorization service:
 
 .. code-block::
 
@@ -462,7 +462,7 @@ The flow starts off with your application redirecting the user to the ``/authori
            </tr>
            <tr>
                <td>client_id</td>
-               <td><i>Required</i>. The application's client ID, obtained when the client application was registered with Tapis (Agave) (see <a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/clients/introduction.html#creating-a-new-client-application/">Client Registration</a>).</td>
+               <td><i>Required</i>. The application's client ID, obtained when the client application was registered with Tapis (see <a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/clients/introduction.html#creating-a-new-client-application/">Client Registration</a>).</td>
            </tr>
            <tr>
                <td>redirect_uri</td>
@@ -486,7 +486,7 @@ The flow starts off with your application redirecting the user to the ``/authori
 2. The user is asked to authorize access within the scopes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Tapis (Agave) Authorization service presents details of the scopes for which access is being sought. If the user is not logged in, they are prompted to do so using their API username and password.
+The Tapis Authorization service presents details of the scopes for which access is being sought. If the user is not logged in, they are prompted to do so using their API username and password.
 
 When the user is logged in, they are asked to authorize access to the services defined in the scopes. By default all of the Core Science APIs fall under a single scope called, ``PRODUCTION``.
 
@@ -511,7 +511,7 @@ When the user is logged in, they are asked to authorize access to the services d
 
    https://example.com/callback#access_token=Vr17...amUa&token_type=bearer&expires_in=3600&state=867
 
-After the user grants (or denies) access, the Tapis (Agave) Authorization service redirects the user to the ``redirect_uri``. If the user has granted access, the final URL will contain the following data parameters in the query string.
+After the user grants (or denies) access, the Tapis Authorization service redirects the user to the ``redirect_uri``. If the user has granted access, the final URL will contain the following data parameters in the query string.
 
 
 .. raw:: html
@@ -529,7 +529,7 @@ After the user grants (or denies) access, the Tapis (Agave) Authorization servic
            </tr>
            <tr>
                <td>access_token </td>
-               <td>An access token that can be provided in subsequent calls, for example to <a href="https://api.tacc.utexas.edu/profiles/v2/me?pretty=true">Tapis (Agave) Profiles API</a>. </td>
+               <td>An access token that can be provided in subsequent calls, for example to <a href="https://api.tacc.utexas.edu/profiles/v2/me?pretty=true">Tapis Profiles API</a>. </td>
            </tr>
            <tr>
                <td>token_type </td>
@@ -580,7 +580,7 @@ If the user has denied access, there will be no access token and the final URL w
    </table>
 |
 
-4. Use the access token to access the Tapis (Agave) REST APIs
+4. Use the access token to access the Tapis REST APIs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
@@ -607,7 +607,7 @@ If the user has denied access, there will be no access token and the final URL w
        "username": "nryan"
    }
 
-The access token allows you to make requests to any of the Tapis (Agave) REST APIs on behalf of the authenticated user.
+The access token allows you to make requests to any of the Tapis REST APIs on behalf of the authenticated user.
 
 Resource Owner Password Credentials
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -642,7 +642,7 @@ The method is suitable for scenarios where there is a high degree of trust betwe
        "token_type": "bearer"
    }
 
-The request is sent to the ``/token`` endpoint of the Tapis (Agave) Authentication service. The request will include the following parameters in the request body:
+The request is sent to the ``/token`` endpoint of the Tapis Authentication service. The request will include the following parameters in the request body:
 
 
 .. raw:: html
@@ -690,7 +690,7 @@ The header of this POST request must contain the following parameter:
 
 If the user has not accepted your request or an error has occurred, the response query string contains an error parameter indicating the error that occurred during login. For example:
 
-2. Use the access token to access the Tapis (Agave) REST APIs
+2. Use the access token to access the Tapis REST APIs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
@@ -718,7 +718,7 @@ If the user has not accepted your request or an error has occurred, the response
        "username": "rjohnson"
    }
 
-The access token allows you to make requests to any of the Tapis (Agave) REST APIs on behalf of the authenticated user.
+The access token allows you to make requests to any of the Tapis REST APIs on behalf of the authenticated user.
 
 3. Requesting access token from refresh token
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -746,7 +746,7 @@ The access token allows you to make requests to any of the Tapis (Agave) REST AP
 
 Access tokens are deliberately set to expire after a short time, usually 4 hours, after which new tokens may be granted by supplying the refresh token obtained during original request.
 
-The request is sent to the token endpoint of the Tapis (Agave) Authorization service. The body of this POST request must contain the following parameters:
+The request is sent to the token endpoint of the Tapis Authorization service. The body of this POST request must contain the following parameters:
 
 
 .. raw:: html
@@ -775,7 +775,7 @@ The request is sent to the token endpoint of the Tapis (Agave) Authorization ser
 Client Credentials
 ^^^^^^^^^^^^^^^^^^
 
-The method is suitable for authenticating your requests to the Tapis (Agave) REST API. This flow is described in :raw-html-m2r:`<a href="http://tools.ietf.org/html/rfc6749#section-4.4" title="RFC-6749">RFC-6749</a>`.
+The method is suitable for authenticating your requests to the Tapis REST API. This flow is described in :raw-html-m2r:`<a href="http://tools.ietf.org/html/rfc6749#section-4.4" title="RFC-6749">RFC-6749</a>`.
 
 :raw-html-m2r:`<img src="../../../_static/images/Client-Credentials-Flow.png" style="width:100%; height:auto;">`
 
@@ -802,7 +802,7 @@ The method is suitable for authenticating your requests to the Tapis (Agave) RES
        "token_type": "bearer"
    }
 
-The request is sent to the ``/token`` endpoint of the Tapis (Agave) Authentication service. The request must include the following parameters in the request body:
+The request is sent to the ``/token`` endpoint of the Tapis Authentication service. The request must include the following parameters in the request body:
 
 
 .. raw:: html
@@ -823,7 +823,7 @@ The request is sent to the ``/token`` endpoint of the Tapis (Agave) Authenticati
    </table>
 |
 
-2. Use the access token to access the Tapis (Agave) REST APIs
+2. Use the access token to access the Tapis REST APIs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
@@ -862,4 +862,4 @@ The request is sent to the ``/token`` endpoint of the Tapis (Agave) Authenticati
        }
    }
 
-The access token allows you to make requests to any of the Tapis (Agave) REST APIs on behalf of the authenticated user.
+The access token allows you to make requests to any of the Tapis REST APIs on behalf of the authenticated user.

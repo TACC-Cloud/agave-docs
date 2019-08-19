@@ -1,5 +1,5 @@
 
-One thing we learned very early on was that your science and the ways in which you conduct your science are as unique as you are. That's one of the reasons that Tapis (Agave) leaves so much of the app registration process open for interpretation. By giving you total flexibility in how you define your app, you can craft a better user experience for your end users.
+One thing we learned very early on was that your science and the ways in which you conduct your science are as unique as you are. That's one of the reasons that Tapis leaves so much of the app registration process open for interpretation. By giving you total flexibility in how you define your app, you can craft a better user experience for your end users.
 
 To help illustrate the the flexibility you have in defining your apps, we show 3 examples of how the same app can be defined with a low, moderate, and high degree of detail. In each example, we demonstrate how the level of detail available in the app can can impact the end user experience.
 

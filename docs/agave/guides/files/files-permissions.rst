@@ -2,7 +2,7 @@
 File permissions
 ================
 
-Tapis (Agave) has a fine-grained permission model supporting use cases from creating and exposing readonly storage systems to sharing individual files and folders with one or more users. The permissions available for files items are listed in the following table. Please note that a user must have WRITE permissions to grant or revoke permissions on a file item.
+Tapis has a fine-grained permission model supporting use cases from creating and exposing readonly storage systems to sharing individual files and folders with one or more users. The permissions available for files items are listed in the following table. Please note that a user must have WRITE permissions to grant or revoke permissions on a file item.
 
 .. list-table::
    :header-rows: 1
@@ -126,7 +126,7 @@ The response will look something like the following:
      }
    }
 
-Checking permissions for a single user is done using Tapis (Agave) URL query search syntax.
+Checking permissions for a single user is done using Tapis URL query search syntax.
 
 Grant permissions
 -----------------

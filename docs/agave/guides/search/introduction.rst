@@ -2,7 +2,7 @@
 Search
 ------
 
-Search is a fundamental feature of the Tapis (Agave) Platform. Most of the core science APIs support a mature, URL-based query mechanism allowing you to search using a SQL-inspired JSON syntax. The two exceptions are the Files and Metadata APIs. The Files service does not index the directory or file contents of registered systems, so there is no way for it to performantly search the file system. The Metadata service supports MongoDB query syntax, thus allowing more flexible, and slightly more complex, querying syntax.
+Search is a fundamental feature of the Tapis Platform. Most of the core science APIs support a mature, URL-based query mechanism allowing you to search using a SQL-inspired JSON syntax. The two exceptions are the Files and Metadata APIs. The Files service does not index the directory or file contents of registered systems, so there is no way for it to performantly search the file system. The Metadata service supports MongoDB query syntax, thus allowing more flexible, and slightly more complex, querying syntax.
 
 Query syntax
 ^^^^^^^^^^^^

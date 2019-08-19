@@ -5,7 +5,7 @@
 Metadata
 ========
 
-The Tapis (Agave) Metadata service allows you to manage metadata and associate it with Tapis (Agave) entities via associated UUIDs. It supports JSON schema for structured JSON metadata; it also accepts any valid JSON-formatted metadata or plain text String when no schema is specified. As with other Tapis (Agave) services, a full access control layer is available, enabling you to keep your metadata private or share it with your colleagues.
+The Tapis Metadata service allows you to manage metadata and associate it with Tapis entities via associated UUIDs. It supports JSON schema for structured JSON metadata; it also accepts any valid JSON-formatted metadata or plain text String when no schema is specified. As with other Tapis services, a full access control layer is available, enabling you to keep your metadata private or share it with your colleagues.
 
 Metadata Structure
 ------------------
@@ -60,7 +60,7 @@ Every metadata item has four fields shown in the following table.
      - An JSON array of zero or more UUID to which this metadata item should be associated.
    * - schemaId
      - string;
-     - The id of a valid Tapis (Agave) metadata schema object representing the JSON Schema definition used to validate this metadata item.
+     - The id of a valid Tapis metadata schema object representing the JSON Schema definition used to validate this metadata item.
 
 
 The ``name`` field is just that, a user-defined name you give to your metadata item. There is no uniqueness constraint put on the ``name`` field, so it is up to you to the application to enforce whatever naming policy it sees fit.
@@ -74,7 +74,7 @@ Either use case is acceptable and fully supported. Your application needs will d
 Associations
 ^^^^^^^^^^^^
 
-Each metadata item also has an optional ``associationIds`` field. This field contains a JSON array of Tapis (Agave) UUID for which this metadata item applies. This provides a convenient grouping mechanism by which to organize logically-related resources. One common examples is creating a metadata item to represent a "data collection" and associating files and folders that may be geographically distributed under that "data collection". Another is creating a metadata item to represent a "project", then sharing the "project" with other users involved in the "project".
+Each metadata item also has an optional ``associationIds`` field. This field contains a JSON array of Tapis UUID for which this metadata item applies. This provides a convenient grouping mechanism by which to organize logically-related resources. One common examples is creating a metadata item to represent a "data collection" and associating files and folders that may be geographically distributed under that "data collection". Another is creating a metadata item to represent a "project", then sharing the "project" with other users involved in the "project".
 
 Metadata items can also be associated with other metadata items to create hierarchical relationships. Building on the "project" example, additional metadata items could be created for "links", "videos", and "experiments" to hold references for categorized groups of postits, video file items, and jobs respectively. Such a model translates well to a user interface layer and eliminates a large amount of boilerplate code in your application.
 
@@ -106,7 +106,7 @@ Creating Metadata
      .. container:: header
 
         :fa:`caret-right`
-        **Show Tapis (Agave) CLI**
+        **Show Tapis CLI**
 
      .. code-block:: shell
 
@@ -184,7 +184,7 @@ Updating Metadata
      .. container:: header
 
         :fa:`caret-right`
-        **Show Tapis (Agave) CLI**
+        **Show Tapis CLI**
 
      .. code-block:: shell
 
@@ -276,7 +276,7 @@ Deleting Metadata
      .. container:: header
 
         :fa:`caret-right`
-        **Show Tapis (Agave) CLI**
+        **Show Tapis CLI**
 
      .. code-block:: shell
 

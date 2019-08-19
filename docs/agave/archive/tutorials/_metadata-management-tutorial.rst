@@ -5,7 +5,7 @@
 Introduction
 ------------
 
-The Tapis (Agave) Metadata service allows you to manage metadata and associate it with Agave entities via associated UUIDs. It supports JSON schema for structured JSON metadata; it also accepts any valid JSON-formatted metadata or plain text String when no schema is specified. As with a number of other Agave services, a full access control layer is supported enabling you to keep your metadata private or share it with your colleagues.
+The Tapis Metadata service allows you to manage metadata and associate it with Tapis entities via associated UUIDs. It supports JSON schema for structured JSON metadata; it also accepts any valid JSON-formatted metadata or plain text String when no schema is specified. As with a number of other Tapis services, a full access control layer is supported enabling you to keep your metadata private or share it with your colleagues.
 
 UUID
 ^^^^
@@ -77,12 +77,12 @@ Submitting the above will result in a message like the following:
       }
    }
 
-Further, UUIDs are used to link Metadata to the relevant Tapis (Agave) entities. The UUIDs for each Agave entity to which the Metadata refers or is linked should be entered as an AssociationId in the Metadata object.
+Further, UUIDs are used to link Metadata to the relevant Tapis entities. The UUIDs for each Tapis entity to which the Metadata refers or is linked should be entered as an AssociationId in the Metadata object.
 
 JSON Schema
 ^^^^^^^^^^^
 
-Schemata can be provided in JSON Schema form. The service will validate that the schema is valid JSON and store it. To validate Metadata against it, the schema UUID should be given as a parameter, SchemaId, when uploading Metadata. If no SchemaId is provided, the Metadata service will accept any JSON Object or plain text string and store it accordingly. This flexible approach enabled Tapis (Agave) to handle different levels of structure of Metadata from completely unstructured, to highly structured with complex JSON schemata.
+Schemata can be provided in JSON Schema form. The service will validate that the schema is valid JSON and store it. To validate Metadata against it, the schema UUID should be given as a parameter, SchemaId, when uploading Metadata. If no SchemaId is provided, the Metadata service will accept any JSON Object or plain text string and store it accordingly. This flexible approach enabled Tapis to handle different levels of structure of Metadata from completely unstructured, to highly structured with complex JSON schemata.
 
 For more on JSON Schema please see :raw-html-m2r:`<a title="JSON Schema" href="http://json-schema.org/">http://json-schema.org/</a>`
 
@@ -248,7 +248,7 @@ And this will find all metadata with name, "mustard plant" that you have permiss
 Metadata Permissions
 ^^^^^^^^^^^^^^^^^^^^
 
-The metadata service supports permissions for both Metadata and Schemata consistent with that of a number of other Tapis (Agave) services. If no permissions are explicitly set, only the owner of the Metadata and Agave administrators can access it.
+The metadata service supports permissions for both Metadata and Schemata consistent with that of a number of other Tapis services. If no permissions are explicitly set, only the owner of the Metadata and Tapis administrators can access it.
 
 To list the permissions on Metadata for a given user:
 
@@ -262,7 +262,7 @@ The following response confirms that the user does not have permissions on that 
 
    {
        "status":"error",
-       "message":"No permissions found for user anotherTapis (Agave)User",
+       "message":"No permissions found for user anotherTapisUser",
        "version":"2.1.8-SNAPSHOT-r8560"
    }
 

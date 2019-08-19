@@ -5,7 +5,7 @@
 Permissions
 ===========
 
-Apps have fine grained permissions similar to those found in the `Jobs <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/job-permissions.html>`_ and `Files <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/files/files-permissions.html>`_ services. Using these, you can share your app other Tapis (Agave) users. App permissions are private by default, so when you first POST your app to the Apps service, you are the only one who can see it. You may share your app with other users by granting them varying degrees of permissions. The full list of app permission values are listed in the following table.
+Apps have fine grained permissions similar to those found in the `Jobs <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/job-permissions.html>`_ and `Files <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/files/files-permissions.html>`_ services. Using these, you can share your app other Tapis users. App permissions are private by default, so when you first POST your app to the Apps service, you are the only one who can see it. You may share your app with other users by granting them varying degrees of permissions. The full list of app permission values are listed in the following table.
 
 
 .. raw:: html
@@ -523,9 +523,9 @@ Notice a few things about the response.
 
 
 #. Both the ``executionSystem`` and ``deploymentSystem`` have changed. **Public apps must run and store their assets on public systems.**
-#. We did not specify the ``deploymentSystem`` where the public app assets should be stored, so Tapis (Agave) placed them on the default public storage system, ``public.storage.agave``.
-#. We did not specify the ``deploymentPath`` where the public app assets should be stored, so Tapis (Agave) placed them in the ``publicAppsDir`` of the ``deploymentPath``.
-#. The ``deploymentPath`` is now a zip archive rather than a folder. Tapis (Agave) does this because once, published, the app can no longer be updated, so the assets are frozen and stored in a separate location, removed from user access.
+#. We did not specify the ``deploymentSystem`` where the public app assets should be stored, so Tapis placed them on the default public storage system, ``public.storage.agave``.
+#. We did not specify the ``deploymentPath`` where the public app assets should be stored, so Tapis placed them in the ``publicAppsDir`` of the ``deploymentPath``.
+#. The ``deploymentPath`` is now a zip archive rather than a folder. Tapis does this because once, published, the app can no longer be updated, so the assets are frozen and stored in a separate location, removed from user access.
 #. The ``id`` of the app has changed. It now has a ``u1`` appended to the original app id. This indicates that it is a public app and that it has been updated a single time. If we were to publish the app again, the resulting ``id`` would be ``wc-osg-1.00u2``. This differs from unpublished apps whose revision number increments without impacting the app id. **Every time you publish an app, the id of the resulting public app will change.**
 
 Disabling an App
@@ -559,7 +559,7 @@ The response will look identical to before, but with ``available`` set to *false
 Cloning an app
 --------------
 
-Often times you will want to copy an existing app for use on another system, or simply to obtain a private copy of the app for your own use. This can be done using the clone functionality in the Apps service. The following tabs show how to do this using the unix ``curl`` command as well as with the Tapis (Agave) CLI.
+Often times you will want to copy an existing app for use on another system, or simply to obtain a private copy of the app for your own use. This can be done using the clone functionality in the Apps service. The following tabs show how to do this using the unix ``curl`` command as well as with the Tapis CLI.
 
 .. code-block:: plaintext
 

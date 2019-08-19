@@ -2,7 +2,7 @@
 System roles
 ============
 
-Systems you register are private to you and you alone. You can, however, allow other Tapis (Agave) clients to utilize the system you define by granting them a role on the system using the systems roles services. The available roles are given in the table below.
+Systems you register are private to you and you alone. You can, however, allow other Tapis clients to utilize the system you define by granting them a role on the system using the systems roles services. The available roles are given in the table below.
 
 
 .. raw:: html

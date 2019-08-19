@@ -1,6 +1,6 @@
 ## Files
 
-The Tapis (Agave) Files service allows you to manage data across multiple storage systems using multiple protocols. It supports traditional file operations such as directory listing, renaming, copying, deleting, and upload/download that are traditional to most file services. It also supports file importing from arbitrary locations, metadata assignment, and a full access control layer allowing you to keep your data private, share it with your colleagues, or make it publicly available.
+The Tapis Files service allows you to manage data across multiple storage systems using multiple protocols. It supports traditional file operations such as directory listing, renaming, copying, deleting, and upload/download that are traditional to most file services. It also supports file importing from arbitrary locations, metadata assignment, and a full access control layer allowing you to keep your data private, share it with your colleagues, or make it publicly available.
 
 ### Files service URL structure  
 
@@ -14,7 +14,7 @@ The following table defines each component:
 
 <%= partial "includes/tables/22" %>
 
-Tapis (Agave) also supports the concept of default systems. Excluding the `/system/$SYSTEM_ID` tokens from the above URL, the Files service will automatically assume you are referencing your default storage system. Thus, if your default system was `data.agaveapi.co`,
+Tapis also supports the concept of default systems. Excluding the `/system/$SYSTEM_ID` tokens from the above URL, the Files service will automatically assume you are referencing your default storage system. Thus, if your default system was `data.agaveapi.co`,
 
 ```shell
 https://public.tenants.agaveapi.co/files/v2/media/shared
@@ -26,17 +26,17 @@ would behave identically to:
 https://public.tenants.agaveapi.co/files/v2/media/system/data.agaveapi.co/shared
 ```
 
-This comes in especially handy when referencing your default system paths in other contexts such as job requests and when interacting with the Tapis (Agave) CLI. A good example of this situation is when you have a global default storage system accessible to all your users. In this case, most users will use that for all of their data staging and archiving needs. These users may find it easier not to even think about the system they are using. The default system support in the Files service allows them to do just that.
+This comes in especially handy when referencing your default system paths in other contexts such as job requests and when interacting with the Tapis CLI. A good example of this situation is when you have a global default storage system accessible to all your users. In this case, most users will use that for all of their data staging and archiving needs. These users may find it easier not to even think about the system they are using. The default system support in the Files service allows them to do just that.
 
 <aside class="notice">When building applications against the Files service, it is considered a best practice to always specify the intended system ID when constructing URL paths to avoid situations where users change their default systems. This will also provide long-term stability to your data references and make debugging much easier. You can read more about default systems in the <a href="http://agaveapi.co/documentation/tutorials/system-management/" title="System Management">System Management</a> tutorial.</aside>
 
-### Understanding Tapis (Agave) file paths vs actual system paths <a name="understanding-agave-file-paths-vs-actual-system-paths"></a>  
+### Understanding Tapis file paths vs actual system paths <a name="understanding-agave-file-paths-vs-actual-system-paths"></a>  
 
-One potentially confusing feature of Tapis (Agave) is its support for virtualizing systems paths. Every registered system specifies both a root directory, `rootDir`, and a home directory, `homeDir` attribute in its storage configuration. `rootDir` tells Agave the absolute path on the remote system that it should treat as `/`. Similar to the Linux `chroot` command; no requests made to Agave will ever be resolved to locations outside of `rootDir`.
+One potentially confusing feature of Tapis is its support for virtualizing systems paths. Every registered system specifies both a root directory, `rootDir`, and a home directory, `homeDir` attribute in its storage configuration. `rootDir` tells Tapis the absolute path on the remote system that it should treat as `/`. Similar to the Linux `chroot` command; no requests made to Tapis will ever be resolved to locations outside of `rootDir`.
 
 <%= partial "includes/tables/21" %>
 
-`homeDir` specifies the path, relative to `rootDir`, that Tapis (Agave) should use for relative paths. Since Agave is stateless, there is no concept of a current working directory. Thus, when you specify a path to Agave that does not begin with a `/`, Agave will always prefix the path with the value of `homeDir`. The following table gives several examples of how different combinations of `rootDir`, `homeDir`, and URL paths will be resolved by Agave. For a deeper dive into this subject, please see the <a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/understanding-agave-file-paths/" title="Understanding Agave File Paths">Understanding Agave File Paths</a> tutorial.
+`homeDir` specifies the path, relative to `rootDir`, that Tapis should use for relative paths. Since Tapis is stateless, there is no concept of a current working directory. Thus, when you specify a path to Tapis that does not begin with a `/`, Tapis will always prefix the path with the value of `homeDir`. The following table gives several examples of how different combinations of `rootDir`, `homeDir`, and URL paths will be resolved by Tapis. For a deeper dive into this subject, please see the <a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/understanding-agave-file-paths/" title="Understanding Tapis File Paths">Understanding Tapis File Paths</a> tutorial.
 
 <%= partial "includes/tables/20" %>
 
@@ -46,7 +46,7 @@ Before we talk about how to do basic operations on your data, let's first talk a
 
 #### Uploading data  
 
-You may upload data to a remote systems by performing a multipart POST on the FILES service. If you are using the Tapis (Agave) CLI, you can perform recursive directory uploads. If you are manually calling curl or building an app with the Agave SDK, you will need to implement the recursion yourself. You can take a look in the `files-upload` script to see how this is done. The following is an example of how to upload a file that we will use in the remainder of this tutorial.
+You may upload data to a remote systems by performing a multipart POST on the FILES service. If you are using the Tapis CLI, you can perform recursive directory uploads. If you are manually calling curl or building an app with the Tapis SDK, you will need to implement the recursion yourself. You can take a look in the `files-upload` script to see how this is done. The following is an example of how to upload a file that we will use in the remainder of this tutorial.
 
 ```shell
 curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST  
@@ -61,7 +61,7 @@ files-upload -v -F files/picksumipsum.txt -S data.agaveapi.co $API_USERNAME
 ``` 
 
 
-You will see a progress bar while the file uploads, followed by a response from the server with a description of the uploaded file. Tapis (Agave) does not block during data movement operations, so it may be just a second before the file physically shows up on the remote system.
+You will see a progress bar while the file uploads, followed by a response from the server with a description of the uploaded file. Tapis does not block during data movement operations, so it may be just a second before the file physically shows up on the remote system.
 
 ```javascript
 {
@@ -91,11 +91,11 @@ You will see a progress bar while the file uploads, followed by a response from 
 
 #### Importing data <a name="importing-data">&nbsp;</a>  
 
-You can also import data from an external URL. Rather than making a multipart file upload request, you can pass in a JSON object with the URL and an optional target file name, file type, and array of notifications which should be made when the import completes. Tapis (Agave) supports several protocols for ingestion listed in the next table.
+You can also import data from an external URL. Rather than making a multipart file upload request, you can pass in a JSON object with the URL and an optional target file name, file type, and array of notifications which should be made when the import completes. Tapis supports several protocols for ingestion listed in the next table.
 
 <%= partial "includes/tables/23" %>
 
-To demonstrate how this works, will import a the README.md file from the <a href="https://bitbucket.org/agaveapi/science-api-samples" title="Tapis (Agave) Samples" target="_blank">Agave Samples</a> git repository in Bitbucket.
+To demonstrate how this works, will import a the README.md file from the <a href="https://bitbucket.org/agaveapi/science-api-samples" title="Tapis Samples" target="_blank">Tapis Samples</a> git repository in Bitbucket.
 
 ```shell
 curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST  
@@ -110,7 +110,7 @@ files-import -v -U "https://bitbucket.org/agaveapi/science-api-samples/raw/maste
 ``` 
 
 
-Importing data from a third party is done offline as an asynchronous activity, so the response from the server will come right away. The response is given below. One thing worth noting is that the file length given in the response will always be -1. This is because Tapis (Agave) does not know what the actual file size is yet. That will be updated later on, after the transfer has finished.
+Importing data from a third party is done offline as an asynchronous activity, so the response from the server will come right away. The response is given below. One thing worth noting is that the file length given in the response will always be -1. This is because Tapis does not know what the actual file size is yet. That will be updated later on, after the transfer has finished.
 
 ```javascript
 {
@@ -138,15 +138,15 @@ Importing data from a third party is done offline as an asynchronous activity, s
 }
 ```
 
-For this exercise, the file we just imported is just a few KB, so you should see it appear in your home folder on `data.agaveapi.co` almost immediately. If you were importing larger datasets, the transfer could take significantly longer depending on the network quality between Tapis (Agave) and the source location. In this case, you would see the file size continue to increase until it completed. In the event of a failed transfer, Agave will retry several times before canceling the transfer.
+For this exercise, the file we just imported is just a few KB, so you should see it appear in your home folder on `data.agaveapi.co` almost immediately. If you were importing larger datasets, the transfer could take significantly longer depending on the network quality between Tapis and the source location. In this case, you would see the file size continue to increase until it completed. In the event of a failed transfer, Tapis will retry several times before canceling the transfer.
 
-<aside class="notice">Tapis (Agave) attempts to make smart decisions about how and when to transfer data. This includes leveraging third-party transfers whenever possible, scaling directory copies out horizontally, and taking advantage of chunked or parallel uploads. As a result, data may arrive in a non-deterministic way on the target system. This is normal and should be expected.</aside>
+<aside class="notice">Tapis attempts to make smart decisions about how and when to transfer data. This includes leveraging third-party transfers whenever possible, scaling directory copies out horizontally, and taking advantage of chunked or parallel uploads. As a result, data may arrive in a non-deterministic way on the target system. This is normal and should be expected.</aside>
 
 #### Transferring data  
 
-Much like importing data, Tapis (Agave) can manage the transfer of data between registered systems. This is, in fact, how data is staged prior to running a simulation. Data transfers are fire and forget, so you can simply start a transfer and go about your business. Agave will ensure it completes. If you would like a notification when the transfer completes or reaches a certain stage, you can subscribe for one or more emails and/or <a href="http://webhooks.org" title="Webhooks" target="_blank">webhooks</a> and Agave will process them upon completion. The following table lists the available file events. For more information about Agave's event and notification system, please see the <a href="http://agaveapi.co/documentation/tutorials/notifications-tutorial/" title="Notifications Tutorial" target="_blank">Notifications Tutorial</a> and <a href="http://agaveapi.co/documentation/event-reference/" title="Agave Platform Event Reference" target="_blank">Event Reference</a>.
+Much like importing data, Tapis can manage the transfer of data between registered systems. This is, in fact, how data is staged prior to running a simulation. Data transfers are fire and forget, so you can simply start a transfer and go about your business. Tapis will ensure it completes. If you would like a notification when the transfer completes or reaches a certain stage, you can subscribe for one or more emails and/or <a href="http://webhooks.org" title="Webhooks" target="_blank">webhooks</a> and Tapis will process them upon completion. The following table lists the available file events. For more information about Tapis's event and notification system, please see the <a href="http://agaveapi.co/documentation/tutorials/notifications-tutorial/" title="Notifications Tutorial" target="_blank">Notifications Tutorial</a> and <a href="http://agaveapi.co/documentation/event-reference/" title="Tapis Platform Event Reference" target="_blank">Event Reference</a>.
 
-In the example below, we will transfer a file from `stampede.tacc.utexas.edu` to `data.agaveapi.co`. While the request looks pretty basic, there's a lot going on behind the scenes. Tapis (Agave) will authenticate to both systems, check permissions, stream data out of Stampede using SFTP and proxy it into `data.agaveapi.co` using the IRODS protocol, adjusting the transfer buffer size along the way to optimize throughput. Doing this by hand is both painful and error prone. Doing it with Agave is nearly identical to copying a file from one directory to another on your local system.
+In the example below, we will transfer a file from `stampede.tacc.utexas.edu` to `data.agaveapi.co`. While the request looks pretty basic, there's a lot going on behind the scenes. Tapis will authenticate to both systems, check permissions, stream data out of Stampede using SFTP and proxy it into `data.agaveapi.co` using the IRODS protocol, adjusting the transfer buffer size along the way to optimize throughput. Doing this by hand is both painful and error prone. Doing it with Tapis is nearly identical to copying a file from one directory to another on your local system.
 
 ```shell
 curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST  
@@ -162,7 +162,7 @@ files-import -v -U "agave://stampede.tacc.utexas.edu//etc/motd" -S data.agaveapi
 
 The response from the service will be the same as the one we received importing a file.
 
-One of the benefits of Tapis (Agave)'s Files service is that it frees you up to work in parallel and scale as large as your application demands. In the next example we will use Agave's Files to create redundant archives of a shared project directory.
+One of the benefits of Tapis's Files service is that it frees you up to work in parallel and scale as large as your application demands. In the next example we will use Tapis's Files to create redundant archives of a shared project directory.
 
 ```shell
 curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" 
@@ -254,7 +254,7 @@ Basic file operations are available by sending a POST request the the `/files/v2
 
 #### Copying files and directories  
 
-Copying can be performed on any remote system. Unlike the Unix `cp` command, all copy invocations in Tapis (Agave) will overwrite the destination target if it exists. In the event of a directory collision, the contents of the two directory trees will be merged with the source overwriting the destination. Any overwritten files will maintain their provenance records and have an additional entry added to record the copy operation.
+Copying can be performed on any remote system. Unlike the Unix `cp` command, all copy invocations in Tapis will overwrite the destination target if it exists. In the event of a directory collision, the contents of the two directory trees will be merged with the source overwriting the destination. Any overwritten files will maintain their provenance records and have an additional entry added to record the copy operation.
 
 ```shell
 ```shell
@@ -318,7 +318,7 @@ files-rename -N $NEWNAME -S $SYSTEM_ID $PATH
 
 #### Creating a new directory  
 
-Creating a new directory is a recursive action in Tapis (Agave). If the parent directories do not exist, they will be created on the fly. If a file or directory already exists with that name, the operation will fail and an error message will be returned.
+Creating a new directory is a recursive action in Tapis. If the parent directories do not exist, they will be created on the fly. If a file or directory already exists with that name, the operation will fail and an error message will be returned.
 
 ```shell
 ```shell
@@ -338,7 +338,7 @@ files-mkdir -N $NEWDIR -S $SYSTEM_ID $PATH
 
 #### Deleting a file or directory  
 
-As with creating a directory, deleting a file or directory is a recursive action in Tapis (Agave). No prompt or warning will be given once the request is sent. It is up to you to implement such checks in your application logic and/or user interface.
+As with creating a directory, deleting a file or directory is a recursive action in Tapis. No prompt or warning will be given once the request is sent. It is up to you to implement such checks in your application logic and/or user interface.
 
 ```shell
 ```shell
@@ -357,12 +357,12 @@ files-delete -S $SYSTEM_ID $PATH
 
 ### Metadata management  
 
-In many systems, the concept of metadata is directly tied to the notion of a file system. Tapis (Agave) takes a broader view of metadata and supports it as its own first class resource in the REST API. For more information on how to leverage metadata in Agave, please consult the <a href="http://agaveapi.co/documentation/tutorials/metadata-tutorial/" title="Metadata Tutorial">Metadata Tutorial</a>. In there we cover all aspects of how to manage, search, validate, and associate metadata across your entire digital lab.
+In many systems, the concept of metadata is directly tied to the notion of a file system. Tapis takes a broader view of metadata and supports it as its own first class resource in the REST API. For more information on how to leverage metadata in Tapis, please consult the <a href="http://agaveapi.co/documentation/tutorials/metadata-tutorial/" title="Metadata Tutorial">Metadata Tutorial</a>. In there we cover all aspects of how to manage, search, validate, and associate metadata across your entire digital lab.
 
 ### Data permissions  
 
-Tapis (Agave) has a fine-grained permission model supporting use cases from creating and expositing readonly storage systems to sharing individual files and folders with one or more users. To learn more about the data permission model and how you can use it to meet your needs, consult the <a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/data-permissions-tutorial/" title="Data Permissions Tutorial">Data Permissions Tutorial</a>.
+Tapis has a fine-grained permission model supporting use cases from creating and expositing readonly storage systems to sharing individual files and folders with one or more users. To learn more about the data permission model and how you can use it to meet your needs, consult the <a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/data-permissions-tutorial/" title="Data Permissions Tutorial">Data Permissions Tutorial</a>.
 
 ### Data provenance  
 
-Tapis (Agave) keeps a full provenance record of every action it takes or observes on a a file and folder. You can read more about how Agave tracks these things as well as how to access provenance information in the <a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/data-provenance-tutorial/" title="Data Provenance Tutorial">Data Provenance Tutorial</a>.
+Tapis keeps a full provenance record of every action it takes or observes on a a file and folder. You can read more about how Tapis tracks these things as well as how to access provenance information in the <a href="http://agaveapi.co/documentation/tutorials/data-management-tutorial/data-provenance-tutorial/" title="Data Provenance Tutorial">Data Provenance Tutorial</a>.

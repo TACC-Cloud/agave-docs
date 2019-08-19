@@ -29,16 +29,16 @@ Throughout the documentation you will regularly encounter the following variable
        <td>nryan</td>
      <tr></tr>
        <td>${API_KEY}</td>
-       <td align="center">Client key used to request an access token from the Tapis (Agave) Auth service</td>
+       <td align="center">Client key used to request an access token from the Tapis Auth service</td>
        <td>hZ_z3f4Hf3CcgvGoMix0aksN4BOD6</td>
      <tr></tr>
        <td>${API_SECRET}</td>
-       <td align="center">Client secret used to request an access token from the Tapis (Agave) Auth service</td>
+       <td align="center">Client secret used to request an access token from the Tapis Auth service</td>
        <td>gTgpCecqtOc6Ao3GmZ_FecVSSV8a</td>
      <tr>
      </tr>
        <td>${API_TOKEN}</td>
-       <td align="center">Client unique identifier of an application requesting access to Tapis (Agave) Auth service</td>
+       <td align="center">Client unique identifier of an application requesting access to Tapis Auth service</td>
        <td>de32225c235cf47b9965997270a1496c</td>
      </tr> 
    </table>
@@ -116,12 +116,12 @@ Javascript dot notation will be used to refer to individual properties of JSON o
 Versioning
 ----------
 
-The current major version of Tapis (Agave) is given in the URI immediately following the API resource name. For example, if the endpoint is ``https://api.tacc.utexas.edu/jobs/v2/``\ , the API version would be ``v2``. The current major version of Agave is v2. (Full version: 2.2.23)
+The current major version of Tapis is given in the URI immediately following the API resource name. For example, if the endpoint is ``https://api.tacc.utexas.edu/jobs/v2/``\ , the API version would be ``v2``. The current major version of Tapis is v2. (Full version: 2.2.23)
 
 Special Character Handling
 --------------------------
 
-In certain situations, usually where file system paths and names are involved in some way, Tapis (Agave) will generate sanitized object names ("slugs") to make them safe to use. Slugs will be created on the fly by applying the following rules:
+In certain situations, usually where file system paths and names are involved in some way, Tapis will generate sanitized object names ("slugs") to make them safe to use. Slugs will be created on the fly by applying the following rules:
 
 
 #. Lowercase the string
@@ -131,12 +131,12 @@ In certain situations, usually where file system paths and names are involved in
 Secure communication
 --------------------
 
-Tapis (Agave) uses SSL to secure communication with the clients. If HTTPS is not specified in the request, the request will be redirected to a secure channel.
+Tapis uses SSL to secure communication with the clients. If HTTPS is not specified in the request, the request will be redirected to a secure channel.
 
 Requests
 --------
 
-The Tapis (Agave) API is based on :raw-html-m2r:`<a title="REST" href="http://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank">REST</a>` principles: data resources are accessed via standard HTTPS requests in UTF-8 format to an API endpoint. The API uses appropriate HTTP verbs for each action whenever possible.
+The Tapis API is based on :raw-html-m2r:`<a title="REST" href="http://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank">REST</a>` principles: data resources are accessed via standard HTTPS requests in UTF-8 format to an API endpoint. The API uses appropriate HTTP verbs for each action whenever possible.
 
 
 .. raw:: html
@@ -240,7 +240,7 @@ Response Details
        "result": {}
    }
 
-Apart from the response code, all responses from Tapis (Agave) are in the form of a json object. The object takes the following form.
+Apart from the response code, all responses from Tapis are in the form of a json object. The object takes the following form.
 
 
 .. raw:: html
@@ -265,7 +265,7 @@ Apart from the response code, all responses from Tapis (Agave) are in the form o
      <tr></tr>
        <td>version</td>
        <td align="center">string</td>
-       <td>The current full release version of Tapis (Agave). Ex “2.1.16-r8228”</td>
+       <td>The current full release version of Tapis. Ex “2.1.16-r8228”</td>
      </tr> 
    </table>
 
@@ -359,7 +359,7 @@ Timestamps are returned in \ :raw-html-m2r:`<a href="http://en.wikipedia.org/wi
 Cross Origin Resource Sharing (CORS)
 ------------------------------------
 
-Many modern applications choose to implement client-server communication exclusively in Javascript. For this reason, Tapis (Agave) provides :raw-html-m2r:`<a href="http://en.wikipedia.org/wiki/Cross-origin_resource_sharing" title="CORS" target="_blank">cross-origin resource sharing (CORS)</a>` support so AJAX requests from a web browser are not constrained by cross-origin requests and can safely make GET, PUT, POST, and DELETE requests to the API.
+Many modern applications choose to implement client-server communication exclusively in Javascript. For this reason, Tapis provides :raw-html-m2r:`<a href="http://en.wikipedia.org/wiki/Cross-origin_resource_sharing" title="CORS" target="_blank">cross-origin resource sharing (CORS)</a>` support so AJAX requests from a web browser are not constrained by cross-origin requests and can safely make GET, PUT, POST, and DELETE requests to the API.
 
 Hypermedia
 ----------
@@ -385,4 +385,4 @@ Hypermedia
        }
    }
 
-Tapis (Agave) is a fully descriptive hypermedia API. Given any point, you should be able to run API through the links provided in the ``_links`` object in each resource representation. The following user metadata object contains two referenced objects. The first, ``self`` is common to all objects, and contains the URL of that object. The second, ``owner`` contains the URL to the profile of the user who created the object.
+Tapis is a fully descriptive hypermedia API. Given any point, you should be able to run API through the links provided in the ``_links`` object in each resource representation. The following user metadata object contains two referenced objects. The first, ``self`` is common to all objects, and contains the URL of that object. The second, ``owner`` contains the URL to the profile of the user who created the object.
