@@ -2,7 +2,7 @@
    :format: html
 
 
-We will now go through the process of building and deploying an Tapis application to provide 'samtools sort' functionality on TACC's Stampede system. The following tutorial assumes you have properly installed and configured the iPlant SDK on Stampede. They assume you have defined an environment variable IPLANTUSERNAME as your iPlant username (e.g. IPLANTUSERNAME=youriplantusername).
+We will now go through the process of building and deploying a Tapis application to provide 'samtools sort' functionality on TACC's Stampede system. The following tutorial assumes you have properly installed and configured the iPlant SDK on Stampede. They assume you have defined an environment variable IPLANTUSERNAME as your iPlant username (e.g. IPLANTUSERNAME=youriplantusername).
 
 Tapis application packaging
 ---------------------------
@@ -30,7 +30,7 @@ package-name-version.dot.dot
    <ol>
    <li>Build the application locally on the executionSystem</li>
    <li>Ensure that you are able to run it directly on the executionSystem</li>
-   <li>Describe the application using an Tapis app description</li>
+   <li>Describe the application using a Tapis app description</li>
    <li>Create a shell template for running the app</li>
    <li>Upload the application directory to a storageSystem</li>
    <li>Post the app description to the Tapis apps service</li>
@@ -190,9 +190,9 @@ You can monitor your jobs in the queue using
 
    showq -u your_tacc_username
 
-Assuming all goes according to plan, you'll end up with a sorted BAM called :raw-html-m2r:`<em>sorted.bam</em>`\ , and your bin directory (but not the bin.tgz file) should be erased. Congratulations, you're in the home stretch: it's time to turn the test script into an Tapis app.
+Assuming all goes according to plan, you'll end up with a sorted BAM called :raw-html-m2r:`<em>sorted.bam</em>`\ , and your bin directory (but not the bin.tgz file) should be erased. Congratulations, you're in the home stretch: it's time to turn the test script into a Tapis app.
 
-Craft an Tapis app description
+Craft a Tapis app description
 ------------------------------
 
 In order for Tapis to know how to run an instance of the application, we need to provide quite a bit of metadata about the application. This includes a unique name and version, the location of the application bundle, the identities of the execution system and destination system for results, whether its an HPC or other kind of job, the default number of processors and memory it needs to run, and of course, all the inputs and parameters for the actual program. It seems a bit over-complicated, but only because you're comfortable with the command line already. Your goal here is to allow your applications to be portable across systems and present a web-enabled, rationalized interface for your code to consumers.
@@ -261,7 +261,7 @@ Each time you (or another user) requests an instance of samtools sort, Tapis cop
 
 .. raw:: html
 
-   <aside class="notice">If you've never deployed an Tapis-based app, you may not have an applications directory in your home folder. Since this is where we recommend you store the apps, create one.</aside>
+   <aside class="notice">If you've never deployed a Tapis-based app, you may not have an applications directory in your home folder. Since this is where we recommend you store the apps, create one.</aside>
 
 
 .. code-block:: shell

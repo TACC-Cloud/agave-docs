@@ -181,12 +181,12 @@ Notice that this example specifies a single input attribute, ``dataset``. The ``
    <tr>
    <td>agave://$PUBLIC_STORAGE_SYSTEM/
    $API_USERNAME/inputs/pyplot/testdata.csv</td>
-   <td>An Tapis URL explicitly specifying a source system and relative path.</td>
+   <td>a Tapis URL explicitly specifying a source system and relative path.</td>
    </tr>
    <tr>
    <td>agave://$PUBLIC_STORAGE_SYSTEM//home/
    apiuser/$API_USERNAME/inputs/pyplot/testdata.csv</td>
-   <td>An Tapis URL explicitly specifying a source system and absolute path.</td>
+   <td>a Tapis URL explicitly specifying a source system and absolute path.</td>
    </tr>
    <tr>
    <td>http://example.com/inputs/pyplot/testdata.csv</td>

@@ -265,7 +265,7 @@ Now that you have your app bundled up and ready to go, it is time to register it
    <p class="table-caption">Table 1. Attributes of a JSON app description.</p>
 
 
-Table 1 lists the top level attributes of an Tapis app descxription. App descriptions are conceptually broken into three section: details, arguments, and outputs. App details  include generic information common to all apps such as the name, description, label, etc. Note that the name and version are combined and used to uniquely identify your app globally. One implication of this is that there is no concept of enforced application taxonomy in the API. Historically users have used a naming convention to imply a logical grouping and the version field with a :raw-html-m2r:`<a href="http://semver.org/" title="Semantic Versioning" target="_blank">Semantic Versioning</a>` value of x.y.z to denote changes over time.
+Table 1 lists the top level attributes of a Tapis app descxription. App descriptions are conceptually broken into three section: details, arguments, and outputs. App details  include generic information common to all apps such as the name, description, label, etc. Note that the name and version are combined and used to uniquely identify your app globally. One implication of this is that there is no concept of enforced application taxonomy in the API. Historically users have used a naming convention to imply a logical grouping and the version field with a :raw-html-m2r:`<a href="http://semver.org/" title="Semantic Versioning" target="_blank">Semantic Versioning</a>` value of x.y.z to denote changes over time.
 
 
 .. raw:: html

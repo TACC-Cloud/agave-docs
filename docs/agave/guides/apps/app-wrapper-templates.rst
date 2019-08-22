@@ -306,7 +306,7 @@ Tapis runs a job by first transferring a copy of this directory into temporary d
 
 #. Build the application locally on the ``executionSystem``
 #. Ensure that you are able to run it directly on the ``executionSystem``
-#. Describe the application using an Tapis app description
+#. Describe the application using a Tapis app description
 #. Create a shell template for running the app
 #. Upload the application directory to a ``storageSystem``
 #. Post the app description to the Tapis apps service
@@ -381,7 +381,7 @@ Application metadata
      <td>executionSystem</td>
      <td>X</td>
      <td>string</td>
-     <td>An Tapis-registered EXECUTION system upon which you have execute and app registration permissions where jobs will run</td>
+     <td>a Tapis-registered EXECUTION system upon which you have execute and app registration permissions where jobs will run</td>
    </tr>
    <tr>
      <td>helpURI</td>

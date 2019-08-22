@@ -89,7 +89,7 @@ package-name-version.dot.dot
 
    1. Build the application locally on the executionSystem
    2. Ensure that you are able to run it directly on the executionSystem
-   3. Describe the application using an Tapis app description
+   3. Describe the application using a Tapis app description
    4. Create a shell template for running the app
    5. Upload the application directory to a storageSystem
    6. Post the app description to the Tapis apps service
@@ -241,9 +241,9 @@ You can monitor your jobs in the queue using
 
    showq -u your_tacc_username
 
-Assuming all goes according to plan, you'll end up with a sorted BAM called :raw-html-m2r:`<em>sorted.bam</em>`\ , and your bin directory (but not the bin.tgz file) should be erased. Congratulations, you're in the home stretch: it's time to turn the test script into an Tapis app.
+Assuming all goes according to plan, you'll end up with a sorted BAM called :raw-html-m2r:`<em>sorted.bam</em>`\ , and your bin directory (but not the bin.tgz file) should be erased. Congratulations, you're in the home stretch: it's time to turn the test script into a Tapis app.
 
-Craft an Tapis app description
+Craft a Tapis app description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order for Tapis to know how to run an instance of the application, we need to provide quite a bit of metadata about the application. This includes a unique name and version, the location of the application bundle, the identities of the execution system and destination system for results, whether its an HPC or other kind of job, the default number of processors and memory it needs to run, and of course, all the inputs and parameters for the actual program. It seems a bit over-complicated, but only because you're comfortable with the command line already. Your goal here is to allow your applications to be portable across systems and present a web-enabled, rationalized interface for your code to consumers.
@@ -260,7 +260,7 @@ Open up samtools-sort.json in a text editor or :raw-html-m2r:`<a href="../exampl
 Overview
 ^^^^^^^^
 
-Your file :raw-html-m2r:`<em>samtools-sort.json</em>` is written in :raw-html-m2r:`<a href="http://www.json.org/">JSON</a>`\ , and conforms to an Tapis-specific data model. You can find fully fleshed out details about all fields under :raw-html-m2r:`<em>Parameters -> Data Type -> Model</em>` at the :raw-html-m2r:`<a href="http://agaveapi.co/live-docs/#!/apps/add_post_1">Tapis API live docs on the /apps service</a>`. We will dive into key elements here:
+Your file :raw-html-m2r:`<em>samtools-sort.json</em>` is written in :raw-html-m2r:`<a href="http://www.json.org/">JSON</a>`\ , and conforms to a Tapis-specific data model. You can find fully fleshed out details about all fields under :raw-html-m2r:`<em>Parameters -> Data Type -> Model</em>` at the :raw-html-m2r:`<a href="http://agaveapi.co/live-docs/#!/apps/add_post_1">Tapis API live docs on the /apps service</a>`. We will dive into key elements here:
 
 To make this file work for you, you will be, at a minimum, editting:
 
@@ -351,7 +351,7 @@ Application metadata
      <td>executionSystem</td>
      <td>X</td>
      <td>string</td>
-     <td>An Tapis-registered EXECUTION system upon which you have execute and app registration permissions where jobs will run</td>
+     <td>a Tapis-registered EXECUTION system upon which you have execute and app registration permissions where jobs will run</td>
    </tr>
    <tr>
      <td>helpURI</td>
