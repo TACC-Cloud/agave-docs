@@ -231,7 +231,7 @@ You can submit the job with the following CLI command:
 
    .. code-block:: shell
 
-      $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -F "fileToUpload=@job.json" https://agave.iplantc.org/jobs/v2/?pretty=true
+      $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "@job.json" -H "Content-Type: application/json" https://agave.iplantc.org/jobs/v2/?pretty=true
 |
 If everything went well, you will receive a response that looks something like the following JSON object.
 
