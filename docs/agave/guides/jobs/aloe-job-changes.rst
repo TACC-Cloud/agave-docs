@@ -14,6 +14,14 @@ Content-Type
 
 Job submission requests are HTTP POST requests that must specify a *Content-Type* header of *application/json*. 
 
+An example of a job submission with Aloe:
+.. container:: foldable
+
+   .. code-block:: shell
+
+      $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "@job.json" -H "Content-Type: application/json"  https://agave.iplantc.org/jobs/v2/?pretty=true
+|
+
 Submission Request Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
