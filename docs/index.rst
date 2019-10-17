@@ -17,6 +17,7 @@ Tapis (Agave) is an open source, science-as-a-service API platform for powering 
    agave/introduction/conventions-response-customization
    agave/introduction/status-codes
    agave/introduction/best-practices
+   agave/introduction/tutorials
 
 .. toctree::
     :maxdepth: 2
