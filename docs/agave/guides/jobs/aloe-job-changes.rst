@@ -48,6 +48,12 @@ Parameters required for job submission are marked with an asterisk (*).
 |                      |           | execution will be moved to the+
 |                      |           | *archivePath*.                +
 +----------------------+-----------+-------------------------------+
+| archiveOnAppError    | boolean   | Whether archiving should      +
+|                      |           | occur even if the user's      +
+|                      |           | application returns a non-zero+
+|                      |           | return code.  Default=false.  +
+|                      |           |                               +
++----------------------+-----------+-------------------------------+
 | archivePath          |string(255)| The path of the archive folder+
 |                      |           | for this job on the           +
 |                      |           | designated *archiveSystem*.   +
