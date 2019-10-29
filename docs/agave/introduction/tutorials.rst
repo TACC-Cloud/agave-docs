@@ -50,11 +50,11 @@ https://portal.tacc.utexas.edu/account-request?p_p_id=createaccount_WAR_createac
 **Quick Start Tutorial** 
 ---------------------
 
-This quick start guide is designed to show you how to do the following
+This quick start guide is designed to show you how to do the following:
 
-1. Create an Oauth Client 
-2. Submit a job using a public image classifyApp
-3. Retrieve job output information 
+1. Create an Oauth Client. 
+2. Submit a job using a public image classifyApp.
+3. Retrieve job output information. 
 
 
 
@@ -64,7 +64,7 @@ ______________________
 
 Most requests to the Tapis REST APIs require authorization; that is, the user must have granted permission for an application to access the requested data. 
 
-**Step 1:** Create an Oauth Client by entering the following curl command.
+**Step 1:** Create an Oauth Client by entering the following curl command:
 
 .. code-block:: shell
 
@@ -73,14 +73,14 @@ Most requests to the Tapis REST APIs require authorization; that is, the user mu
     https://api.tacc.utexas.edu/clients/v2
 
 
-Create a variable for the client key and secret by entering
+Create a variable for the client key and secret by entering:
 
 .. code-block:: shell
 
-    Export key=<client key>
-    Export secret=<secret>
+    export key=<client key>
+    export secret=<secret>
 
-**Step 2:** Generate an access token by entering the following curl command.
+**Step 2:** Generate an access token by entering the following curl command:
 
 .. code-block:: shell
 
@@ -92,10 +92,10 @@ Once you have obtained that token, save it as a variable by entering the followi
 
 .. code-block:: shell
 
-    export tok= <TOKEN>
+    export tok=<TOKEN>
 
 
-For more information please see 
+For more information please see:
 
 **OAuth tutorial**: https://tacc.github.io/CSC2017Institute/docs/day2/Intro_Agave_OAuth.html
 
@@ -103,19 +103,18 @@ For more information please see
 **Running a job**
 ______________________
 
-Now you are ready to run a Tapis Job
-The Tapis(Aloe) Jobs service is a basic execution service that allows you to run applications registered with the Tapis Apps service across multiple, distributed, heterogeneous systems through a common REST interface. 
+Now you are ready to run a Tapis Job.
+The Tapis Jobs is the service that allows you to run applications registered with the Tapis Apps service across multiple, distributed, heterogeneous systems through a common REST interface. 
 
 For this tutorial we have registered an Image Classifier App using Tapis Apps Service. 
-Tapis.app.imageclassify-1.0u3 is a public app that uses public storage and execution systems
+Tapis.app.imageclassify-1.0u3 is a public app that uses public storage and execution systems.
 Follow the steps below to submit the Tapis Job and view the output.
 
 
 
-**Step 1:** Crafting the job definition
-Create the following file jobs.json
+**Step 1:** Crafting the job definition:
 
-To submit the job we are going to use the following 
+Create the following file jobs.json
 
 .. container:: foldable
 
@@ -133,18 +132,18 @@ To submit the job we are going to use the following
                         
                         }
 
-Job parameters used referred in the definition above are
+Job parameters used referred in the definition above are:
 
 * name- The user selected name for the job.
 
 * appId- The unique ID (name + version) of the application run by this job. This must be a valid application that the user has permission to run.
 
-* archive- Whether the job output should be archived. When true, all new files created during job execution will be moved to the archivePath.
+* archive- Whether the job output should be archived. When true, all new files created during job execution will be moved to the Archive Path on the Archive system.
 
 * memoryPerNode- The memory requested for each node on which the job runs. Values are expressed as [num][units], where num can be a decimal number and units can be KB, MB, GB, TB (default = GB). Examples include 200MB, 1.5GB and 5.
 
 
-**Step 2:** Submit the job by using the curl-command below
+**Step 2:** Submit the job by using the curl-command below:
 
 
 .. code-block:: shell
@@ -168,7 +167,7 @@ Type in the curl command below:
 
 **NOTE** 
 
-You can download the files if you want by entering in the command 
+You can download the files if you want by entering in the command: 
 
 .. code-block:: shell
 
