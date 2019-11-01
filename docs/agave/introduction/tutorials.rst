@@ -5,16 +5,12 @@
 Tutorials
 ============
 
-These tutorials are designed to allow you to practice and get familiar with the Tapis enviornment.
+This tutorial is designed to allow you to practice and get familiar with the Tapis enviornment.
 
 Prerequisites
 -----------------
 
-
-**Introduction to Linux:** 
-______________________
-
-    https://tacc.github.io/ctls2017/docs/gnu_utils/gnu_utils_01.html
+In order to navigate this tutorial you should have knowledge and familiarity with the following items:
 
 * SSH with keys to a host
 * List files
@@ -25,10 +21,9 @@ ______________________
 
 * Intro to APIs, HTTP and basics of REST (replace python.requests with curl): https://tacc.github.io/CSC2017Institute/docs/day2/APIs_intro.html
 
-
-
 * Intro to HTTP authentication: https://tacc.github.io/CSC2017Institute/docs/day2/Intro_Authentication_in_HTTP.html
 
+* Intro to GNU Coreutils: https://tacc.github.io/ctls2017/docs/gnu_utils/gnu_utils_01.html
 
 
 
@@ -84,7 +79,7 @@ Create a variable for the client key and secret by entering:
 .. code-block:: shell
 
     curl -v -u $key:$secret -X POST
-    -d 'grant_type=password&username=testshareuser&password=testshareuser&token_username=bkuritz&scope=PRODUCTION' 
+    -d 'grant_type=password&username=<testshareuser>&password=<testshareuserpassword>&token_username=<testshareuser>&scope=PRODUCTION' 
     https://api.tacc.utexas.edu/token
 Once you have obtained that token, save it as a variable by entering the following command
 
