@@ -89,6 +89,7 @@ pygments_style = 'sphinx'
 # a list of builtin themes.
 #
 html_theme = 'default'
+
 if not on_rtd:
     import sphinx_rtd_theme
     html_theme = 'sphinx_rtd_theme'
