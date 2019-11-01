@@ -14,7 +14,6 @@ Prerequisites
 **Introduction to Linux:** 
 ______________________
 
-    https://tacc.github.io/ctls2017/docs/intro_to_linux/intro_to_linux_01.HTML
     https://tacc.github.io/ctls2017/docs/gnu_utils/gnu_utils_01.html
 
 * SSH with keys to a host
