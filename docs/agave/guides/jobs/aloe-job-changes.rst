@@ -104,7 +104,7 @@ Parameters required for job submission are marked with an asterisk (*).
 |                      |           | mean *total number of         +
 |                      |           | processors*.                  +
 +----------------------+-----------+-------------------------------+
-| processorOnEachNode  | integer   | The number of processors per  +
+| processorsOnEachNode | integer   | The number of processors per  +
 |                      |           | node that the job will use.   +
 |                      |           | The total number of processors+
 |                      |           | used by the job equals        +
