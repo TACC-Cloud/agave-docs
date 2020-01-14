@@ -79,7 +79,7 @@ Create a variable for the client key and secret by entering:
 .. code-block:: shell
 
     curl -v -u $key:$secret -X POST
-    -d 'grant_type=password&username=<testshareuser>&password=<testshareuserpassword>&token_username=<testshareuser>&scope=PRODUCTION' 
+    -d 'grant_type=password&username=<username>&password=<password>&scope=PRODUCTION' 
     https://api.tacc.utexas.edu/token
 Once you have obtained that token, save it as a variable by entering the following command
 
