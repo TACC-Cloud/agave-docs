@@ -128,32 +128,40 @@ The list of all possible job statuses is given in table 2.
    </thead>
    <tbody>
    <tr>
-   <td>CREATED</td>
-   <td>The job was updated</td>
-   </tr>
-   <tr>
-   <td>UPDATED</td>
-   <td>The job was updated</td>
-   </tr>
-   <tr>
-   <td>DELETED</td>
-   <td>The job was deleted</td>
-   </tr>
-   <tr>
-   <td>PERMISSION_GRANT</td>
-   <td>User permission was granted</td>
-   </tr>
-   <tr>
-   <td>PERMISSION_REVOKE</td>
-   <td>Permission was removed for a user on this job</td>
+   <td>ACCEPTED</td>
+   <td>The job accepted for processing</td>
    </tr>
    <tr>
    <td>PENDING</td>
-   <td>Job accepted and queued for submission.</td>
+   <td>The job processing beginning</td>
+   </tr>
+   <tr>
+   <td>PROCESSING_INPUTS</td>
+   <td>Identifying input files for staging</td>
    </tr>
    <tr>
    <td>STAGING_INPUTS</td>
    <td>Transferring job input data to execution system</td>
+   </tr>
+   <tr>
+   <td>STAGED</td>
+   <td>Job inputs staged to execution system</td>
+   </tr>
+   <tr>
+   <td>STAGING_JOB</td>
+   <td>Staging runtime assets to execution system.</td>
+   </tr>
+   <tr>
+   <td>SUBMITTING</td>
+   <td>Submitting job to execution system</td>
+   </tr>
+   <tr>
+   <td>QUEUED</td>
+   <td>Job queued in execution system queue</td>
+   </tr>
+   <tr>
+   <td>RUNNING</td>
+   <td>Job running on execution system</td>
    </tr>
    <tr>
    <td>CLEANING_UP</td>
@@ -164,60 +172,24 @@ The list of all possible job statuses is given in table 2.
    <td>Transferring job output to archive system</td>
    </tr>
    <tr>
-   <td>STAGING_JOB</td>
-   <td>Job inputs staged to execution system</td>
+   <td>BLOCKED</td>
+   <td>Job blocked</td>
+   </tr>
+   <tr>
+   <td>PAUSED</td>
+   <td>Job processing suspended</td>
    </tr>
    <tr>
    <td>FINISHED</td>
-   <td>Job complete</td>
-   </tr>
-   <tr>
-   <td>KILLED</td>
-   <td>Job execution killed at user request</td>
-   </tr>
-   <tr>
-   <td>FAILED</td>
-   <td>Job failed</td>
+   <td>Job completed successfully</td>
    </tr>
    <tr>
    <td>STOPPED</td>
    <td>Job execution intentionally stopped</td>
    </tr>
    <tr>
-   <td>RUNNING</td>
-   <td>Job started running</td>
-   </tr>
-   <tr>
-   <td>PAUSED</td>
-   <td>Job execution paused by user</td>
-   </tr>
-   <tr>
-   <td>QUEUED</td>
-   <td>Job successfully placed into queue</td>
-   </tr>
-   <tr>
-   <td>SUBMITTING</td>
-   <td>Preparing job for execution and staging binaries to execution system</td>
-   </tr>
-   <tr>
-   <td>STAGED</td>
-   <td>Job inputs staged to execution system</td>
-   </tr>
-   <tr>
-   <td>PROCESSING_INPUTS</td>
-   <td>Identifying input files for staging</td>
-   </tr>
-   <tr>
-   <td>ARCHIVING_FINISHED</td>
-   <td>Job archiving complete</td>
-   </tr>
-   <tr>
-   <td>ARCHIVING_FAILED</td>
-   <td>Job archiving failed</td>
-   </tr>
-   <tr>
-   <td>HEARTBEAT</td>
-   <td>Job heartbeat received</td>
+   <td>FAILED</td>
+   <td>Job failed</td>
    </tr>
    </tbody>
    </table>
