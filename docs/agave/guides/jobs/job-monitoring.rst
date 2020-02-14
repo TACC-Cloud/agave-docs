@@ -201,7 +201,7 @@ The list of all possible job statuses is given in table 2.
    <p class="table-caption">Table 2. Job statuses listed in progressive order from job submission to completion.</p>
 
 
-Polling is an incredibly effective approach, but it is bad practice for two reasons. First, it does not scale well. Querying for one job status every few seconds does not take much effort, but querying for 100 takes quite a bit of time and puts unnecessary load on Tapis's servers. Second, polling provides what is effectively a binary response. It tells you whether a job is done or not done, it does not give you any information on what is actually going on with the job or where it is in the overall execution process.
+Polling is an incredibly effective approach, but it is bad practice for two reasons. First, it does not scale well. Querying for one job status every few seconds does not take much effort, but querying for 100 takes quite a bit of time and puts unnecessary load on Tapis's servers. Second, polling provides what is effectively a binary response. It tells you whether a job is done or not done, it does not give you any information on what is actually going on with the job or where it is in the overall execution process. Subscribing to any job event notification will automatically subscribe you to: `FINISHED`, `STOPPED`, `BLOCKED`, `PAUSED` and `FAILED` notifications.
 
 The job history URL provides much more detailed information on the various state changes, system messages, and progress information associated with data staging. The syntax of the job history URL is as follows:
 
