@@ -50,7 +50,7 @@ Once the app is vetted, your tenant admins will tell Tapis to publish the app. T
 
 .. code-block:: plaintext
 
-   apps-publish -v wc-1.00
+   tapis apps publish -v wc-1.00
 
 .. code-block:: json
 
@@ -401,7 +401,7 @@ Second, notice that the ``deploymentPath`` has changed. Previously the app's ass
 
 .. raw:: html
 
-   <aside class="notice">When an app is published, a zip archive is created of the private apps's <span class="code">deploymentPath</span> and coped to the public apps directory of the <span> class="code">deploymentSystem</span>. 
+   <aside class="notice">When an app is published, a zip archive is created of the private apps's <span class="code">deploymentPath</span> and coped to the public apps directory of the <span> class="code">deploymentSystem</span>.
    </aside>
 
 
@@ -420,7 +420,7 @@ It is not uncommon for the need to arise where you realize you need to update an
 
 .. code-block:: plaintext
 
-   apps-publish -v demo-pyplot-demo-advanced-0.1.0
+   tapis apps publish -v demo-pyplot-demo-advanced-0.1.0
 
 .. code-block:: json
 
@@ -782,7 +782,7 @@ Deleting a public app
 
 ..
 
-   Delete a public app  
+   Delete a public app
 
    .. code-block:: shell
 

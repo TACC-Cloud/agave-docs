@@ -20,9 +20,9 @@ CLI command to create a PostIt:
 
 .. code-block:: plaintext
 
-   postits-create \
+   tapis postits create \
    -m 10 \
-   -l 86400 \
+   -L 86400 \
    https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org/nryan/picksumipsum.txt
 
 .. container:: foldable
@@ -137,8 +137,8 @@ When creating a PostIt, you have the ability to limit the lifespan, number of us
 
 .. raw:: html
 
-   <p></p>   
-   <p></p>   
+   <p></p>
+   <p></p>
    <p></p>
 
 
@@ -154,7 +154,7 @@ To list all currently active PostIts, enter the following CLI command:
 
 .. code-block:: plaintext
 
-   postits-list -v
+   tapis postits list -v
 
 .. container:: foldable
 
@@ -248,7 +248,7 @@ Manually expiring a PostIt with CLI:
 
 .. code-block:: plaintext
 
-   postits-delete f61566c53bf3744185de4ac6c0c839b4
+   tapis postits delete f61566c53bf3744185de4ac6c0c839b4
 
 .. container:: foldable
 

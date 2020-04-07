@@ -363,7 +363,7 @@ Submitting an app description
 
 .. code-block:: plaintext
 
-   apps-addupdate -v -F app.json
+   tapis apps create -v app.json
 
 .. code-block:: json
 
@@ -723,7 +723,7 @@ Updating a registered app
 
 .. code-block:: plaintext
 
-   apps-addupdate -v -F app.json demo-pyplot-demo-advanced-0.1.0
+   tapis apps create -v app.json demo-pyplot-demo-advanced-0.1.0
 
 .. code-block:: json
 
