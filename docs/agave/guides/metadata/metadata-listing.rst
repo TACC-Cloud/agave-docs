@@ -31,7 +31,7 @@ Metadata details
 
      .. code-block:: shell
 
-        metadata-list -v 7341557475441971686-242ac11f-0001-012
+        tapis meta show -v 7341557475441971686-242ac11f-0001-012
 |
 
    The response will look something like the following:
@@ -46,46 +46,35 @@ Metadata details
      .. code-block:: json
 
         {
-          "uuid":"7341557475441971686-242ac11f-0001-012",
-          "schemaId":null,
-          "internalUsername":null,
-          "associationIds":[
-            "179338873096442342-242ac113-0001-002",
-            "6608339759546166810-242ac114-0001-007"
-          ],
-          "lastUpdated":"2016-08-29T05:51:39.908-05:00",
-          "name":"some metadata",
-          "value":{
-            "title":"Example Metadata",
-            "properties":{
-              "species":"arabidopsis",
-              "description":"A model plant organism..."
-            }
-          },
-          "created":"2016-08-29T05:43:18.618-05:00",
-          "owner":"nryan",
-          "_links":{
-            "self":{
-              "href":"https://api.tacc.utexas.edu/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
-            },
-            "permissions":{
-              "href":"https://api.tacc.utexas.edu/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
-            },
-            "owner":{
-              "href":"https://api.tacc.utexas.edu/profiles/v2/nryan"
-            },
-            "associationIds":[
-              {
-                "rel":"179338873096442342-242ac113-0001-002",
-                "href":"https://api.tacc.utexas.edu/files/v2/media/system/storage.example.com//",
-                "title":"file"
-              },
-              {
-                "rel":"6608339759546166810-242ac114-0001-007",
-                "href":"https://api.tacc.utexas.edu/jobs/v2/6608339759546166810-242ac114-0001-007",
-                "title":"job"
+          "uuid": "8102308815055426026-242ac116-0001-012",
+          "schemaId": null,
+          "internalUsername": null,
+          "owner": "sgopal",
+          "associationIds": [],
+          "name": "sgopal.c41109da13893b6f.200414T001817Z",
+          "value": {
+            "value": {
+              "title": "Example Metadata",
+              "properties": {
+                "species": "arabidopsis",
+                "description": "A model organism..."
               }
-            ]
+            },
+            "name": "mustard plant"
+          },
+          "created": "2020-04-13T19:18:17.567-05:00",
+          "lastUpdated": "2020-04-13T19:18:17.567-05:00",
+          "_links": {
+            "self": {
+              "href": "https://api.sd2e.org/meta/v2/data/8102308815055426026-242ac116-0001-012"
+            },
+            "permissions": {
+              "href": "https://api.sd2e.org/meta/v2/data/8102308815055426026-242ac116-0001-012/pems"
+            },
+            "owner": {
+              "href": "https://api.sd2e.org/profiles/v2/sgopal"
+            },
+            "associationIds": []
           }
         }
 |
@@ -142,46 +131,33 @@ Metadata browsing
 
         [
           {
-            "uuid": "7341557475441971686-242ac11f-0001-012",
-            "schemaId": null,
-            "internalUsername": null,
-            "associationIds": [
-              "179338873096442342-242ac113-0001-002",
-              "6608339759546166810-242ac114-0001-007"
-            ],
-            "lastUpdated": "2016-08-29T05:51:39.908-05:00",
-            "name": "some metadata",
+            "uuid": "8102308815055426026-242ac116-0001-012",
+            "owner": "sgopal",
+            "associationIds": [],
+            "name": "sgopal.c41109da13893b6f.200414T001817Z",
             "value": {
-              "title": "Example Metadata",
-              "properties": {
-                "species": "arabidopsis",
-                "description": "A model plant organism..."
-              }
+              "value": {
+                "title": "Example Metadata",
+                "properties": {
+                  "species": "arabidopsis",
+                  "description": "A model organism..."
+                }
+              },
+              "name": "mustard plant"
             },
-            "created": "2016-08-29T05:43:18.618-05:00",
-            "owner": "nryan",
+            "created": "2020-04-13T19:18:17.567-05:00",
+            "lastUpdated": "2020-04-13T19:18:17.567-05:00",
             "_links": {
               "self": {
-                "href": "https://api.tacc.utexas.edu/meta/v2/schemas/4736020169528054246-242ac11f-0001-013"
+                "href": "https://api.sd2e.org/meta/v2/data/8102308815055426026-242ac116-0001-012"
               },
               "permissions": {
-                "href": "https://api.tacc.utexas.edu/meta/v2/schemas/4736020169528054246-242ac11f-0001-013/pems"
+                "href": "https://api.sd2e.org/meta/v2/data/8102308815055426026-242ac116-0001-012/pems"
               },
               "owner": {
-                "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
+                "href": "https://api.sd2e.org/profiles/v2/sgopal"
               },
-              "associationIds": [
-                {
-                  "rel": "179338873096442342-242ac113-0001-002",
-                  "href": "https://api.tacc.utexas.edu/files/v2/media/system/storage.example.com//",
-                  "title": "file"
-                },
-                {
-                  "rel": "6608339759546166810-242ac114-0001-007",
-                  "href": "https://api.tacc.utexas.edu/jobs/v2/6608339759546166810-242ac114-0001-007",
-                  "title": "job"
-                }
-              ]
+              "associationIds": []
             }
           }
         ]

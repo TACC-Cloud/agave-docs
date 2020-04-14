@@ -17,10 +17,10 @@ Build a samtools application bundle
    cd $WORK
 
    # Set up a project directory
-   mkdir iPlant
-   mkdir iPlant/src
-   mkdir -p iPlant/samtools-0.1.19/stampede2/bin
-   mkdir -p iPlant/samtools-0.1.19/stampede2/test
+   mkdir tacc_prod
+   mkdir tacc_prod/src
+   mkdir -p tacc_prod/samtools-0.1.19/stampede2/bin
+   mkdir -p tacc_prod/samtools-0.1.19/stampede2/test
 
    # Build samtools using the Intel C Compiler
    # If you don't have icc, gcc will work but icc usually gives more efficient binaries
@@ -86,7 +86,7 @@ Now, author your script. You can paste the following code into a file called :ra
    #SBATCH -p development
    #SBATCH -t 00:30:00
    #SBATCH -n 16
-   #SBATCH -A iPlant-Collabs
+   #SBATCH -A tacc.prod
    #SBATCH -J test-samtools
    #SBATCH -o test-samtools.o%j
 
@@ -160,7 +160,7 @@ Rather than have you write a description for "samtools sort" from scratch, let's
 
 .. code-block:: shell
 
-   cd $WORK/iPlant/samtools-0.1.19/stampede2/
+   cd $WORK/tacc_prod/samtools-0.1.19/stampede2/
    wget 'https://github.com/TACC-Cloud/agave-docs/blob/doc_changes/docs/agave/guides/apps/samtools-sort.json'
 
 Open up samtools-sort.json in a text editor or in your web browser and follow along below.
@@ -198,25 +198,25 @@ To tell Tapis what files to stage into place before job execution, you need to d
 
 .. code-block:: json
 
-   {  
+   {
    "id":"inputBam",
-   "value":{  
+   "value":{
    "default":"",
    "order":0,
    "required":true,
    "validator":"",
    "visible":true
    },
-   "semantics":{  
-   "ontology":[  
+   "semantics":{
+   "ontology":[
    "http://sswapmeet.sswap.info/mime/application/X-bam"
    ],
    "minCardinality":1,
-   "fileTypes":[  
+   "fileTypes":[
    "raw-0"
    ]
    },
-   "details":{  
+   "details":{
    "description":"",
    "label":"The BAM file to sort",
    "argument":null,
@@ -243,9 +243,9 @@ Parameters are specified in a JSON array, and are broadly similar to inputs. Her
 
 .. code-block:: json
 
-   {  
+   {
      "id":"maxMemSort",
-     "value":{  
+     "value":{
        "default":"500000000",
        "order":1,
        "required":true,
@@ -253,12 +253,12 @@ Parameters are specified in a JSON array, and are broadly similar to inputs. Her
        "validator":"",
        "visible":true
      },
-     "semantics":{  
-       "ontology":[  
+     "semantics":{
+       "ontology":[
          "xs:integer"
        ]
      },
-     "details":{  
+     "details":{
        "description":null,
        "label":"Maxiumum memory in bytes, used for sorting",
        "argument":"-m",
@@ -275,25 +275,25 @@ While we don't support outputs 100% yet, Tapis apps are designed to participate 
 
 .. code-block:: json
 
-   {  
+   {
      "id":"bam",
-     "value":{  
+     "value":{
        "default":"sorted.bam",
        "order":0,
        "required":false,
        "validator":"",
        "visible":true
      },
-     "semantics":{  
-       "ontology":[  
+     "semantics":{
+       "ontology":[
          "http://sswapmeet.sswap.info/mime/application/X-bam"
        ],
        "minCardinality":1,
-       "fileTypes":[  
+       "fileTypes":[
          "raw-0"
        ]
      },
-     "details":{  
+     "details":{
        "description":"",
        "label":"Sorted BAM file",
        "argument":null,

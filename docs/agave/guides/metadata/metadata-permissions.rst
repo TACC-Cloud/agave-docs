@@ -23,7 +23,7 @@ The permissions available for Metadata and Metadata Schemata are listed in the f
      - User can view the resource
 
 
-:information_source: You need to change the uuids and usernames to for the queries below to work. 
+:information_source: You need to change the uuids and usernames to for the queries below to work.
 
 Listing all permissions
 -----------------------
@@ -54,8 +54,8 @@ Listing all permissions
 
      .. code-block:: shell
 
-        metadata-pems-list -u rclemens \
-            7341557475441971686-242ac11f-0001-012
+        tapis meta pems show -v\
+        8102308815055426026-242ac116-0001-012 sgopal
 |
 
    The response will look something like the following:
@@ -69,26 +69,24 @@ Listing all permissions
 
      .. code-block:: json
 
-        [
-          {
-            "username": "rclemens",
-            "permission": {
-              "read": true,
-              "write": true
+        {
+          "username": "sgopal",
+          "permission": {
+            "read": true,
+            "write": true
+          },
+          "_links": {
+            "self": {
+              "href": "https://api.sd2e.org/meta/v2/8102308815055426026-242ac116-0001-012/pems/sgopal"
             },
-            "_links": {
-              "self": {
-                "href": "https://api.tacc.utexas.edu/meta/v2/7341557475441971686-242ac11f-0001-012/pems/nryan"
-              },
-              "parent": {
-                "href": "https://api.tacc.utexas.edu/meta/v2/7341557475441971686-242ac11f-0001-012"
-              },
-              "profile": {
-                "href": "https://api.tacc.utexas.edu/meta/v2/nryan"
-              }
+            "parent": {
+              "href": "https://api.sd2e.org/meta/v2/8102308815055426026-242ac116-0001-012"
+            },
+            "profile": {
+              "href": "https://api.sd2e.org/meta/v2/sgopal"
             }
           }
-        ]
+        }
 |
 
 
@@ -191,8 +189,8 @@ Grant permissions
 
      .. code-block:: plaintext
 
-        metadata-pems-addupdate -u rclemens \
-            -p READ 7341557475441971686-242ac11f-0001-012
+        tapis meta pems grant -v 8102308815055426026-242ac116-0001-012 rclemens READ
+
 |
 
    Grant read and write access to a metadata item
@@ -220,8 +218,7 @@ Grant permissions
 
      .. code-block:: shell
 
-        metadata-pems-addupdate -u rclemens \
-            -p READ_WRITE 7341557475441971686-242ac11f-0001-012
+        tapis meta pems grant -v 8102308815055426026-242ac116-0001-012 rclemens READ
 |
 
    The response will look something like the following:
@@ -288,7 +285,7 @@ Delete single user permissions
 
      .. code-block:: shell
 
-        metadata-pems-delete -u rclemens 7341557475441971686-242ac11f-0001-012
+        tapis meta pems revoke 8102308815055426026-242ac116-0001-012 rclemens
 |
 
    An empty response will come back from the API.
@@ -328,7 +325,7 @@ Deleting all permissions
 
      .. code-block:: shell
 
-        metadata-pems-delete 7341557475441971686-242ac11f-0001-012
+        tapis meta pems drop 8102308815055426026-242ac116-0001-012
 |
 
    An empty response will be returned from the service.
