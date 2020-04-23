@@ -15,7 +15,7 @@ Discovering systems
 
 .. code-block:: plaintext
 
-   systems-list -v
+  tapis systems list -v
 
 .. container:: foldable
 
@@ -38,29 +38,31 @@ The response will be something like this:
        "id" : "user.storage",
        "name" : "Storage VM for the drug discovery portal",
        "type" : "STORAGE",
-       "description" : "SFTP on drugdiscovery for the drug discovery portal",
-       "status" : "UP",
-       "public" : true,
        "default" : false,
        "_links" : {
          "self" : {
            "href" : "https://api.tacc.utexas.edu/systems/v2/user.storage"
          }
-       }
+       },
+       "available": null,
+       "description" : "SFTP on drugdiscovery for the drug discovery portal",
+       "public" : true,
+       "status" : "UP",
      },
      {
        "id" : "docker.tacc.utexas.edu",
        "name" : "Demo Docker VM",
        "type" : "EXECUTION",
-       "description" : "Cloud VM used for Docker demonstrations and tutorials.",
-       "status" : "UP",
-       "public" : true,
        "default" : false,
        "_links" : {
          "self" : {
            "href" : "https://api.tacc.utexas.edu/systems/v2/docker.tacc.utexas.edu"
          }
-       }
+       },
+       "available": null,
+       "description" : "Cloud VM used for Docker demonstrations and tutorials.",
+       "public" : true,
+       "status" : "UP"
      }
    ]
 

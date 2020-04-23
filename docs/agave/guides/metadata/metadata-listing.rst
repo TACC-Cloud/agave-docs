@@ -19,7 +19,7 @@ Metadata details
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/6877878304112316906-242ac116-0001-012?pretty=true
 |
 
 .. container:: foldable
@@ -31,7 +31,7 @@ Metadata details
 
      .. code-block:: shell
 
-        tapis meta show -v 7341557475441971686-242ac11f-0001-012
+        tapis meta show -v 6877878304112316906-242ac116-0001-012
 |
 
    The response will look something like the following:
@@ -46,7 +46,7 @@ Metadata details
      .. code-block:: json
 
         {
-          "uuid": "8102308815055426026-242ac116-0001-012",
+          "uuid": "6877878304112316906-242ac116-0001-012",
           "schemaId": null,
           "internalUsername": null,
           "owner": "sgopal",
@@ -66,10 +66,10 @@ Metadata details
           "lastUpdated": "2020-04-13T19:18:17.567-05:00",
           "_links": {
             "self": {
-              "href": "https://api.sd2e.org/meta/v2/data/8102308815055426026-242ac116-0001-012"
+              "href": "https://api.sd2e.org/meta/v2/data/6877878304112316906-242ac116-0001-012"
             },
             "permissions": {
-              "href": "https://api.sd2e.org/meta/v2/data/8102308815055426026-242ac116-0001-012/pems"
+              "href": "https://api.sd2e.org/meta/v2/data/6877878304112316906-242ac116-0001-012/pems"
             },
             "owner": {
               "href": "https://api.sd2e.org/profiles/v2/sgopal"
@@ -115,7 +115,7 @@ Metadata browsing
 
      .. code-block:: plaintext
 
-        metadata-list -v -l 1
+        tapis meta list -v -l 1
 |
 
    The response will look something like the following:
@@ -131,7 +131,7 @@ Metadata browsing
 
         [
           {
-            "uuid": "8102308815055426026-242ac116-0001-012",
+            "uuid": "6877878304112316906-242ac116-0001-012",
             "owner": "sgopal",
             "associationIds": [],
             "name": "sgopal.c41109da13893b6f.200414T001817Z",
@@ -149,10 +149,10 @@ Metadata browsing
             "lastUpdated": "2020-04-13T19:18:17.567-05:00",
             "_links": {
               "self": {
-                "href": "https://api.sd2e.org/meta/v2/data/8102308815055426026-242ac116-0001-012"
+                "href": "https://api.sd2e.org/meta/v2/data/6877878304112316906-242ac116-0001-012"
               },
               "permissions": {
-                "href": "https://api.sd2e.org/meta/v2/data/8102308815055426026-242ac116-0001-012/pems"
+                "href": "https://api.sd2e.org/meta/v2/data/6877878304112316906-242ac116-0001-012/pems"
               },
               "owner": {
                 "href": "https://api.sd2e.org/profiles/v2/sgopal"

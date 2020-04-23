@@ -110,7 +110,7 @@ Creating Metadata
 
      .. code-block:: shell
 
-        meta create -v -V '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model organism..."}}, "name": "mustard plant"}'
+        tapis meta create -v -V '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model organism..."}}, "name": "mustard plant"}'
 |
 
    The response will look something like the following:
@@ -193,6 +193,7 @@ Updating Metadata
      .. code-block:: shell
 
         metadata-addupdate -v -F - 7341557475441971686-242ac11f-0001-012 <<<'{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model plant organism..."}}, "name": "some metadata", "associationIds":["179338873096442342-242ac113-0001-002","6608339759546166810-242ac114-0001-007"]}'
+        tapis meta update -v -V '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model plant organism..."}}, "name": "some metadata", "associationIds":["179338873096442342-242ac113-0001-002","6608339759546166810-242ac114-0001-007"]}' 9057222358650121750-242ac116-0001-012
 |
 
    The response will look something like the following:

@@ -42,7 +42,7 @@ Listing all permissions
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/6877878304112316906-242ac116-0001-012/pems/rclemens?pretty=true
 |
 
 .. container:: foldable
@@ -55,7 +55,7 @@ Listing all permissions
      .. code-block:: shell
 
         tapis meta pems show -v\
-        8102308815055426026-242ac116-0001-012 sgopal
+        6877878304112316906-242ac116-0001-012 sgopal
 |
 
    The response will look something like the following:
@@ -77,10 +77,10 @@ Listing all permissions
           },
           "_links": {
             "self": {
-              "href": "https://api.sd2e.org/meta/v2/8102308815055426026-242ac116-0001-012/pems/sgopal"
+              "href": "https://api.sd2e.org/meta/v2/6877878304112316906-242ac116-0001-012/pems/sgopal"
             },
             "parent": {
-              "href": "https://api.sd2e.org/meta/v2/8102308815055426026-242ac116-0001-012"
+              "href": "https://api.sd2e.org/meta/v2/6877878304112316906-242ac116-0001-012"
             },
             "profile": {
               "href": "https://api.sd2e.org/meta/v2/sgopal"
@@ -109,7 +109,7 @@ List permissions for a specific user
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
-            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/nryan?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/6877878304112316906-242ac116-0001-012/pems/nryan?pretty=true
 |
 
 .. container:: foldable
@@ -121,8 +121,8 @@ List permissions for a specific user
 
      .. code-block:: shell
 
-        metadata-pems-list -u rclemens \
-            7341557475441971686-242ac11f-0001-012
+        tapis meta pems show -v\
+        6877878304112316906-242ac116-0001-012 sgopal
 |
 
    The response will look something like the following:
@@ -137,20 +137,20 @@ List permissions for a specific user
      .. code-block:: json
 
         {
-          "username":"nryan",
+          "username":"sgopal",
           "permission":{
             "read":true,
             "write":true
           },
           "_links":{
             "self":{
-              "href":"https://api.tacc.utexas.edu/meta/v2/7341557475441971686-242ac11f-0001-012/pems/nryan"
+              "href":"https://api.tacc.utexas.edu/meta/v2/6877878304112316906-242ac116-0001-012/pems/sgopal"
             },
             "parent":{
-              "href":"https://api.tacc.utexas.edu/meta/v2/7341557475441971686-242ac11f-0001-012"
+              "href":"https://api.tacc.utexas.edu/meta/v2/6877878304112316906-242ac116-0001-012"
             },
             "profile":{
-              "href":"https://api.tacc.utexas.edu/meta/v2/nryan"
+              "href":"https://api.tacc.utexas.edu/meta/v2/sgopal"
             }
           }
         }
@@ -177,7 +177,7 @@ Grant permissions
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
             --data '{"permission":"READ"}'
-            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/6877878304112316906-242ac116-0001-012/pems/rclemens?pretty=true
 |
 
 .. container:: foldable
@@ -189,7 +189,7 @@ Grant permissions
 
      .. code-block:: plaintext
 
-        tapis meta pems grant -v 8102308815055426026-242ac116-0001-012 rclemens READ
+        tapis meta pems grant -v 6877878304112316906-242ac116-0001-012 rclemens READ
 
 |
 
@@ -206,7 +206,7 @@ Grant permissions
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
             --data '{"permission":"READ_WRITE"}'
-            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/6877878304112316906-242ac116-0001-012/pems/rclemens?pretty=true
 |
 
 .. container:: foldable
@@ -218,7 +218,7 @@ Grant permissions
 
      .. code-block:: shell
 
-        tapis meta pems grant -v 8102308815055426026-242ac116-0001-012 rclemens READ
+        tapis meta pems grant -v 6877878304112316906-242ac116-0001-012 rclemens READ_WRITE
 |
 
    The response will look something like the following:
@@ -240,13 +240,13 @@ Grant permissions
           },
           "_links": {
             "self": {
-              "href": "https://api.tacc.utexas.edu/meta/v2/7341557475441971686-242ac11f-0001-012/pems/rclemens"
+              "href": "https://api.tacc.utexas.edu/meta/v2/6877878304112316906-242ac116-0001-012/pems/rclemens"
             },
             "parent": {
-              "href": "https://api.tacc.utexas.edu/meta/v2/7341557475441971686-242ac11f-0001-012"
+              "href": "https://api.tacc.utexas.edu/meta/v2/6877878304112316906-242ac116-0001-012"
             },
             "profile": {
-              "href": "https://api.tacc.utexas.edu/meta/v2/jstubbs"
+              "href": "https://api.tacc.utexas.edu/meta/v2/sgopal"
             }
           }
         }
@@ -273,7 +273,7 @@ Delete single user permissions
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
             -X DELETE
-            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems/rclemens?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/6877878304112316906-242ac116-0001-012/pems/rclemens?pretty=true
 |
 
 .. container:: foldable
@@ -285,7 +285,7 @@ Delete single user permissions
 
      .. code-block:: shell
 
-        tapis meta pems revoke 8102308815055426026-242ac116-0001-012 rclemens
+        tapis meta pems revoke 6877878304112316906-242ac116-0001-012 rclemens
 |
 
    An empty response will come back from the API.
@@ -313,7 +313,7 @@ Deleting all permissions
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
             -X DELETE
-            https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems?pretty=true
+            https://api.tacc.utexas.edu/meta/v2/data/6877878304112316906-242ac116-0001-012/pems?pretty=true
 |
 
 .. container:: foldable
@@ -325,7 +325,7 @@ Deleting all permissions
 
      .. code-block:: shell
 
-        tapis meta pems drop 8102308815055426026-242ac116-0001-012
+        tapis meta pems drop 6877878304112316906-242ac116-0001-012
 |
 
    An empty response will be returned from the service.

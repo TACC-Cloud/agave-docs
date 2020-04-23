@@ -30,6 +30,7 @@ Metadata Searching
      .. code-block:: plaintext
 
         metadata-list -v -Q '{"name":"mustard+plant"}'
+        tapis meta search --name like "mustard"
 |
 
    The response will look something like the following:
