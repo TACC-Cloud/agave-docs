@@ -89,7 +89,7 @@ Using the API username, password, and keys from above, you can obtain an authent
 
 .. code-block:: plaintext
 
-   auth-tokens-create -S -v
+   tapis auth tokens create -v
 
 ..
 
