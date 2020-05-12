@@ -9,7 +9,7 @@ Schema can be provided in JSON Schema form. The service will validate that the s
 
 For more on JSON Schema please see :raw-html-m2r:`<a title="JSON Schema" href="http://json-schema.org/">http://json-schema.org/</a>`
 
-:information_source: The metadata service supports both JSON Schema v3 and v4. No additional work is needed on your part to specify which version you want to use, the service will autodetect the version and validate it accordingly. 
+:information_source: The metadata service supports both JSON Schema v3 and v4. No additional work is needed on your part to specify which version you want to use, the service will autodetect the version and validate it accordingly.
 
 To add a metadata schema to the repository:
 
@@ -240,4 +240,4 @@ Specifying schemata as $ref
 
 When building new JSON Schema definitions, it is often helpful to break each object out into its own definition and use ``$ref`` fields to reference them. The metadata service supports such references between metadata schema resources. Simply provide the fully qualified URL of another valid metadata schema resources as the value to a ``$ref`` field and Tapis will resolve the reference internally, applying the appropriate authentication and authorization for the requesting user to the request to the referenced resource.
 
-:warning: When using Tapis Metadata Schema as external references in a JSON Schema definition, make sure you grant at READ permission or greater to every referenced Tapis Metadata Schema resource needed to resolved the JSON Schema definition. 
+:warning: When using Tapis Metadata Schema as external references in a JSON Schema definition, make sure you grant at READ permission or greater to every referenced Tapis Metadata Schema resource needed to resolved the JSON Schema definition.

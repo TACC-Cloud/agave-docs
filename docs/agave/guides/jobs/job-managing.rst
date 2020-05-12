@@ -8,7 +8,7 @@ You can kill a job with the following CLI command:
 
 .. code-block:: plaintext
 
-   jobs-stop $JOB_ID
+   tapis jobs cancel $JOB_UUID
 
 .. container:: foldable
 
@@ -130,7 +130,7 @@ Often times you will want to rerun a previous job as part of a pipeline, automat
 
 .. code-block::
 
-   jobs-resubmit $JOB_ID
+   tapis jobs resubmit $JOB_UUID
 
 .. container:: foldable
 
@@ -162,4 +162,3 @@ Resubmission provides you the options to enforce as much or as little rigor as y
    * - preserveNotifications
      - boolean
      - Whether to recreate the notification of the original job for the resubmitted job.
-

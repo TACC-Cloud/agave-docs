@@ -117,7 +117,8 @@ List only public systems
 
 .. code-block:: plaintext
 
-   systems-list -v -P
+   tapis systems list -c id -c name -c type -c public -v -f table
+
 
 .. container:: foldable
 
@@ -177,7 +178,7 @@ System details
 
 .. code-block:: plaintext
 
-   systems-list -v api.tacc.cloud
+   tapis systems show -v hpc-tacc-jetstream
 
 .. container:: foldable
 
@@ -196,49 +197,92 @@ The response will be something like this:
 
 .. code-block:: json
 
-   {
-     "site": "drugdiscovery.tacc.utexas.edu",
-     "id": "user.storage",
-     "revision": 4,
-     "default": true,
-     "lastModified": "2018-09-30T21:43:11.000-05:00",
-     "status": "UP",
-     "description": "SFTP on drugdiscovery for the drug discovery portal",
-     "name": "Storage VM for the drug discovery portal",
-     "owner": "user",
-     "_links": {
-       "roles": {
-         "href": "https://api.tacc.utexas.edu/systems/v2/user.storage/roles"
-       },
-       "credentials": {
-         "href": "https://api.tacc.utexas.edu/systems/v2/user.storage/credentials"
-       },
-       "self": {
-         "href": "https://api.tacc.utexas.edu/systems/v2/user.storage"
-       },
-       "metadata": {
-         "href": "https://api.tacc.utexas.edu/meta/v2/data/?q=%7B%22associationIds%22%3A%224602981590618992154-242ac116-0001-006%22%7D"
-       }
-     },
-     "globalDefault": false,
-     "available": true,
-     "uuid": "0001431090358445-5056a550b8-0001-006",
-     "public": true,
-     "type": "STORAGE",
-     "storage": {
-       "mirror": false,
-       "port": 22,
-       "homeDir": "/home/user/storage",
-       "protocol": "SFTP",
-       "host": "drugdiscovery.tacc.utexas.edu",
-       "publicAppsDir": "/apps",
-       "proxy": null,
-       "rootDir": "/",
-       "auth": {
-         "type": "SSHKEYS"
-       }
-     }
-   }
+{
+  "id": "hpc-tacc-jetstream",
+  "name": "TACC Jetstream (Docker Host)",
+  "type": "EXECUTION",
+  "default": false,
+  "_links": {
+    "metadata": {
+    "href": "https://api.sd2e.org/meta/v2/data/?q=%7B%22associationIds%22%3A%228014294480571067929-242ac11a-0001-006%22%7D"
+    },
+    "roles": {
+    "href": "https://api.sd2e.org/systems/v2/hpc-tacc-jetstream/roles"
+    },
+    "self": {
+    "href": "https://api.sd2e.org/systems/v2/hpc-tacc-jetstream"
+    },
+    "history": {
+    "href": "https://api.sd2e.org/systems/v2/hpc-tacc-jetstream/history"
+    }
+  },
+  "available": true,
+  "description": "Linux container support via Docker 17.12.1-ce",
+  "environment": null,
+  "executionType": "CLI",
+  "globalDefault": false,
+  "lastModified": "2019-09-11T12:49:47.000-05:00",
+  "login": {
+    "proxy": null,
+    "protocol": "SSH",
+    "port": 22,
+    "auth": {
+      "type": "SSHKEYS"
+    },
+    "host": "129.114.17.137"
+    },
+    "maxSystemJobs": 10,
+  "maxSystemJobsPerUser": 10,
+  "owner": "sd2eadm",
+  "public": true,
+  "queues": [
+    {
+      "maxJobs": 128,
+      "maxMemoryPerNode": 1,
+      "default": false,
+      "maxRequestedTime": "00:15:00",
+      "name": "short",
+      "description": "Rapid turnaround jobs",
+      "maxNodes": 1,
+      "maxProcessorsPerNode": 1,
+      "mappedName": null,
+      "maxUserJobs": 10,
+      "customDirectives": "-A SD2E-Community"
+    },
+    {
+      "maxJobs": 8,
+      "maxMemoryPerNode": 1,
+      "default": false,
+      "maxRequestedTime": "168:00:00",
+      "name": "long",
+      "description": "Run up to a week",
+      "maxNodes": 1,
+      "maxProcessorsPerNode": 1,
+      "mappedName": null,
+      "maxUserJobs": 2,
+      "customDirectives": "-A SD2E-Community"
+    },
+  ],
+  "revision": 20,
+  "scheduler": "FORK",
+  "scratchDir": "",
+  "site": "jetstream-cloud.org",
+  "status": "UP",
+  "storage": {
+    "proxy": null,
+    "protocol": "SFTP",
+    "mirror": false,
+    "port": 22,
+    "auth": {
+      "type": "SSHKEYS"
+    },
+    "host": "129.114.17.137",
+    "rootDir": "/data/jobs",
+    "homeDir": "/"
+  },
+    "uuid": "8014294480571067929-242ac11a-0001-006",
+    "workDir": ""
+}
 
 To query for detailed information about a specific system, add the system id to the url and make another GET request.
 

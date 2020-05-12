@@ -9,7 +9,7 @@ Disable a system
 
 .. code-block:: plaintext
 
-   systems-disable $SYSTEM_ID
+   tapis systems disable $SYSTEM_ID
 
 .. container:: foldable
 
@@ -87,7 +87,7 @@ Enable a system
 
 .. code-block:: plaintext
 
-   systems-enable $SYSTEM_ID
+   tapis systems enable $SYSTEM_ID
 
 .. container:: foldable
 

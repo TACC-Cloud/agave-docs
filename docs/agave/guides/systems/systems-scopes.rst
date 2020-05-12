@@ -122,7 +122,7 @@ To publish a system and make it public, you make a PUT request on the system's u
 
 .. code-block:: plaintext
 
-   systems-publish -v $SYSTEM_ID
+   tapis systems publish -v $SYSTEM_ID
 
 .. container:: foldable
 
@@ -148,7 +148,7 @@ Unpublishing a system
 
 .. code-block:: plaintext
 
-   systems-unpublish -v $SYSTEM_ID
+   tapis systems unpublish -v $SYSTEM_ID
 
 .. container:: foldable
 
@@ -230,7 +230,7 @@ To set a system as the user's default, you make a PUT request on the system's ur
 
 .. code-block:: plaintext
 
-   systems-setdefault $SYSTEM_ID
+   tapis systems default set $SYSTEM_ID
 
 .. container:: foldable
 
@@ -256,7 +256,7 @@ Unsetting user default system
 
 .. code-block:: plaintext
 
-   systems-unsetdefault $SYSTEM_ID
+   tapis systems default unset $SYSTEM_ID
 
 .. container:: foldable
 
@@ -286,7 +286,7 @@ Tenant administrators may wish to set default storage and execution systems for 
 
 .. code-block:: plaintext
 
-   systems-setdefault -G $SYSTEM_ID
+   tapis systems default set -G $SYSTEM_ID
 
 .. container:: foldable
 
@@ -313,7 +313,7 @@ To remove a system from being the global default, make the same request with the
 
 .. code-block:: plaintext
 
-   systems-unsetdefault -G $SYSTEM_ID
+   tapis systems default unset -G $SYSTEM_ID
 
 .. container:: foldable
 

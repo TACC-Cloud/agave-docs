@@ -6,7 +6,7 @@ Create a new notification subscription with the following CLI command:
 
 .. code-block:: plaintext
 
-   notifications-addupdate -F notification.json
+   tapis notifications create -F notification.json
 
 .. container:: foldable
 
@@ -77,7 +77,7 @@ Create a new notification subscription with the following CLI command:
 Updating
 --------
 
-Updating a subscription is done identically to creation except that the form or JSON is POSTed to the existing subscription URL. An example of doing this using curl as well as the CLI is given below. 
+Updating a subscription is done identically to creation except that the form or JSON is POSTed to the existing subscription URL. An example of doing this using curl as well as the CLI is given below.
 
 The updated notification subscription object:
 
@@ -93,7 +93,7 @@ CLI command to update subscription, using the above JSON:
 
 .. code-block:: plaintext
 
-   notifications-addupdate -F notification.json 2699130208276770330-242ac114-0001-011
+   tapis notifications create -F notification.json 2699130208276770330-242ac114-0001-011
 
 .. container:: foldable
 
@@ -170,7 +170,7 @@ List all notificaiton subscriptions with the following CLI command:
 
 .. code-block:: plaintext
 
-   notifications-list -V
+   tapis notifications list -v
 
 .. container:: foldable
 
@@ -259,7 +259,7 @@ Unsubscribe from a notification subscription with the following CLI command:
 
 .. code-block:: plaintext
 
-   notifications-delete -V
+  tapis notificaitons delete 2699130208276770330-242ac114-0001-011
 
 .. container:: foldable
 
