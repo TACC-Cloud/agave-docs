@@ -58,7 +58,7 @@ optional arguments:
 
    As you will see, these two options will allow us to build a basic app description and highlight the major concepts of app registration. In the intermediate and advanced examples we will build on this example by exposing more of the pyplot options and demonstrating how Tapis can help you with data scheduling, parameter validation, and batch processing.
 
-   ### Runtime requirements  
+   ### Runtime requirements
 
    In order to run this app, the target execution system must have the following installed.
 
@@ -69,7 +69,7 @@ optional arguments:
 
    If you are following along on your local system, you will need to have these installed in order to run the wrapper script and invoke the pyplot Python code.
 
-   ### Creating the app JSON description  
+   ### Creating the app JSON description
 
    In order to register our example app, we need to create a JSON description of it so Tapis knows where it should run and how to run it. The JSON for our basic app is below.
 
@@ -98,7 +98,7 @@ optional arguments:
        "id": "dataset",
        "value": {
          "default": "agave://demo.storage.example.com/inputs/pyplot/dataset.csv",
-         "required": true 
+         "required": true
        },
        "details": {
          "label": "Dataset",
@@ -167,23 +167,23 @@ python $WRAPPERDIR/lib/main.py -v --output-location=$outdir --chart-type=${chart
 
    During processing, Tapis will replace all occurrences of `${dataset}` and `${chartType}` with the name of the input file that it staged to the job work directory (not the full path, just the file name) and the user-supplied `chartType` value. Depending on whether the execution system registered with Tapis uses a batch scheduler, specifies a custom environment, or requires other custom environment variables set, Tapis will prepend these values to the top of the file, resolve any other <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/" title="App Management Tutorial">predefined template variables</a> in the wrapper, and save the file in the job work folder and executed.
 
-   ### Things you don't worry about  
+   ### Things you don't worry about
 
-   #### Data staging  
+   #### Data staging
 
    Data will already be there before the app is run. If the data isn't available or the user didn't provide any, the job will fail before the wrapper template is processed.
 
-   #### Logging  
+   #### Logging
 
    Logging is handled for you by Tapis. Both stderr and stdout will be captured for CLI apps. On batch systems, the job log files are saved in the job work directory. All will be present in the job work directory or archive directory when the job completes.
 
-   #### App installation  
+   #### App installation
 
    This is a bit of a moot point since pyplot is Python, but Tapis handles the app staging for you by copying the `deploymentPath` from the `deploymentSystem` given in your app description to the job work folder on the `executionSystem`. As long as you can package up your app's assets into the `deploymentPath`, or ensure that they are already present on the system, you can run your app without dealing with pulling in dependencies, etc.
 
    Of course, you still have the option of including a build or compilation in your wrapper script. For throughput reasons, however, that may not be the best approach. For another option with much better portability and performance, see the <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/docker-app-containers-tutorial/" title="Docker App Containers Tutorial">Docker App Containers Tutorial</a>.
 
-   ### Testing the wrapper template  
+   ### Testing the wrapper template
 
    To test our wrapper template, we will create a new script in our test folder. The script will define the template variables Tapis would replace in the wrapper template at runtime. One perk of the wrapper templates being shell scripts is we can simply define our inputs and parameters as environment variables and bash will do the replacement for us.
 
@@ -208,11 +208,14 @@ Now that we have our wrapper script and app description, and we have tested it w
 
 .. code-block:: shell
 
-   files-mkdir -N apps/pyplot-demo-basic-0.1.0 -S demo.storage.example.com 
+   tapis files mkdir agave:// apps/pyplot-demo-basic-0.1.0
+   files-mkdir -N apps/pyplot-demo-basic-0.1.0 -S demo.storage.example.com
+   tapis files upload AGAVE_URI apps/pyplot-demo-basic-0.1.0
    files-upload -F wrapper.sh -S demo.storage.example.com apps/pyplot-demo-basic-0.1.0
+   tapis files upload AGAVE_URI FILEPATH
    files-upload -F test -S demo.storage.example.com apps/pyplot-demo-basic-0.1.0
 
-   apps-addupdate -F app.json
+   tapis apps create -F app.json
 
 That's it. Now we have our app ready to run with Tapis.
 
@@ -245,7 +248,7 @@ We can now submit this JSON to the jobs service to run our pyplot on the executi
 
 .. code-block:: shell
 
-   jobs-submit -W -F submit.json
+   tapis jobs submit -W -F submit.json
 
 When the job ends, you can use the ``jobs-output`` CLI script to retrieve the output. Here ``$JOB_ID`` is the id returned from the previous job submission.
 
@@ -254,4 +257,4 @@ Accessing job output
 
 .. code-block:: shell
 
-   jobs-output -P output/bar.png -D $JOB_ID
+   tapis jobs outputs get output/bar.png $FILE_UUID

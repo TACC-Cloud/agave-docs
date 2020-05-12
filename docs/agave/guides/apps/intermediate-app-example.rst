@@ -58,7 +58,7 @@ optional arguments:
 
    The result of these changes will be an app that is more flexible and error-resistant than its predecessor. To illustrate, we will look at a simple web application that exposes both apps to the end user and highlight the impact the changes have on the user experience.
 
-   ### Runtime requirements  
+   ### Runtime requirements
 
    In order to run this app, the target execution system must have the following installed.
 
@@ -69,7 +69,7 @@ optional arguments:
 
    If you are following along on your local system, you will need to have these installed in order to run the wrapper script and invoke the pyplot Python code.
 
-   ### Creating the app JSON description  
+   ### Creating the app JSON description
 
    The JSON for our intermediate app is below.
 
@@ -352,23 +352,23 @@ python $WRAPPERDIR/lib/main.py ${showYLabel} "${Y_LABEL}" "${X_LABEL}" ${SHOW_LE
 
    During processing, Tapis will replace all occurrences of `${dataset}`, `${chartType}`, `${xlabel}`, etc. with the name of the corresponding input or parameter value provided in the job description. Depending on whether the execution system registered with Tapis uses a batch scheduler, specifies a custom environment, or requires other custom environment variables set, Tapis will prepend these values to the top of the file, resolve any other <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/" title="App Management Tutorial">predefined template variables</a> in the wrapper, save the file in the job work directory, and run it.
 
-   ### Things you don't worry about  
+   ### Things you don't worry about
 
-   #### Data staging  
+   #### Data staging
 
    Data will already be there before the app is run. If the data isn't available or the user didn't provide any, the job will fail before the wrapper template is processed.
 
-   #### Logging  
+   #### Logging
 
    Logging is handled for you by Tapis. Both stderr and stdout will be captured for CLI apps. On batch systems, the job log files are saved in the job work directory. All will be present in the job work directory or archive directory when the job completes.
 
-   #### App installation  
+   #### App installation
 
    This is a bit of a moot point since pyplot is Python, but Tapis handles the app staging for you by copying the `deploymentPath` from the `deploymentSystem` given in your app description to the job work folder on the `executionSystem`. As long as you can package up your app's assets into the `deploymentPath`, or ensure that they are already present on the system, you can run your app without dealing with pulling in dependencies, etc.
 
    Of course, you still have the option of including a build or compilation in your wrapper script. For throughput reasons, however, that may not be the best approach. For another option with much better portability and performance, see the <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/docker-app-containers-tutorial/" title="Docker App Containers Tutorial">Docker App Containers Tutorial</a>.
 
-   ### Testing the wrapper template  
+   ### Testing the wrapper template
 
    To test our wrapper template, we will create a new script in our test folder. The script will define the template variables Tapis would replace in the wrapper template at runtime. One perk of the wrapper templates being shell scripts is we can simply define our inputs and parameters as environment variables and bash will do the replacement for us.
 
@@ -403,11 +403,11 @@ Now that we have our wrapper script and app description, and we have tested it w
 
 .. code-block:: shell
 
-   files-mkdir -N apps/pyplot-demo-intermediate-0.1.0 -S demo.storage.example.com 
+   files-mkdir -N apps/pyplot-demo-intermediate-0.1.0 -S demo.storage.example.com
    files-upload -F wrapper.sh -S demo.storage.example.com apps/pyplot-demo-intermediate-0.1.0
    files-upload -F test -S demo.storage.example.com apps/pyplot-demo-intermediate-0.1.0
 
-   apps-addupdate -F app.json
+   tapis apps create -F app.json
 
 That's it. Now we have our app ready to run with Tapis.
 

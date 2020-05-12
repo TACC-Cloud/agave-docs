@@ -24,7 +24,7 @@ Publish file item on your default storage system for public access
 
 .. code-block:: plaintext
 
-   files-pems-update -u public -p READ nryan/picksumipsum.txt
+   tapis files pems grant agave:// public READ
 
 .. container:: foldable
 
@@ -183,17 +183,17 @@ Publishing data through Tapis can be a great way to share and access data. There
 Large file publishing
 ^^^^^^^^^^^^^^^^^^^^^
 
-Before publishing your large datasets, take a step back and consider how you might leverage the Files or Transfers API to reliable serve up your data. HTTP is not the fastest way to serve up the data, and it may not be the best usage pattern for applications hoping to consume it. Thinking through your use case is well worth the time, even if publishing ends up being the best approach.  
+Before publishing your large datasets, take a step back and consider how you might leverage the Files or Transfers API to reliable serve up your data. HTTP is not the fastest way to serve up the data, and it may not be the best usage pattern for applications hoping to consume it. Thinking through your use case is well worth the time, even if publishing ends up being the best approach.
 
 Static website hosting
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Website hosting is a fairly common use case for data publishing. The challenge is that your assets are still hosted remotely from our API servers and fetched on demand. This can create some heavy latency when serving up lots of assets. Depending on the nature of your backend storage solution, it may not easily handle access patterns common to the web. In those situations, you may see some files fail to load from time to time. If your site has many files, even a small failure rate can keep your site from reliably loading. 
+Website hosting is a fairly common use case for data publishing. The challenge is that your assets are still hosted remotely from our API servers and fetched on demand. This can create some heavy latency when serving up lots of assets. Depending on the nature of your backend storage solution, it may not easily handle access patterns common to the web. In those situations, you may see some files fail to load from time to time. If your site has many files, even a small failure rate can keep your site from reliably loading.
 
 If you are going to use the file publishing service for web hosting, the following tips can help improve your overall experience.
 
 
 #. Whenever possible, reference versions of your css, fonts, and javascript dependencies hosted on public CDN. CloudFlare, Google, and Amazon all host public mirrors of the most popular javascript libraries and frameworks. Linking to those can greatly speed up your load time.
-#. Use a technology like ``Webpack`` to reduce the number of files needed to serve your application.  
-#. Lazy load your assets with ``oclazyload``\ , ``requirejs`` or including ``async`` attributes on your ``<script>`` elements.  
+#. Use a technology like ``Webpack`` to reduce the number of files needed to serve your application.
+#. Lazy load your assets with ``oclazyload``\ , ``requirejs`` or including ``async`` attributes on your ``<script>`` elements.
 #. Store your assets on a storage system with as little connection and protocol overhead as possible. That means avoiding tape archives, gridftp, overprovisioned shared resources, and systems only accessible through a proxied connection. While the service will still work in all of these situations, it is common for the overhead involved in establishing a connection and authenticating to take longer than the actual file transfer when the file is small. Simply avoiding slower storage protocols can greating speed up your application's load time.

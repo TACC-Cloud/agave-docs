@@ -91,7 +91,7 @@ One powerful, but potentially confusing feature of Tapis is its support for virt
    </table>
 |
 
-``homeDir`` specifies the path, relative to ``rootDir``\ , that Tapis should use for relative paths. Since Tapis is stateless, there is no concept of a current working directory. Thus, when you specify a path to Tapis that does not begin with a ``/``\ , Tapis will always prefix the path with the value of ``homeDir``. The following table gives several examples of how different combinations of ``rootDir``\ , ``homeDir``\ , and URL paths will be resolved by Tapis. 
+``homeDir`` specifies the path, relative to ``rootDir``\ , that Tapis should use for relative paths. Since Tapis is stateless, there is no concept of a current working directory. Thus, when you specify a path to Tapis that does not begin with a ``/``\ , Tapis will always prefix the path with the value of ``homeDir``. The following table gives several examples of how different combinations of ``rootDir``\ , ``homeDir``\ , and URL paths will be resolved by Tapis.
 
 
 .. raw:: html
@@ -208,11 +208,11 @@ Before we talk about how to do basic operations on your data, let's first talk a
 Uploading data
 --------------
 
-Uploading a file  
+Uploading a file
 
 .. code-block:: plaintext
 
-   files-upload -v -F files/picksumipsum.txt -S api.tacc.cloud nryan
+   tapis files upload agave:// files/picksumipsum.txt
 
 .. container:: foldable
 
@@ -304,7 +304,7 @@ You can also have Tapis download data from an external URL. Rather than making a
 
 To demonstrate how this works, we will import a README.md file from the :raw-html-m2r:`<a href="https://bitbucket.org/agaveapi/science-api-samples" title="Tapis Samples" target="_blank">Tapis Samples</a>` git repository in Bitbucket.
 
-Download a file from a web accessible URL  
+Download a file from a web accessible URL
 
 .. code-block:: plaintext
 
@@ -450,7 +450,7 @@ Listing a file or directory
 
 .. code-block:: plaintext
 
-   files-list -v -S api.tacc.cloud nryan
+   tapis files list -v agave://
 
 .. container:: foldable
 
@@ -553,7 +553,7 @@ Copying files and directories
 
 .. code-block:: plaintext
 
-   files-copy -D $DESTPATH -S api.tacc.cloud $PATH
+   tapis files copy AGAVE_URI, DESTINATION
 
 .. container:: foldable
 
@@ -581,7 +581,7 @@ Moving files and directories
 
 .. code-block:: plaintext
 
-   files-move -D $DESTPATH -S api.tacc.cloud $PATH
+   tapis files move AGAVE_URI, DESTINATION
 
 .. container:: foldable
 
@@ -633,7 +633,7 @@ Creating a new directory
 
 .. code-block:: plaintext
 
-   files-mkdir -N $NEWDIR -S api.tacc.cloud $PATH
+   tapis files mkdir AGAVE_URI DIRECTORY
 
 .. container:: foldable
 
@@ -659,8 +659,8 @@ Deleting a file item
 
 .. code-block:: plaintext
 
-   files-delete -S api.tacc.cloud $PATH
-
+   tapis files delete AGAVE_URI
+   
 .. container:: foldable
 
      .. container:: header

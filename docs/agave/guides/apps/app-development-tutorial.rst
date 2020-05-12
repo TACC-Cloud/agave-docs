@@ -38,12 +38,12 @@ package-name-version.dot.dot
    <li>(Optional) Share the app with some friends to let them test it</li>
    </ol>
 
-   ### Build a samtools application bundle  
+   ### Build a samtools application bundle
 
    ```shell
    #!/bin/bash
 
-   # Log into Stampede 
+   # Log into Stampede
    ssh stampede.tacc.utexas.edu
 
    # Unload system&#039;s samtools module if it happens to be loaded by default
@@ -53,10 +53,10 @@ package-name-version.dot.dot
    cd $WORK
 
    # Set up a project directory
-   mkdir iPlant
-   mkdir iPlant/src
-   mkdir -p iPlant/samtools-0.1.19/stampede/bin
-   mkdir -p iPlant/samtools-0.1.19/stampede/test
+   mkdir tacc_prod
+   mkdir tacc_prod/src
+   mkdir -p tacc_prod/samtools-0.1.19/stampede/bin
+   mkdir -p tacc_prod/samtools-0.1.19/stampede/test
 
    # Build samtools using the Intel C Compiler
    # If you don&#039;t have icc, gcc will work but icc usually gives more efficient binaries
@@ -82,7 +82,7 @@ package-name-version.dot.dot
                 sort        sort alignment file
                 mpileup     multi-way pileup...
 
-   # Package up the bin directory as an compressed archive 
+   # Package up the bin directory as an compressed archive
    # and remove the original. This preserves the execute bit
    # and other permissions and consolidates movement of all
    # bundled dependencies in bin to a single operation. You
@@ -127,7 +127,7 @@ Now, author your script. You can paste the following code into a file called :ra
    #SBATCH -p development
    #SBATCH -t 00:30:00
    #SBATCH -n 16
-   #SBATCH -A iPlant-Collabs 
+   #SBATCH -A iPlant-Collabs
    #SBATCH -J test-samtools
    #SBATCH -o test-samtools.o%j
 
@@ -144,11 +144,11 @@ Now, author your script. You can paste the following code into a file called :ra
    nameSort=0
 
    # Unpack the bin.tgz file containing samtools binaries
-   # If you are relying entirely on system-supplied binaries 
+   # If you are relying entirely on system-supplied binaries
    # you don&#039;t need this bit
    tar -xvf bin.tgz
    # Extend PATH to include binaries in bin
-   # If you need to extend lib, include, etc 
+   # If you need to extend lib, include, etc
    # the same approach is applicable
    export PATH=$PATH:"$PWD/bin"
 
@@ -181,7 +181,7 @@ Submit the job to the queue on Stampede...
 
 .. code-block:: shell
 
-   chmod 700 test-sort.sh 
+   chmod 700 test-sort.sh
    sbatch test-sort.sh
 
 You can monitor your jobs in the queue using
@@ -201,7 +201,7 @@ Rather than have you write a description for "samtools sort" from scratch, let's
 
 .. code-block:: shell
 
-   cd $WORK/iPlant/samtools-0.1.19/stampede/
+   cd $WORK/tacc_prod/samtools-0.1.19/stampede/
    cp $IPLANT_SDK_HOME/examples/samtools-0.1.19/stampede/samtools-sort.json .
 
 Open up samtools-sort.json in a text editor or :raw-html-m2r:`<a href="../examples/samtools-0.1.19/stampede/samtools-sort.json">in your web browser</a>` and follow along below.
@@ -278,9 +278,10 @@ Each time you (or another user) requests an instance of samtools sort, Tapis cop
 .. code-block:: shell
 
    # Check to see if you have an applications directory
-   files-list -S data.agaveapi.co $IPLANTUSERNAME/applications
+   tapis files list AGAVE_URI $IPLANTUSERNAME/applications
    # If you see: File/folder does not exist
    # then you need to create an applications directory
+   tapis files mkdir AGAVE_URI applications/
    files-mkdir -S data.agaveapi.co -N "applications" $IPLANTUSERNAME/
 
 [/tabgroup]
@@ -292,6 +293,7 @@ Now, go ahead with the upload:
    # cd out of the bundle
    cd $WORK/iPlant
    # Upload using files-upload
+   tapis files upload AGAVE_URI applications/samtools-0.1.19
    files-upload -S data.agaveapi.co -F samtools-0.1.19 $IPLANTUSERNAME/applications
 
 Post the app description to Tapis
@@ -313,7 +315,7 @@ Post the JSON file to Tapis's app service.
 
 .. code-block:: shell
 
-   apps-addupdate -F samtools-0.1.19/stampede/samtools-sort.json
+   tapis apps create -F samtools-0.1.19/stampede/samtools-sort.json
 
 
 .. raw:: html
@@ -328,7 +330,7 @@ Any time you need to update the metadata description of your non-public applicat
 
 .. code-block:: shell
 
-   apps-addupdate -F samtools-0.1.19/stampede/samtools-sort.json $IPLANTUSERNAME-samtools-sort-0.1.19
+   tapis apps update -F samtools-0.1.19/stampede/samtools-sort.json $IPLANTUSERNAME-samtools-sort-0.1.19
 
 The field :raw-html-m2r:`<em>$IPLANTUSERNAME-samtools-sort-0.1.19</em>` at the end is the appid you're updating. Tapis tries to guess from the JSON file but to remove uncertainty, we recommend always specifying it explicitly.
 
@@ -342,9 +344,9 @@ First, you may check to see if your new application shows up in the bulk listing
 .. code-block:: shell
 
    # Shows all apps that are public, private to you, or shared with you
-   apps-list 
+   tapis apps list
    # Show all apps on a specific system that are public, private to you, or shared with you
-   apps-list -S stampede.tacc.utexas.edu
+   tapis apps list -S stampede.tacc.utexas.edu
    # Show only your private apps
    apps-list --privateonly
 
@@ -354,6 +356,6 @@ You can print a detailed view, in JSON format, of any app description to your sc
 
 .. code-block:: shell
 
-   apps-list -v APP_ID
+   tapis apps show -v $APP_ID
 
 Take some time to review how the app description looks when printed from app-list relative to how it looked as a JSON file in your text editor. There are likely some additional fields present (generated by the Tapis service) and the presentation may differ from your expectation. Understanding the relationship between what the service returns and the input data structure is crucial for being able to debug effectively.

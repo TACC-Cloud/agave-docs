@@ -112,7 +112,7 @@ List the history of a file item
 
 .. code-block:: plaintext
 
-   files-history -v nryan/picksumipsum.txt
+   tapis files history -v agave:://
 
 .. container:: foldable
 
