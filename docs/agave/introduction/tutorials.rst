@@ -143,7 +143,7 @@ Job parameters used referred in the definition above are:
 .. code-block:: shell
 
     curl -sk -H "Authorization: Bearer $tok" -X POST -d @jobs.json \
-    -H "Content-Type: application/json" https://api.tacc.utexas.edu
+    -H "Content-Type: application/json" https://api.tacc.utexas.edu/jobs
 
 **Note:** Please make sure to run it from the same folder where you have created jobs.json
 You should see a message “Successfully submitted job job-id”. Everytime you submit a job, a unique job id is created.
