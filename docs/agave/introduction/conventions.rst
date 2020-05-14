@@ -111,7 +111,6 @@ Javascript dot notation will be used to refer to individual properties of JSON o
 * ``active`` refers to the top level ``active`` attribute in the response object.
 * ``lastCheck.[].result`` generically refers to the result attribute contained within any of the objects contained in the ``lastCheck`` array.
 * ``lastCheck.[0].result`` specifically refers to the result attribute contained within the first object in the ``lastCheck`` array.
-* ``_links.self.href`` refers to the href attribute in the checks object within the ``_links`` object.
 
 Versioning
 ----------
