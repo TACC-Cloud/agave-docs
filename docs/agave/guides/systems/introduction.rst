@@ -117,7 +117,7 @@ List only public systems
 
 .. code-block:: plaintext
 
-   tapis systems list -c id -c name -c type -c public -v -f table
+   tapis systems search --public eq TRUE
 
 
 .. container:: foldable

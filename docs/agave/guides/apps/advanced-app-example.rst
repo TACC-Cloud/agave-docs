@@ -571,9 +571,9 @@ Now that we have our wrapper script and app description, and we have tested it w
 
 .. code-block:: shell
 
-   files-mkdir -N apps/pyplot-demo-advanced-0.1.0 -S demo.storage.example.com
-   files-upload -F wrapper.sh -S demo.storage.example.com apps/pyplot-demo-advanced-0.1.0
-   files-upload -F test -S demo.storage.example.com apps/pyplot-demo-advanced-0.1.0
+   tapis files mkdir agave://tacc.work.taccuser/ apps/pyplot-demo-advanced-0.1.0
+   tapis files upload agave://tacc.work.taccuser/apps/pyplot-demo-advanced-0.1.0 wrapper.sh
+   tapis files upload agave://tacc.work.taccuser/apps/pyplot-demo-advanced-0.1.0 test
 
    tapis apps create -F app.json
 

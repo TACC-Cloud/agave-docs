@@ -789,10 +789,6 @@ Deleting a public app
       curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://public.tenants.agaveapi.co/apps/v2/demo-pyplot-demo-advanced-0.1.0u1
 
 
-.. code-block:: plaintext
-
-   apps-delete demo-pyplot-demo-advanced-0.1.0u1
-
 ..
 
    This will result in an empty success response

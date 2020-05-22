@@ -55,17 +55,6 @@ Creating schemata
             https://api.tacc.utexas.edu/meta/v2/schemas/
 |
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show Tapis CLI**
-
-     .. code-block:: shell
-
-        metadata-schema-addupdate -v -F schema.json
-|
 
    The response will look something like the following:
 
@@ -146,7 +135,7 @@ Updating schema
 
      .. code-block:: shell
 
-        metadata-addupdate -v -F - 4736020169528054246-242ac11f-0001-013 <<< '{ "title": "Example Schema", "type": "object", "properties": { "species": { "type": "string" }, "description": {"type":"string"} },"required": ["species"] }'
+        tapis meta update -v <<< '{ "title": "Example Schema", "type": "object", "properties": { "species": { "type": "string" }, "description": {"type":"string"} },"required": ["species"] }' 4736020169528054246-242ac11f-0001-013
 |
 
    The response will look something like the following:
@@ -216,17 +205,6 @@ Deleting schema
             https://api.tacc.utexas.edu/meta/v2/data/4736020169528054246-242ac11f-0001-013
 |
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show Tapis CLI**
-
-     .. code-block:: plaintext
-
-        metadata-schema-delete 4736020169528054246-242ac11f-0001-013
-|
 
    An empty response will be returned from the service.
 

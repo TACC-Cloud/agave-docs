@@ -112,7 +112,7 @@ List the history of a file item
 
 .. code-block:: plaintext
 
-   tapis files history -v agave:://
+   tapis files history -v agave:://tacc.work.taccuser/nryan/picksumipsum.txt
 
 .. container:: foldable
 

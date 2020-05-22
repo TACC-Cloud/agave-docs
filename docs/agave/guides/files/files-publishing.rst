@@ -24,7 +24,7 @@ Publish file item on your default storage system for public access
 
 .. code-block:: plaintext
 
-   tapis files pems grant agave:// public READ
+   tapis files pems grant agave://tacc.work.taccuser/nryan/picksumipsum.txt public READ
 
 .. container:: foldable
 
@@ -44,10 +44,6 @@ Publish file item on your default storage system for public access
 
 
 Publish file item on a named system for public access
-
-.. code-block:: plaintext
-
-   files-pems-update -u public -p READ -S data.iplantcollaborative.org nryan/picksumipsum.txt
 
 .. container:: foldable
 
@@ -100,9 +96,6 @@ Publishing directories
 
 Publish directory on your default storage system for public access
 
-.. code-block:: plaintext
-
-   files-pems-update --recursive -u public -p READ nryan/public
 
 .. container:: foldable
 
@@ -122,10 +115,6 @@ Publish directory on your default storage system for public access
 
 
 Publish directory on a named system for public access
-
-.. code-block:: plaintext
-
-   files-pems-update --recursive -u public -p READ -S data.iplantcollaborative.org nryan/public
 
 .. container:: foldable
 

@@ -76,9 +76,6 @@ By providing a retry policy where ``saveOnFailure`` is true, failed messages wil
 
 To query failed attempts for a specific notification, enter the following CLI command:
 
-.. code-block:: plaintext
-
-   notifications-list-failures 229681451607921126-8e1831906a8e-0001-042
 
 .. container:: foldable
 

@@ -34,7 +34,7 @@ List the permissions on a file item
 
 .. code-block:: plaintext
 
-   tapis files pems list agave://
+   tapis files pems list agave://tacc.work.taccuser/test_folder/picksumipsum.txt
 
 .. container:: foldable
 
@@ -87,7 +87,7 @@ List the permissions on a file item for a given user
 
 .. code-block:: plaintext
 
-   tapis files pems show agave:// rclemens
+   tapis files pems show agave://tacc.work.taccuser rclemens
 
 .. container:: foldable
 
@@ -135,7 +135,7 @@ Grant read access to a file item
 
 .. code-block:: plaintext
 
-   tapis files pems grant agave:// rclemens READ
+   tapis files pems grant agave://tacc.work.taccuser rclemens READ
 
 .. container:: foldable
 
@@ -158,7 +158,7 @@ Grant read and write access to a file item
 
 .. code-block:: plaintext
 
-   tapis files pems grant agave:// rclemens READ_WRITE
+   tapis files pems grant agave://tacc.work.taccuser rclemens READ_WRITE
 
 .. container:: foldable
 
@@ -214,7 +214,7 @@ Delete permission for single user on a file item
 
 .. code-block:: plaintext
 
-   tapis files pems revoke agave:// rclemens
+   tapis files pems revoke agave://tacc.work.taccuser rclemens
 
 .. container:: foldable
 
@@ -272,7 +272,7 @@ Delete all permissions on a file item
 
 .. code-block:: plaintext
 
-   tapis files pems drop agave:// 
+   tapis files pems drop agave://tacc.work.taccuser
 
 .. container:: foldable
 
@@ -304,9 +304,6 @@ Recursive operations
 
 Recursively delete all permissions on a directory
 
-.. code-block:: plaintext
-
-   files-pems-delete -S api.tacc.cloud nryan/directory
 
 .. container:: foldable
 

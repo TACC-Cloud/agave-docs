@@ -212,7 +212,7 @@ Uploading a file
 
 .. code-block:: plaintext
 
-   tapis files upload agave:// files/picksumipsum.txt
+   tapis files upload agave://tacc.work.taccuser files/picksumipsum.txt
 
 .. container:: foldable
 
@@ -306,11 +306,6 @@ To demonstrate how this works, we will import a README.md file from the :raw-htm
 
 Download a file from a web accessible URL
 
-.. code-block:: plaintext
-
-   files-import -v -U "https://bitbucket.org/agaveapi/science-api-samples/raw/master/README.md"
-       -S api.tacc.cloud nryan
-
 .. container:: foldable
 
      .. container:: header
@@ -365,10 +360,6 @@ Transferring data
 
 Transferring data between systems
 
-.. code-block:: plaintext
-
-   files-import -v -U "agave://stampede.tacc.utexas.edu//etc/motd" -S api.tacc.cloud nryan
-
 .. container:: foldable
 
      .. container:: header
@@ -394,9 +385,6 @@ In the example below, we will transfer a file from ``stampede.tacc.utexas.edu`` 
 
 One of the benefits of the Files service is that it frees you up to work in parallel and scale with your application demands. In the next example we will use the Files service to create redundant archives of a shared project directory.
 
-.. code-block:: plaintext
-
-   files-import -v -U "agave://api.tacc.cloud/nryan/foo_project" -S nryan.storage1
 
 .. container:: foldable
 
@@ -414,10 +402,6 @@ One of the benefits of the Files service is that it frees you up to work in para
             https://api.tacc.utexas.edu/files/v2/media/system/nryan.storage1/
 |
 
-
-.. code-block:: plaintext
-
-   files-import -v -U "agave://api.tacc.cloud/nryan/foo_project" -S nryan.storage2
 
 .. container:: foldable
 
@@ -450,7 +434,7 @@ Listing a file or directory
 
 .. code-block:: plaintext
 
-   tapis files list -v agave://
+   tapis files list -v agave://tacc.work.taccuser/
 
 .. container:: foldable
 
@@ -581,7 +565,7 @@ Moving files and directories
 
 .. code-block:: plaintext
 
-   tapis files move AGAVE_URI, DESTINATION
+   tapis files move AGAVE_URI DESTINATION
 
 .. container:: foldable
 
@@ -604,10 +588,6 @@ Moving can be performed on any remote system. Moving a file or directory will ov
 
 Renaming files and directories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: plaintext
-
-   files-rename -N $NEWNAME -S api.tacc.cloud $PATH
 
 .. container:: foldable
 
@@ -660,7 +640,7 @@ Deleting a file item
 .. code-block:: plaintext
 
    tapis files delete AGAVE_URI
-   
+
 .. container:: foldable
 
      .. container:: header

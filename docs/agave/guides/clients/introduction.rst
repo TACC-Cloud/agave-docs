@@ -5,7 +5,7 @@
 Clients and API Keys
 --------------------
 
-By now you already have a user account. Your user account identifies you to the web applications you interact with. A username and password is sufficient for interacting with an application because the application has a user interface, so it knows that the authenticated user is the same one interacting with it. The Tapis API does not have a user interface, so simply providing it a username and password is not sufficient. Tapis needs to know both the user on whose behalf it is acting as well as the client application that is making the call. Whereas every person has a single user account, they may leverage multiple services to do their daily work. 
+By now you already have a user account. Your user account identifies you to the web applications you interact with. A username and password is sufficient for interacting with an application because the application has a user interface, so it knows that the authenticated user is the same one interacting with it. The Tapis API does not have a user interface, so simply providing it a username and password is not sufficient. Tapis needs to know both the user on whose behalf it is acting as well as the client application that is making the call. Whereas every person has a single user account, they may leverage multiple services to do their daily work.
 
 In different types of Tapis interactions, the user is the same, but the context with which they interact with the Tapis is different. Further, the different Tapis interactions all involve client applications developed by the same organization. The situation is further complicated when one or more 3rd party client applications are used to leverage the infrastructure. Tapis needs to track both the users and client applications with whom it interacts. It does this through the issuance of API keys.
 
@@ -27,9 +27,6 @@ In order to interact with any of the Tapis APIs, you will need to first get a se
 
       curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "clientName=my_cli_app" -d "description=Client app used for scripting up cool stuff" https://api.tacc.utexas.edu/clients/v2
 
-.. code-block:: plaintext
-
-   clients-create -S -v -N my_cli_app -D "Client app used for scripting up cool stuff"
 
 ..
 
@@ -75,10 +72,6 @@ Listing your existing client applications
    .. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" https://api.tacc.utexas.edu/clients/v2
-
-.. code-block:: plaintext
-
-   clients-list -v
 
 ..
 
@@ -147,10 +140,6 @@ Deleting client registrations
 
       curl -sku "$API_USERNAME:$API_PASSWORD" -X DELETE https://api.tacc.utexas.edu/clients/v2/my_cli_app
 
-.. code-block:: plaintext
-
-   clients-delete -v my_cli_app
-
 ..
 
    The response to this call is simply a null result object.
@@ -171,9 +160,6 @@ Listing current subscriptions
 
       curl -sku "$API_USERNAME:$API_PASSWORD" https://api.tacc.utexas.edu/clients/v2/my_cli_app/subscriptions
 
-.. code-block:: plaintext
-
-   clients-subscriptions-list -v my_cli_app
 
 ..
 
@@ -239,9 +225,6 @@ Updating client subscriptions
 
       curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "name=transforms" https://api.tacc.utexas.edu/clients/v2/my_cli_app/subscriptions
 
-.. code-block:: plaintext
-
-   clients-subscriptions-update -v -N transforms my_cli_app
 
 ..
 
@@ -257,10 +240,6 @@ Updating client subscriptions
    .. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "name=*" https://api.tacc.utexas.edu/clients/v2/my_cli_app/subscriptions
-
-.. code-block:: plaintext
-
-   clients-subscriptions-update -v -N * my_cli_app
 
 ..
 

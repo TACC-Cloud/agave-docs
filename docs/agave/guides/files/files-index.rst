@@ -17,7 +17,7 @@ This service was driven by user requests over the last year. Some of the most co
 UUID generation
 ^^^^^^^^^^^^^^^
 
-The Files API does not return UUID for file items unless they are the target of an API request. That can force an excessive number of calls to the Files API just to get the UUID for all the file items in a directory. Users requested a way to assign uuid to each file item up front so they could subscribe to events, assign metadata, etc. 
+The Files API does not return UUID for file items unless they are the target of an API request. That can force an excessive number of calls to the Files API just to get the UUID for all the file items in a directory. Users requested a way to assign uuid to each file item up front so they could subscribe to events, assign metadata, etc.
 
 Directory syncrhronization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -37,7 +37,7 @@ Storage systems are often created by users explicitly to share with other users.
 The File Indexing Lifecycle
 ---------------------------
 
-When a directory is indexed, Tapis performs a directory listing on the requested path. It then compares the listing from the system with the  metadata it has about the directory from previous interactions with the system. Deletion events are thown for file items that are no longer present in the directory. Creation events are thrown for newly discovered file items. Once existence is established, Tapis collects the metadata for each file item by generating a UUID, assigning permissions, ownership, and timestamps, and persisting the metadata for use by the file listing service. 
+When a directory is indexed, Tapis performs a directory listing on the requested path. It then compares the listing from the system with the  metadata it has about the directory from previous interactions with the system. Deletion events are thown for file items that are no longer present in the directory. Creation events are thrown for newly discovered file items. Once existence is established, Tapis collects the metadata for each file item by generating a UUID, assigning permissions, ownership, and timestamps, and persisting the metadata for use by the file listing service.
 
 The full file indexing lifecycle is repeated every time the index service is requested on a path.
 
@@ -46,9 +46,6 @@ Indexing a directory
 
 Index a directory
 
-.. code-block:: plaintext
-
-   files-index -S data.agaveapi.co nryan
 
 ..
 
@@ -63,14 +60,10 @@ Index a directory
    {: .solution}
 
 
-The semantics for indexing a directory are nearly identical to listing a directory. Simply replace ``listing`` in the URL with ``index`` and an indexing task will be started. Once complete, a respnose with the indexed directory contents will be returned. Keep in mind that this can be a time consuming operation, so for large directories, your request may time out before a response is sent. As we covered in the section on :raw-html-m2r:`<a href="#the-file-indexing-lifecycle">The File Indexing Lifecycle</a>`\ , the operation will still complete and provide unique events to which you can subscribe for each file item indexed. 
+The semantics for indexing a directory are nearly identical to listing a directory. Simply replace ``listing`` in the URL with ``index`` and an indexing task will be started. Once complete, a respnose with the indexed directory contents will be returned. Keep in mind that this can be a time consuming operation, so for large directories, your request may time out before a response is sent. As we covered in the section on :raw-html-m2r:`<a href="#the-file-indexing-lifecycle">The File Indexing Lifecycle</a>`\ , the operation will still complete and provide unique events to which you can subscribe for each file item indexed.
 
 Indexing a file item
 --------------------
-
-.. code-block:: plaintext
-
-   files-index -S data.agaveapi.co nryan/picksumipsum.txt
 
 ..
 

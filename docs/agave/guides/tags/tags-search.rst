@@ -12,9 +12,6 @@ Tag Searching
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
        https://public.tenants.agaveapi.co/tags/v2?associationIds.eq=179338873096442342-242ac113-0001-002z
 
-.. code-block:: plaintext
-
-   tags-search -v associationIds.like=179338873096442342-242ac113-0001-002
 
 ..
 

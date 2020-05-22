@@ -208,12 +208,9 @@ Now that we have our wrapper script and app description, and we have tested it w
 
 .. code-block:: shell
 
-   tapis files mkdir agave:// apps/pyplot-demo-basic-0.1.0
-   files-mkdir -N apps/pyplot-demo-basic-0.1.0 -S demo.storage.example.com
-   tapis files upload AGAVE_URI apps/pyplot-demo-basic-0.1.0
-   files-upload -F wrapper.sh -S demo.storage.example.com apps/pyplot-demo-basic-0.1.0
-   tapis files upload AGAVE_URI FILEPATH
-   files-upload -F test -S demo.storage.example.com apps/pyplot-demo-basic-0.1.0
+   tapis files mkdir agave://tacc.work.taccuser/ apps/pyplot-demo-advanced-0.1.0
+   tapis files upload agave://tacc.work.taccuser/apps/pyplot-demo-advanced-0.1.0 wrapper.sh
+   tapis files upload agave://tacc.work.taccuser/apps/pyplot-demo-advanced-0.1.0 test
 
    tapis apps create -F app.json
 
@@ -248,7 +245,7 @@ We can now submit this JSON to the jobs service to run our pyplot on the executi
 
 .. code-block:: shell
 
-   tapis jobs submit -W -F submit.json
+   tapis jobs submit -F submit.json
 
 When the job ends, you can use the ``jobs-output`` CLI script to retrieve the output. Here ``$JOB_ID`` is the id returned from the previous job submission.
 
@@ -257,4 +254,4 @@ Accessing job output
 
 .. code-block:: shell
 
-   tapis jobs outputs get output/bar.png $FILE_UUID
+   tapis jobs outputs download $FILE_UUID

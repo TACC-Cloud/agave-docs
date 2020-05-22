@@ -23,7 +23,7 @@ Discovering Apps
 
 .. code-block:: plaintext
 
-   apps-list -v
+   tapis apps list -v
 
 .. code-block:: json
 

@@ -110,7 +110,7 @@ First, you will need some test data in your current directory (i.e., $WORK/iPlan
 
 .. code-block:: shell
 
-   files-get -S data.agaveapi.co /shared/iplantcollaborative/example_data/Samtools_mpileup/ex1.bam
+   tapis files download agave://tacc.work.taccusershared/iplantcollaborative/example_data/Samtools_mpileup/ex1.bam
 
 or you can any other BAM file for your testing purposes. Make sure if you use another file to change the filename in your test script accordingly!
 
@@ -282,7 +282,6 @@ Each time you (or another user) requests an instance of samtools sort, Tapis cop
    # If you see: File/folder does not exist
    # then you need to create an applications directory
    tapis files mkdir AGAVE_URI applications/
-   files-mkdir -S data.agaveapi.co -N "applications" $IPLANTUSERNAME/
 
 [/tabgroup]
 
@@ -294,7 +293,6 @@ Now, go ahead with the upload:
    cd $WORK/iPlant
    # Upload using files-upload
    tapis files upload AGAVE_URI applications/samtools-0.1.19
-   files-upload -S data.agaveapi.co -F samtools-0.1.19 $IPLANTUSERNAME/applications
 
 Post the app description to Tapis
 ---------------------------------
@@ -348,7 +346,7 @@ First, you may check to see if your new application shows up in the bulk listing
    # Show all apps on a specific system that are public, private to you, or shared with you
    tapis apps list -S stampede.tacc.utexas.edu
    # Show only your private apps
-   apps-list --privateonly
+   tapis apps list 
 
 You should see :raw-html-m2r:`<em>your new app ID</em>` in "apps-list" and "apps-list --privateonly" but not "apps-list -S stampede.tacc.utexas.edu". Why do you think this is the case? Give up? It's because your new app is not registered to the public iPlant-maintained executionSystem called "stampede.tacc.utexas.edu" and so is filtered from display.
 

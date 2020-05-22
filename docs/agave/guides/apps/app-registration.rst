@@ -1076,8 +1076,5 @@ Deleting an app
 
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://public.tenants.agaveapi.co/apps/v2/demo-pyplot-demo-advanced-0.1.0?pretty=true
 
-.. code-block:: plaintext
-
-   apps-delete demo-pyplot-demo-advanced-0.1.0
 
 Deleting an app is done by calling a HTTP DELETE on an app's URL. Note that deleting an app does not make its id available for reuse.

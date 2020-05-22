@@ -161,10 +161,6 @@ Similarly, to enable a monitor, make a PUT request with the a field name ``actio
 Deleting systems
 ----------------
 
-.. code-block:: plaintext
-
-   systems-delete $SYSTEM_ID
-
 .. container:: foldable
 
      .. container:: header

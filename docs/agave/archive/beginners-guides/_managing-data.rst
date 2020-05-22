@@ -16,7 +16,7 @@ Directory listing
 
 .. code-block:: plaintext
 
-   files-list -v -S data.agaveapi.co $API_USERNAME
+   files-list -v files-list -v -S data.agaveapi.co $API_USERNAME
 
 .. code-block:: json
 
@@ -83,7 +83,7 @@ Uploading data
        "uuid": "0001409758089943-5056a550b8-0001-002"
    }
 
-You may upload data to a remote systems by performing a multipart POST on the FILES service. Using the CLI, recursive directory uploads are supported. If you are manually calling curl, you will need to manually create the directories and upload the local contents one at a time. You can take a look in the ``files-upload`` script to see how this is done. Let's keep moving forward with our lesson by uploading a file we can use in the rest of this section. 
+You may upload data to a remote systems by performing a multipart POST on the FILES service. Using the CLI, recursive directory uploads are supported. If you are manually calling curl, you will need to manually create the directories and upload the local contents one at a time. You can take a look in the ``files-upload`` script to see how this is done. Let's keep moving forward with our lesson by uploading a file we can use in the rest of this section.
 
 You will see a progress bar while the file uploads, followed by a response from the server with a description of the uploaded file. Tapis does not block during data movement operations, so it may be just a second before the file physically shows up on the remote system.
 
@@ -92,12 +92,12 @@ Importing data from a URL
 
 .. code-block:: shell
 
-   curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" 
-       -H "Content-Type: application/json" 
-       -X POST -F "fileToUpload=@" 
+   curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
+       -H "Content-Type: application/json"
+       -X POST -F "fileToUpload=@"
        https://public.tenants.agaveapi.co/files/v2/media/data.agaveapi.co/$API_USERNAME
-   { 
-     "url": "https://bitbucket.org/agaveapi/science-api-samples/raw/master/README.md" 
+   {
+     "url": "https://bitbucket.org/agaveapi/science-api-samples/raw/master/README.md"
    }
 
 .. code-block:: plaintext
@@ -116,7 +116,7 @@ Transferring data between systems
 .. code-block:: shell
 
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -F "fileToUpload=@" https://public.tenants.agaveapi.co/files/v2/media/data.agaveapi.co/$API_USERNAME
-   { 
+   {
      "url": "agave://stampede.tacc.utexas.edu//etc/motd"
    }
 

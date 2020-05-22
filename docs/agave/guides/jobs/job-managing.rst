@@ -104,9 +104,6 @@ Deleting a job
 
 Over time the number of jobs you have run can grow rather large. You can delete jobs to remove them from your listing results, with the following CLI command:
 
-.. code-block:: plaintext
-
-   jobs-delete $JOB_ID
 
 .. container:: foldable
 

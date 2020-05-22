@@ -11,9 +11,6 @@ Cloning an existing system will create a new system, with a new id, and all attr
 
 To clone a system, you make a PUT request on the system's url and pass it a new system id.
 
-.. code-block:: plaintext
-
-   systems-clone -v -I systest.demo.clone $SYSTEM_ID
 
 ..
 
