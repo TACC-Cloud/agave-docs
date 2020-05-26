@@ -30,14 +30,7 @@ Creating
 
 Create a user account with the following CLI command:
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -X POST \
@@ -255,14 +248,7 @@ Updating
 
 Update a user profile with the following CLI command:
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -X PUT
@@ -311,14 +297,7 @@ Deleting
 Delete a user profile with the following CLI command:
 
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
           -X DELETE https://api.tacc.utexas.edu/profiles/v2/testuser

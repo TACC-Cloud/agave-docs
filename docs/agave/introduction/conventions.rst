@@ -327,6 +327,9 @@ Formatting
 
 By default, all responses are serialized JSON. To receive pre-formatted JSON, add ``pretty=true`` to any query string.
 
+.. note::
+   The tapis-cli also produces a table formatted output.
+
 Pagination
 ----------
 

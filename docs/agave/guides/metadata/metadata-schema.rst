@@ -191,14 +191,7 @@ Deleting schema
 
    Delete a metadata schema
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
             -X DELETE

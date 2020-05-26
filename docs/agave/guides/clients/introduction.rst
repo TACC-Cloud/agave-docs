@@ -16,23 +16,17 @@ Creating a new client application
 
 In order to interact with any of the Tapis APIs, you will need to first get a set of API keys. You can get your API keys from the Clients service. The example below shows how to get your API keys using both curl and the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/tooling/command-line-interface.html" title="Tapis CLI">Tapis CLI</a>`.
 
-.. container:: foldable
 
-   .. container:: header
-
-      :fa:`caret-right`
-      **Show curl**
-
-   .. code-block:: shell
+.. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "clientName=my_cli_app" -d "description=Client app used for scripting up cool stuff" https://api.tacc.utexas.edu/clients/v2
 
 
 ..
 
-   Note: the -S option will store the new API keys for future use so you don't need to manually enter then when you authenticate later.
+Note: the -S option will store the new API keys for future use so you don't need to manually enter then when you authenticate later.
 
-   The response to this call will look something like:
+The response to this call will look something like:
 
 
 .. code-block:: json
@@ -62,20 +56,13 @@ Your API keys should be kept in a secure place and not shared with others. This 
 Listing your existing client applications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. container:: foldable
-
-   .. container:: header
-
-      :fa:`caret-right`
-      **Show curl**
-
-   .. code-block:: shell
+.. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" https://api.tacc.utexas.edu/clients/v2
 
 ..
 
-   The response to this call will look something like:
+The response to this call will look something like:
 
 
 .. code-block:: json
@@ -130,19 +117,13 @@ Over time you may develop several client applications. Managing several sets of 
 Deleting client registrations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. container:: foldable
-
-   .. container:: header
-
-      :fa:`caret-right`
-      **Show curl**
-   .. code-block:: shell
+.. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" -X DELETE https://api.tacc.utexas.edu/clients/v2/my_cli_app
 
 ..
 
-   The response to this call is simply a null result object.
+The response to this call is simply a null result object.
 
 
 At some point you may need to delete a client. You can do this by requesting a DELETE on your client in the Clients service.
@@ -150,20 +131,14 @@ At some point you may need to delete a client. You can do this by requesting a D
 Listing current subscriptions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. container:: foldable
-
-   .. container:: header
-
-      :fa:`caret-right`
-      **Show curl**
-   .. code-block:: shell
+.. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" https://api.tacc.utexas.edu/clients/v2/my_cli_app/subscriptions
 
 
 ..
 
-   The response to this call will look something like:
+The response to this call will look something like:
 
 
 .. code-block:: json
@@ -215,29 +190,17 @@ When you register a new client application and get your API keys, you are given 
 Updating client subscriptions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. container:: foldable
-
-   .. container:: header
-
-      :fa:`caret-right`
-      **Show curl**
-   .. code-block:: shell
+.. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "name=transforms" https://api.tacc.utexas.edu/clients/v2/my_cli_app/subscriptions
 
 
 ..
 
-   You can also use a wildcard to resubscribe to all active APIs.
+You can also use a wildcard to resubscribe to all active APIs.
 
 
-.. container:: foldable
-
-   .. container:: header
-
-      :fa:`caret-right`
-      **Show curl**
-   .. code-block:: shell
+.. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "name=*" https://api.tacc.utexas.edu/clients/v2/my_cli_app/subscriptions
 

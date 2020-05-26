@@ -23,14 +23,7 @@ Creating Monitors
 Create a new default monitor with the following command:
 
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
             -H "Content-Type: application-json" \
@@ -96,14 +89,7 @@ Custom frequency and start time
 Create a monitor with a custom frequency with the following command:
 
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
             -H "Content-Type: application-json" \
@@ -177,14 +163,7 @@ Automating system status updates
 Create a monitor that updates system status on change with the following command:
 
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
             -H "Content-Type: application-json" \
@@ -252,14 +231,8 @@ Updating an existing monitor
 
 Update an existing monitor with the following command:
 
-.. container:: foldable
 
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
             -H "Content-Type: application-json" \
@@ -323,14 +296,8 @@ Disabling an existing monitor
 
 Disable an existing monitor with the following command:
 
-.. container:: foldable
 
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
             -H "Content-Type: application/json"
@@ -393,14 +360,8 @@ Enabling an existing monitor
 
 Enable an existing monitor with the following command:
 
-.. container:: foldable
 
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
             -H "Content-Type: application/json"
@@ -462,14 +423,7 @@ Deleting a monitor
 
 Deleting an existing monitor with the following command:
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
             -H "Content-Type: application/json"
@@ -492,14 +446,7 @@ Monitor Checks
 Listing past monitor checks with the following command:
 
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
             'https://api.tacc.utexas.edu/monitors/v2/5024717285821443610-242ac11f-0001-014/checks?limit=1'
@@ -555,14 +502,7 @@ Searching check history
 Searching check history for a monitor with the following command:
 
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN"
             'https://api.tacc.utexas.edu/monitors/v2/5024717285821443610-242ac11f-0001-014/checks?limit=1&result.eq=PASSED'
@@ -614,14 +554,7 @@ Manually running a check
 Force a monitor check to run with the following command:
 
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
             -H "Content-Type: application-json" \
@@ -681,14 +614,7 @@ History
 
 List the change history of a monitor with the following command:
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $AUTH_TOKEN" \
             -H "Content-Type: application-json" \

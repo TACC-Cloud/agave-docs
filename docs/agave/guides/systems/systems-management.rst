@@ -161,14 +161,7 @@ Similarly, to enable a monitor, make a PUT request with the a field name ``actio
 Deleting systems
 ----------------
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |

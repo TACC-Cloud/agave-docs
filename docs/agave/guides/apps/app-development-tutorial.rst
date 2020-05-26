@@ -60,7 +60,7 @@ package-name-version.dot.dot
 
    # Build samtools using the Intel C Compiler
    # If you don&#039;t have icc, gcc will work but icc usually gives more efficient binaries
-   cd iPlant/src
+   cd tacc_prod/src
    wget "http://downloads.sourceforge.net/project/samtools/samtools/0.1.19/samtools-0.1.19.tar.bz2"
    tar -jxvf samtools-0.1.19.tar.bz2
    cd samtools-0.1.19
@@ -346,7 +346,7 @@ First, you may check to see if your new application shows up in the bulk listing
    # Show all apps on a specific system that are public, private to you, or shared with you
    tapis apps list -S stampede.tacc.utexas.edu
    # Show only your private apps
-   tapis apps list 
+   tapis apps list
 
 You should see :raw-html-m2r:`<em>your new app ID</em>` in "apps-list" and "apps-list --privateonly" but not "apps-list -S stampede.tacc.utexas.edu". Why do you think this is the case? Give up? It's because your new app is not registered to the public iPlant-maintained executionSystem called "stampede.tacc.utexas.edu" and so is filtered from display.
 

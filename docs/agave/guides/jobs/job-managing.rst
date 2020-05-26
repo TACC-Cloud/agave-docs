@@ -105,14 +105,7 @@ Deleting a job
 Over time the number of jobs you have run can grow rather large. You can delete jobs to remove them from your listing results, with the following CLI command:
 
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://api.tacc.utexas.edu/jobs/v2/$JOB_ID
 |

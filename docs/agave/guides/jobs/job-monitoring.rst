@@ -21,7 +21,7 @@ Polling for your job status works the same way. After submitting your job, you s
 
 .. code-block::
 
-   tapis jobs list -v
+   tapis jobs list -v $JOB_ID
    tapis jobs show -v $JOB_ID
    tapis jobs show $JOB_UUID
 

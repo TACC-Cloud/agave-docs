@@ -69,7 +69,7 @@ First, you will need some test data in your current directory (i.e., $WORK/iPlan
 
 .. code-block:: shell
 
-   files-get -S data.iplantcollaborative.org /shared/iplantcollaborative/example_data/Samtools_mpileup/ex1.bam
+   tapis files download agave://tacc.work.taccusershared/iplantcollaborative/example_data/Samtools_mpileup/ex1.bam
 
 or you can any other BAM file for your testing purposes. Make sure if you use another file to change the filename in your test script accordingly!
 
@@ -349,3 +349,7 @@ Now, open sort.template in the text editor of your choice. Delete the bash sheba
 
    # Now, delete the bin/ directory
    rm -rf bin
+
+.. note::
+   Another example to create a custom app using the tapis-cli can be found
+   at `Create a custom App Example <https://tapis-cli-how-to-guide.readthedocs.io/en/latest/advanced-api/create_a_custom_app.html>`_

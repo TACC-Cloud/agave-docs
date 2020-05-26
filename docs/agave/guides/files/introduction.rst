@@ -589,14 +589,7 @@ Moving can be performed on any remote system. Moving a file or directory will ov
 Renaming files and directories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
