@@ -537,7 +537,7 @@ Copying files and directories
 
 .. code-block:: plaintext
 
-   tapis files copy AGAVE_URI, DESTINATION
+   tapis files copy AGAVE_URI DESTINATION
 
 .. container:: foldable
 

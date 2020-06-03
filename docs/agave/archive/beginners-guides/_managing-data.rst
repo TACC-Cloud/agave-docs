@@ -16,7 +16,7 @@ Directory listing
 
 .. code-block:: plaintext
 
-   files-list -v files-list -v -S data.agaveapi.co $API_USERNAME
+   files-list -v -S data.agaveapi.co $API_USERNAME
 
 .. code-block:: json
 

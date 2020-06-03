@@ -8,7 +8,6 @@ To make tracking the output of a specific job easier to do, the Jobs service pro
 
 .. code-block::
 
-   tapis jobs outputs list $JOB_ID
    tapis jobs outputs list -v $JOB_ID
 
 .. container:: foldable
