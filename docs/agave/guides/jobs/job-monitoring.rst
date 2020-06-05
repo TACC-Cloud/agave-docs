@@ -21,9 +21,9 @@ Polling for your job status works the same way. After submitting your job, you s
 
 .. code-block::
 
-   jobs-list -v
-   jobs-list -v $JOB_ID
-   jobs-list $JOB_ID
+   tapis jobs list -v $JOB_ID
+   tapis jobs show -v $JOB_ID
+   tapis jobs show $JOB_UUID
 
 .. container:: foldable
 
@@ -235,7 +235,7 @@ The job history URL provides much more detailed information on the various state
 
 .. code-block::
 
-   jobs-history -v $JOB_ID
+   tapis jobs history -v $JOB_UUID
 
 .. container:: foldable
 
@@ -458,4 +458,3 @@ In situations where you do not have a persistent web address, or access to a bac
    /agave.prod/$API_USERNAME/$JOB_ID
    ```
    -->
-

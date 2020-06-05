@@ -28,10 +28,6 @@ Resolving a single UUID
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
        https://api.tacc.utexas.edu/uuid/v2/0001409758089943-5056a550b8-0001-002
 
-.. code-block:: plaintext
-
-   uuid-lookup -v 0001409758089943-5056a550b8-0001-002
-
 ..
 
    The response will look something like this:
@@ -63,10 +59,6 @@ Expanding a UUID query
 
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
        https://api.tacc.utexas.edu/uuid/v2/0001409758089943-5056a550b8-0001-002?expand=true&pretty=true
-
-.. code-block:: plaintext
-
-   uuid-lookup -v -e 0001409758089943-5056a550b8-0001-002
 
 ..
 
@@ -112,7 +104,7 @@ Resolving multiple UUID
 
 ..
 
-   Resolving multiple UUID.  
+   Resolving multiple UUID.
 
 
 .. code-block:: shell
@@ -120,13 +112,9 @@ Resolving multiple UUID
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
        https://api.tacc.utexas.edu/uuid/v2/?uuids.eq=0001409758089943-5056a550b8-0001-002,0001414144065563-5056a550b8-0001-007?expand=true&pretty=true
 
-.. code-block:: plaintext
-
-   uuid-lookup -v -E 0001409758089943-5056a550b8-0001-002 0001414144065563-5056a550b8-0001-007
-
 ..
 
-   The response will be similar to the following.  
+   The response will be similar to the following.
 
 
 .. code-block:: json
@@ -169,10 +157,6 @@ Expanding multiple UUID
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
        https://api.tacc.utexas.edu/uuid/v2/?uuids.eq=0001409758089943-5056a550b8-0001-002,0001414144065563-5056a550b8-0001-007?expand=true&pretty=true
 
-.. code-block:: plaintext
-
-   uuid-lookup -v -e 0001409758089943-5056a550b8-0001-002 0001414144065563-5056a550b8-0001-007
-
 ..
 
    The response will include an array of the expanded representations in the order they were requested in the URL query.
@@ -184,7 +168,7 @@ Expanding multiple UUID
 
         :fa:`caret-right`
         **Show json response**
-        
+
      .. code-block:: json
 
         [

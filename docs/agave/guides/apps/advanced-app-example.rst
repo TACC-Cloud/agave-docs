@@ -58,7 +58,7 @@ optional arguments:
 
    The result of these changes will be an app that is more flexible and error-resistant than its predecessor. To illustrate, we will look at a simple web application that exposes both apps to the end user and highlight the impact the changes have on the user experience.
 
-   ### Runtime requirements <a name="runtime-requirements"></a>  
+   ### Runtime requirements <a name="runtime-requirements"></a>
 
    In order to run this app, the target execution system must have the following installed.
 
@@ -69,7 +69,7 @@ optional arguments:
 
    If you are following along on your local system, you will need to have these installed in order to run the wrapper script and invoke the pyplot Python code.
 
-   ### Creating the app JSON description <a name="creating-the-app-json-description"></a>  
+   ### Creating the app JSON description <a name="creating-the-app-json-description"></a>
 
    The JSON for our intermediate app is below.
 
@@ -571,11 +571,11 @@ Now that we have our wrapper script and app description, and we have tested it w
 
 .. code-block:: shell
 
-   files-mkdir -N apps/pyplot-demo-advanced-0.1.0 -S demo.storage.example.com 
-   files-upload -F wrapper.sh -S demo.storage.example.com apps/pyplot-demo-advanced-0.1.0
-   files-upload -F test -S demo.storage.example.com apps/pyplot-demo-advanced-0.1.0
+   tapis files mkdir agave://tacc.work.taccuser/ apps/pyplot-demo-advanced-0.1.0
+   tapis files upload agave://tacc.work.taccuser/apps/pyplot-demo-advanced-0.1.0 wrapper.sh
+   tapis files upload agave://tacc.work.taccuser/apps/pyplot-demo-advanced-0.1.0 test
 
-   apps-addupdate -F app.json
+   tapis apps create -F app.json
 
 That's it. Now we have our app ready to run with Tapis.
 

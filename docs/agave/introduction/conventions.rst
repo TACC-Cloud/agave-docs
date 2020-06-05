@@ -40,7 +40,7 @@ Throughout the documentation you will regularly encounter the following variable
        <td>${API_TOKEN}</td>
        <td align="center">Client unique identifier of an application requesting access to Tapis Auth service</td>
        <td>de32225c235cf47b9965997270a1496c</td>
-     </tr> 
+     </tr>
    </table>
 |
 
@@ -52,7 +52,7 @@ JSON Notation
 
    .. container:: header
 
-      
+
       :fa:`caret-right`
       **Show JSON notation**
 
@@ -156,7 +156,7 @@ The Tapis API is based on :raw-html-m2r:`<a title="REST" href="http://en.wikiped
      <tr></tr>
        <td>DELETE</td>
        <td>Used for deleting resources</td>
-     </tr> 
+     </tr>
    </table>
 |
 
@@ -193,7 +193,7 @@ Several URL query parameters are common across all services. The following table
        <td>filter</td>
        <td align="center">string</td>
        <td>A comma-delimited list of fields to return for each object in the response. Each field may be referenced using JSON notation</td>
-     </tr> 
+     </tr>
    </table>
 |
 
@@ -218,7 +218,7 @@ Starting with the 2.1.10 release, two new query parameters have been introduced 
        <td>sortBy</td>
        <td align="center">string</td>
        <td>The field by which to sort the response. Any field present in the full representation of the resource that you are querying is supported. Multiple values are not currently supported</td>
-     </tr> 
+     </tr>
    </table>
 |
 
@@ -265,7 +265,7 @@ Apart from the response code, all responses from Tapis are in the form of a json
        <td>version</td>
        <td align="center">string</td>
        <td>The current full release version of Tapis. Ex “2.1.16-r8228”</td>
-     </tr> 
+     </tr>
    </table>
 
 
@@ -276,7 +276,7 @@ Naked Responses
 
 In situations where you do not care to parse the wrapper for the raw response data, you may request a *naked* response from the API by adding ``naked=true`` in to the request URL. This will return just the value of the ``result`` attribute in the response wrapper.
 
-naked=true 
+naked=true
 
 .. code-block:: json
 
@@ -326,6 +326,9 @@ Formatting
 
 By default, all responses are serialized JSON. To receive pre-formatted JSON, add ``pretty=true`` to any query string.
 
+.. note::
+   The tapis-cli also produces a table formatted output.
+
 Pagination
 ----------
 
@@ -342,7 +345,7 @@ Pagination
 
 .. code-block:: plaintext
 
-   jobs-list -o 50 -l 25
+   tapis jobs list -o 50 -l 25
 
 All resource collections support a way of paging the dataset, taking an ``offset`` and ``limit`` as query parameters:
 

@@ -363,7 +363,7 @@ Submitting an app description
 
 .. code-block:: plaintext
 
-   apps-addupdate -v -F app.json
+   tapis apps create -v app.json
 
 .. code-block:: json
 
@@ -723,7 +723,7 @@ Updating a registered app
 
 .. code-block:: plaintext
 
-   apps-addupdate -v -F app.json demo-pyplot-demo-advanced-0.1.0
+   tapis apps create -v app.json demo-pyplot-demo-advanced-0.1.0
 
 .. code-block:: json
 
@@ -1076,8 +1076,5 @@ Deleting an app
 
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://public.tenants.agaveapi.co/apps/v2/demo-pyplot-demo-advanced-0.1.0?pretty=true
 
-.. code-block:: plaintext
-
-   apps-delete demo-pyplot-demo-advanced-0.1.0
 
 Deleting an app is done by calling a HTTP DELETE on an app's URL. Note that deleting an app does not make its id available for reuse.

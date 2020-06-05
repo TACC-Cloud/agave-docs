@@ -9,6 +9,6 @@ The Tapis command-line interface (CLI) is an complete interface to the Tapis RES
 
 .. code-block:: shell
 
-   git clone https://github.com/TACC/agavepy
+   git clone https://github.com/TACC-Cloud/tapis-cli.git
 
 For more information on using the Tapis CLI in common tasks, please consult the :raw-html-m2r:`<a href="#tutorials" title="Tutorials">Tutorials Section</a>` which reference it in all their examples, or check out the :raw-html-m2r:`<a href="https://bitbucket.org/agaveapi/science-api-samples" title="Tapis Tutorials Samples" target="_blank">Tapis Samples project</a>` for sample data and examples of how to use it to populate and interact with your tenant. You can also check out the :raw-html-m2r:`<a href="https://github.com/TACC-Cloud/agave-cli" title="Tapis CLI Documentation" target="_blank">Tapis CLI Documentation</a>`.

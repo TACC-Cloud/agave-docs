@@ -8,8 +8,7 @@ To make tracking the output of a specific job easier to do, the Jobs service pro
 
 .. code-block::
 
-   jobs-output-list $JOB_ID
-   jobs-output-list -v $JOB_ID
+   tapis jobs outputs list -v $JOB_ID
 
 .. container:: foldable
 
@@ -148,7 +147,7 @@ To download a file you would use the following syntax
 
 .. code-block::
 
-   jobs-output-get $JOB_ID $PATH
+   tapis jobs outputs download $FILE_UUID [FILEPATH]
 
 .. container:: foldable
 

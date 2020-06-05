@@ -2,11 +2,11 @@
 Tags
 ====
 
-The Tapis Tags service provides free form tagging of any addressable resource in the platform. 
-A Tag is similiar to a `Metadata <../metadata/introduction.md>`_ object in that 
-it has ``name`` and ``associatedIds`` fields, but Tags do not contain any other data. 
-Tags have permissions just like tags, but unlike the Tags service, Tag names must be unique 
-for a given user or group. That means you can only have one tag with a given name, but 
+The Tapis Tags service provides free form tagging of any addressable resource in the platform.
+A Tag is similiar to a `Metadata <../metadata/introduction.md>`_ object in that
+it has ``name`` and ``associatedIds`` fields, but Tags do not contain any other data.
+Tags have permissions just like tags, but unlike the Tags service, Tag names must be unique
+for a given user or group. That means you can only have one tag with a given name, but
 multiple users may create tags with the same name.
 
 ----
@@ -48,25 +48,25 @@ Every tag has the two fields shown in the following table.
 Names
 ^^^^^
 
-The ``name`` field is just that -- a user-defined name you give to your tag. Every ``name`` 
-field must be unique within the set of tags available to the user. This means that two 
-users can create tags with the same name, but each tag will have its own unique id and be 
-managed as a distinct resource. 
+The ``name`` field is just that -- a user-defined name you give to your tag. Every ``name``
+field must be unique within the set of tags available to the user. This means that two
+users can create tags with the same name, but each tag will have its own unique id and be
+managed as a distinct resource.
 
-A user may not create multiple tags with the same name, but they may share a tag with 
-someone who already has a tag of the same name. In that situation, referencing the private 
-and shared tag by ID will prevent ambiguity over which tag is being used. When the tag id 
+A user may not create multiple tags with the same name, but they may share a tag with
+someone who already has a tag of the same name. In that situation, referencing the private
+and shared tag by ID will prevent ambiguity over which tag is being used. When the tag id
 is not specified, the private tag owned by the requesting user will always be selected.
 
 Associations
 ^^^^^^^^^^^^
 
-Each tag also has an optional ``associationIds`` field. This field contains a JSON array of 
-Tapis UUID for which this tag applies. We refer to the resources in this array as the 
-tagged resources. No implied behavior comes with this relationship, it is simply a way to 
+Each tag also has an optional ``associationIds`` field. This field contains a JSON array of
+Tapis UUID for which this tag applies. We refer to the resources in this array as the
+tagged resources. No implied behavior comes with this relationship, it is simply a way to
 define arbitrary associations between resources.
 
-*The ``associationIds`` field does not carry with it any special permissions or behavior. 
+*The ``associationIds`` field does not carry with it any special permissions or behavior.
 It is simply a link between a tag and the resources it represents.*
 
 ----
@@ -74,11 +74,7 @@ It is simply a link between a tag and the resources it represents.*
 Creating tags
 -------------
 
-Create a new tag with the following CLI command:
-
-.. code-block:: plaintext
-
-   tags-addupdate -v -F - <<<'{"name": "demo"}'
+Create a new tag with the following command:
 
 ..
 
@@ -87,7 +83,7 @@ Create a new tag with the following CLI command:
 
    .. code-block:: shell
 
-      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST  
+      curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
           -H 'Content-Type: application/json'
           --data-binary '{"name": "demo"}'
           https://public.tenants.agaveapi.co/tags/v2
@@ -131,15 +127,7 @@ New Tags are created by making a POST request to the Tags collection. As we ment
 Updating tags
 -------------
 
-Update a tag with the either of the following CLI commands:
-
-.. code-block:: plaintext
-
-   tags-addupdate -v -F - demo <<<'{"name": "demo", "associationIds":["576158795084066330-242ac119-0001-007","1557538007895839206-242ac119-0001-007"]}'
-
-.. code-block:: plaintext
-
-   tags-addupdate -v -F - 3042501574756462105-242ac113-0001-048 <<<'{"name": "demo", "associationIds":["576158795084066330-242ac119-0001-007","1557538007895839206-242ac119-0001-007"]}'
+Update a tag with the either of the following commands:
 
 ..
 
@@ -188,8 +176,8 @@ Update a tag with the either of the following CLI commands:
    {: .solution}
 
 
-Updating tags is done by POSTing an updated tag object to the existing resource. 
-When updating, it is important to note that it is not possible to change the tag 
+Updating tags is done by POSTing an updated tag object to the existing resource.
+When updating, it is important to note that it is not possible to change the tag
 ``uuid``\ , ``owner``\ , ``lastUpdated``\ , or ``created`` fields. Those fields are managed by the service.
 
 ----
@@ -197,11 +185,7 @@ When updating, it is important to note that it is not possible to change the tag
 Deleting metadata
 -----------------
 
-Delete a tag with either of the following CLI commands:
-
-.. code-block:: plaintext
-
-   tags-delete demo
+Delete a tag with either of the following commands:
 
 ..
 
@@ -215,11 +199,6 @@ Delete a tag with either of the following CLI commands:
           https://public.tenants.agaveapi.co/tags/v2/demo
 
    {: .solution}
-
-
-.. code-block:: plaintext
-
-   tags-delete 3042501574756462105-242ac113-0001-048
 
 ..
 

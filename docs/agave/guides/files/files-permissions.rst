@@ -34,7 +34,7 @@ List the permissions on a file item
 
 .. code-block:: plaintext
 
-   files-pems-list -S api.tacc.cloud nryan/picksumipsum.txt
+   tapis files pems list agave://tacc.work.taccuser/test_folder/picksumipsum.txt
 
 .. container:: foldable
 
@@ -87,7 +87,7 @@ List the permissions on a file item for a given user
 
 .. code-block:: plaintext
 
-   files-pems-list -u rclemens -S api.tacc.cloud nryan/picksumipsum.txt
+   tapis files pems show agave://tacc.work.taccuser rclemens
 
 .. container:: foldable
 
@@ -135,7 +135,7 @@ Grant read access to a file item
 
 .. code-block:: plaintext
 
-   files-pems-update -u rclemens -p READ -S api.tacc.cloud nryan/picksumipsum.txt
+   tapis files pems grant agave://tacc.work.taccuser rclemens READ
 
 .. container:: foldable
 
@@ -158,7 +158,7 @@ Grant read and write access to a file item
 
 .. code-block:: plaintext
 
-   files-pems-update -u rclemens -p READ_WRITE -S api.tacc.cloud nryan/picksumipsum.txt
+   tapis files pems grant agave://tacc.work.taccuser rclemens READ_WRITE
 
 .. container:: foldable
 
@@ -214,7 +214,7 @@ Delete permission for single user on a file item
 
 .. code-block:: plaintext
 
-   files-pems-update -u rclemens -p 'NONE' -S api.tacc.cloud nryan/picksumipsum.txt
+   tapis files pems revoke agave://tacc.work.taccuser rclemens
 
 .. container:: foldable
 
@@ -272,7 +272,7 @@ Delete all permissions on a file item
 
 .. code-block:: plaintext
 
-   files-pems-delete -S api.tacc.cloud nryan/picksumipsum.txt
+   tapis files pems drop agave://tacc.work.taccuser
 
 .. container:: foldable
 
@@ -295,7 +295,7 @@ Delete all permissions on a file item
 |
 
 
-An empty response will be returned from the service. Permissions may be cleared for all users on a file item by making a DELETE request on the file item permission collection. 
+An empty response will be returned from the service. Permissions may be cleared for all users on a file item by making a DELETE request on the file item permission collection.
 
 The above operation will delete all permissions for a file item, such that only the owner will be able to access it. Use with care.
 
@@ -304,9 +304,6 @@ Recursive operations
 
 Recursively delete all permissions on a directory
 
-.. code-block:: plaintext
-
-   files-pems-delete -S api.tacc.cloud nryan/directory
 
 .. container:: foldable
 

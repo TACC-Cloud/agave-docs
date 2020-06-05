@@ -91,7 +91,7 @@ One powerful, but potentially confusing feature of Tapis is its support for virt
    </table>
 |
 
-``homeDir`` specifies the path, relative to ``rootDir``\ , that Tapis should use for relative paths. Since Tapis is stateless, there is no concept of a current working directory. Thus, when you specify a path to Tapis that does not begin with a ``/``\ , Tapis will always prefix the path with the value of ``homeDir``. The following table gives several examples of how different combinations of ``rootDir``\ , ``homeDir``\ , and URL paths will be resolved by Tapis. 
+``homeDir`` specifies the path, relative to ``rootDir``\ , that Tapis should use for relative paths. Since Tapis is stateless, there is no concept of a current working directory. Thus, when you specify a path to Tapis that does not begin with a ``/``\ , Tapis will always prefix the path with the value of ``homeDir``. The following table gives several examples of how different combinations of ``rootDir``\ , ``homeDir``\ , and URL paths will be resolved by Tapis.
 
 
 .. raw:: html
@@ -208,11 +208,11 @@ Before we talk about how to do basic operations on your data, let's first talk a
 Uploading data
 --------------
 
-Uploading a file  
+Uploading a file
 
 .. code-block:: plaintext
 
-   files-upload -v -F files/picksumipsum.txt -S api.tacc.cloud nryan
+   tapis files upload agave://tacc.work.taccuser files/picksumipsum.txt
 
 .. container:: foldable
 
@@ -304,12 +304,7 @@ You can also have Tapis download data from an external URL. Rather than making a
 
 To demonstrate how this works, we will import a README.md file from the :raw-html-m2r:`<a href="https://bitbucket.org/agaveapi/science-api-samples" title="Tapis Samples" target="_blank">Tapis Samples</a>` git repository in Bitbucket.
 
-Download a file from a web accessible URL  
-
-.. code-block:: plaintext
-
-   files-import -v -U "https://bitbucket.org/agaveapi/science-api-samples/raw/master/README.md"
-       -S api.tacc.cloud nryan
+Download a file from a web accessible URL
 
 .. container:: foldable
 
@@ -365,10 +360,6 @@ Transferring data
 
 Transferring data between systems
 
-.. code-block:: plaintext
-
-   files-import -v -U "agave://stampede.tacc.utexas.edu//etc/motd" -S api.tacc.cloud nryan
-
 .. container:: foldable
 
      .. container:: header
@@ -394,9 +385,6 @@ In the example below, we will transfer a file from ``stampede.tacc.utexas.edu`` 
 
 One of the benefits of the Files service is that it frees you up to work in parallel and scale with your application demands. In the next example we will use the Files service to create redundant archives of a shared project directory.
 
-.. code-block:: plaintext
-
-   files-import -v -U "agave://api.tacc.cloud/nryan/foo_project" -S nryan.storage1
 
 .. container:: foldable
 
@@ -414,10 +402,6 @@ One of the benefits of the Files service is that it frees you up to work in para
             https://api.tacc.utexas.edu/files/v2/media/system/nryan.storage1/
 |
 
-
-.. code-block:: plaintext
-
-   files-import -v -U "agave://api.tacc.cloud/nryan/foo_project" -S nryan.storage2
 
 .. container:: foldable
 
@@ -450,7 +434,7 @@ Listing a file or directory
 
 .. code-block:: plaintext
 
-   files-list -v -S api.tacc.cloud nryan
+   tapis files list -v agave://tacc.work.taccuser/
 
 .. container:: foldable
 
@@ -553,7 +537,7 @@ Copying files and directories
 
 .. code-block:: plaintext
 
-   files-copy -D $DESTPATH -S api.tacc.cloud $PATH
+   tapis files copy AGAVE_URI DESTINATION
 
 .. container:: foldable
 
@@ -581,7 +565,7 @@ Moving files and directories
 
 .. code-block:: plaintext
 
-   files-move -D $DESTPATH -S api.tacc.cloud $PATH
+   tapis files move AGAVE_URI DESTINATION
 
 .. container:: foldable
 
@@ -605,18 +589,7 @@ Moving can be performed on any remote system. Moving a file or directory will ov
 Renaming files and directories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: plaintext
-
-   files-rename -N $NEWNAME -S api.tacc.cloud $PATH
-
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
@@ -633,7 +606,7 @@ Creating a new directory
 
 .. code-block:: plaintext
 
-   files-mkdir -N $NEWDIR -S api.tacc.cloud $PATH
+   tapis files mkdir AGAVE_URI DIRECTORY
 
 .. container:: foldable
 
@@ -659,7 +632,7 @@ Deleting a file item
 
 .. code-block:: plaintext
 
-   files-delete -S api.tacc.cloud $PATH
+   tapis files delete AGAVE_URI
 
 .. container:: foldable
 
