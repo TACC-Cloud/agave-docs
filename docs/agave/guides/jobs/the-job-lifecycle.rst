@@ -52,10 +52,10 @@ Tapis handles all of the end-to-end details involved with managing a job lifecyc
    <li>wrapper script is filtered
 
    <ol>
-   <li>blacklisted commands are removed</li>
+   <li>exclude list commands are removed</li>
    <li>app parameter template variables are resolved against job parameter values.</li>
    <li>app input template variables are resolved against job input values</li>
-   <li>blacklisted commands are removed again</li>
+   <li>exclude list commands are removed again</li>
    </ol></li>
    <li>"CLEANING_UP" callback written</li>
    <li>All template macros are resolved.</li>
