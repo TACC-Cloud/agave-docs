@@ -2,7 +2,7 @@
 Job Lifecycle Management
 ========================
 
-Tapis handles all of the end-to-end details involved with managing a job lifecycle for you. This can seem like black magic at times, so here we detail the overall lifecycle process every job goes through.
+Tapis handles all of the end-to-end details involved with managing a job lifecycle for you. This can seem like magic at times, so here we detail the overall lifecycle process every job goes through.
 
 
 .. raw:: html
