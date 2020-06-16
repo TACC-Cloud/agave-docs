@@ -147,7 +147,7 @@ The request will include parameters in the query string:
            </tr>
            <tr>
                <td>redirect_uri</td>
-               <td><i>Required</i>. The URI to redirect to after the user grants/denies permission. This URI needs to have been entered in the Redirect URI whitelist that you specified when you registered your application. The value of <code>redirect_uri</code> here must exactly match one of the values you entered when you registered your application, including upper/lowercase, terminating slashes, etc.</td>
+               <td><i>Required</i>. The URI to redirect to after the user grants/denies permission. This URI needs to have been entered in the Redirect URI include list that you specified when you registered your application. The value of <code>redirect_uri</code> here must exactly match one of the values you entered when you registered your application, including upper/lowercase, terminating slashes, etc.</td>
            </tr>
            <tr>
                <td>scope</td>
