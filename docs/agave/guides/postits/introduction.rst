@@ -19,9 +19,9 @@ A new version of the Postits service documentation is being developed.  Until th
 
 The following links discuss details of the new production Postits service:
 
-`New Postits Service <aloe-job-architecture.html>`_
+`New Postits Service <postits_new.html>`_
 
-`Postits Beta Tester Guide <aloe-beta-tester-guide.html>`_
+`Postits Tester Guide <postits_test_guide.html>`_
 
 
 Creating PostIts
