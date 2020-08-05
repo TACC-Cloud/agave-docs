@@ -18,6 +18,8 @@ Getting Started
 
 The Aloe Postits test environment relies on the `sandbox key facility of WSO2 <https://docs.wso2.com/display/AM170/Maintaining+Separate+Production+and+Sandbox+Gateways>`_, which allows users to target the Beta environment with their existing credentials. You will need to generate sandbox keys in order to authenticate to the Aloe Postits service.  Here is the procedure: 
 
+_There are two tenants that currently have a postit sandbox environment: sd2e and portals-api_. This guide will not work for other tenants. 
+
 1.	You can either use an existing client or create a new one. To use an existing client, skip to step 2. 
 
 Using your tenant’s production URL, create a client for the Aloe Beta using the command below.  Replace *<username>* with your username in double quotes; replace *<base>* with your tenant's base URL. The command will prompt you for your password. 
