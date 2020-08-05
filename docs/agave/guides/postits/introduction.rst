@@ -9,6 +9,21 @@ The PostIts service is a URL shortening service similar to `bit.ly <https://bit.
 
 The most common use of PostIts is to create URLs to files and folders you can share with others without having to upload them to a third-party service. Other uses cases for the PostIts service include creating "drop" folders to which anyone with the link can upload data, allowing a job to be reproducibly rerun for peer review, publishing metadata for public consumption, publishing a canonical reference to your user profile. The possibilities go on and on. Anytime you need to share your science with your world, PostIts can help you.
 
+Aloe Postits Service (Coming soon!)
+-----------------------------------
+The Aloe Postits service will replace the current Tapis Postits service. The new service will not break any existing interfaces, but will add on additional features and improve performace & security.
+
+The new Aloe Postits service will roll out in two parts. Part one will replace the legacy endpoints. Part two will add in additional endpoints.  
+
+A new version of the Postits service documentation is being developed.  Until the unified documentation is ready and the new service is in place, please see the current Tapis Postits service documentation (below) for a basic understanding of the interface.
+
+The following links discuss details of the new production Postits service:
+
+`New Postits Service <aloe-job-architecture.html>`_
+
+`Postits Beta Tester Guide <aloe-beta-tester-guide.html>`_
+
+
 Creating PostIts
 ----------------
 
