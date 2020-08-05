@@ -53,8 +53,6 @@ The new service also allows one to filter by status. The available statuses are 
 |                     | Can no longer redeem nor    |
 |                     | update this postit.         |
 +---------------------+-----------------------------+
-|                     |                             |
-+---------------------+-----------------------------+
 | NOT_FOUND           | (Not a status) Indicates    |
 |                     | status could not be         |
 |                     | calculated.                 |
@@ -94,7 +92,6 @@ Added parameters:
 * unlimited - Postits will be redeemable regardless of expiration and remaining uses. 
 
 The default parameters for force, maxUses and lifetime remain the same as the current service. 
-
 Default parameters:
 
 * maxUses - 1
@@ -174,8 +171,6 @@ Creating unlimited postit:
 +----------------------+-----------+-------------------------------+
 | url                  | string    | The url to be redeemed by the +
 |                      |           | postit. *Always required.     +
-+----------------------+-----------+-------------------------------+
-|                      |           |                               +
 +----------------------+-----------+-------------------------------+
 | noauth               | boolean   | Legacy parameter that will be +
 |                      |           | accepted, but ignored by the  +
