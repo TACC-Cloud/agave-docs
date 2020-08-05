@@ -140,7 +140,8 @@ Creating unlimited postit:
       $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "unlimited=true&url=<target_url>} https://api.tacc.utexas.edu/postits/v2?pretty=true"
 |
 
-**Available parameters to create a postit.**   
+**Available parameters to create a postit.**  
+
 +----------------------+-----------+-------------------------------+
 | *JSON Parameter*     |*JSON Type*| *Description*                 +
 +======================+===========+===============================+ 
@@ -196,7 +197,7 @@ Removed:
 * internalUsername field - obsolete
 * authenticated field - obsolete
 
-**Desceiption**
+**Description of postit response fields**
 All timestamps are strings in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ date/time format. 
 
 +---------------------+-----------+-------------------------------------+
