@@ -19,7 +19,7 @@ A new version of the Postits service documentation is being developed.  Until th
 
 The following links discuss details of the new production Postits service:
 
-`New Postits Service <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/postits/postits_new.html>`_
+`New Postits Service <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/postits/postits-new.html>`_
 
 `Postits Tester Guide <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/postits/postits_test_guide.html>`_
 
