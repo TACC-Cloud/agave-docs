@@ -1,7 +1,7 @@
 Aloe Postits Service
 ====================
 
-This page discusses what will change in the Postits service between Tapis 2.4.x and Aloe 2.4.x.  The Aloe Postits source code is `here <https://bitbucket.org/tacc-cic/aloe/src/master/>`_.  A spreadsheet that documents all changes across all Aloe APIs is `here <https://docs.google.com/spreadsheets/d/1mlK2EXYAzGI6z7BVu8tfhXQHwnZJkwgWiNxVD4k5u_Q/edit#gid=0>`_.
+This page discusses what will change in the Postits service between Tapis 2.4.x and Aloe 2.4.x.  The Aloe Postits source code is `here <https://bitbucket.org/tacc-cic/aloe/src/master/>`_.  
 
 .. contents:: Table of Contents
 
@@ -12,275 +12,230 @@ The service will roll out in two phases.
 
 *Phase 2* will add on two new endpoints. 
 
-Phase 1 - Legacy code replacement
+Phase 1 - Legacy Code Replacement
 ---------------------------------
 
 Postit Listings
 ^^^^^^^^^^^^^^^
-Discuss filtering by status. 
+Once can list their active postits by sending in a GET request to {base url}/postits/v2.
+
+.. container:: foldable
+
+   .. code-block:: shell
+
+      $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" "https://api.tacc.utexas.edu/postits/v2?pretty=true"
+|
+The new service also allows one to filter by status. The available statuses are described in the table below. 
+
+.. container:: foldable
+
+   .. code-block:: shell
+
+      $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" "https://api.tacc.utexas.edu/postits/v2?pretty=true&status=ALL"
+|
 
 **Status Fields**
 
 +---------------------+-----------------------------+
 | *Status*            |*Description*                |
 +=====================+=============================+ 
-| archiveOutput       |                             |
+| ACTIVE              | Postit is redemeemable.     |
 +---------------------+-----------------------------+
-| batchQueue          | remoteQueue                 |
+| EXPIRED_AND_NO_USES | Postit is both expired and  |
+|                     | out of remaining uses.      |
 +---------------------+-----------------------------+
-| endTime             | ended                       |
+| EXPIRED             | Postit has expired.         |
 +---------------------+-----------------------------+
-| errorMessage        | lastStatusMessage           |
+| NO_USES             | Postit is out of remaining  |
+|                     | uses.                       |
 +---------------------+-----------------------------+
-| localJobId          | remoteJobId                 |
+| REVOKED             | The postit has been revoked.|
+|                     | Can no longer redeem nor    |
+|                     | update this postit.         |
 +---------------------+-----------------------------+
-| maxRunTime          | maxHours                    |
+|                     |                             |
 +---------------------+-----------------------------+
-| retries             | submitRetries               |
+| NOT_FOUND           | (Not a status) Indicates    |
+|                     | status could not be         |
+|                     | calculated.                 |
 +---------------------+-----------------------------+
-| softwareName        | appId                       |
+| ALL                 | (Not a status) Indicates to |
+|                     | include all statuses.       |
 +---------------------+-----------------------------+
-| startTime           | remoteStarted               |
-+---------------------+-----------------------------+
-| submitTime          | remoteSubmitted             |
-+---------------------+-----------------------------+
-| system              | systemId                    |
-+---------------------+-----------------------------+
+
 
 
 Postit Revoke
 ^^^^^^^^^^^^^
-Still revoke normally. no changes after. curl example. 
+The revoke endpoint has not changed in the new Postits Service. Send in a delete request to {base url}/postits/v2/{postit uuid}. You must be the postit creator or a tenant admin to revoke a postit.
+
+.. container:: foldable
+
+   .. code-block:: shell
+
+      $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" "https://api.tacc.utexas.edu/postits/v2?pretty=true&status=ALL"
+|
+Once a postit is revoked, there is no way to redeem or update the postit. It is permanently disabled. 
 
 
 Postit Creation 
 ^^^^^^^^^^^^^^^
-Defaults. 
+There are minor changes to the postit creation, but existing requests to the service will remain valid. A few parameters have been deemed obsolete and were deprecated, and the ability to create an "unlimited" postit has been added. 
 
-Deprecated: noauth, method, internalUsername 
-Added: Can now create unlimited. 
+Passing in decremented parameters will not cause an error. The service will simply ignore them. 
+Deprecated parameters: 
+* noath - All postits will not require auth.
+* internalUsername - Is not used in the current service. 
+* method - Postits will only support a GET action to target URLs. 
 
-Discuss creation fields below. 
+Added parameters: 
+* unlimited - Postits will be redeemable regardless of expiration and remaining uses. 
 
+The default parameters for maxUses and lifetime remain the same as the current service. 
+Default parameters:
+* maxUses - 1
+* lifetime - 30 days 
+* unlimited - false
+* force - false 
+
+You can create a postit with either content type 'application/json' or 'application/x-www-form-urlencoded'. If maxUses or lifetime is not given, the default values will be applied regardless if the postit is unlimited. If postit is unlimited, these values will just act as placeholders but will not be used when redeeming.
+
+Target URLs are a bit more restricted in the new service. In both the current Tapis service and new Aloe service, the target URL must contain the base URL for the correct tenant. In the new Aloe service, the url must also point to one of the following services: JOBS, FILES, APPS or SYSTEMS.
+
+*JSON examples*
+Creating a postit with maxUses and lifetime:
+
+.. container:: foldable
+
+   .. code-block:: shell
+
+      $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "{'maxUses': 3, 'lifetime': 600", 'url': <target_url>} -H "Content-Type: application/json" https://api.tacc.utexas.edu/postits/v2?pretty=true"
+|
+
+Creating unlimited postit:
+
+.. container:: foldable
+
+   .. code-block:: shell
+
+      $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "{'unlimited':true, 'url': <target_url>} -H "Content-Type: application/json" https://api.tacc.utexas.edu/postits/v2?pretty=true"
+|
+
+*X-WWW-FORM-URLENCODED examples*
+Creating a postit with maxUses and lifetime:
+
+.. container:: foldable
+
+   .. code-block:: shell
+
+      $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "maxUses=3&lifetime=600&url=<target_url>} https://api.tacc.utexas.edu/postits/v2?pretty=true"
+|
+
+Creating unlimited postit:
+
+.. container:: foldable
+
+   .. code-block:: shell
+
+      $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "unlimited=true&url=<target_url>} https://api.tacc.utexas.edu/postits/v2?pretty=true"
+|
+
+**Available parameters to create a postit.**   
 +----------------------+-----------+-------------------------------+
 | *JSON Parameter*     |*JSON Type*| *Description*                 +
 +======================+===========+===============================+ 
-| appId*               | string(80)| The unique ID (name + version)+ 
-|                      |           | of the application run by     +
-|                      |           | this job. This must be a valid+
-|                      |           | application that the user     +
-|                      |           | has permission to run.        +
+| maxUses              | integer   | The number of times a postit  +
+|                      |           | can be redeemed. Must be      +
+|                      |           | at least 1. Negative values   +
+|                      |           | are not allowed.              +
 +----------------------+-----------+-------------------------------+
-| archive              | boolean   | Whether the job output should +
-|                      |           | be archived. When true, all   +
-|                      |           | new file created during job   +
-|                      |           | execution will be moved to the+
-|                      |           | *archivePath*.                +
+| lifetime             | integer   | How long the postit will live,+
+|                      |           | in seconds. This number is    +
+|                      |           | used to generate the          +
+|                      |           | expiration time and date by   +
+|                      |           | adding the seconds to the     +
+|                      |           | current date and time. The    +
+|                      |.          | resulting expiration time must+
+|                      |           | be before date 1/19/2038.     +
 +----------------------+-----------+-------------------------------+
-| archiveOnAppError    | boolean   | Whether archiving should      +
-|                      |           | occur even if the user's      +
-|                      |           | application returns a non-zero+
-|                      |           | return code.  Default=false.  +
+| force                | boolean   | Appends the force argument to +
+|                      |           | the curl command.             +
++----------------------+-----------+-------------------------------+
+| unlimited            | boolean   | True to create a postit that  +
+|                      |           | does not have an expiration   +
+|                      |           | date or max uses.             +
++----------------------+-----------+-------------------------------+
+| url                  | string    | The url to be redeemed by the +
+|                      |           | postit. *Always required.     +
++----------------------+-----------+-------------------------------+
 |                      |           |                               +
 +----------------------+-----------+-------------------------------+
-| archivePath          |string(255)| The path of the archive folder+
-|                      |           | for this job on the           +
-|                      |           | designated *archiveSystem*.   +
+| noauth               | boolean   | Legacy parameter that will be +
+|                      |           | accepted, but ignored by the  +
+|                      |           | new Aloe service.             +
 +----------------------+-----------+-------------------------------+
-| archiveSystem        | string(64)| The unique id of the storage  +
-|                      |           | system on which the job output+
-|                      |           | will be archived.             +
+| internalUsername     | string    | Legacy parameter that will be +
+|                      |           | accepted, but ignored by the  +
+|                      |           | new Aloe service.             +
 +----------------------+-----------+-------------------------------+
-| batchQueue           |string(255)| The queue on the execution    +
-|                      |           | system to which the job will  +
-|                      |           | be submitted.  Applies only   +
-|                      |           | when the execution system has +
-|                      |           | a batch scheduler.            +
-+----------------------+-----------+-------------------------------+
-| inputs               | object    | The application specific      +
-|                      |           | input files needed by this    +
-|                      |           | job. Inputs may be given as   +
-|                      |           | relative paths to the         +
-|                      |           | application's designated      +
-|                      |           | storage system or as a URI.   +
-+----------------------+-----------+-------------------------------+
-| memoryPerNode        | string(32)| The memory requested for each +
-|                      |           | node on which the job runs.   +
-|                      |           | Values are expressed as       +
-|                      |           | [num][units], where *num* can +
-|                      |           | be a decimal number and       +
-|                      |           | *units* can be KB, MB, GB, TB +
-|                      |           | (default = GB). Examples      +
-|                      |           | include 200MB, 1.5GB and 5.   +
-+----------------------+-----------+-------------------------------+
-| name*                | string(64)| The user selected name for    +
-|                      |           | the job.                      +
-+----------------------+-----------+-------------------------------+
-| nodeCount            | integer   | The requested number of nodes +
-|                      |           | this job will use.            +
-+----------------------+-----------+-------------------------------+
-| notifications        | array     | An array of notification      +
-|                      |           | objects (see below).          +
-+----------------------+-----------+-------------------------------+
-| parameters           | object    | Application-specific          +
-|                      |           | parameters with types defined +
-|                      |           | in the application defintion. +
-+----------------------+-----------+-------------------------------+
-| processorsPerNode    | integer   | **DEPRECATED**                +
-| (*deprecated*)       |           | Use *processorsOnEachNode*    +
-|                      |           | instead. Supported for        +
-|                      |           | backward compatibility to     +
-|                      |           | mean *total number of         +
-|                      |           | processors*.                  +
-+----------------------+-----------+-------------------------------+
-| processorOnEachNode  | integer   | The number of processors per  +
-|                      |           | node that the job will use.   +
-|                      |           | The total number of processors+
-|                      |           | used by the job equals        +
-|                      |           | (nodeCount *                  +
-|                      |           | processorsOnEachNode). If the +
-|                      |           | application is not of         +
-|                      |           | executionType PARALLEL, this  +
-|                      |           | value should be 1.            +
-+----------------------+-----------+-------------------------------+
-| maxRunTime           | string(20)| The requested compute time    +
-|                      |           | needed for this job given in  +
-|                      |           | HH:mm:ss format.              +
+| method               | string    | Legacy parameter that will be +
+|                      |           | accepted, but ignored by the  +
+|                      |           | new Aloe service.             +
 +----------------------+-----------+-------------------------------+
 
-Curl command examples of creating limited and unlimited. 
 
 Postit Response
 ^^^^^^^^^^^^^^^
-Response object pretty much the same. Added on two new links (to be used in future). Discuss any other changes. If unlimited, remainingUses will come back a string. 
+There are minor changes to the json structure of the response object for postit responses.
+Added:
+* two new links - links for `list` and `update`, which are two new endpoints rolling out in phase 2. 
+* status - current status of the postit
+* numberUsed - the number of times this postit has been redeemed  
 
-All timestamps are strings in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ date/time format. All numbers are integers unless otherwise noted.  Fields marked with an asterisk (*) indicate they are assigned valid values in the response; the other fields have not been processed yet and display their default or uninitialized values. 
+Removed:
+* internalUsername field - obsolete
+* authenticated field - obsolete
 
-Discuss fields here. 
+**Desceiption**
+All timestamps are strings in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ date/time format. 
 
 +---------------------+-----------+-------------------------------------+
 | *Response Field*    |*JSON Type*| *Description*                       |
 +=====================+===========+=====================================+
-| id*                 | string    | Unique job id (equals UUID in model)|
+| url                 | string    | Target url to be redeemed.          |
 +---------------------+-----------+-------------------------------------+
-| name*               | string    | Human readable name for this job    |
+| postit              | string    | Postit UUID. Used to redeem postit. |
 +---------------------+-----------+-------------------------------------+
-| tenantId*           | string    | Current user's tenant ID            |
+| creator             | string    | Creator of postit.                  |
 +---------------------+-----------+-------------------------------------+
-| tenantQueue*        | string    | Tenant queue to which job was       |
-|                     |           | assigned                            |
+| createdAt           | string    | Date and time postit was created.   |
 +---------------------+-----------+-------------------------------------+
-| status*             | string    | Current state of job, see           |
-|                     |           | `Job States`_ for details           |
+| numberUsed          | integer   | Number of times this postit has     |
+|                     |           | been redeemed.                      |
 +---------------------+-----------+-------------------------------------+
-| lastStatusMessage*  | string    | Last message logged for this job    |
+| tenantId            | string    | Tenant that this postit belongs to. |
 +---------------------+-----------+-------------------------------------+
-|                     |           |                                     |
+| status              | string    | Postit status relating to the       |
+|                     |           | ability to redeem postit.           |
 +---------------------+-----------+-------------------------------------+
-| accepted*           | string    | Time job was accepted               |
+| expiresAt           | string    | Date and time postit expires.       |
 +---------------------+-----------+-------------------------------------+
-| created             | string    | Time job was recorded in database   |
+| remainingUses       | string    | Number of remaining redemptions     |
+|                     |           | allowed for postit.                 |
 +---------------------+-----------+-------------------------------------+
-| ended               | string    | Time job processing completed       |
+| noath               | boolean   | Legacy field. Always false.         |
 +---------------------+-----------+-------------------------------------+
-| lastUpdated*        | string    | Time job record was last updated    |
+| method              | string    | Legacy field. Always GET.           |
 +---------------------+-----------+-------------------------------------+
-|                     |           |                                     |
-+---------------------+-----------+-------------------------------------+
-| owner*              | string    | User who submitted job              |
-+---------------------+-----------+-------------------------------------+
-| roles*              | string    | Roles assigned by authentication    |
-|                     |           | server to owner (comma-separated)   |
-+---------------------+-----------+-------------------------------------+
-| systemId            | string    | Execution system ID on which this   |
-|                     |           | job runs (tenant-unique)            |
-+---------------------+-----------+-------------------------------------+
-| appId*              | string    | Fully qualified application name    |
-|                     |           | that will be run by this job        |
-+---------------------+-----------+-------------------------------------+
-| appUuid*            | string    | Unique application ID               |
-+---------------------+-----------+-------------------------------------+
-|                     |           |                                     |
-+---------------------+-----------+-------------------------------------+
-| workPath            | string    | Temporary work directory            |
-+---------------------+-----------+-------------------------------------+
-| archive*            | boolean   | Whether or not to archive output    |
-+---------------------+-----------+-------------------------------------+
-| archivePath*        | string    | Archive location on archive system  |
-+---------------------+-----------+-------------------------------------+
-| archiveSystem*      | string    | Storage system ID to which this job |
-|                     |           | archives (tenant-unique)            |
-+---------------------+-----------+-------------------------------------+
-|                     |           |                                     |
-+---------------------+-----------+-------------------------------------+
-| nodeCount           | number    | Number of nodes requested by job    |
-+---------------------+-----------+-------------------------------------+
-| processorsPerNode   | number    | Number of processors per node       |
-+---------------------+-----------+-------------------------------------+
-| memoryPerNode       | number    | GB of memory per node (decimal)     |
-+---------------------+-----------+-------------------------------------+
-| maxHours            | number    | Maximum hours for job to run        |
-|                     |           | (decimal)                           |
-+---------------------+-----------+-------------------------------------+
-|                     |           |                                     |
-+---------------------+-----------+-------------------------------------+
-| inputs*             | object    | JSON encoded list of inputs         |
-+---------------------+-----------+-------------------------------------+
-| parameters*         | object    | JSON encoded list of parameters     |
-+---------------------+-----------+-------------------------------------+
-|                     |           |                                     |
-+---------------------+-----------+-------------------------------------+
-| remoteJobId	      | string    | Job or process ID of the job on the |
-|                     |           | remote (execution) system           |
-+---------------------+-----------+-------------------------------------+
-| schedulerJobId      | string    | Optional ID given by the remote     |
-|                     |           | scheduler                           |
-+---------------------+-----------+-------------------------------------+
-| remoteQueue         | string    | Queue for job on remote system      |
-+---------------------+-----------+-------------------------------------+
-| remoteSubmitted     | string    | Time job was placed on remote queue |
-+---------------------+-----------+-------------------------------------+
-| remoteStarted       | string    | Time job started running on remote  |
-|                     |           | system                              |
-+---------------------+-----------+-------------------------------------+
-| remoteEnded         | string    | Time job finished running on remote |
-|                     |           | system                              |
-+---------------------+-----------+-------------------------------------+
-| remoteOutcome       | string    | Best approximation of remote job's  |
-|                     |           | outcome:                            |
-|                     |           |                                     |
-|                     |           | FINISHED,                           |
-|                     |           | FAILED,                             |
-|                     |           | FAILED_SKIP_ARCHIVE                 |
-+---------------------+-----------+-------------------------------------+
-|                     |           |                                     |
-+---------------------+-----------+-------------------------------------+
-| submitRetries       | number    | Number of attempts to submit job    |
-|                     |           | to execution system                 |
-+---------------------+-----------+-------------------------------------+
-| remoteStatusChecks  | number    | Number of successful times the      |
-|                     |           | remote system was queried for job   |
-|                     |           | status                              |
-+---------------------+-----------+-------------------------------------+
-| failedStatusChecks  | number    | Number of failed times the remote   |
-|                     |           | system was queried for job status   |
-+---------------------+-----------+-------------------------------------+
-| lastStatusCheck     | string    | Last time a status check was        |
-|                     |           | attempted                           |
-+---------------------+-----------+-------------------------------------+
-|                     |           |                                     |
-+---------------------+-----------+-------------------------------------+
-| blockedCount        | number    | Number of times a job has           |
-|                     |           | transitioned to BLOCKED status      |
-+---------------------+-----------+-------------------------------------+
-| visible             | boolean   | User visibility of this job record  |
-+---------------------+-----------+-------------------------------------+
-|                     |           |                                     |
-+---------------------+-----------+-------------------------------------+
-| _links*             | object    | links to resources related to the   |
-|                     |           | job, some of which may not exist yet|
+| _links              | object    | links to resources related to the   |
+|                     |           | postit, some of which may not exist |
+|                     |           | yet.                                |
 +---------------------+-----------+-------------------------------------+
 
 
+
+Phase 2 - New Postit Endpoints
+------------------------------
+* COMING SOON * 
 
 
