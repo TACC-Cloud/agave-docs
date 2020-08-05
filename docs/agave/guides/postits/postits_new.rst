@@ -84,15 +84,19 @@ There are minor changes to the postit creation, but existing requests to the ser
 
 Passing in decremented parameters will not cause an error. The service will simply ignore them. 
 Deprecated parameters: 
+
 * noath - All postits will not require auth.
 * internalUsername - Is not used in the current service. 
 * method - Postits will only support a GET action to target URLs. 
 
 Added parameters: 
+
 * unlimited - Postits will be redeemable regardless of expiration and remaining uses. 
 
-The default parameters for maxUses and lifetime remain the same as the current service. 
+The default parameters for force, maxUses and lifetime remain the same as the current service. 
+
 Default parameters:
+
 * maxUses - 1
 * lifetime - 30 days 
 * unlimited - false
@@ -103,6 +107,7 @@ You can create a postit with either content type 'application/json' or 'applicat
 Target URLs are a bit more restricted in the new service. In both the current Tapis service and new Aloe service, the target URL must contain the base URL for the correct tenant. In the new Aloe service, the url must also point to one of the following services: JOBS, FILES, APPS or SYSTEMS.
 
 *JSON examples*
+
 Creating a postit with maxUses and lifetime:
 
 .. container:: foldable
@@ -122,6 +127,7 @@ Creating unlimited postit:
 |
 
 *X-WWW-FORM-URLENCODED examples*
+
 Creating a postit with maxUses and lifetime:
 
 .. container:: foldable
@@ -188,12 +194,15 @@ Creating unlimited postit:
 Postit Response
 ^^^^^^^^^^^^^^^
 There are minor changes to the json structure of the response object for postit responses.
+
 Added:
+
 * two new links - links for `list` and `update`, which are two new endpoints rolling out in phase 2. 
 * status - current status of the postit
 * numberUsed - the number of times this postit has been redeemed  
 
 Removed:
+
 * internalUsername field - obsolete
 * authenticated field - obsolete
 
