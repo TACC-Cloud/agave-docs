@@ -38,10 +38,6 @@ In order to authenticate and interact with the API, you will need to get a set o
 
    curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "client_name=my_cli_app&description=Client app used for scripting up cool stuff" https://public.tenants.agaveapi.co/clients/v2
 
-.. code-block:: plaintext
-
-   clients-create -S -v -N my_cli_app -D "Client app used for scripting up cool stuff"
-
 ..
 
    Note: the -S option will store the new API keys for future use so you don't need to manually enter then when you authenticate later.
@@ -89,7 +85,7 @@ Using the API username, password, and keys from above, you can obtain an authent
 
 .. code-block:: plaintext
 
-   auth-tokens-create -S -v
+   tapis auth tokens create -v
 
 ..
 

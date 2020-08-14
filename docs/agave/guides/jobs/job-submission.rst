@@ -103,7 +103,7 @@ As mentioned previously, jobs are submitted by making a HTTP POST request either
 
     In addition to the standard fields for all jobs, the application you specify in the ``appId`` field will also have its own set of inputs and parameters specified during registration that are unique to that app. (For more information about app registration and descriptions, see the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/apps/introduction.html" title="Apps API">Apps section</a>`..
 
-    The following snippet shows a sample JSON job request that could be submitted to the Jobs service to run the ``pyplot-0.1.0`` app. from the :raw-html-m2r:`<a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/advanced-app-example/" title="Advanced App Example">Advanced App Example</a>` tutorial. 
+    The following snippet shows a sample JSON job request that could be submitted to the Jobs service to run the ``pyplot-0.1.0`` app. from the :raw-html-m2r:`<a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/advanced-app-example/" title="Advanced App Example">Advanced App Example</a>` tutorial.
 ..
 
 .. container:: foldable
@@ -218,7 +218,7 @@ You can submit the job with the following CLI command:
 
 .. code-block:: shell
 
-   $ jobs-submit -F job.json
+   $ tapis jobs submit -F job.json
 
 ..
 

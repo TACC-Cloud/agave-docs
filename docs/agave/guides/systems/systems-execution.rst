@@ -774,7 +774,7 @@ Creating a new execution system
 
 .. code-block:: plaintext
 
-   systems-addupdate -v -F ssh-password.json
+   tapis systems create -v -F ssh-password.json
 
 .. container:: foldable
 

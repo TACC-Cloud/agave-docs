@@ -38,12 +38,12 @@ package-name-version.dot.dot
    <li>(Optional) Share the app with some friends to let them test it</li>
    </ol>
 
-   ### Build a samtools application bundle  
+   ### Build a samtools application bundle
 
    ```shell
    #!/bin/bash
 
-   # Log into Stampede 
+   # Log into Stampede
    ssh stampede.tacc.utexas.edu
 
    # Unload system&#039;s samtools module if it happens to be loaded by default
@@ -82,7 +82,7 @@ package-name-version.dot.dot
                 sort        sort alignment file
                 mpileup     multi-way pileup...
 
-   # Package up the bin directory as an compressed archive 
+   # Package up the bin directory as an compressed archive
    # and remove the original. This preserves the execute bit
    # and other permissions and consolidates movement of all
    # bundled dependencies in bin to a single operation. You
@@ -127,7 +127,7 @@ Now, author your script. You can paste the following code into a file called :ra
    #SBATCH -p development
    #SBATCH -t 00:30:00
    #SBATCH -n 16
-   #SBATCH -A iPlant-Collabs 
+   #SBATCH -A iPlant-Collabs
    #SBATCH -J test-samtools
    #SBATCH -o test-samtools.o%j
 
@@ -144,11 +144,11 @@ Now, author your script. You can paste the following code into a file called :ra
    nameSort=0
 
    # Unpack the bin.tgz file containing samtools binaries
-   # If you are relying entirely on system-supplied binaries 
+   # If you are relying entirely on system-supplied binaries
    # you don&#039;t need this bit
    tar -xvf bin.tgz
    # Extend PATH to include binaries in bin
-   # If you need to extend lib, include, etc 
+   # If you need to extend lib, include, etc
    # the same approach is applicable
    export PATH=$PATH:"$PWD/bin"
 
@@ -181,7 +181,7 @@ Submit the job to the queue on Stampede...
 
 .. code-block:: shell
 
-   chmod 700 test-sort.sh 
+   chmod 700 test-sort.sh
    sbatch test-sort.sh
 
 You can monitor your jobs in the queue using
@@ -278,7 +278,7 @@ Each time you (or another user) requests an instance of samtools sort, Tapis cop
 .. code-block:: shell
 
    # Check to see if you have an applications directory
-   files-list -S data.agaveapi.co $IPLANTUSERNAME/applications
+   tapis files list agave://data.agaveapi.co/$IPLANTUSERNAME/applications
    # If you see: File/folder does not exist
    # then you need to create an applications directory
    files-mkdir -S data.agaveapi.co -N "applications" $IPLANTUSERNAME/
@@ -313,7 +313,7 @@ Post the JSON file to Tapis's app service.
 
 .. code-block:: shell
 
-   apps-addupdate -F samtools-0.1.19/stampede/samtools-sort.json
+   tapis apps update -F samtools-0.1.19/stampede/samtools-sort.json
 
 
 .. raw:: html
@@ -342,9 +342,9 @@ First, you may check to see if your new application shows up in the bulk listing
 .. code-block:: shell
 
    # Shows all apps that are public, private to you, or shared with you
-   apps-list 
+   tapis apps list
    # Show all apps on a specific system that are public, private to you, or shared with you
-   apps-list -S stampede.tacc.utexas.edu
+   tapis apps list apps-list -S stampede.tacc.utexas.edu
    # Show only your private apps
    apps-list --privateonly
 

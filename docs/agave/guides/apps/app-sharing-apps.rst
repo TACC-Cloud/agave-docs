@@ -61,7 +61,7 @@ You can use the following CLI command:
 
 .. code-block:: plaintext
 
-   apps-pems-list -v -u $USERNAME $APP_ID
+   tapis apps pems show -v $APP_ID $USERNAME
 
 .. container:: foldable
 
@@ -114,7 +114,7 @@ You can also query for all permissions granted on a specific app by making a GET
 
 .. code-block:: plaintext
 
-   apps-pems-list -v $APP_ID
+   tapis apps pems list -v $APP_ID
 
 .. container:: foldable
 
@@ -141,7 +141,7 @@ This time the service will respond with a JSON array of permission objects.
 
      .. code-block:: json
 
-        
+
         {
           "username": "$USERNAME",
           "permission": {
@@ -171,7 +171,8 @@ Setting permissions is done by posting a JSON object containing a permission and
 
 .. code-block:: plaintext
 
-   apps-pems-update -v -u bgibson -p READ $APP_ID
+   tapis apps pems grant -v $APP_ID bgibson READ
+
 
 .. container:: foldable
 
@@ -230,7 +231,7 @@ Permissions can be deleted on a user-by-user basis, or all at once. To delete an
 
 .. code-block:: plaintext
 
-   apps-pems-delete -u bgibson $APP_ID
+   tapis apps pems revoke -v $APP_ID $USERNAME
 
 .. container:: foldable
 
@@ -254,6 +255,28 @@ Permissions can be deleted on a user-by-user basis, or all at once. To delete an
 |
 The CLI response will be:
 
+.. code-block:: json
+
+   {
+   "username": "bgibson",
+   "permission": {
+     "read": true,
+     "write": false,
+     "execute": false
+   },
+   "_links": {
+     "self": {
+       "href": "https://agave.iplantc.org/apps/v2/$APP_ID/pems/bgibson"
+     },
+     "app": {
+       "href": "https://agave.iplantc.org/apps/v2/$APP_ID"
+     },
+     "profile": {
+       "href": "https://agave.iplantc.org/profiles/v2/bgibson"
+     }
+   }
+   }
+
 .. code-block:: plaintext
 
     Successfully removed permission for bgibson on app $APP_ID
@@ -266,7 +289,7 @@ You can accomplish the same thing by updating the user permission to an empty va
 
 .. code-block:: plaintext
 
-   apps-pems-update -v -u bgibson $APP_ID
+   tapis apps pems grant -v $APP_ID $USERNAME $PERMISSION
 
 .. container:: foldable
 
@@ -326,7 +349,7 @@ To delete all permissions for an app, make a DELETE request on the app's permiss
 
 .. code-block:: plaintext
 
-   apps-pems-delete $APP_ID
+   tapis apps pems drop $APP_ID
 
 .. container:: foldable
 
@@ -370,7 +393,7 @@ To publish an app, make a PUT request on the app resource. In this example, we p
 
 .. code-block:: plaintext
 
-   apps-publish -e condor.opensciencegrid.org wc-osg-1.00
+   tapis apps publish -e condor.opensciencegrid.org wc-osg-1.00
 
 .. container:: foldable
 
@@ -537,7 +560,7 @@ Unlike systems, it is not possible to unpublish an app. Once published, a deep c
 
 .. code-block:: plaintext
 
-   apps-disable -v $APP_ID
+   tapis apps disable -v $APP_ID
 
 .. container:: foldable
 
@@ -563,7 +586,7 @@ Often times you will want to copy an existing app for use on another system, or 
 
 .. code-block:: plaintext
 
-   apps-clone -N my-pyplot-demo -V 2.2 demo-pyplot-demo-advanced-0.1.0
+   tapis apps clone -n my-pyplot-demo -x 2.2 demo-pyplot-demo-advanced-0.1.0
 
 .. container:: foldable
 
@@ -584,4 +607,3 @@ Often times you will want to copy an existing app for use on another system, or 
 |
 
    :information_source: When cloning public apps, the entire app bundle will be recreated on the ``deploymentSystem`` you specify or your default storage system. The same is not true for private apps. Cloning a private app will copy the job description, but not the app bundle. This is to honor the original ownership of the assets and prevent them from leaking out to the public space without the owner's permission. If you need direct access to the app's assets, request that the owner give you read access to the folder listed as the deploymentPath in the app description.
-

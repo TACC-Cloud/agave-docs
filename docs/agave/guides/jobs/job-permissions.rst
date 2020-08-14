@@ -16,7 +16,7 @@ Granting permissions is simply a matter of issuing a ``POST`` with the desired p
 
 .. code-block:: plaintext
 
-   jobs-pems-update -u $USERNAME -p READ_WRITE $JOB_ID
+   tapis jobs pems grant $JOB_UUID $USERNAME $PERMISSION
 
 .. container:: foldable
 
@@ -122,7 +122,7 @@ To find the permissions for a given job, make a GET on the job's ``pems`` collec
 
 .. code-block:: plaintext
 
-   jobs-pems-list -V $JOB_ID
+   tapis jobs pems list -V $JOB_UUID
 
 .. container:: foldable
 
@@ -196,7 +196,7 @@ Updating is exactly like granting permissions. Just POST to the same job's ``pem
 
 .. code-block:: plaintext
 
-   jobs-pems-update -u $USERNAME -p READ_WRITE $JOB_ID
+   tapis jobs pems grant $USERNAME $PERMISSION $JOB_UUID
 
 .. container:: foldable
 
@@ -251,7 +251,7 @@ To delete a permission, you can issue a DELETE request on the user permission re
 
 .. code-block:: plaintext
 
-   jobs-pems-update -u $USERNAME -p '' $JOB_ID
+   tapis jobs pems revoke $JOB_UUID $USERNAME
 
 .. container:: foldable
 
@@ -266,4 +266,3 @@ To delete a permission, you can issue a DELETE request on the user permission re
             -X DELETE \
             https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/$USERNAME
 |
-

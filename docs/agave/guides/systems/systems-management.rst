@@ -9,7 +9,7 @@ Disable a system
 
 .. code-block:: plaintext
 
-   systems-disable $SYSTEM_ID
+   tapis systems disable $SYSTEM_ID
 
 .. container:: foldable
 
@@ -87,7 +87,7 @@ Enable a system
 
 .. code-block:: plaintext
 
-   systems-enable $SYSTEM_ID
+   tapis systems enable $SYSTEM_ID
 
 .. container:: foldable
 
@@ -161,18 +161,7 @@ Similarly, to enable a monitor, make a PUT request with the a field name ``actio
 Deleting systems
 ----------------
 
-.. code-block:: plaintext
-
-   systems-delete $SYSTEM_ID
-
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |

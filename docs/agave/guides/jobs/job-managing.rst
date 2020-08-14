@@ -8,7 +8,7 @@ You can kill a job with the following CLI command:
 
 .. code-block:: plaintext
 
-   jobs-stop $JOB_ID
+   tapis jobs cancel $JOB_UUID
 
 .. container:: foldable
 
@@ -104,18 +104,8 @@ Deleting a job
 
 Over time the number of jobs you have run can grow rather large. You can delete jobs to remove them from your listing results, with the following CLI command:
 
-.. code-block:: plaintext
 
-   jobs-delete $JOB_ID
-
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://api.tacc.utexas.edu/jobs/v2/$JOB_ID
 |
@@ -130,7 +120,7 @@ Often times you will want to rerun a previous job as part of a pipeline, automat
 
 .. code-block::
 
-   jobs-resubmit $JOB_ID
+   tapis jobs resubmit $JOB_UUID
 
 .. container:: foldable
 
@@ -162,4 +152,3 @@ Resubmission provides you the options to enforce as much or as little rigor as y
    * - preserveNotifications
      - boolean
      - Whether to recreate the notification of the original job for the resubmitted job.
-

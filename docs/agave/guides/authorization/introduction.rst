@@ -379,10 +379,10 @@ Once you have a valid access token, you can include it in ``Authorization`` head
 
 .. code-block:: bash
 
-   curl -sku "Authorization: Basic Qt3c...Rm1y="
-       -d grant_type=refresh_token
-       -d refresh_token=d77c...Sacf
-       https://api.tacc.utexas.edu/token
+    curl -u $key:$secret 
+    -d  grant_type=refresh_token
+    -d refresh_token=$refresh 
+    https://api.tacc.utexas.edu/token
 
 ..
 

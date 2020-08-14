@@ -680,7 +680,7 @@ Creating a new storage system
 
 .. code-block:: plaintext
 
-   systems-addupdate -v -F sftp-password.json
+   tapis systems create -v -F sftp-password.json
 
 .. container:: foldable
 

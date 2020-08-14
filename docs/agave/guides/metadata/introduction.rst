@@ -86,6 +86,7 @@ Creating Metadata
 ..
 
    Create a new metadata item
+
 .. container:: foldable
 
      .. container:: header
@@ -95,7 +96,7 @@ Creating Metadata
 
      .. code-block:: shell
 
-        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST  
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
             -H 'Content-Type: application/json'
             --data-binary '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model organism..."}}, "name": "mustard plant"}'
             https://api.tacc.utexas.edu/meta/v2/data?pretty=true
@@ -110,7 +111,7 @@ Creating Metadata
 
      .. code-block:: shell
 
-        metadata-addupdate -v -F - <<<'{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model organism..."}}, "name": "mustard plant"}'
+        tapis meta create -v -V '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model organism..."}}, "name": "mustard plant"}'
 |
 
    The response will look something like the following:
@@ -124,35 +125,39 @@ Creating Metadata
 
      .. code-block:: json
 
-        {
-          "uuid": "7341557475441971686-242ac11f-0001-012",
-          "owner": "nryan",
-          "schemaId": null,
-          "internalUsername": null,
-          "associationIds": [],
-          "lastUpdated": "2016-08-29T04:49:34.532-05:00",
-          "name": "some metadata",
+     {
+        "uuid": "4054837257140638186-242ac116-0001-012",
+        "schemaId": null,
+        "internalUsername": null,
+        "owner": "sgopal",
+        "associationIds": [],
+        "name": "sgopal.c41109da13893b6f.200414T000224Z",
+        "value": {
           "value": {
             "title": "Example Metadata",
             "properties": {
               "species": "arabidopsis",
               "description": "A model organism..."
-            }
-          },
-          "created": "2016-08-29T04:49:34.532-05:00",
-          "_links": {
-            "self": {
-              "href": "https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012"
-            },
-            "permissions": {
-              "href": "https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems"
-            },
-            "owner": {
-              "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
-            },
           }
+        },
+          "name": "mustard plant"
+        },
+        "created": "2020-04-13T19:02:24.336-05:00",
+        "lastUpdated": "2020-04-13T19:02:24.336-05:00",
+        "_links": {
+          "self": {
+            "href": "https://api.sd2e.org/meta/v2/data/4054837257140638186-242ac116-0001-012"
+          },
+          "permissions": {
+            "href": "https://api.sd2e.org/meta/v2/data/4054837257140638186-242ac116-0001-012/pems"
+          },
+          "owner": {
+            "href": "https://api.sd2e.org/profiles/v2/sgopal"
+          },
+          "associationIds": []
         }
-|  
+     }
+|
 
 
 New Metadata are created in the repository via a POST to their collection URLs. As we mentioned before, there is no uniqueness constraint placed on metadata items. Thus, repeatedly POSTing the same metadata item to the service will create duplicate entries, each with their own unique UUID assigned by the service.
@@ -177,7 +182,7 @@ Updating Metadata
             -H 'Content-Type: application/json'
             --data-binary '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model plant organism..."}}, "name": "some metadata", "associationIds":["179338873096442342-242ac113-0001-002","6608339759546166810-242ac114-0001-007"]}'
             https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012?pretty=true
-| 
+|
 
 .. container:: foldable
 
@@ -188,8 +193,8 @@ Updating Metadata
 
      .. code-block:: shell
 
-        metadata-addupdate -v -F - 7341557475441971686-242ac11f-0001-012 <<<'{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model plant organism..."}}, "name": "some metadata", "associationIds":["179338873096442342-242ac113-0001-002","6608339759546166810-242ac114-0001-007"]}'
-| 
+        tapis meta update -v -V '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model plant organism..."}}, "name": "some metadata", "associationIds":["179338873096442342-242ac113-0001-002","6608339759546166810-242ac114-0001-007"]}' 9057222358650121750-242ac116-0001-012
+|
 
    The response will look something like the following:
 
@@ -245,7 +250,7 @@ Updating Metadata
             ]
           }
         }
-| 
+|
 
 
 Updating metadata is done by POSTing an updated metadata object to the existing resource. When updating, it is important to note that it is not possible to change the metadata ``uuid``\ , ``owner``\ , ``lastUpdated`` or ``created`` fields. Those fields are managed by the service.
@@ -280,7 +285,7 @@ Deleting Metadata
 
      .. code-block:: shell
 
-        metadata-delete 7341557475441971686-242ac11f-0001-012
+        tapis meta delete 7341557475441971686-242ac11f-0001-012
 |
 
    An empty response will be returned from the service.

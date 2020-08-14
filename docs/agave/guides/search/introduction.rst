@@ -41,19 +41,19 @@ Search operators
 
 .. code-block:: shell
 
-   # systems with cloud in their name  
+   # systems with cloud in their name
    systems/v2?name.like=*cloud*
 
-   # jobs with status equal to PENDING or ARCHIVING  
+   # jobs with status equal to PENDING or ARCHIVING
    jobs/v2?status.in=PENDING,ARCHIVING
 
 .. code-block:: plaintext
 
-   # systems with cloud in their name  
-   systems-search 'name.like=*cloud*'
+   # systems with cloud in their name
+   tapis systems search --name like '*cloud*'
 
-   # jobs with status equal to PENDING or ARCHIVING  
-   jobs-search 'status.in=PENDING,ARCHIVING'
+   # jobs with status equal to PENDING or ARCHIVING
+   tapis jobs search --status eq 'PENDING'
 
 By default, all search expressions are evaluated for equality. In order to perform more complex queries, you may append a search operator to the attribute in your search expression. The following examples should help clarify:
 
@@ -61,18 +61,18 @@ For resources with nested collections, you may use JSON dot notation to query th
 
 .. code-block:: shell
 
-   # systems using Amazon S3 as the storage protocol  
+   # systems using Amazon S3 as the storage protocol
    systems/v2?storage.protocol.eq=S3
 
-   # systems with a batch queue allowing more than 10 concurrent user jobs  
+   # systems with a batch queue allowing more than 10 concurrent user jobs
    systems/v2?queues.maxUserJobs.gt=10
 
 .. code-block:: plaintext
 
-   # systems using Amazon S3 as the storage protocol  
+   # systems using Amazon S3 as the storage protocol
    systems-search 'storage.protocol.eq=S3'
 
-   # systems with a batch queue allowing more than 10 concurrent user jobs  
+   # systems with a batch queue allowing more than 10 concurrent user jobs
    systems-search 'queues.maxUserJobs.gt=10'
 
 Multiple operators
@@ -88,9 +88,8 @@ Multiple operators
 
    # jobs whose app has hadoop in the name, ran on an execution system with id aws-demo, and status is equal to FINISHED
 
-   jobs-search 'appId.like=*hadoop*' \
-               'executionSystem.eq=aws-demo' \
-               'status.eq=*FINISHED*'
+   tapis jobs search --app-id like 'hadoop' --system-id eq 'aws-demo' --status eq 'FINISHED'
+
 
 As before you can include multiple search expressions to narrow your results.
 
@@ -131,7 +130,7 @@ The full list of search operators is given in the following table.
      - Matches values similar to the given search term. Wildcards (^) may be used to perform partial matches.
    * - nlike
      - string
-     - Matches values different to the given search term. Wildcards (^) may be used to perform partial matches. 
+     - Matches values different to the given search term. Wildcards (^) may be used to perform partial matches.
 
 
 Custom search result
@@ -197,4 +196,3 @@ By combining the search, filtering, and ``naked`` query parameters, you can quer
 .. raw:: html
 
    <aside class="info">For more information on resolving uuid and expanding linked references in the response objects, see the <a href="#uuid">UUID Service Guide</a>.</aside>
-

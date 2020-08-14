@@ -15,11 +15,6 @@ Tag associations
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
        https://public.tenants.agaveapi.co/tags/v2/demo/associations
 
-.. code-block:: plaintext
-
-   tags-associations-list -v 3042501574756462105-242ac113-0001-048
-   tags-associations-list -v demo
-
 ..
 
    The response will look something like the following:
@@ -81,10 +76,6 @@ Updating tag associations
        -X POST
        https://public.tenants.agaveapi.co/tags/v2/demo/associations/7322676215012195046-242ac114-0001-007
 
-.. code-block:: plaintext
-
-   tags-associations-addupdate -v demo 7322676215012195046-242ac114-0001-007
-
 ..
 
    The response will look something like the following:
@@ -121,10 +112,6 @@ Removing tag associations
        -X DELETE
        https://public.tenants.agaveapi.co/tags/v2/demo/associations/7322676215012195046-242ac114-0001-007
 
-.. code-block:: plaintext
-
-   tags-associations-delete -v demo 7322676215012195046-242ac114-0001-007
-
 ..
 
    An empty response will be returned from the service
@@ -147,12 +134,6 @@ Bulk tagging resources
                        "8333211822347981286-242ac114-0001-007"]'
        https://public.tenants.agaveapi.co/tags/v2/demo/associations
 
-.. code-block:: plaintext
-
-   tags-associations-addupdate -v demo \
-       911605847797535206-242ac114-0001-007 \
-       5369569074237730330-242ac114-0001-007 \
-       8333211822347981286-242ac114-0001-007
 
 ..
 
@@ -220,10 +201,6 @@ Deleting metadata
        -X DELETE
        https://public.tenants.agaveapi.co/tags/v2/3042501574756462105-242ac113-0001-048/associations
 
-.. code-block:: plaintext
-
-   tags-resources-delete demo
-   tags-resources-delete 3042501574756462105-242ac113-0001-048
 
 ..
 
@@ -236,4 +213,3 @@ Untag all the resources associated with a tag at once, make a DELETE erquest on 
 .. raw:: html
 
    <aside class="notice"> Clearing resources will remove the assocation, but not the resources themselves. </aside>
-
