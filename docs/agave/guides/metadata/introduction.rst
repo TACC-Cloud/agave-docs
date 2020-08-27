@@ -2,7 +2,7 @@
    :format: html
 
 
-Metadata
+Metadata v2
 ========
 
 The Tapis Metadata service allows you to manage metadata and associate it with Tapis entities via associated UUIDs. It supports JSON schema for structured JSON metadata; it also accepts any valid JSON-formatted metadata or plain text String when no schema is specified. As with other Tapis services, a full access control layer is available, enabling you to keep your metadata private or share it with your colleagues.
