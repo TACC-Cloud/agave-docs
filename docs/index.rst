@@ -95,6 +95,7 @@ Tapis is an open source, science-as-a-service API platform for powering your dig
     agave/guides/metadata/metadata-search
     agave/guides/metadata/metadata-permissions
     agave/guides/metadata/metadata-schema
+    agave/guides/metadata/metadata-v3
 
 .. toctree::
     :maxdepth: 2
