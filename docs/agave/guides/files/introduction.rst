@@ -317,7 +317,7 @@ Download a file from a web accessible URL
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
             -- data &#039;{ "url":"https://bitbucket.org/agaveapi/science-api-samples/raw/master/README.md"}&#039;
-            https://api.tacc.utexas.edu/files/v2/media/api.tacc.cloud/nryan
+            https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/nryan
 |
 
 
@@ -373,7 +373,7 @@ Transferring data between systems
             -H "Content-Type: application/json" \
             -X POST \
             --data-binary '{"url":"agave://stampede.tacc.utexas.edu//etc/motd"}' \
-            https://api.tacc.utexas.edu/files/v2/media/api.tacc.cloud/nryan
+            https://api.tacc.utexas.edu/files/v2/media/system/api.tacc.cloud/nryan
 |
 
 
@@ -446,7 +446,7 @@ Listing a file or directory
      .. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" \
-            https://api.tacc.utexas.edu/files/v2/listings/api.tacc.cloud/nryan
+            https://api.tacc.utexas.edu/files/v2/listings/system/api.tacc.cloud/nryan
 |
 
 
