@@ -117,18 +117,18 @@ Note: CLI does not currently support unlimited postits
      .. code-block:: json
 
         {
-        "creator":"jstubbs"
-        "createdAt":"2020-09-30T21:51:31-05:00",
-        "expiresAt":"2020-10-01T00:14:51-05:00",
+        "creator": "jstubbs"
+        "createdAt": "2020-09-30T21:51:31-05:00",
+        "expiresAt": "2020-10-01T00:14:51-05:00",
         "remainingUses": 10,
-        "postit":"0feb1aa5-01aa-4445-b580-a008064a4c44-010",
+        "postit": "0feb1aa5-01aa-4445-b580-a008064a4c44-010",
         "numberIsed": 0,
         "tenantId": "tacc.prod",
         "status": "ACTIVE"
-        "noauth":false,
+        "noauth": false,
         "method": "GET"
-        "url":"https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org//home/jstubbs/picksumipsum.txt",
-        "method":"GET",
+        "url": "https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org//home/jstubbs/picksumipsum.txt",
+        "method": "GET",
         "_links":{
           "self":{
             "href":"https://api.tacc.utexas.edu/postits/v2/0feb1aa5-01aa-4445-b580-a008064a4c44-010"
@@ -165,7 +165,7 @@ Note: CLI does not currently support unlimited postits
 |                      |           | expiration time and date by   +
 |                      |           | adding the seconds to the     +
 |                      |           | current date and time. The    +
-|                      |.          | resulting expiration time must+
+|                      |           | resulting expiration time must+
 |                      |           | be before date 1/19/2038.     +
 +----------------------+-----------+-------------------------------+
 | force                | boolean   | Appends the force argument to +
