@@ -5,8 +5,8 @@
 PostIts
 =======
 
-PostIts
--------
+.. contents:: Table of Contents
+
 The PostIts service is a URL shortening service similar to `bit.ly <https://bit.ly>`_\ , `goo.gl <https://goo.gl/>`_\ , and `t.co <http://t.co>`_. It allows you to create pre-authenticated, disposable URLs to any resource in the Tapis Platform. You have control over the lifetime and number of times the URL can be redeemed, and you can expire a PostIt at any time. The most common use of PostIts is to create URLs to files so that you can share with others without having to upload them to a third-party service. Anytime you need to share your science with your world, PostIts can help you.
 
 
