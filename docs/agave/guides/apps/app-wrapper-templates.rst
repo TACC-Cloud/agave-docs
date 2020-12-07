@@ -5,7 +5,7 @@
 Wrapper Templates
 =================
 
-In order to run your application, you will need to create a wrapper template that calls your executable code. The wrapper template is a simple script that Agave will filter and execute to start your app. The filtering Agave applies to your wrapper script is to inject runtime values from a job request into the script to replace the template variables representing the inputs and parameters of your app.
+In order to run your application, you will need to create a wrapper template that calls your executable code. The wrapper template is a simple script that Tapis will filter and execute to start your app. The filtering Tapis applies to your wrapper script is to inject runtime values from a job request into the script to replace the template variables representing the inputs and parameters of your app.
 
 The order in which wrapper templates are processed in HPC and Condor apps is as follows.
 
@@ -38,12 +38,12 @@ Comes from the system definition. Handle in your script if you cannot change the
 Modules
 -------
 
-See more about :raw-html-m2r:`<a href="http://modules.sourceforge.net/" title="The Environment Modules Project" target="_blank">Modules</a>` and :raw-html-m2r:`<a href="https://github.com/TACC/Lmod" title="Lmod: An Environment Module System based on Lua" target="_blank">Lmod</a>`. Can be used to customize your environment, locate your application, and improve portability between systems. Agave does not install or manage the module installation on a particular system, however it does know how to interact with it. Specifying the modules needed to run your app either in your wrapper template or in your system definition can greatly help you during the development process.
+See more about :raw-html-m2r:`<a href="http://modules.sourceforge.net/" title="The Environment Modules Project" target="_blank">Modules</a>` and :raw-html-m2r:`<a href="https://github.com/TACC/Lmod" title="Lmod: An Environment Module System based on Lua" target="_blank">Lmod</a>`. Can be used to customize your environment, locate your application, and improve portability between systems. Tapis does not install or manage the module installation on a particular system, however it does know how to interact with it. Specifying the modules needed to run your app either in your wrapper template or in your system definition can greatly help you during the development process.
 
 Default job macros
 ------------------
 
-Agave provides information about the job, system, and user as predefined macros you can use in your wrapper templates. The full list of  runtime job macros are give in the following table.
+Tapis provides information about the job, system, and user as predefined macros you can use in your wrapper templates. The full list of  runtime job macros are give in the following table.
 
 
 .. raw:: html
@@ -83,7 +83,7 @@ Agave provides information about the job, system, and user as predefined macros 
    </tr>
    <tr>
    <td>AGAVE_JOB_EXECUTION_SYSTEM</td>
-   <td>The Agave execution system id where this job is running.</td>
+   <td>The Tapis execution system id where this job is running.</td>
    </tr>
    <tr>
    <td>AGAVE_JOB_ID</td>
@@ -123,7 +123,7 @@ Agave provides information about the job, system, and user as predefined macros 
    </tr>
    <tr>
    <td>AGAVE_JOB_ARCHIVE_URL</td>
-   <td>The Agave url to which the job will be archived after the job completes.</td>
+   <td>The Tapis url to which the job will be archived after the job completes.</td>
    </tr>
    <tr>
    <td>AGAVE_JOB_CALLBACK_RUNNING</td>
@@ -143,7 +143,7 @@ Agave provides information about the job, system, and user as predefined macros 
    </tr>
    <tr>
    <td>AGAVE_JOB_CALLBACK_FAILURE</td>
-   <td>Represents a call back to the API stating the job failed. Use this with caution as it will tell the API the job failed even if it has not yet completed. Upon receiving this callback, Agave will abandon the job and skip any archiving that may have been requested. Think of this as <span class="code">kill -9</span> for the job lifecycle.</td>
+   <td>Represents a call back to the API stating the job failed. Use this with caution as it will tell the API the job failed even if it has not yet completed. Upon receiving this callback, Tapis will abandon the job and skip any archiving that may have been requested. Think of this as <span class="code">kill -9</span> for the job lifecycle.</td>
    </tr>
    </tbody>
    </table>
@@ -152,7 +152,7 @@ Agave provides information about the job, system, and user as predefined macros 
 Input data
 ----------
 
-Agave will stage the files and folders you specify as inputs to your app. These will be available in the top level of your job directory at runtime. Additionally, the names of each of the inputs will be injected into your wrapper template for you to use in your application logic. Please be aware that Agave will not attempt to resolve namespace conflicts between your app inputs. That means that if a job specifies two inputs with the same name, one will overwrite the other during the input staging phase of the job and, though the variable names will be correctly injected to the wrapper script, your job will most likely fail due to missing data.
+Tapis will stage the files and folders you specify as inputs to your app. These will be available in the top level of your job directory at runtime. Additionally, the names of each of the inputs will be injected into your wrapper template for you to use in your application logic. Please be aware that Tapis will not attempt to resolve namespace conflicts between your app inputs. That means that if a job specifies two inputs with the same name, one will overwrite the other during the input staging phase of the job and, though the variable names will be correctly injected to the wrapper script, your job will most likely fail due to missing data.
 
 See the table below for fields that must be defined for an app's inputs:
 
@@ -227,7 +227,7 @@ See the table below for fields that must be defined for an app's inputs:
    <td>semantics.fileTypes</td>
    <td>X</td>
    <td>array[string]</td>
-   <td>List of Agave file types accepted. Always use "raw-0" for the time being</td>
+   <td>List of Tapis file types accepted. Always use "raw-0" for the time being</td>
    </tr>
    <tr>
    <td>details.description</td>
@@ -251,7 +251,7 @@ See the table below for fields that must be defined for an app's inputs:
    <td>details.showArgument</td>
    <td></td>
    <td>boolean</td>
-   <td>Include the argument in the substitution done by Agave when a run script is generated</td>
+   <td>Include the argument in the substitution done by Tapis when a run script is generated</td>
    </tr>
    </tbody>
    </table>
@@ -260,12 +260,12 @@ See the table below for fields that must be defined for an app's inputs:
 Variable injection
 ------------------
 
-If you refer back to the app definition we used in the App Management Tutorial, you will see there are multiple inputs and parameters defined for that app. Each input and parameter object had an ``id`` attribute. That ``id`` value is the attribute name you use to associate runtime values with app inputs and parameters. When a job is submitted to Agave, prior to physically running the wrapper template, all instances of that ``id`` are replaced with the actual value from the job request. The example below shows our app description, a job request, and the resulting wrapper template at run time.
+If you refer back to the app definition we used in the App Management Tutorial, you will see there are multiple inputs and parameters defined for that app. Each input and parameter object had an ``id`` attribute. That ``id`` value is the attribute name you use to associate runtime values with app inputs and parameters. When a job is submitted to Tapis, prior to physically running the wrapper template, all instances of that ``id`` are replaced with the actual value from the job request. The example below shows our app description, a job request, and the resulting wrapper template at run time.
 
 Type declarations
 -----------------
 
-During the jobs submission process, Agave will store your inputs and parameters as serialized JSON. At the point that variable injection occurs, Agave will replace all occurrences of your input and parameter with their value provided in the job request. In order for Agave to properly identify your input and parameter ids, wrap them in brackets and prepend a dollar sign. For example, if you have a parameter with id ``param1``\ , you would include it in your wrapper script as ``${param1}``. Case sensitivity is honored at all times.
+During the jobs submission process, Tapis will store your inputs and parameters as serialized JSON. At the point that variable injection occurs, Tapis will replace all occurrences of your input and parameter with their value provided in the job request. In order for Tapis to properly identify your input and parameter ids, wrap them in brackets and prepend a dollar sign. For example, if you have a parameter with id ``param1``\ , you would include it in your wrapper script as ``${param1}``. Case sensitivity is honored at all times.
 
 Boolean values
 --------------
@@ -280,12 +280,12 @@ Cardinality is not used in resolving wrapper template variables.
 Parameter Flags
 ---------------
 
-If your parameter was of type "flag", Agave will replace all occurences of the template variable with the value you provided for the ``argument`` field.
+If your parameter was of type "flag", Tapis will replace all occurences of the template variable with the value you provided for the ``argument`` field.
 
 App packaging
 -------------
 
-Agave API apps have a generalized structure that allows them to carry dependencies around with them. In the case below, ``package-name-version.dot.dot</em>`` is a folder that you build on your local system, then store in your Agave Cloud Storage in a designated location (we recommend ``/home/username/applications/app_folder_name``\ ). It contains binaries, support scripts, test data, etc. all in one package. Agave basically uses a very rough form of containerized applications (more on this later). We suggest you set your apps up to look something like the following:
+Tapis API apps have a generalized structure that allows them to carry dependencies around with them. In the case below, ``package-name-version.dot.dot</em>`` is a folder that you build on your local system, then store in your Tapis Cloud Storage in a designated location (we recommend ``/home/username/applications/app_folder_name``\ ). It contains binaries, support scripts, test data, etc. all in one package. Tapis basically uses a very rough form of containerized applications (more on this later). We suggest you set your apps up to look something like the following:
 
 .. code-block::
 
@@ -299,17 +299,17 @@ Agave API apps have a generalized structure that allows them to carry dependenci
    |----test_data (optional)
    |----app.json
 
-Agave runs a job by first transferring a copy of this directory into temporary directory on the target ``executionSystem``. Then, the input data files (we'll show you how to specify those are later) are staged into place automatically. Next, Agave writes a scheduler submit script (using a template you provide i.e. script.template) and puts it in the queue on the target system. The Agave service then monitors progress of the job and, assuming it completes, copies all newly-created files to the location specified when the job was submitted. Along the way, critical milestones and metadata are recorded in the job's history.
+Tapis runs a job by first transferring a copy of this directory into temporary directory on the target ``executionSystem``. Then, the input data files (we'll show you how to specify those are later) are staged into place automatically. Next, Tapis writes a scheduler submit script (using a template you provide i.e. script.template) and puts it in the queue on the target system. The Tapis service then monitors progress of the job and, assuming it completes, copies all newly-created files to the location specified when the job was submitted. Along the way, critical milestones and metadata are recorded in the job's history.
 
-:raw-html-m2r:`<em>Agave app development proceeds via the following steps:</em>`
+:raw-html-m2r:`<em>Tapis app development proceeds via the following steps:</em>`
 
 
 #. Build the application locally on the ``executionSystem``
 #. Ensure that you are able to run it directly on the ``executionSystem``
-#. Describe the application using an Agave app description
+#. Describe the application using a Tapis app description
 #. Create a shell template for running the app
 #. Upload the application directory to a ``storageSystem``
-#. Post the app description to the Agave apps service
+#. Post the app description to the Tapis apps service
 #. Debug your app by running jobs and updating the app until it works as intended
 #. (Optional) Share the app with some friends to let them test it
 
@@ -375,13 +375,13 @@ Application metadata
      <td>deployementSystem</td>
      <td>X</td>
      <td>string</td>
-     <td>The Agave-registered STORAGE system upon which you have write permissions where the app bundle resides</td>
+     <td>The Tapis-registered STORAGE system upon which you have write permissions where the app bundle resides</td>
    </tr>
    <tr>
      <td>executionSystem</td>
      <td>X</td>
      <td>string</td>
-     <td>An Agave-registered EXECUTION system upon which you have execute and app registration permissions where jobs will run</td>
+     <td>a Tapis-registered EXECUTION system upon which you have execute and app registration permissions where jobs will run</td>
    </tr>
    <tr>
      <td>helpURI</td>
@@ -435,7 +435,7 @@ Application metadata
      <td>storageSystem</td>
      <td>X</td>
      <td>string</td>
-     <td>The Agave-registered STORAGE system upon which you have write permissions. Default source of and destination for data consumed and emitted by the app</td>
+     <td>The Tapis-registered STORAGE system upon which you have write permissions. Default source of and destination for data consumed and emitted by the app</td>
    </tr>
    <tr>
      <td>tags</td>
@@ -556,7 +556,7 @@ Parameter metadata
      <td>details.showArgument</td>
      <td></td>
      <td>boolean</td>
-     <td>Include the argument in the substitution done by Agave when a run script is generated</td>
+     <td>Include the argument in the substitution done by Tapis when a run script is generated</td>
    </tr>
    </tbody>
    </table>
@@ -636,7 +636,7 @@ Output metadata
      <td>semantics.fileTypes</td>
      <td>X</td>
      <td>array[string]</td>
-     <td>List of Agave file types that may apply to the output. Always use "raw-0" for the time being</td>
+     <td>List of Tapis file types that may apply to the output. Always use "raw-0" for the time being</td>
    </tr>
    <tr>
      <td>details.description</td>
@@ -660,7 +660,7 @@ Output metadata
      <td>details.showArgument</td>
      <td></td>
      <td>boolean</td>
-     <td>Include the argument in the substitution done by Agave when a run script is generated (not currently used)</td>
+     <td>Include the argument in the substitution done by Tapis when a run script is generated (not currently used)</td>
    </tr>
    </tbody>
    </table>
@@ -675,5 +675,5 @@ Tools and Utilities
 -------------------
 
 
-#. Stumped for ontology terms to apply to your Agave app inputs, outputs, and parameters? You can search EMBL-EBI for :raw-html-m2r:`<a href="https://www.ebi.ac.uk/ols/index">ontology terms</a>`\ , and BioPortal can provide links to :raw-html-m2r:`<a href="http://bioportal.bioontology.org/ontologies/EDAM">EDAM</a>`.
+#. Stumped for ontology terms to apply to your Tapis app inputs, outputs, and parameters? You can search EMBL-EBI for :raw-html-m2r:`<a href="https://www.ebi.ac.uk/ols/index">ontology terms</a>`\ , and BioPortal can provide links to :raw-html-m2r:`<a href="http://bioportal.bioontology.org/ontologies/EDAM">EDAM</a>`.
 #. Need to validate JSON files? Try :raw-html-m2r:`<a href="http://jsonlint.com/">JSONlint</a>` or :raw-html-m2r:`<a href="http://json.parser.online.fr/">JSONparser</a>`

@@ -29,18 +29,18 @@ Throughout the documentation you will regularly encounter the following variable
        <td>nryan</td>
      <tr></tr>
        <td>${API_KEY}</td>
-       <td align="center">Client key used to request an access token from the Agave Auth service</td>
+       <td align="center">Client key used to request an access token from the Tapis Auth service</td>
        <td>hZ_z3f4Hf3CcgvGoMix0aksN4BOD6</td>
      <tr></tr>
        <td>${API_SECRET}</td>
-       <td align="center">Client secret used to request an access token from the Agave Auth service</td>
+       <td align="center">Client secret used to request an access token from the Tapis Auth service</td>
        <td>gTgpCecqtOc6Ao3GmZ_FecVSSV8a</td>
      <tr>
      </tr>
        <td>${API_TOKEN}</td>
-       <td align="center">Client unique identifier of an application requesting access to Agave Auth service</td>
+       <td align="center">Client unique identifier of an application requesting access to Tapis Auth service</td>
        <td>de32225c235cf47b9965997270a1496c</td>
-     </tr> 
+     </tr>
    </table>
 |
 
@@ -52,7 +52,7 @@ JSON Notation
 
    .. container:: header
 
-      
+
       :fa:`caret-right`
       **Show JSON notation**
 
@@ -111,17 +111,16 @@ Javascript dot notation will be used to refer to individual properties of JSON o
 * ``active`` refers to the top level ``active`` attribute in the response object.
 * ``lastCheck.[].result`` generically refers to the result attribute contained within any of the objects contained in the ``lastCheck`` array.
 * ``lastCheck.[0].result`` specifically refers to the result attribute contained within the first object in the ``lastCheck`` array.
-* ``_links.self.href`` refers to the href attribute in the checks object within the ``_links`` object.
 
 Versioning
 ----------
 
-The current major version of Agave is given in the URI immediately following the API resource name. For example, if the endpoint is ``https://api.tacc.utexas.edu/jobs/v2/``\ , the API version would be ``v2``. The current major version of Agave is v2. (Full version: 2.2.23)
+The current major version of Tapis is given in the URI immediately following the API resource name. For example, if the endpoint is ``https://api.tacc.utexas.edu/jobs/v2/``\ , the API version would be ``v2``. The current major version of Tapis is v2. (Full version: 2.2.23)
 
 Special Character Handling
 --------------------------
 
-In certain situations, usually where file system paths and names are involved in some way, Agave will generate sanitized object names ("slugs") to make them safe to use. Slugs will be created on the fly by applying the following rules:
+In certain situations, usually where file system paths and names are involved in some way, Tapis will generate sanitized object names ("slugs") to make them safe to use. Slugs will be created on the fly by applying the following rules:
 
 
 #. Lowercase the string
@@ -131,12 +130,12 @@ In certain situations, usually where file system paths and names are involved in
 Secure communication
 --------------------
 
-Agave uses SSL to secure communication with the clients. If HTTPS is not specified in the request, the request will be redirected to a secure channel.
+Tapis uses SSL to secure communication with the clients. If HTTPS is not specified in the request, the request will be redirected to a secure channel.
 
 Requests
 --------
 
-The Agave API is based on :raw-html-m2r:`<a title="REST" href="http://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank">REST</a>` principles: data resources are accessed via standard HTTPS requests in UTF-8 format to an API endpoint. The API uses appropriate HTTP verbs for each action whenever possible.
+The Tapis API is based on :raw-html-m2r:`<a title="REST" href="http://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank">REST</a>` principles: data resources are accessed via standard HTTPS requests in UTF-8 format to an API endpoint. The API uses appropriate HTTP verbs for each action whenever possible.
 
 
 .. raw:: html
@@ -157,7 +156,7 @@ The Agave API is based on :raw-html-m2r:`<a title="REST" href="http://en.wikiped
      <tr></tr>
        <td>DELETE</td>
        <td>Used for deleting resources</td>
-     </tr> 
+     </tr>
    </table>
 |
 
@@ -194,7 +193,7 @@ Several URL query parameters are common across all services. The following table
        <td>filter</td>
        <td align="center">string</td>
        <td>A comma-delimited list of fields to return for each object in the response. Each field may be referenced using JSON notation</td>
-     </tr> 
+     </tr>
    </table>
 |
 
@@ -219,7 +218,7 @@ Starting with the 2.1.10 release, two new query parameters have been introduced 
        <td>sortBy</td>
        <td align="center">string</td>
        <td>The field by which to sort the response. Any field present in the full representation of the resource that you are querying is supported. Multiple values are not currently supported</td>
-     </tr> 
+     </tr>
    </table>
 |
 
@@ -240,7 +239,7 @@ Response Details
        "result": {}
    }
 
-Apart from the response code, all responses from Agave are in the form of a json object. The object takes the following form.
+Apart from the response code, all responses from Tapis are in the form of a json object. The object takes the following form.
 
 
 .. raw:: html
@@ -265,8 +264,8 @@ Apart from the response code, all responses from Agave are in the form of a json
      <tr></tr>
        <td>version</td>
        <td align="center">string</td>
-       <td>The current full release version of Agave. Ex “2.1.16-r8228”</td>
-     </tr> 
+       <td>The current full release version of Tapis. Ex “2.1.16-r8228”</td>
+     </tr>
    </table>
 
 
@@ -277,7 +276,7 @@ Naked Responses
 
 In situations where you do not care to parse the wrapper for the raw response data, you may request a *naked* response from the API by adding ``naked=true`` in to the request URL. This will return just the value of the ``result`` attribute in the response wrapper.
 
-naked=true 
+naked=true
 
 .. code-block:: json
 
@@ -327,6 +326,9 @@ Formatting
 
 By default, all responses are serialized JSON. To receive pre-formatted JSON, add ``pretty=true`` to any query string.
 
+.. note::
+   The tapis-cli also produces a table formatted output.
+
 Pagination
 ----------
 
@@ -343,7 +345,7 @@ Pagination
 
 .. code-block:: plaintext
 
-   jobs-list -o 50 -l 25
+   tapis jobs list -o 50 -l 25
 
 All resource collections support a way of paging the dataset, taking an ``offset`` and ``limit`` as query parameters:
 
@@ -359,7 +361,7 @@ Timestamps are returned in \ :raw-html-m2r:`<a href="http://en.wikipedia.org/wi
 Cross Origin Resource Sharing (CORS)
 ------------------------------------
 
-Many modern applications choose to implement client-server communication exclusively in Javascript. For this reason, Agave provides :raw-html-m2r:`<a href="http://en.wikipedia.org/wiki/Cross-origin_resource_sharing" title="CORS" target="_blank">cross-origin resource sharing (CORS)</a>` support so AJAX requests from a web browser are not constrained by cross-origin requests and can safely make GET, PUT, POST, and DELETE requests to the API.
+Many modern applications choose to implement client-server communication exclusively in Javascript. For this reason, Tapis provides :raw-html-m2r:`<a href="http://en.wikipedia.org/wiki/Cross-origin_resource_sharing" title="CORS" target="_blank">cross-origin resource sharing (CORS)</a>` support so AJAX requests from a web browser are not constrained by cross-origin requests and can safely make GET, PUT, POST, and DELETE requests to the API.
 
 Hypermedia
 ----------
@@ -385,4 +387,4 @@ Hypermedia
        }
    }
 
-Agave is a fully descriptive hypermedia API. Given any point, you should be able to run API through the links provided in the ``_links`` object in each resource representation. The following user metadata object contains two referenced objects. The first, ``self`` is common to all objects, and contains the URL of that object. The second, ``owner`` contains the URL to the profile of the user who created the object.
+Tapis is a fully descriptive hypermedia API. Given any point, you should be able to run API through the links provided in the ``_links`` object in each resource representation. The following user metadata object contains two referenced objects. The first, ``self`` is common to all objects, and contains the URL of that object. The second, ``owner`` contains the URL to the profile of the user who created the object.

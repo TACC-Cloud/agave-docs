@@ -2,7 +2,7 @@
 Tag Permissions
 ^^^^^^^^^^^^^^^
 
-The Tags service supports permissions fconsistent with that of a number of other Agave services. If no permissions are explicitly set, only the owner of the Tag and tenant administrators can access it.
+The Tags service supports permissions fconsistent with that of a number of other Tapis services. If no permissions are explicitly set, only the owner of the Tag and tenant administrators can access it.
 
 The permissions available for Tags listed in the following table. Please note that a user must have WRITE permissions to grant or revoke permissions on a tag.
 
@@ -24,12 +24,6 @@ Listing all permissions
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
        https://public.tenants.agaveapi.co/tags/v2/3042501574756462105-242ac113-0001-048/pems/rclemens
 
-.. code-block:: plaintext
-
-   tags-pems-list -u rclemens demo
-
-   tags-pems-list -u rclemens \
-       3042501574756462105-242ac113-0001-048
 
 ..
 
@@ -74,10 +68,6 @@ List permissions for a specific user
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
        https://public.tenants.agaveapi.co/tags/v2/data/3042501574756462105-242ac113-0001-048/pems/nryan
 
-.. code-block:: plaintext
-
-   tags-pems-list -u rclemens \
-       3042501574756462105-242ac113-0001-048
 
 ..
 
@@ -121,10 +111,6 @@ Grant permissions
        --data '{"permission":"READ"}'
        https://public.tenants.agaveapi.co/tags/v2/data/3042501574756462105-242ac113-0001-048/pems/rclemens
 
-.. code-block:: plaintext
-
-   tags-pems-addupdate -u rclemens \
-       -p READ 3042501574756462105-242ac113-0001-048
 
 ..
 
@@ -137,10 +123,6 @@ Grant permissions
        --data '{"permission":"READ_WRITE"}'
        https://public.tenants.agaveapi.co/tags/v2/data/3042501574756462105-242ac113-0001-048/pems/rclemens
 
-.. code-block:: plaintext
-
-   tags-pems-addupdate -u rclemens \
-       -p READ_WRITE 3042501574756462105-242ac113-0001-048
 
 ..
 
@@ -184,9 +166,6 @@ Delete single user permissions
        -X DELETE
        https://public.tenants.agaveapi.co/tags/v2/3042501574756462105-242ac113-0001-048/pems/rclemens
 
-.. code-block:: plaintext
-
-   tags-pems-delete -u rclemens 3042501574756462105-242ac113-0001-048
 
 ..
 
@@ -219,10 +198,6 @@ Deleting all permissions
        -X DELETE
        https://public.tenants.agaveapi.co/tags/v2/3042501574756462105-242ac113-0001-048/pems
 
-.. code-block:: plaintext
-
-   tags-pems-delete demo
-   tags-pems-delete 3042501574756462105-242ac113-0001-048
 
 ..
 
@@ -235,4 +210,3 @@ Permissions may be deleted for a single user by making a DELETE request on the t
 .. raw:: html
 
    <aside class="info">The above operation will delete all permissions for a tag, such that only the owner will be able to access it. Use with care.</aside>
-

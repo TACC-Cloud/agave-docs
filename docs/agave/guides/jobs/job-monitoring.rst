@@ -5,7 +5,7 @@
 Job monitoring
 ==============
 
-Once you submit your job request, the job will be handed off to Agave's back end execution service. Your job may run right away, or it may wait in a batch queue on the execution system until the required resources are available. Either way, the execution process occurs completely asynchronous to the submission process. To monitor the status of your job, Agave supports two different mechanisms: polling and webhooks.
+Once you submit your job request, the job will be handed off to Tapis's back end execution service. Your job may run right away, or it may wait in a batch queue on the execution system until the required resources are available. Either way, the execution process occurs completely asynchronous to the submission process. To monitor the status of your job, Tapis supports two different mechanisms: polling and webhooks.
 
 ..
 
@@ -21,9 +21,9 @@ Polling for your job status works the same way. After submitting your job, you s
 
 .. code-block::
 
-   jobs-list -v
-   jobs-list -v $JOB_ID
-   jobs-list $JOB_ID
+   tapis jobs list -v $JOB_ID
+   tapis jobs show -v $JOB_ID
+   tapis jobs show $JOB_UUID
 
 .. container:: foldable
 
@@ -80,34 +80,34 @@ Polling for your job status works the same way. After submitting your job, you s
         },
         "_links": {
           "self": {
-            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID"
+            "href": "https://api.tacc.utexas.edu/jobs/v2/$JOB_ID"
           },
           "app": {
-            "href": "https://agave.iplantc.org/apps/v2/$APP_ID"
+            "href": "https://api.tacc.utexas.edu/apps/v2/$APP_ID"
           },
           "executionSystem": {
-            "href": "https://agave.iplantc.org/systems/v2/$PUBLIC_EXECUTION_SYSTEM"
+            "href": "https://api.tacc.utexas.edu/systems/v2/$PUBLIC_EXECUTION_SYSTEM"
           },
           "archiveSystem": {
-            "href": "https://agave.iplantc.org/systems/v2/$PUBLIC_EXECUTION_SYSTEM""
+            "href": "https://api.tacc.utexas.edu/systems/v2/$PUBLIC_EXECUTION_SYSTEM""
           },
           "archiveData": {
-            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/outputs/listings"
+            "href": "https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/outputs/listings"
           },
           "owner": {
-            "href": "https://agave.iplantc.org/profiles/v2/$USERNAME"
+            "href": "https://api.tacc.utexas.edu/profiles/v2/$USERNAME"
           },
           "permissions": {
-            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/pems"
+            "href": "https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/pems"
           },
           "history": {
-            "href": "https://agave.iplantc.org/jobs/v2/$JOB_ID/history"
+            "href": "https://api.tacc.utexas.edu/jobs/v2/$JOB_ID/history"
           },
           "metadata": {
-            "href": "https://agave.iplantc.org/meta/v2/data/?q=%7B%22associationIds%22%3A%22462259152402771480-242ac113-0001-007%22%7D"
+            "href": "https://api.tacc.utexas.edu/meta/v2/data/?q=%7B%22associationIds%22%3A%22462259152402771480-242ac113-0001-007%22%7D"
           },
           "notifications": {
-            "href": "https://agave.iplantc.org/notifications/v2/?associatedUuid=$JOB_ID"
+            "href": "https://api.tacc.utexas.edu/notifications/v2/?associatedUuid=$JOB_ID"
           }
         }
         }
@@ -229,13 +229,13 @@ The list of all possible job statuses is given in table 2.
    <p class="table-caption">Table 2. Job statuses listed in progressive order from job submission to completion.</p>
 
 
-Polling is an incredibly effective approach, but it is bad practice for two reasons. First, it does not scale well. Querying for one job status every few seconds does not take much effort, but querying for 100 takes quite a bit of time and puts unnecessary load on Agave's servers. Second, polling provides what is effectively a binary response. It tells you whether a job is done or not done, it does not give you any information on what is actually going on with the job or where it is in the overall execution process.
+Polling is an incredibly effective approach, but it is bad practice for two reasons. First, it does not scale well. Querying for one job status every few seconds does not take much effort, but querying for 100 takes quite a bit of time and puts unnecessary load on Tapis's servers. Second, polling provides what is effectively a binary response. It tells you whether a job is done or not done, it does not give you any information on what is actually going on with the job or where it is in the overall execution process.
 
 The job history URL provides much more detailed information on the various state changes, system messages, and progress information associated with data staging. The syntax of the job history URL is as follows:
 
 .. code-block::
 
-   jobs-history -v $JOB_ID
+   tapis jobs history -v $JOB_UUID
 
 .. container:: foldable
 
@@ -337,11 +337,11 @@ Often times, however, polling is unavoidable. In these situations, we recommend 
 Webhooks
 ~~~~~~~~
 
-Webhooks are the alternative, preferred way for your application to monitor the status of asynchronous actions in Agave. If you are a :raw-html-m2r:`<a href="http://en.wikipedia.org/wiki/Design_Patterns_(book)" title="Gang of Four" target="_blank">Gang of Four</a>` disciple, webhooks are a mechanism for implementing the :raw-html-m2r:`<a href="http://en.wikipedia.org/wiki/Observer%5Fpattern" title="Observer Pattern" target="_blank">Observer Pattern</a>`. They are widely used across the web and chances are that something you're using right now is leveraging them. In the context of Agave, a webhook is a URL that you give to Agave in advance of an event which it later POSTs a response to when that event occurs. A webhook can be any web accessible URL.
+Webhooks are the alternative, preferred way for your application to monitor the status of asynchronous actions in Tapis. If you are a :raw-html-m2r:`<a href="http://en.wikipedia.org/wiki/Design_Patterns_(book)" title="Gang of Four" target="_blank">Gang of Four</a>` disciple, webhooks are a mechanism for implementing the :raw-html-m2r:`<a href="http://en.wikipedia.org/wiki/Observer%5Fpattern" title="Observer Pattern" target="_blank">Observer Pattern</a>`. They are widely used across the web and chances are that something you're using right now is leveraging them. In the context of Tapis, a webhook is a URL that you give to Tapis in advance of an event which it later POSTs a response to when that event occurs. A webhook can be any web accessible URL.
 
 ..
 
-   :information_source: For more information about webhooks, events, and notifications in Agave, please see the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/notifications/introduction.html" title="Notifications Guide">Notifications</a>` and :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/events/introduction.html" title="Events Guide">Events</a>` Guides.
+   :information_source: For more information about webhooks, events, and notifications in Tapis, please see the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/notifications/introduction.html" title="Notifications Guide">Notifications</a>` and :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/events/introduction.html" title="Events Guide">Events</a>` Guides.
 
 
 The Jobs service provides several template variables for constructing dynamic URLs. Template variables can be included anywhere in your URL by surrounding the variable name in the following manner ``${VARIABLE_NAME}``. When an event of interest occurs, the variables will be resolved and the resulting URL called. Several example urls are given below.
@@ -385,7 +385,7 @@ The full list of template variables are listed in the following table.
    </tr>
    <tr>
    <td>JOB_ID</td>
-   <td>The unique id used to reference the job within Agave.</td>
+   <td>The unique id used to reference the job within Tapis.</td>
    </tr>
    <tr>
    <td>JOB_SYSTEM</td>
@@ -405,7 +405,7 @@ The full list of template variables are listed in the following table.
    </tr>
    <tr>
    <td>JOB_SUBMIT_TIME</td>
-   <td>The time when the job was submitted to Agave for execution by the user in ISO8601 format.</td>
+   <td>The time when the job was submitted to Tapis for execution by the user in ISO8601 format.</td>
    </tr>
    <tr>
    <td>JOB_ARCHIVE_PATH</td>
@@ -413,7 +413,7 @@ The full list of template variables are listed in the following table.
    </tr>
    <tr>
    <td>JOB_ARCHIVE_URL</td>
-   <td>The Agave URL for the archived data.</td>
+   <td>The Tapis URL for the archived data.</td>
    </tr>
    <tr>
    <td>JOB_ERROR</td>
@@ -432,30 +432,29 @@ The full list of template variables are listed in the following table.
 Email
 -----
 
-In situations where you do not have a persistent web address, or access to a backend service, you may find it more convenient to subscribe for email notifications rather then providing a webhook. Agave supports email notifications as well. Simply specify a valid email address in the ``url`` field in your job submission notification object and an email will be sent to that address when a relevant event occurs. A sample email message is given below.
+In situations where you do not have a persistent web address, or access to a backend service, you may find it more convenient to subscribe for email notifications rather then providing a webhook. Tapis supports email notifications as well. Simply specify a valid email address in the ``url`` field in your job submission notification object and an email will be sent to that address when a relevant event occurs. A sample email message is given below.
 
 .. code-block::
 
    The status of job 0001414144065563-5056a550b8-0001-007, "demo-pyplot-demo-advanced test-1414139896," has changed to FINISHED.
 
    Name: demo-pyplot-demo-advanced test-1414139896
-   URL: https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007
+   URL: https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007
    Message: Job completed successfully.
    Submit Time: 2014-10-24T04:48:11.000-05:00
    Start Time: 2014-10-24T04:48:08.000-05:0
    End Time: 2014-10-24T04:48:15.000-05:00
    Output Path: $API_USERNAME/archive/jobs/job-0001414144065563-5056a550b8-0001-007
-   Output URL: https://public.tenants.agaveapi.co/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs
+   Output URL: https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs
 
 
 .. raw:: html
 
    <!-- ## Websockets
 
-   Websockets are a realtime approach to monitoring where your client application listens on a dedicated channel for notification messages from Agave. Simply subscribe to Agave's websocket server ([https://realtime.agaveapi.co](https://realtime.agaveapi.co) and listen for a channel matching the job id.
+   Websockets are a realtime approach to monitoring where your client application listens on a dedicated channel for notification messages from Tapis. Simply subscribe to Tapis's websocket server ([https://realtime.agaveapi.co](https://realtime.agaveapi.co) and listen for a channel matching the job id.
 
    ```json
    /agave.prod/$API_USERNAME/$JOB_ID
    ```
    -->
-

@@ -8,7 +8,7 @@ You can kill a job with the following CLI command:
 
 .. code-block:: plaintext
 
-   jobs-stop $JOB_ID
+   tapis jobs cancel $JOB_UUID
 
 .. container:: foldable
 
@@ -19,7 +19,7 @@ You can kill a job with the following CLI command:
 
      .. code-block:: shell
 
-        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "action=kill" https://agave.iplantc.org/jobs/v2/$JOB_ID
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "action=kill" https://api.tacc.utexas.edu/jobs/v2/$JOB_ID
 |
 
 .. container:: foldable
@@ -68,31 +68,31 @@ You can kill a job with the following CLI command:
         },
         "_links" : {
           "self" : {
-            "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007"
+            "href" : "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007"
           },
           "app" : {
-            "href" : "https://agave.iplantc.org/apps/v2/demo-pyplot-demo-advanced-0.1.0"
+            "href" : "https://api.tacc.utexas.edu/apps/v2/demo-pyplot-demo-advanced-0.1.0"
           },
           "executionSystem" : {
-            "href" : "https://agave.iplantc.org/systems/v2/$PUBLIC_EXECUTION_SYSTEM"
+            "href" : "https://api.tacc.utexas.edu/systems/v2/$PUBLIC_EXECUTION_SYSTEM"
           },
           "archiveData" : {
-            "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/listings"
+            "href" : "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007/outputs/listings"
           },
           "owner" : {
-            "href" : "https://agave.iplantc.org/profiles/v2/$API_USERNAME"
+            "href" : "https://api.tacc.utexas.edu/profiles/v2/$API_USERNAME"
           },
           "permissions" : {
-            "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/pems"
+            "href" : "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007/pems"
           },
           "history" : {
-            "href" : "https://agave.iplantc.org/jobs/v2/0001414144065563-5056a550b8-0001-007/history"
+            "href" : "https://api.tacc.utexas.edu/jobs/v2/0001414144065563-5056a550b8-0001-007/history"
           },
           "metadata" : {
-            "href" : "https://agave.iplantc.org/meta/v2/data/?q={"associationIds":"0001414144065563-5056a550b8-0001-007"}"
+            "href" : "https://api.tacc.utexas.edu/meta/v2/data/?q={"associationIds":"0001414144065563-5056a550b8-0001-007"}"
           },
           "notifications" : {
-            "href" : "https://agave.iplantc.org/notifications/v2/?associatedUuid=0001414144065563-5056a550b8-0001-007"
+            "href" : "https://api.tacc.utexas.edu/notifications/v2/?associatedUuid=0001414144065563-5056a550b8-0001-007"
           }
         }
         }
@@ -104,20 +104,10 @@ Deleting a job
 
 Over time the number of jobs you have run can grow rather large. You can delete jobs to remove them from your listing results, with the following CLI command:
 
-.. code-block:: plaintext
 
-   jobs-delete $JOB_ID
+.. code-block:: shell
 
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
-
-        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://agave.iplantc.org/jobs/v2/$JOB_ID
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://api.tacc.utexas.edu/jobs/v2/$JOB_ID
 |
 
    :warning: Deleting a job will hide it from view, not permanently delete the record.
@@ -130,7 +120,7 @@ Often times you will want to rerun a previous job as part of a pipeline, automat
 
 .. code-block::
 
-   jobs-resubmit $JOB_ID
+   tapis jobs resubmit $JOB_UUID
 
 .. container:: foldable
 
@@ -141,7 +131,7 @@ Often times you will want to rerun a previous job as part of a pipeline, automat
 
      .. code-block:: shell
 
-        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "action=resubmit" https://agave.iplantc.org/jobs/v2/$JOB_ID
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "action=resubmit" https://api.tacc.utexas.edu/jobs/v2/$JOB_ID
 |
 
 
@@ -162,4 +152,3 @@ Resubmission provides you the options to enforce as much or as little rigor as y
    * - preserveNotifications
      - boolean
      - Whether to recreate the notification of the original job for the resubmitted job.
-

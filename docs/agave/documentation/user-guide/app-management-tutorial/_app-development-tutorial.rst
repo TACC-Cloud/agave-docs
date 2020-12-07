@@ -2,12 +2,12 @@
    :format: html
 
 
-We will now go through the process of building and deploying an Agave application to provide 'samtools sort' functionality on TACC's Stampede system. The following tutorial assumes you have properly installed and configured the iPlant SDK on Stampede. They assume you have defined an environment variable IPLANTUSERNAME as your iPlant username (e.g. IPLANTUSERNAME=youriplantusername).
+We will now go through the process of building and deploying a Tapis application to provide 'samtools sort' functionality on TACC's Stampede system. The following tutorial assumes you have properly installed and configured the iPlant SDK on Stampede. They assume you have defined an environment variable IPLANTUSERNAME as your iPlant username (e.g. IPLANTUSERNAME=youriplantusername).
 
-Agave application packaging
+Tapis application packaging
 ---------------------------
 
-Agave API apps have a generalized structure that allows them to carry dependencies around with them. In the case below, :raw-html-m2r:`<em>package-name-version.dot.dot</em>` is a folder that you build on your local system, then store in the iPlant Data Store in a designated location (we recommend IPLANTUSERNAME/applications/APPFOLDER). It contains binaries, support scripts, test data, etc. all in one package. Agave basically uses a very rough form of containerized applications (more on this later). We suggest you set your apps up to look something like the following:
+Tapis API apps have a generalized structure that allows them to carry dependencies around with them. In the case below, :raw-html-m2r:`<em>package-name-version.dot.dot</em>` is a folder that you build on your local system, then store in the iPlant Data Store in a designated location (we recommend IPLANTUSERNAME/applications/APPFOLDER). It contains binaries, support scripts, test data, etc. all in one package. Tapis basically uses a very rough form of containerized applications (more on this later). We suggest you set your apps up to look something like the following:
 
 [code lang=text]
 package-name-version.dot.dot
@@ -23,27 +23,27 @@ package-name-version.dot.dot
 .. code-block::
 
 
-   Agave runs a job by first transferring a copy of this directory into temporary directory on the target executionSystem. Then, the input data files (we'll show you how to specify those are later) are staged into place automatically. Next, Agave writes a scheduler submit script (using a template you provide i.e. script.template) and puts it in the queue on the target system. The Agave service then monitors progress of the job and, assuming it completes, copies all newly-created files to the location specified when the job was submitted. Along the way, critical milestones and metadata are recorded in the job's history.
+   Tapis runs a job by first transferring a copy of this directory into temporary directory on the target executionSystem. Then, the input data files (we'll show you how to specify those are later) are staged into place automatically. Next, Tapis writes a scheduler submit script (using a template you provide i.e. script.template) and puts it in the queue on the target system. The Tapis service then monitors progress of the job and, assuming it completes, copies all newly-created files to the location specified when the job was submitted. Along the way, critical milestones and metadata are recorded in the job's history.
 
-   <em>Agave app development proceeds via the following steps:</em>
+   <em>Tapis app development proceeds via the following steps:</em>
 
    <ol>
    <li>Build the application locally on the executionSystem</li>
    <li>Ensure that you are able to run it directly on the executionSystem</li>
-   <li>Describe the application using an Agave app description</li>
+   <li>Describe the application using a Tapis app description</li>
    <li>Create a shell template for running the app</li>
    <li>Upload the application directory to a storageSystem</li>
-   <li>Post the app description to the Agave apps service</li>
+   <li>Post the app description to the Tapis apps service</li>
    <li>Debug your app by running jobs and updating the app until it works as intended</li>
    <li>(Optional) Share the app with some friends to let them test it</li>
    </ol>
 
-   ### Build a samtools application bundle  
+   ### Build a samtools application bundle
 
    ```shell
    #!/bin/bash
 
-   # Log into Stampede 
+   # Log into Stampede
    ssh stampede.tacc.utexas.edu
 
    # Unload system&#039;s samtools module if it happens to be loaded by default
@@ -82,7 +82,7 @@ package-name-version.dot.dot
                 sort        sort alignment file
                 mpileup     multi-way pileup...
 
-   # Package up the bin directory as an compressed archive 
+   # Package up the bin directory as an compressed archive
    # and remove the original. This preserves the execute bit
    # and other permissions and consolidates movement of all
    # bundled dependencies in bin to a single operation. You
@@ -100,7 +100,7 @@ Your first objective is to create a script that you know will run to completion 
    <ul>
    <li>Unpack binaries from bin.tgz</li>
    <li>Extend your PATH to contain bin</li>
-   <li>Craft some option-handling logic to accept parameters from Agave</li>
+   <li>Craft some option-handling logic to accept parameters from Tapis</li>
    <li>Craft a command line invocation of the application you will run</li>
    <li>Clean up when you're done</li>
    </ul>
@@ -120,19 +120,19 @@ Now, author your script. You can paste the following code into a file called :ra
 
    #!/bin/bash
 
-   # Agave automatically writes these scheduler
+   # Tapis automatically writes these scheduler
    # directives when you submit a job but we have to
    # do it by hand when writing our test
 
    #SBATCH -p development
    #SBATCH -t 00:30:00
    #SBATCH -n 16
-   #SBATCH -A iPlant-Collabs 
+   #SBATCH -A iPlant-Collabs
    #SBATCH -J test-samtools
    #SBATCH -o test-samtools.o%j
 
    # Set up inputs and parameters
-   # We&#039;re emulating passing these in from Agave
+   # We&#039;re emulating passing these in from Tapis
    # inputBam is the name of the file to be sorted
    inputBam="ex1.bam"
    # outputPrefix is a parameter that establishes
@@ -144,11 +144,11 @@ Now, author your script. You can paste the following code into a file called :ra
    nameSort=0
 
    # Unpack the bin.tgz file containing samtools binaries
-   # If you are relying entirely on system-supplied binaries 
+   # If you are relying entirely on system-supplied binaries
    # you don&#039;t need this bit
    tar -xvf bin.tgz
    # Extend PATH to include binaries in bin
-   # If you need to extend lib, include, etc 
+   # If you need to extend lib, include, etc
    # the same approach is applicable
    export PATH=$PATH:"$PWD/bin"
 
@@ -156,9 +156,9 @@ Now, author your script. You can paste the following code into a file called :ra
    # by building an ARGS string then
    # adding the command, file specifications, etc
    #
-   # We&#039;re doing this in a way familar to Agave V1 users
+   # We&#039;re doing this in a way familar to Tapis V1 users
    # first. Later, we&#039;ll illustrate how to make use of
-   # Agave V2&#039;s new parameter passing functions
+   # Tapis V2&#039;s new parameter passing functions
    #
    # Start with empty ARGS...
    ARGS=""
@@ -181,7 +181,7 @@ Submit the job to the queue on Stampede...
 
 .. code-block:: shell
 
-   chmod 700 test-sort.sh 
+   chmod 700 test-sort.sh
    sbatch test-sort.sh
 
 You can monitor your jobs in the queue using
@@ -190,12 +190,12 @@ You can monitor your jobs in the queue using
 
    showq -u your_tacc_username
 
-Assuming all goes according to plan, you'll end up with a sorted BAM called :raw-html-m2r:`<em>sorted.bam</em>`\ , and your bin directory (but not the bin.tgz file) should be erased. Congratulations, you're in the home stretch: it's time to turn the test script into an Agave app.
+Assuming all goes according to plan, you'll end up with a sorted BAM called :raw-html-m2r:`<em>sorted.bam</em>`\ , and your bin directory (but not the bin.tgz file) should be erased. Congratulations, you're in the home stretch: it's time to turn the test script into a Tapis app.
 
-Craft an Agave app description
+Craft a Tapis app description
 ------------------------------
 
-In order for Agave to know how to run an instance of the application, we need to provide quite a bit of metadata about the application. This includes a unique name and version, the location of the application bundle, the identities of the execution system and destination system for results, whether its an HPC or other kind of job, the default number of processors and memory it needs to run, and of course, all the inputs and parameters for the actual program. It seems a bit over-complicated, but only because you're comfortable with the command line already. Your goal here is to allow your applications to be portable across systems and present a web-enabled, rationalized interface for your code to consumers.
+In order for Tapis to know how to run an instance of the application, we need to provide quite a bit of metadata about the application. This includes a unique name and version, the location of the application bundle, the identities of the execution system and destination system for results, whether its an HPC or other kind of job, the default number of processors and memory it needs to run, and of course, all the inputs and parameters for the actual program. It seems a bit over-complicated, but only because you're comfortable with the command line already. Your goal here is to allow your applications to be portable across systems and present a web-enabled, rationalized interface for your code to consumers.
 
 Rather than have you write a description for "samtools sort" from scratch, let's systematically dissect an existing file provided with the SDK. Go ahead and copy the file into place and open it in your text editor of choice. If you don't have the SDK installed, you can :raw-html-m2r:`<a href="../examples/samtools-0.1.19/stampede/samtools-sort.json">grab it here</a>`.
 
@@ -226,7 +226,7 @@ Now, open sort.template in the text editor of your choice. Delete the bash sheba
    # and parameters
    outputPrefix=${outputPrefix}
    # Maximum memory for sort, in bytes
-   # Be careful, Neither Agave nor scheduler will
+   # Be careful, Neither Tapis nor scheduler will
    # check that this is a reasonable value. In production
    # you might want to code min/max for this value
    maxMemSort=${maxMemSort}
@@ -256,12 +256,12 @@ Now, open sort.template in the text editor of your choice. Delete the bash sheba
 ### Storing an app bundle on a storageSystem
 --------------------------------------------
 
-Each time you (or another user) requests an instance of samtools sort, Agave copies data from a "deploymentPath" on a "storageSystem" as part of creating the temporary working directory on an "executionSystem". Now that you've crafted the application bundle's dependencies and script template, it's time to store it somewhere accessible by Agave.
+Each time you (or another user) requests an instance of samtools sort, Tapis copies data from a "deploymentPath" on a "storageSystem" as part of creating the temporary working directory on an "executionSystem". Now that you've crafted the application bundle's dependencies and script template, it's time to store it somewhere accessible by Tapis.
 
 
 .. raw:: html
 
-   <aside class="notice">If you've never deployed an Agave-based app, you may not have an applications directory in your home folder. Since this is where we recommend you store the apps, create one.</aside>
+   <aside class="notice">If you've never deployed a Tapis-based app, you may not have an applications directory in your home folder. Since this is where we recommend you store the apps, create one.</aside>
 
 
 .. code-block:: shell
@@ -278,7 +278,7 @@ Each time you (or another user) requests an instance of samtools sort, Agave cop
 .. code-block:: shell
 
    # Check to see if you have an applications directory
-   files-list -S data.agaveapi.co $IPLANTUSERNAME/applications
+   tapis files list agave://data.agaveapi.co/$IPLANTUSERNAME/applications
    # If you see: File/folder does not exist
    # then you need to create an applications directory
    files-mkdir -S data.agaveapi.co -N "applications" $IPLANTUSERNAME/
@@ -294,7 +294,7 @@ Now, go ahead with the upload:
    # Upload using files-upload
    files-upload -S data.agaveapi.co -F samtools-0.1.19 $IPLANTUSERNAME/applications
 
-Post the app description to Agave
+Post the app description to Tapis
 ---------------------------------
 
 As mentioned in the overview, several personalizations to samtools-sort.json are required.  Specifically, edit the samtools-sort.json file to change:
@@ -309,30 +309,30 @@ As mentioned in the overview, several personalizations to samtools-sort.json are
    </ul>
 
 
-Post the JSON file to Agave's app service.
+Post the JSON file to Tapis's app service.
 
 .. code-block:: shell
 
-   apps-addupdate -F samtools-0.1.19/stampede/samtools-sort.json
+   tapis apps update -F samtools-0.1.19/stampede/samtools-sort.json
 
 
 .. raw:: html
 
-   <aside class="notice">If you see this error "Permission denied. An application with this unique id already exists and you do not have permission to update this application. Please either change your application name or update the version number", you forgot to change the name or the name you chose conflicts with another Agave application. Change it again in the JSON file and resubmit.</aside>
+   <aside class="notice">If you see this error "Permission denied. An application with this unique id already exists and you do not have permission to update this application. Please either change your application name or update the version number", you forgot to change the name or the name you chose conflicts with another Tapis application. Change it again in the JSON file and resubmit.</aside>
 
 
 Updating your application metadata or bundle
 --------------------------------------------
 
-Any time you need to update the metadata description of your non-public application, you can just make the changes locally to the JSON file and and re-post it. The next time Agave creates a job using this application, it will use the new description.
+Any time you need to update the metadata description of your non-public application, you can just make the changes locally to the JSON file and and re-post it. The next time Tapis creates a job using this application, it will use the new description.
 
 .. code-block:: shell
 
    apps-addupdate -F samtools-0.1.19/stampede/samtools-sort.json $IPLANTUSERNAME-samtools-sort-0.1.19
 
-The field :raw-html-m2r:`<em>$IPLANTUSERNAME-samtools-sort-0.1.19</em>` at the end is the appid you're updating. Agave tries to guess from the JSON file but to remove uncertainty, we recommend always specifying it explicitly.
+The field :raw-html-m2r:`<em>$IPLANTUSERNAME-samtools-sort-0.1.19</em>` at the end is the appid you're updating. Tapis tries to guess from the JSON file but to remove uncertainty, we recommend always specifying it explicitly.
 
-Any time you need to update the binaries, libraries, templates, etc. in your non-public application, you can just make the changes locally and re-upload the bundle. The next time Agave creates a job using this application, it will stage the updated version of the application bundle into place on the executionSystem and it to complete your task. It's a little more complicated to deal with fully public apps, and so we'll cover that in a separate document.
+Any time you need to update the binaries, libraries, templates, etc. in your non-public application, you can just make the changes locally and re-upload the bundle. The next time Tapis creates a job using this application, it will stage the updated version of the application bundle into place on the executionSystem and it to complete your task. It's a little more complicated to deal with fully public apps, and so we'll cover that in a separate document.
 
 Verify your new app description
 -------------------------------
@@ -342,9 +342,9 @@ First, you may check to see if your new application shows up in the bulk listing
 .. code-block:: shell
 
    # Shows all apps that are public, private to you, or shared with you
-   apps-list 
+   tapis apps list
    # Show all apps on a specific system that are public, private to you, or shared with you
-   apps-list -S stampede.tacc.utexas.edu
+   tapis apps list apps-list -S stampede.tacc.utexas.edu
    # Show only your private apps
    apps-list --privateonly
 
@@ -356,4 +356,4 @@ You can print a detailed view, in JSON format, of any app description to your sc
 
    apps-list -v APP_ID
 
-Take some time to review how the app description looks when printed from app-list relative to how it looked as a JSON file in your text editor. There are likely some additional fields present (generated by the Agave service) and the presentation may differ from your expectation. Understanding the relationship between what the service returns and the input data structure is crucial for being able to debug effectively.
+Take some time to review how the app description looks when printed from app-list relative to how it looked as a JSON file in your text editor. There are likely some additional fields present (generated by the Tapis service) and the presentation may differ from your expectation. Understanding the relationship between what the service returns and the input data structure is crucial for being able to debug effectively.

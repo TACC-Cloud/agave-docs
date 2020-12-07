@@ -5,7 +5,7 @@
 Execution Systems
 =================
 
-In contrast to storage systems, execution systems specify compute resources where application binaries can be run. In addition to the ``storage`` attribute found in storage systems, execution systems also have a ``login`` attribute describing how to connect to the remote system to submit jobs as well as several other attributes that allow Agave to determine how to stage data and run software on the system. The full list of execution system attributes is given in the following tables.
+In contrast to storage systems, execution systems specify compute resources where application binaries can be run. In addition to the ``storage`` attribute found in storage systems, execution systems also have a ``login`` attribute describing how to connect to the remote system to submit jobs as well as several other attributes that allow Tapis to determine how to stage data and run software on the system. The full list of execution system attributes is given in the following tables.
 
 
 .. raw:: html
@@ -22,7 +22,7 @@ In contrast to storage systems, execution systems specify compute resources wher
            <tr>
                <td>available</td>
                <td>boolean</td>
-               <td>Whether the system is currently available for use in the API. Unavailable systems will not be visible to anyone but the owner. This differs from the <code>status</code> attribute in that a system may be UP, but not available for use in Agave. Defaults to true</td>
+               <td>Whether the system is currently available for use in the API. Unavailable systems will not be visible to anyone but the owner. This differs from the <code>status</code> attribute in that a system may be UP, but not available for use in Tapis. Defaults to true</td>
            </tr>
            <tr>
                <td>description</td>
@@ -69,7 +69,7 @@ In contrast to storage systems, execution systems specify compute resources wher
                <td>LSF, LOADLEVELER, PBS, SGE, CONDOR, FORK, COBALT, TORQUE, MOAB, SLURM,
                CUSTOM_LSF, CUSTOM_LOADLEVELER, CUSTOM_PBS, CUSTOM_SGE, CUSTOM_CONDOR,
                FORK, CUSTOM_COBALT, CUSTOM_TORQUE, CUSTOM_MOAB, CUSTOM_SLURM, UNKNOWN</td>
-               <td><b>Required:</b> The type of batch scheduler available on the system. This only applies to systems with executionType HPC and CONDOR. The *_CUSTOM version of each scheduler provides a mechanism for you to override the default scheduler directives added by Agave and explicitly add your own through the <span style="code">customDirectives</span> field in each of the batchQueue definitions for your system.</td>
+               <td><b>Required:</b> The type of batch scheduler available on the system. This only applies to systems with executionType HPC and CONDOR. The *_CUSTOM version of each scheduler provides a mechanism for you to override the default scheduler directives added by Tapis and explicitly add your own through the <span style="code">customDirectives</span> field in each of the batchQueue definitions for your system.</td>
            </tr>
            <tr>
                <td>scratchDir</td>
@@ -113,9 +113,9 @@ In contrast to storage systems, execution systems specify compute resources wher
 Startup startupScript
 ---------------------
 
-Every time Agave establishes a connection to an execution system, local or remote, it will attempt to source the ``startupScript`` provided in your system definition. The value of ``startupScript`` may be an absolute path on the system (ie. "/usr/local/bin/common_aliases.sh", "/home/nryan/.bashrc", etc.) or a path relative to physical home directory of the account used to authenticate to the system (".bashrc", ".profile", "agave/scripts/startup.sh", etc).
+Every time Tapis establishes a connection to an execution system, local or remote, it will attempt to source the ``startupScript`` provided in your system definition. The value of ``startupScript`` may be an absolute path on the system (ie. "/usr/local/bin/common_aliases.sh", "/home/nryan/.bashrc", etc.) or a path relative to physical home directory of the account used to authenticate to the system (".bashrc", ".profile", "agave/scripts/startup.sh", etc).
 
-The ``startupScript`` field supports the use of template variables which Agave will resolve at runtime before establishing a connection. If you would prefer to specify the startup script as a virtualized path on the system, prepend ``${SYSTEM_ROOT_DIR}`` to the path. If the system will be made public, you can specify a file relative to the home directory of the calling user by prefixing your ``startupScript`` value with ``${SYSTEM_ROOT_DIR}/${SYSTEM_HOME_DIR}/${USERNAME}`` A full list of the variables available is given in the following table.
+The ``startupScript`` field supports the use of template variables which Tapis will resolve at runtime before establishing a connection. If you would prefer to specify the startup script as a virtualized path on the system, prepend ``${SYSTEM_ROOT_DIR}`` to the path. If the system will be made public, you can specify a file relative to the home directory of the calling user by prefixing your ``startupScript`` value with ``${SYSTEM_ROOT_DIR}/${SYSTEM_HOME_DIR}/${USERNAME}`` A full list of the variables available is given in the following table.
 
 
 .. raw:: html
@@ -210,7 +210,7 @@ The ``startupScript`` field supports the use of template variables which Agave w
    </tr>
    <tr>
    <td>AGAVE_JOB_EXECUTION_SYSTEM</td>
-   <td>The Agave execution system id where this job is running.</td>
+   <td>The Tapis execution system id where this job is running.</td>
    </tr>
    <tr>
    <td>AGAVE_JOB_ARCHIVE_PATH</td>
@@ -245,7 +245,7 @@ The ``startupScript`` is :raw-html-m2r:`<strong>NOT</strong>` a virtual path rel
 Schedulers and system execution types
 -------------------------------------
 
-Agave supports job execution both interactively and through :raw-html-m2r:`<a href="http://en.wikipedia.org/wiki/Job_scheduler" title="Job Scheduler" target="_blank">batch queueing systems</a>` (aka schedulers). We cover the mechanics of job submission in the Job Management tutorial. Here we just point out that regardless of how your job is actually run on the underlying system, the process of submitting, monitoring, sharing, and otherwise interacting with your job through Agave is identical. Describing the scheduler and execution types for your system is really just a matter of picking the most efficient and/or available mechanism for running jobs on your system.
+Tapis supports job execution both interactively and through :raw-html-m2r:`<a href="http://en.wikipedia.org/wiki/Job_scheduler" title="Job Scheduler" target="_blank">batch queueing systems</a>` (aka schedulers). We cover the mechanics of job submission in the Job Management tutorial. Here we just point out that regardless of how your job is actually run on the underlying system, the process of submitting, monitoring, sharing, and otherwise interacting with your job through Tapis is identical. Describing the scheduler and execution types for your system is really just a matter of picking the most efficient and/or available mechanism for running jobs on your system.
 
 As you saw in the table above, ``executionType`` refers to the classification of jobs going into the system and ``scheduler`` refers to the type of batch scheduler used on a system. These two fields help limit the range of job submission options used on a specific system. For example, it is not uncommon for a HPC system to accept jobs from both a Condor scheduler and a batch scheduler. It is also possible, though generally discouraged, to fork jobs directly on the command line. With so many options, how would users publishing apps on such a system know what mechanism to use? Specifying the execution type and scheduler help narrow down the options to a single execution mechanism.
 
@@ -271,7 +271,7 @@ Thankfully, picking the right combination is pretty simple. The following table 
            <tr>
                <td>CONDOR</td>
                <td>CONDOR</td>
-               <td>Jobs will be submitted to the condor scheduler running locally on the remote system. Agave will not do any installation for you, so the setup and administration of the Condor server is up to you.</td>
+               <td>Jobs will be submitted to the condor scheduler running locally on the remote system. Tapis will not do any installation for you, so the setup and administration of the Condor server is up to you.</td>
            </tr>
            <tr>
                <td>CLI</td>
@@ -287,7 +287,7 @@ When you are describing your system, consider the policies put in place by your 
 Defining batch queues
 ---------------------
 
-Agave supports the notion of multiple submit queues. On HPC systems, queues should map to actual batch scheduler queues on the target server. Additionally, queues are used by Agave as a mechanism for implementing quotas on job throughput in a given queue or across an entire system. Queues are defined as a JSON array of objects assigned to the ``queues`` attribute. The following table summarizes all supported queue parameters.
+Tapis supports the notion of multiple submit queues. On HPC systems, queues should map to actual batch scheduler queues on the target server. Additionally, queues are used by Tapis as a mechanism for implementing quotas on job throughput in a given queue or across an entire system. Queues are defined as a JSON array of objects assigned to the ``queues`` attribute. The following table summarizes all supported queue parameters.
 
 
 .. raw:: html
@@ -353,11 +353,11 @@ Agave supports the notion of multiple submit queues. On HPC systems, queues shou
 Configuring quotas
 ------------------
 
-In the batch queues table above, several attributes exist to specify limits on the number of total jobs and user jobs in a given queue. Corresponding attributes exist in the execution system to specify limits on the number of total and user jobs across an entire system. These attributes, when used appropriately, can be used to tell Agave how to enforce limits on the concurrent activity of any given user. They can also ensure that Agave will not unfairly monopolize your systems as your application usage grows.
+In the batch queues table above, several attributes exist to specify limits on the number of total jobs and user jobs in a given queue. Corresponding attributes exist in the execution system to specify limits on the number of total and user jobs across an entire system. These attributes, when used appropriately, can be used to tell Tapis how to enforce limits on the concurrent activity of any given user. They can also ensure that Tapis will not unfairly monopolize your systems as your application usage grows.
 
 If you have ever used a shared HPC system before, you should be familiar with batch queue quotas. If not, the important thing to understand is that they are a critical tool to ensure fair usage of any shared resource. As the owner/administrator for your registered system, you can use the batch queues you define to enforce whatever usage policy you deem appropriate.
 
-Consider one example where you are using a VM to run image analysis routines on demand through Agave, your server will become memory bound and experience performance degradation if too many processes are running at once. To avoid this, you can set a limit using a batch queue configuration that limits the number of simultaneous tasks that can run at once on your server.
+Consider one example where you are using a VM to run image analysis routines on demand through Tapis, your server will become memory bound and experience performance degradation if too many processes are running at once. To avoid this, you can set a limit using a batch queue configuration that limits the number of simultaneous tasks that can run at once on your server.
 
 Another example where quotas can be helpful is to help you properly partitioning your system resources. Consider a user analyzing unstructured data. The problem is computationally and memory intensive. To preserve resources, you could create one queue with a moderate value of ``maxJobs`` and conservative ``maxMemoryPerNode``\ , ``maxProcessorsPerNode``\ , and ``maxNodes`` values to allow good throughput of small job. You could then create another queue with large ``maxMemoryPerNode``\ , ``maxProcessorsPerNode``\ , and ``maxNodes`` values while only allowing a single job to run at a time. This gives you both high throughput and high capacity on a single system.
 
@@ -474,7 +474,7 @@ The following sample queue definitions illustrate some other interesting use cas
 System login protocols
 ----------------------
 
-As with storage systems, Agave supports several different protocols and mechanisms for job submission. We already covered scheduler and queue support. Here we illustrate the different login configurations possible. For brevity, only the value of the ``login`` JSON object is shown.
+As with storage systems, Tapis supports several different protocols and mechanisms for job submission. We already covered scheduler and queue support. Here we illustrate the different login configurations possible. For brevity, only the value of the ``login`` JSON object is shown.
 
 
 .. raw:: html
@@ -663,7 +663,7 @@ The full list of login configuration options is given in the following table. We
            <tr>
                <td>proxy</td>
                <td>JSON Object</td>
-               <td>The proxy server through with Agave will tunnel when submitting jobs. Currently proxy servers will use the same authentication mechanism as the target server.</td>
+               <td>The proxy server through with Tapis will tunnel when submitting jobs. Currently proxy servers will use the same authentication mechanism as the target server.</td>
            </tr>
        </tbody>
    </table>
@@ -672,7 +672,7 @@ The full list of login configuration options is given in the following table. We
 Scratch and work directories
 ----------------------------
 
-In the Job Management tutorial we will dive into how Agave manages the end-to-end lifecycle of running a job. Here we point out two relevant attributes that control where data is staged and where your job will physically run. The ``scratchDir`` and ``workDir`` attributes control where the working directories for each job will be created on an execution system. The following table summarizes the decision making process Agave uses to determine where the working directories should be created.
+In the Job Management tutorial we will dive into how Tapis manages the end-to-end lifecycle of running a job. Here we point out two relevant attributes that control where data is staged and where your job will physically run. The ``scratchDir`` and ``workDir`` attributes control where the working directories for each job will be created on an execution system. The following table summarizes the decision making process Tapis uses to determine where the working directories should be created.
 
 
 .. raw:: html
@@ -763,7 +763,7 @@ In the Job Management tutorial we will dive into how Agave manages the end-to-en
    </table>
 |
 
-While it is not required, it is a best practice to always specify ``scratchDir`` and ``workDir`` values for your execution systems and, whenever possible, place them outside of the system ``homeDir`` to ensure data privacy. The reason for this is that the file system available on many servers is actually made up of a combination of physically attached storage, mounted volumes, and network mounts. Often times, your home directory will have a very conservative quota while the mounted storage will essentially be quota free. As the above table shows, when you do not specify a ``scratchDir`` or ``workDir``\ , Agave will attempt to create your job work directories in your system ``homeDir``. It is very likely that, in the course of running simulations, you will reach the quota on your home directory, thereby causing that job and all future jobs to fail on the system until you clear up more space. To avoid this, we recommend specifying a location with sufficient available space to handle the work you want to do.
+While it is not required, it is a best practice to always specify ``scratchDir`` and ``workDir`` values for your execution systems and, whenever possible, place them outside of the system ``homeDir`` to ensure data privacy. The reason for this is that the file system available on many servers is actually made up of a combination of physically attached storage, mounted volumes, and network mounts. Often times, your home directory will have a very conservative quota while the mounted storage will essentially be quota free. As the above table shows, when you do not specify a ``scratchDir`` or ``workDir``\ , Tapis will attempt to create your job work directories in your system ``homeDir``. It is very likely that, in the course of running simulations, you will reach the quota on your home directory, thereby causing that job and all future jobs to fail on the system until you clear up more space. To avoid this, we recommend specifying a location with sufficient available space to handle the work you want to do.
 
 Another common error that arises from not specifying thoughtful ``scratchDir`` and ``workDir`` values for your execution systems is jobs failing due to "permission denied" errors. This often happens when your ``scratchDir`` and/or ``workDir`` resolve to the actual system root. Usually the account you are using to access the system will not have permission to write to ``/``\ , so all attempts to create a job working directory fail, accurately, due to a "permission denied" error.
 
@@ -774,7 +774,7 @@ Creating a new execution system
 
 .. code-block:: plaintext
 
-   systems-addupdate -v -F ssh-password.json
+   tapis systems create -v -F ssh-password.json
 
 .. container:: foldable
 

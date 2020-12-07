@@ -2,10 +2,10 @@
    :format: html
 
 
-Metadata
+Metadata v2
 ========
 
-The Agave Metadata service allows you to manage metadata and associate it with Agave entities via associated UUIDs. It supports JSON schema for structured JSON metadata; it also accepts any valid JSON-formatted metadata or plain text String when no schema is specified. As with other Agave services, a full access control layer is available, enabling you to keep your metadata private or share it with your colleagues.
+The Tapis Metadata service allows you to manage metadata and associate it with Tapis entities via associated UUIDs. It supports JSON schema for structured JSON metadata; it also accepts any valid JSON-formatted metadata or plain text String when no schema is specified. As with other Tapis services, a full access control layer is available, enabling you to keep your metadata private or share it with your colleagues.
 
 Metadata Structure
 ------------------
@@ -60,7 +60,7 @@ Every metadata item has four fields shown in the following table.
      - An JSON array of zero or more UUID to which this metadata item should be associated.
    * - schemaId
      - string;
-     - The id of a valid Agave metadata schema object representing the JSON Schema definition used to validate this metadata item.
+     - The id of a valid Tapis metadata schema object representing the JSON Schema definition used to validate this metadata item.
 
 
 The ``name`` field is just that, a user-defined name you give to your metadata item. There is no uniqueness constraint put on the ``name`` field, so it is up to you to the application to enforce whatever naming policy it sees fit.
@@ -74,7 +74,7 @@ Either use case is acceptable and fully supported. Your application needs will d
 Associations
 ^^^^^^^^^^^^
 
-Each metadata item also has an optional ``associationIds`` field. This field contains a JSON array of Agave UUID for which this metadata item applies. This provides a convenient grouping mechanism by which to organize logically-related resources. One common examples is creating a metadata item to represent a "data collection" and associating files and folders that may be geographically distributed under that "data collection". Another is creating a metadata item to represent a "project", then sharing the "project" with other users involved in the "project".
+Each metadata item also has an optional ``associationIds`` field. This field contains a JSON array of Tapis UUID for which this metadata item applies. This provides a convenient grouping mechanism by which to organize logically-related resources. One common examples is creating a metadata item to represent a "data collection" and associating files and folders that may be geographically distributed under that "data collection". Another is creating a metadata item to represent a "project", then sharing the "project" with other users involved in the "project".
 
 Metadata items can also be associated with other metadata items to create hierarchical relationships. Building on the "project" example, additional metadata items could be created for "links", "videos", and "experiments" to hold references for categorized groups of postits, video file items, and jobs respectively. Such a model translates well to a user interface layer and eliminates a large amount of boilerplate code in your application.
 
@@ -86,6 +86,7 @@ Creating Metadata
 ..
 
    Create a new metadata item
+
 .. container:: foldable
 
      .. container:: header
@@ -95,7 +96,7 @@ Creating Metadata
 
      .. code-block:: shell
 
-        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST  
+        curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST
             -H 'Content-Type: application/json'
             --data-binary '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model organism..."}}, "name": "mustard plant"}'
             https://api.tacc.utexas.edu/meta/v2/data?pretty=true
@@ -106,11 +107,11 @@ Creating Metadata
      .. container:: header
 
         :fa:`caret-right`
-        **Show AgaveCLI**
+        **Show Tapis CLI**
 
      .. code-block:: shell
 
-        metadata-addupdate -v -F - <<<'{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model organism..."}}, "name": "mustard plant"}'
+        tapis meta create -v -V '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model organism..."}}, "name": "mustard plant"}'
 |
 
    The response will look something like the following:
@@ -124,35 +125,39 @@ Creating Metadata
 
      .. code-block:: json
 
-        {
-          "uuid": "7341557475441971686-242ac11f-0001-012",
-          "owner": "nryan",
-          "schemaId": null,
-          "internalUsername": null,
-          "associationIds": [],
-          "lastUpdated": "2016-08-29T04:49:34.532-05:00",
-          "name": "some metadata",
+     {
+        "uuid": "4054837257140638186-242ac116-0001-012",
+        "schemaId": null,
+        "internalUsername": null,
+        "owner": "sgopal",
+        "associationIds": [],
+        "name": "sgopal.c41109da13893b6f.200414T000224Z",
+        "value": {
           "value": {
             "title": "Example Metadata",
             "properties": {
               "species": "arabidopsis",
               "description": "A model organism..."
-            }
-          },
-          "created": "2016-08-29T04:49:34.532-05:00",
-          "_links": {
-            "self": {
-              "href": "https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012"
-            },
-            "permissions": {
-              "href": "https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012/pems"
-            },
-            "owner": {
-              "href": "https://api.tacc.utexas.edu/profiles/v2/nryan"
-            },
           }
+        },
+          "name": "mustard plant"
+        },
+        "created": "2020-04-13T19:02:24.336-05:00",
+        "lastUpdated": "2020-04-13T19:02:24.336-05:00",
+        "_links": {
+          "self": {
+            "href": "https://api.sd2e.org/meta/v2/data/4054837257140638186-242ac116-0001-012"
+          },
+          "permissions": {
+            "href": "https://api.sd2e.org/meta/v2/data/4054837257140638186-242ac116-0001-012/pems"
+          },
+          "owner": {
+            "href": "https://api.sd2e.org/profiles/v2/sgopal"
+          },
+          "associationIds": []
         }
-|  
+     }
+|
 
 
 New Metadata are created in the repository via a POST to their collection URLs. As we mentioned before, there is no uniqueness constraint placed on metadata items. Thus, repeatedly POSTing the same metadata item to the service will create duplicate entries, each with their own unique UUID assigned by the service.
@@ -177,19 +182,19 @@ Updating Metadata
             -H 'Content-Type: application/json'
             --data-binary '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model plant organism..."}}, "name": "some metadata", "associationIds":["179338873096442342-242ac113-0001-002","6608339759546166810-242ac114-0001-007"]}'
             https://api.tacc.utexas.edu/meta/v2/data/7341557475441971686-242ac11f-0001-012?pretty=true
-| 
+|
 
 .. container:: foldable
 
      .. container:: header
 
         :fa:`caret-right`
-        **Show Agave CLI**
+        **Show Tapis CLI**
 
      .. code-block:: shell
 
-        metadata-addupdate -v -F - 7341557475441971686-242ac11f-0001-012 <<<'{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model plant organism..."}}, "name": "some metadata", "associationIds":["179338873096442342-242ac113-0001-002","6608339759546166810-242ac114-0001-007"]}'
-| 
+        tapis meta update -v -V '{"value": {"title": "Example Metadata", "properties": {"species": "arabidopsis", "description": "A model plant organism..."}}, "name": "some metadata", "associationIds":["179338873096442342-242ac113-0001-002","6608339759546166810-242ac114-0001-007"]}' 9057222358650121750-242ac116-0001-012
+|
 
    The response will look something like the following:
 
@@ -245,7 +250,7 @@ Updating Metadata
             ]
           }
         }
-| 
+|
 
 
 Updating metadata is done by POSTing an updated metadata object to the existing resource. When updating, it is important to note that it is not possible to change the metadata ``uuid``\ , ``owner``\ , ``lastUpdated`` or ``created`` fields. Those fields are managed by the service.
@@ -276,11 +281,11 @@ Deleting Metadata
      .. container:: header
 
         :fa:`caret-right`
-        **Show Agave CLI**
+        **Show Tapis CLI**
 
      .. code-block:: shell
 
-        metadata-delete 7341557475441971686-242ac11f-0001-012
+        tapis meta delete 7341557475441971686-242ac11f-0001-012
 |
 
    An empty response will be returned from the service.

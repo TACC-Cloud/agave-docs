@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Agave automatically writes these scheduler
+# Tapis (Agave) automatically writes these scheduler
 # directives when you submit a job but we have to
 # do it by hand when writing our test
 
@@ -12,7 +12,7 @@
 #SBATCH -o test-samtools.o%j
 
 # Set up inputs and parameters
-# We're emulating passing these in from Agave
+# We're emulating passing these in from Tapis (Agave)
 #
 #inputBam is the name of one of the inputs we
 #will specify later

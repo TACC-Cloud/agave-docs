@@ -5,37 +5,28 @@
 Clients and API Keys
 --------------------
 
-By now you already have a user account. Your user account identifies you to the web applications you interact with. A username and password is sufficient for interacting with an application because the application has a user interface, so it knows that the authenticated user is the same one interacting with it. The Agave API does not have a user interface, so simply providing it a username and password is not sufficient. Agave needs to know both the user on whose behalf it is acting as well as the client application that is making the call. Whereas every person has a single user account, they may leverage multiple services to do their daily work. 
+By now you already have a user account. Your user account identifies you to the web applications you interact with. A username and password is sufficient for interacting with an application because the application has a user interface, so it knows that the authenticated user is the same one interacting with it. The Tapis API does not have a user interface, so simply providing it a username and password is not sufficient. Tapis needs to know both the user on whose behalf it is acting as well as the client application that is making the call. Whereas every person has a single user account, they may leverage multiple services to do their daily work.
 
-In different types of Agave interactions, the user is the same, but the context with which they interact with the Agave is different. Further, the different Agave interactions all involve client applications developed by the same organization. The situation is further complicated when one or more 3rd party client applications are used to leverage the infrastructure. Agave needs to track both the users and client applications with whom it interacts. It does this through the issuance of API keys.
+In different types of Tapis interactions, the user is the same, but the context with which they interact with the Tapis is different. Further, the different Tapis interactions all involve client applications developed by the same organization. The situation is further complicated when one or more 3rd party client applications are used to leverage the infrastructure. Tapis needs to track both the users and client applications with whom it interacts. It does this through the issuance of API keys.
 
-Agave uses :raw-html-m2r:`<a href="http://oauth.net/2" title="OAuth2" target="_blank">OAuth2</a>` to authenticate users and make authorization decisions about what APIs client applications have permission to access. A discussion of OAuth2 is out of the context of this tutorial. You can read more about it on the :raw-html-m2r:`<a href="http://oauth.net/2" title="OAuth2" target="_blank">OAuth2</a>` website or from the websites of any of the many other service providers using it today. In this section, we will walk you through getting your API keys so we can stay focused on learning how to interact with the Agave's APIs.
+Tapis uses :raw-html-m2r:`<a href="http://oauth.net/2" title="OAuth2" target="_blank">OAuth2</a>` to authenticate users and make authorization decisions about what APIs client applications have permission to access. A discussion of OAuth2 is out of the context of this tutorial. You can read more about it on the :raw-html-m2r:`<a href="http://oauth.net/2" title="OAuth2" target="_blank">OAuth2</a>` website or from the websites of any of the many other service providers using it today. In this section, we will walk you through getting your API keys so we can stay focused on learning how to interact with the Tapis' (Tapis) APIs.
 
 Creating a new client application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In order to interact with any of the Agave APIs, you will need to first get a set of API keys. You can get your API keys from the Clients service. The example below shows how to get your API keys using both curl and the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/tooling/command-line-interface.html" title="Agave CLI">Agave CLI</a>`.
+In order to interact with any of the Tapis APIs, you will need to first get a set of API keys. You can get your API keys from the Clients service. The example below shows how to get your API keys using both curl and the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/tooling/command-line-interface.html" title="Tapis CLI">Tapis CLI</a>`.
 
-.. container:: foldable
 
-   .. container:: header
-
-      :fa:`caret-right`
-      **Show curl**
-
-   .. code-block:: shell
+.. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "clientName=my_cli_app" -d "description=Client app used for scripting up cool stuff" https://api.tacc.utexas.edu/clients/v2
 
-.. code-block:: plaintext
-
-   clients-create -S -v -N my_cli_app -D "Client app used for scripting up cool stuff"
 
 ..
 
-   Note: the -S option will store the new API keys for future use so you don't need to manually enter then when you authenticate later.
+Note: the -S option will store the new API keys for future use so you don't need to manually enter then when you authenticate later.
 
-   The response to this call will look something like:
+The response to this call will look something like:
 
 
 .. code-block:: json
@@ -65,24 +56,13 @@ Your API keys should be kept in a secure place and not shared with others. This 
 Listing your existing client applications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. container:: foldable
-
-   .. container:: header
-
-      :fa:`caret-right`
-      **Show curl**
-
-   .. code-block:: shell
+.. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" https://api.tacc.utexas.edu/clients/v2
 
-.. code-block:: plaintext
-
-   clients-list -v
-
 ..
 
-   The response to this call will look something like:
+The response to this call will look something like:
 
 
 .. code-block:: json
@@ -137,23 +117,13 @@ Over time you may develop several client applications. Managing several sets of 
 Deleting client registrations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. container:: foldable
-
-   .. container:: header
-
-      :fa:`caret-right`
-      **Show curl**
-   .. code-block:: shell
+.. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" -X DELETE https://api.tacc.utexas.edu/clients/v2/my_cli_app
 
-.. code-block:: plaintext
-
-   clients-delete -v my_cli_app
-
 ..
 
-   The response to this call is simply a null result object.
+The response to this call is simply a null result object.
 
 
 At some point you may need to delete a client. You can do this by requesting a DELETE on your client in the Clients service.
@@ -161,23 +131,14 @@ At some point you may need to delete a client. You can do this by requesting a D
 Listing current subscriptions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. container:: foldable
-
-   .. container:: header
-
-      :fa:`caret-right`
-      **Show curl**
-   .. code-block:: shell
+.. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" https://api.tacc.utexas.edu/clients/v2/my_cli_app/subscriptions
 
-.. code-block:: plaintext
-
-   clients-subscriptions-list -v my_cli_app
 
 ..
 
-   The response to this call will look something like:
+The response to this call will look something like:
 
 
 .. code-block:: json
@@ -224,43 +185,24 @@ Listing current subscriptions
      ...
    ]
 
-When you register a new client application and get your API keys, you are given access to all the Agave APIs by default. You can see the APIs you have access to by querying the subscriptions collection of your client.
+When you register a new client application and get your API keys, you are given access to all the Tapis APIs by default. You can see the APIs you have access to by querying the subscriptions collection of your client.
 
 Updating client subscriptions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. container:: foldable
-
-   .. container:: header
-
-      :fa:`caret-right`
-      **Show curl**
-   .. code-block:: shell
+.. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "name=transforms" https://api.tacc.utexas.edu/clients/v2/my_cli_app/subscriptions
 
-.. code-block:: plaintext
-
-   clients-subscriptions-update -v -N transforms my_cli_app
 
 ..
 
-   You can also use a wildcard to resubscribe to all active APIs.
+You can also use a wildcard to resubscribe to all active APIs.
 
 
-.. container:: foldable
-
-   .. container:: header
-
-      :fa:`caret-right`
-      **Show curl**
-   .. code-block:: shell
+.. code-block:: shell
 
       curl -sku "$API_USERNAME:$API_PASSWORD" -X POST -d "name=*" https://api.tacc.utexas.edu/clients/v2/my_cli_app/subscriptions
-
-.. code-block:: plaintext
-
-   clients-subscriptions-update -v -N * my_cli_app
 
 ..
 

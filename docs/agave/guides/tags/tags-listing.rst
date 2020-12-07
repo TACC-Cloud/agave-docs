@@ -18,10 +18,6 @@ Tag details
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
        https://public.tenants.agaveapi.co/tags/v2/demo
 
-.. code-block:: plaintext
-
-   tags-list -v 3042501574756462105-242ac113-0001-048
-   tags-list -v demo
 
 ..
 
@@ -76,9 +72,6 @@ Tag browsing
    curl -sk -H "Authorization: Bearer $ACCESS_TOKEN"
        https://public.tenants.agaveapi.co/tags/v2?limit=1
 
-.. code-block:: plaintext
-
-   tags-list -v -l 1
 
 ..
 
@@ -122,4 +115,3 @@ For admins, who have implicit access to all tags, the default listing response w
 .. raw:: html
 
    <aside class="info">Admin users can append `privileged=false` to bypass implicit permissions and only return the metadata queries to which they have ownership or been granted explicit access.</aside>
-

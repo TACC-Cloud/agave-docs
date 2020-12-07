@@ -2,7 +2,7 @@
 Monitor Management Tutorial
 ===========================
 
-The Agave Monitors API provides a familiar paradigm for monitoring the use ability and accessibility of storage and execution systems you registered with Agave. Similar to services like Pingdom, Pagerduty, and WebCron, the Monitors API allows you to to create regular health checks on a registered system. Unlike standard uptime services, Agave's will check that your system is responsive and accessible by performing proactive tests on availability (PING), accessibility (authentication), and functionality (listing or echo). Each check result is persisted and the check history of a given monitor is queryable through the API. As with all resources in the Agave Platform, a full event model is available so you can subscribe to event you care about such as failed checks, restored system availability, and system disablement. 
+The Tapis Monitors API provides a familiar paradigm for monitoring the use ability and accessibility of storage and execution systems you registered with Tapis. Similar to services like Pingdom, Pagerduty, and WebCron, the Monitors API allows you to to create regular health checks on a registered system. Unlike standard uptime services, Tapis's will check that your system is responsive and accessible by performing proactive tests on availability (PING), accessibility (authentication), and functionality (listing or echo). Each check result is persisted and the check history of a given monitor is queryable through the API. As with all resources in the Tapis Platform, a full event model is available so you can subscribe to event you care about such as failed checks, restored system availability, and system disablement. 
 
 Creating Monitors
 -----------------
@@ -106,7 +106,7 @@ If you need the monitor to run more frequently, you can customize the frequency 
    The minimum interval at which a monitor can run varies from tenant to tenant, but is generally not less than 5 minutes.
 
 
-The ``startTime`` field allows you to schedule when you would like Agave to start the monitor on your system. Any date or time expression representing a moment between the current time and one month from then is acceptable. If you do not specify a value for ``startTime``\ , Agave will add the value of ``interval`` to the current time and use that as the ``startTIme``. Setting stop times or "off hours" is not currently supported.
+The ``startTime`` field allows you to schedule when you would like Tapis to start the monitor on your system. Any date or time expression representing a moment between the current time and one month from then is acceptable. If you do not specify a value for ``startTime``\ , Tapis will add the value of ``interval`` to the current time and use that as the ``startTIme``. Setting stop times or "off hours" is not currently supported.
 
 Automating system updates
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -151,7 +151,7 @@ Automating system updates
        "updateSystemStatus": true
    }
 
-In the section on Events and notifications, we cover the ways in which you can get alerted about events pertaining to a monitor. Here we will simply point out that a convenience field, ``updateStatus``\ , is built into all monitors. Setting this field to ``true`` will authorize Agave to update the status of the monitored system based on the result of the monitor checks. This is a convenient way to ensure that the status value in your system description matches the actual operational status of the system.
+In the section on Events and notifications, we cover the ways in which you can get alerted about events pertaining to a monitor. Here we will simply point out that a convenience field, ``updateStatus``\ , is built into all monitors. Setting this field to ``true`` will authorize Tapis to update the status of the monitored system based on the result of the monitor checks. This is a convenient way to ensure that the status value in your system description matches the actual operational status of the system.
 
 ..
 
@@ -407,9 +407,9 @@ Q&A
 
 ..
 
-   Agave is event driven. This means that every interaction you have with it results in an event being created. These events are what you subscribe to in the Notifications API. Because of this, if you want to know when a resource changed, you can subscribe to ``UPDATED`` events on that resource and get notified instantly when it changes. 
+   Tapis is event driven. This means that every interaction you have with it results in an event being created. These events are what you subscribe to in the Notifications API. Because of this, if you want to know when a resource changed, you can subscribe to ``UPDATED`` events on that resource and get notified instantly when it changes. 
      
-   The Systems API is a bit different in that the systems you register are actually physical resources running independently of Agave. Until you make a request to the Science APIs that requires them to interact with your system, Agave won't know if the system is present, accessible, or functional, let alone *when* it stopped responding. The Monitors API allows you to establish regular interactions between Agave and your system in the form of health checks to which you can subscribe and be notified of changes instantly. 
+   The Systems API is a bit different in that the systems you register are actually physical resources running independently of Tapis. Until you make a request to the Science APIs that requires them to interact with your system, Tapis won't know if the system is present, accessible, or functional, let alone *when* it stopped responding. The Monitors API allows you to establish regular interactions between Tapis and your system in the form of health checks to which you can subscribe and be notified of changes instantly. 
 
 
 *Why do I need system monitors, won't I get the same information just calling the Files API or running a job?*
@@ -437,5 +437,5 @@ Extra Text
 
 ..
 
-   Agave native way to monitor, track,and relay information about your systems, their accessibility, and functionality. For many users, systems are the primary resources through which they interact with the Platform. Since Agave does not operate the user-defined systems to which it facilitates access, applications built on top of Agave can experience unexplained service outages when the underlying resources are no longer available. The Monitoring API provides a proactive way to obtain such information without having to wire up external services. This means that you can build better user interfaces and service integrate that provide end users with the information needed to relay downtimes, file system failures, heavy activity, etc.
+   Tapis native way to monitor, track,and relay information about your systems, their accessibility, and functionality. For many users, systems are the primary resources through which they interact with the Platform. Since Tapis does not operate the user-defined systems to which it facilitates access, applications built on top of Tapis can experience unexplained service outages when the underlying resources are no longer available. The Monitoring API provides a proactive way to obtain such information without having to wire up external services. This means that you can build better user interfaces and service integrate that provide end users with the information needed to relay downtimes, file system failures, heavy activity, etc.
 

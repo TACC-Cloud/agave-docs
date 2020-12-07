@@ -5,14 +5,29 @@
 PostIts
 =======
 
-The PostIts service is a URL shortening service similar to `bit.ly <https://bit.ly>`_\ , `goo.gl <https://goo.gl/>`_\ , and `t.co <http://t.co>`_. It allows you to create pre-authenticated, disposable URLs to any resource in the Agave Platform. You have control over the lifetime and number of times the URL can be redeemed, and you can expire a PostIt at any time. As with all Science API resources, a full set of events is available for you to track usage and integrate the lifecycle of a PostIt into external applications as needed.
+The PostIts service is a URL shortening service similar to `bit.ly <https://bit.ly>`_\ , `goo.gl <https://goo.gl/>`_\ , and `t.co <http://t.co>`_. It allows you to create pre-authenticated, disposable URLs to any resource in the Tapis Platform. You have control over the lifetime and number of times the URL can be redeemed, and you can expire a PostIt at any time. As with all Science API resources, a full set of events is available for you to track usage and integrate the lifecycle of a PostIt into external applications as needed.
 
 The most common use of PostIts is to create URLs to files and folders you can share with others without having to upload them to a third-party service. Other uses cases for the PostIts service include creating "drop" folders to which anyone with the link can upload data, allowing a job to be reproducibly rerun for peer review, publishing metadata for public consumption, publishing a canonical reference to your user profile. The possibilities go on and on. Anytime you need to share your science with your world, PostIts can help you.
+
+Aloe Postits Service (Coming soon!)
+-----------------------------------
+The Aloe Postits service will replace the current Tapis Postits service. The new service will not break any existing interfaces, but will add on additional features and improve performace & security.
+
+The new Aloe Postits service will roll out in two parts. Part one will replace the legacy endpoints. Part two will add in additional endpoints.  
+
+A new version of the Postits service documentation is being developed.  Until the unified documentation is ready and the new service is in place, please see the current Tapis Postits service documentation (below) for a basic understanding of the interface.
+
+The following links discuss details of the new production Postits service:
+
+`New Postits Service <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/postits/postits-new.html>`_
+
+`Postits Tester Guide <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/postits/postits-test-guide.html>`_
+
 
 Creating PostIts
 ----------------
 
-To create a PostIt, send a POST request to the PostIts service with the target url you want to share. In this example, we are sharing a file we have in Agave's cloud storage account.
+To create a PostIt, send a POST request to the PostIts service with the target url you want to share. In this example, we are sharing a file we have in Tapis's cloud storage account.
 
 In the response you see standard fields such as ``created`` timestamp and the ``postit`` token. You also see several fields that lead into the discussion of another aspect of PostIts, the ability to restrict usage and expire them on demand.
 
@@ -20,10 +35,10 @@ CLI command to create a PostIt:
 
 .. code-block:: plaintext
 
-   postits-create \
+   tapis postits create \
    -m 10 \
-   -l 86400 \
-   https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co/nryan/picksumipsum.txt
+   -L 86400 \
+   https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org/nryan/picksumipsum.txt
 
 .. container:: foldable
 
@@ -39,7 +54,7 @@ CLI command to create a PostIt:
           -d "lifetime=3600" \
           -d "maxUses=10" \
           -d "method=GET" \
-          -d "url=https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co/nryan/picksumipsum.txt" \
+          -d "url=https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org/nryan/picksumipsum.txt" \
           'https://api.tacc.utexas.edu/postits/v2/?pretty=true'
 |
 
@@ -61,7 +76,7 @@ CLI command to create a PostIt:
         "remainingUses":10,
         "postit":"f61256c53bf3744185de4ac6c0c839b4",
         "noauth":false,
-        "url":"https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt",
+        "url":"https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org//home/nryan/picksumipsum.txt",
         "method":"GET",
         "_links":{
           "self":{
@@ -71,7 +86,7 @@ CLI command to create a PostIt:
             "href":"https://api.tacc.utexas.edu/profiles/v2/nryan"
           },
           "file":{
-            "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt"
+            "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org//home/nryan/picksumipsum.txt"
           }
         }
         }
@@ -137,8 +152,8 @@ When creating a PostIt, you have the ability to limit the lifespan, number of us
 
 .. raw:: html
 
-   <p></p>   
-   <p></p>   
+   <p></p>
+   <p></p>
    <p></p>
 
 
@@ -154,7 +169,7 @@ To list all currently active PostIts, enter the following CLI command:
 
 .. code-block:: plaintext
 
-   postits-list -v
+   tapis postits list -v
 
 .. container:: foldable
 
@@ -188,7 +203,7 @@ To list all currently active PostIts, enter the following CLI command:
           "remainingUses":10,
           "postit":"f61256c53bf3744185de4ac6c0c839b4",
           "noauth":false,
-          "url":"https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt",
+          "url":"https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org//home/nryan/picksumipsum.txt",
           "method":"GET",
           "_links":{
             "self":{
@@ -198,7 +213,7 @@ To list all currently active PostIts, enter the following CLI command:
               "href":"https://api.tacc.utexas.edu/profiles/v2/nryan"
             },
             "file":{
-              "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.agaveapi.co//home/nryan/picksumipsum.txt"
+              "href":"https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org//home/nryan/picksumipsum.txt"
             }
           }
         }
@@ -209,7 +224,7 @@ To list all currently active PostIts, enter the following CLI command:
 Redeeming PostIts
 -----------------
 
-You redeem a PostIt by making a non-authenticated HTTP request on the PostIt URL. In the above example, that would be ``https://public.agaveapi.co/postits/v2/ead227bace394790e56beb07e7c3ff4d``. Every time you make a get request on the PostIt, the ``remainingUses`` field decrements by 1. This continues until the value hits 0 or the PostIt outlives its ``expires`` field.
+You redeem a PostIt by making a non-authenticated HTTP request on the PostIt URL. In the above example, that would be ``https://api.tacc.utexas.edu/postits/v2/ead227bace394790e56beb07e7c3ff4d``. Every time you make a get request on the PostIt, the ``remainingUses`` field decrements by 1. This continues until the value hits 0 or the PostIt outlives its ``expires`` field.
 
 cURL command for redeeming a PostIt:
 
@@ -248,7 +263,7 @@ Manually expiring a PostIt with CLI:
 
 .. code-block:: plaintext
 
-   postits-delete f61566c53bf3744185de4ac6c0c839b4
+   tapis postits delete f61566c53bf3744185de4ac6c0c839b4
 
 .. container:: foldable
 

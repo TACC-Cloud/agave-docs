@@ -9,13 +9,13 @@ Job submission is a term recycled from shared batch computing environments where
 
 Originally the batch scheduler was a person and the term batch came from their ability to process several submissions together. Later on, as human schedulers were replaced by software, the term stuck even though the process remained unchanged. Today the term job submission is essentially unchanged.
 
-A user submits a request for a unit of work to be done. The primary difference is that today, often times, the wait time between submission and execution is considerably less. On shared systems, such as many of the HPC systems originally targeted by Agave, waiting for your job to start is the price you pay for the incredible performance you get once your job starts.
+A user submits a request for a unit of work to be done. The primary difference is that today, often times, the wait time between submission and execution is considerably less. On shared systems, such as many of the HPC systems originally targeted by Tapis, waiting for your job to start is the price you pay for the incredible performance you get once your job starts.
 
-Agave, too, adopts the concept of job submission, though it is not in and of itself a scheduler. In the context of Agave's Job service, the process of running an application registered with the Apps service is referred to as submitting a job.
+Tapis, too, adopts the concept of job submission, though it is not in and of itself a scheduler. In the context of Tapis' (Tapis) Job service, the process of running an application registered with the Apps service is referred to as submitting a job.
 
-Unlike in the batch scheduling world where each scheduler has its own job submission syntax and its own idiosyncrasies, the mechanism for submitting a job to Agave is consistent regardless of the application or system on which you run. A HTML form or JSON object are posted to the Jobs service. The submission is validated, and the job is forwarded to the scheduling and execution services for processing.
+Unlike in the batch scheduling world where each scheduler has its own job submission syntax and its own idiosyncrasies, the mechanism for submitting a job to Tapis is consistent regardless of the application or system on which you run. A HTML form or JSON object are posted to the Jobs service. The submission is validated, and the job is forwarded to the scheduling and execution services for processing.
 
-Because Agave takes an app-centric view of science, execution does not require knowing about the underlying systems on which an application runs. Simply knowing how the parameters and inputs you want to use when running an app is sufficient to define a job. Agave will handle the rest.
+Because Tapis takes an app-centric view of science, execution does not require knowing about the underlying systems on which an application runs. Simply knowing how the parameters and inputs you want to use when running an app is sufficient to define a job. Tapis will handle the rest.
 
 As mentioned previously, jobs are submitted by making a HTTP POST request either a HTML form or a JSON object to the Jobs service. All job submissions must include a few mandatory values that are used to define a basic unit of work. Table 1 lists the optional and required attributes of all job submissions.
 
@@ -103,7 +103,7 @@ As mentioned previously, jobs are submitted by making a HTTP POST request either
 
     In addition to the standard fields for all jobs, the application you specify in the ``appId`` field will also have its own set of inputs and parameters specified during registration that are unique to that app. (For more information about app registration and descriptions, see the :raw-html-m2r:`<a href="https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/apps/introduction.html" title="Apps API">Apps section</a>`..
 
-    The following snippet shows a sample JSON job request that could be submitted to the Jobs service to run the ``pyplot-0.1.0`` app. from the :raw-html-m2r:`<a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/advanced-app-example/" title="Advanced App Example">Advanced App Example</a>` tutorial. 
+    The following snippet shows a sample JSON job request that could be submitted to the Jobs service to run the ``pyplot-0.1.0`` app. from the :raw-html-m2r:`<a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/advanced-app-example/" title="Advanced App Example">Advanced App Example</a>` tutorial.
 ..
 
 .. container:: foldable
@@ -160,7 +160,7 @@ As mentioned previously, jobs are submitted by making a HTTP POST request either
 
 |
 
-Notice that this example specifies a single input attribute, ``dataset``. The ``pyplot-0.1.0`` app definition specified that the ``dataset`` input attribute could accept more than one value (maxCardinality = 2). In the job request object, that translates to an array of string values. Each string represents a piece of data that Agave will transfer into the job work directory prior to job execution. Any value accepted by the Files service when `importing data  <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/files/introduction.html#transferring-data>`_ is accepted here. Some examples of valid values are given in the following table.
+Notice that this example specifies a single input attribute, ``dataset``. The ``pyplot-0.1.0`` app definition specified that the ``dataset`` input attribute could accept more than one value (maxCardinality = 2). In the job request object, that translates to an array of string values. Each string represents a piece of data that Tapis will transfer into the job work directory prior to job execution. Any value accepted by the Files service when `importing data  <https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/files/introduction.html#transferring-data>`_ is accepted here. Some examples of valid values are given in the following table.
 
 
 .. raw:: html
@@ -181,12 +181,12 @@ Notice that this example specifies a single input attribute, ``dataset``. The ``
    <tr>
    <td>agave://$PUBLIC_STORAGE_SYSTEM/
    $API_USERNAME/inputs/pyplot/testdata.csv</td>
-   <td>An Agave URL explicitly specifying a source system and relative path.</td>
+   <td>a Tapis URL explicitly specifying a source system and relative path.</td>
    </tr>
    <tr>
    <td>agave://$PUBLIC_STORAGE_SYSTEM//home/
    apiuser/$API_USERNAME/inputs/pyplot/testdata.csv</td>
-   <td>An Agave URL explicitly specifying a source system and absolute path.</td>
+   <td>a Tapis URL explicitly specifying a source system and absolute path.</td>
    </tr>
    <tr>
    <td>http://example.com/inputs/pyplot/testdata.csv</td>
@@ -203,7 +203,7 @@ Notice that this example specifies a single input attribute, ``dataset``. The ``
 
 The example job request also specifies ``parameters`` object with the parameters defined in the ``pyplot-0.1.0`` app description. Notice that the parameter ``type`` value specified in the app description is reflected here. Numbers are given as numbers, not strings. Boolean and flag attributes are given as boolean true and false values. As with the input section, there is also a parameter ``chartType`` that accepts multiple values. In this case that translates to an array of string value. Had the parameter type required another primary type, that would be used in the array instead.
 
-Finally, we see a ``notifications`` array specifying that we want Agave send three notifications related to this job. The first is a one-time email when the job starts running. The second is a one-time email when the job reaches a terminal state. The third is a webhook to the url we specified. More on notifications in the section on monitoring below.
+Finally, we see a ``notifications`` array specifying that we want Tapis send three notifications related to this job. The first is a one-time email when the job starts running. The second is a one-time email when the job reaches a terminal state. The third is a webhook to the url we specified. More on notifications in the section on monitoring below.
 
 Job submission validation
 -------------------------
@@ -218,7 +218,7 @@ You can submit the job with the following CLI command:
 
 .. code-block:: shell
 
-   $ jobs-submit -F job.json
+   $ tapis jobs submit -F job.json
 
 ..
 
@@ -231,7 +231,7 @@ You can submit the job with the following CLI command:
 
    .. code-block:: shell
 
-      $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -F "fileToUpload=@job.json" https://agave.iplantc.org/jobs/v2/?pretty=true
+      $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d "@job.json" -H "Content-Type: application/json" https://agave.iplantc.org/jobs/v2/?pretty=true
 |
 If everything went well, you will receive a response that looks something like the following JSON object.
 

@@ -45,17 +45,17 @@ The focus of the Jobs service redesign is to improve reliability, scalability, p
 
 .. image:: Aloe3TierArchitecture.jpg
 
-The Jobs service implements a 3-tiered application with the user interface layer defined by a REST API, the application layer comprised of Java web applications and daemons, and the persistence layer comprised of a MySQL database, a RabbitMQ queue management system and the existing Agave Notifications service.
+The Jobs service implements a 3-tiered application with the user interface layer defined by a REST API, the application layer comprised of Java web applications and daemons, and the persistence layer comprised of a MySQL database, a RabbitMQ queue management system and the existing Tapis Notifications service.
 
 REST API Layer
 ^^^^^^^^^^^^^^
 
-The *Jobs REST Interface* provides the interface through which web portals and other applications can communicate with the Jobs service.  As much as possible, the API maintains the legacy Agave syntax and semantics, see `Job Service Changes <aloe-job-changes.html>`_ for details. 
+The *Jobs REST Interface* provides the interface through which web portals and other applications can communicate with the Jobs service.  As much as possible, the API maintains the legacy Tapis syntax and semantics, see `Job Service Changes <aloe-job-changes.html>`_ for details. 
 
 Application Layer
 ^^^^^^^^^^^^^^^^^
 
-The application layer implements job REST endpoints using two web applications.  The *Legacy Job Web Application* supports all HTTP GET requests and all permission requests.  The Legacy web application is a stripped down version of the Agave Jobs front end ported to work with an updated MySQL schema; it does not interact with the queue management system nor does it benefit from a redesign.  The rationale for porting part of the existing application was purely economic:  We were able to significantly reduce development and test effort by reusing existing code for read-only and permission related requests.  By not rewriting the REST APIs that do not directly interact with running jobs we could focus on improving job execution (see `Design Guidelines`_).
+The application layer implements job REST endpoints using two web applications.  The *Legacy Job Web Application* supports all HTTP GET requests and all permission requests.  The Legacy web application is a stripped down version of the Tapis Jobs front end ported to work with an updated MySQL schema; it does not interact with the queue management system nor does it benefit from a redesign.  The rationale for porting part of the existing application was purely economic:  We were able to significantly reduce development and test effort by reusing existing code for read-only and permission related requests.  By not rewriting the REST APIs that do not directly interact with running jobs we could focus on improving job execution (see `Design Guidelines`_).
 
 The new *Aloe Job Web Application* handles all POST, PUT and DELETE requests except those concerned with permissions.  The main function of this new web application is to accept requests for job execution and cancellation.  In addition, requests to resubmit jobs and requests to change the visibility of jobs are also supported.  This web application interacts with both the MySQL database and the RabbitMQ messaging system.
 
@@ -66,11 +66,11 @@ Each tenant is configured with at least one *Job Worker* application, which is a
 Persistence Layer
 ^^^^^^^^^^^^^^^^^
 
-The web applications, workers, readers and numerous administrative utility programs access the *MySQL* database.  For performance, reliability and  design simplicity, all database access from the Jobs service (other than from the legacy web application) is via direct JDBC driver calls.  The database schema contains six new tables, modifications to several existing tables and the removal of the Agave *jobs* table.  The contents of the Agave *jobs* table are migrated to the new *aloe_jobs* table to maintain historical continuity.  A single database instance continues to support all tenants in the system.
+The web applications, workers, readers and numerous administrative utility programs access the *MySQL* database.  For performance, reliability and  design simplicity, all database access from the Jobs service (other than from the legacy web application) is via direct JDBC driver calls.  The database schema contains six new tables, modifications to several existing tables and the removal of the Tapis *jobs* table.  The contents of the Tapis *jobs* table are migrated to the new *aloe_jobs* table to maintain historical continuity.  A single database instance continues to support all tenants in the system.
 
 The *RabbitMQ* queue management system was introduced in Aloe to provide reliable, non-polling communication between application layer components.  Most exchanges, queues, topics and messages are specified as durable so that they can be recovered in the event of an application or RabbitMQ failure.  Unroutable messages are captured and logged.  Undeliverable messages (i.e., dead letters) are also logged.
  
-The *Legacy Notifications* service continues to support persistent, application-level event notifications.  The new Jobs service calls the Agave Notification service as it executes jobs, by and large preserving existing Agave behavior from the client's point of view (see `Job Service Changes <aloe-job-changes.html>`_ for details).
+The *Legacy Notifications* service continues to support persistent, application-level event notifications.  The new Jobs service calls the Tapis Notification service as it executes jobs, by and large preserving existing Tapis behavior from the client's point of view (see `Job Service Changes <aloe-job-changes.html>`_ for details).
 
 Workers and Readers
 -------------------
@@ -160,7 +160,7 @@ Runtime Architecture
 
 In previous sections we described the components of the new Jobs service; in this section we describe how those components can be arranged in a runtime environment.
 
-The Aloe Jobs service is essentially a drop-in replacement for the Agave Jobs service:  the new service runs in any existing Agave installation minus its legacy Jobs service.  The existing services, including the Notifications service with its own persistent backend, continue to be configured and managed as before.  The configuration of authentication servers, proxies and load balancers also remains unchanged for existing Agave services.  
+The Aloe Jobs service is essentially a drop-in replacement for the Tapis Jobs service:  the new service runs in any existing Tapis installation minus its legacy Jobs service.  The existing services, including the Notifications service with its own persistent backend, continue to be configured and managed as before.  The configuration of authentication servers, proxies and load balancers also remains unchanged for existing Tapis services.  
 
 The new Jobs service web applications, workers and readers are delivered as Docker images, so these components can be easily deployed and redeployed on different hosts at runtime.  All deployments, however, observe the following constraints:
 

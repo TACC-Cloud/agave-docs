@@ -5,7 +5,7 @@
 User Discovery Tutorial
 =======================
 
-Nothing great is ever accomplished alone. In the course of conducting your research, you will want to share your systems, results, data, etc with other people if for no other reason than to verify that Agave works as advertised. You can use the Profiles service to lookup other users by name, username, or email address.
+Nothing great is ever accomplished alone. In the course of conducting your research, you will want to share your systems, results, data, etc with other people if for no other reason than to verify that Tapis works as advertised. You can use the Profiles service to lookup other users by name, username, or email address.
 
 Finding others
 --------------

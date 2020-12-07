@@ -22,11 +22,12 @@ Metadata Validation
      .. container:: header
 
         :fa:`caret-right`
-        **Show Agave CLI**
+        **Show Tapis CLI**
 
      .. code-block:: shell
 
-        metadata-addupdate -v -F - <<<'{"schemaId": "4736020169528054246-242ac11f-0001-013", "value": {"title": "Example Metadata", "properties": {"description": "A model organism..."}}, "name": "some metadata"}'
+        tapis meta update -v -V <<<'{"schemaId": "4736020169528054246-242ac11f-0001-013", "value": {"title": "Example Metadata", "properties": {"description": "A model organism..."}}, "name": "some metadata"}'
+        
 |
 
    The response will look something like the following:

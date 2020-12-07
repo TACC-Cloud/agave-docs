@@ -2,7 +2,7 @@
 Retry Policies
 --------------
 
-In some situations, Agave may be unable to publish a specific notification. When this happens, Agave will immediately retry the notification 5 times in an attempt to deliver it successfully. When delivery fails for a 5th time, the notification is abandoned. If your application requires a more tenacious or methodical approach to retry delivery, you may provide a notification policy.
+In some situations, Tapis may be unable to publish a specific notification. When this happens, Tapis will immediately retry the notification 5 times in an attempt to deliver it successfully. When delivery fails for a 5th time, the notification is abandoned. If your application requires a more tenacious or methodical approach to retry delivery, you may provide a notification policy.
 
 Example notification subscription object with custom retry policy:
 
@@ -24,8 +24,8 @@ Example notification subscription object with custom retry policy:
 
 .. raw:: html
 
-   <p></p>   
-   <p></p>   
+   <p></p>
+   <p></p>
    <table border="1px" cellpadding="5">
    <thead>
    <tr>
@@ -62,8 +62,8 @@ Example notification subscription object with custom retry policy:
    </tr>
    </tbody>
    </table>
-   <p></p>   
-   <p></p>   
+   <p></p>
+   <p></p>
    <p></p>
 
 
@@ -72,13 +72,10 @@ Notification retry policies describe the strategy, frequency, delay, limit, and 
 Failed deliveries
 -----------------
 
-By providing a retry policy where ``saveOnFailure`` is true, failed messages will be persisted and made available for querying at a later time. This is a great way to handled missed work due to a server failure, maintenance downtime, etc. 
+By providing a retry policy where ``saveOnFailure`` is true, failed messages will be persisted and made available for querying at a later time. This is a great way to handled missed work due to a server failure, maintenance downtime, etc.
 
 To query failed attempts for a specific notification, enter the following CLI command:
 
-.. code-block:: plaintext
-
-   notifications-list-failures 229681451607921126-8e1831906a8e-0001-042"
 
 .. container:: foldable
 

@@ -25,11 +25,11 @@ Metadata Searching
      .. container:: header
 
         :fa:`caret-right`
-        **Show Agave CLI**
+        **Show Tapis CLI**
 
      .. code-block:: plaintext
 
-        metadata-list -v -Q '{"name":"mustard+plant"}'
+        tapis meta search --name like "mustard"
 |
 
    The response will look something like the following:
@@ -93,7 +93,7 @@ Metadata Searching
 
 In addition to retrieving Metadata via its UUID, the Metadata service supports `MongoDB query syntax <https://docs.mongodb.com/manual/tutorial/query-documents/>`_. Just add the ``q=<value>`` to URL query portion of your GET request on the metadata collection. This differs from other APIs, but provides a richer syntax to query and filter responses.
 
-If you wanted to look up Metadata corresponding to a specific value within its JSON Metadata value, you can specify this using a JSON object such as ``{"name": "mustard plant"}``. Remember that, in order to send JSON in a URL query string, it must first be URL encoded. Luckily this is easily handled for us by ``curl`` and the Agave CLI.
+If you wanted to look up Metadata corresponding to a specific value within its JSON Metadata value, you can specify this using a JSON object such as ``{"name": "mustard plant"}``. Remember that, in order to send JSON in a URL query string, it must first be URL encoded. Luckily this is easily handled for us by ``curl`` and the Tapis CLI.
 
 
 .. raw:: html
@@ -164,7 +164,7 @@ Search Examples
             "value.description":{
                "$regex":[
                   ".*prickly pear.*",
-                  ".*agave.*",
+                  ".*tapis.*",
                   ".*century.*"
                ],
                "$options":"i"

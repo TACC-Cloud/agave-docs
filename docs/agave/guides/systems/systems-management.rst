@@ -9,7 +9,7 @@ Disable a system
 
 .. code-block:: plaintext
 
-   systems-disable $SYSTEM_ID
+   tapis systems disable $SYSTEM_ID
 
 .. container:: foldable
 
@@ -87,7 +87,7 @@ Enable a system
 
 .. code-block:: plaintext
 
-   systems-enable $SYSTEM_ID
+   tapis systems enable $SYSTEM_ID
 
 .. container:: foldable
 
@@ -161,18 +161,7 @@ Similarly, to enable a monitor, make a PUT request with the a field name ``actio
 Deleting systems
 ----------------
 
-.. code-block:: plaintext
-
-   systems-delete $SYSTEM_ID
-
-.. container:: foldable
-
-     .. container:: header
-
-        :fa:`caret-right`
-        **Show curl**
-
-     .. code-block:: shell
+.. code-block:: shell
 
         curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X DELETE https://api.tacc.utexas.edu/systems/v2/$SYSTEM_ID
 |
@@ -187,4 +176,4 @@ If you simply wish to remove a system from service, you can update the system :r
 Multi-user environments
 -----------------------
 
-If your application supports a multi-user environment and those users do not have API accounts, then you may run into a situation where you are juggling multiple user credentials for a single system. Agave has a solution for this problem in the for of its Internal User feature. You can map your application users into a private user store Agave provides you and assign those users credentials on your systems. This allows you to move seamlessly from community users to private users and back without having to alter your application code. For a deep discussion on the mechanics and implications of credential management with internal users, see the :raw-html-m2r:`<a href="#internal-user-credential-management/" title="Internal User Credential Management">Internal User Credential Management</a>` guide.
+If your application supports a multi-user environment and those users do not have API accounts, then you may run into a situation where you are juggling multiple user credentials for a single system. Tapis has a solution for this problem in the for of its Internal User feature. You can map your application users into a private user store Tapis provides you and assign those users credentials on your systems. This allows you to move seamlessly from community users to private users and back without having to alter your application code. For a deep discussion on the mechanics and implications of credential management with internal users, see the :raw-html-m2r:`<a href="#internal-user-credential-management/" title="Internal User Credential Management">Internal User Credential Management</a>` guide.

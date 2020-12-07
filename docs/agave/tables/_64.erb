@@ -33,7 +33,7 @@
 		</tr>
 		<tr>
 			<td>AGAVE_JOB_EXECUTION_SYSTEM</td>
-			<td>The Agave execution system id where this job is running.</td>
+			<td>The Tapis execution system id where this job is running.</td>
 		</tr>
 		<tr>
 			<td>AGAVE_JOB_ID</td>
@@ -73,7 +73,7 @@
 		</tr>
 		<tr>
 			<td>AGAVE_JOB_ARCHIVE_URL</td>
-			<td>The Agave url to which the job will be archived after the job completes.</td>
+			<td>The Tapis url to which the job will be archived after the job completes.</td>
 		</tr>
 		<tr>
 			<td>AGAVE_JOB_CALLBACK_RUNNING</td>
@@ -93,7 +93,7 @@
 		</tr>
 		<tr>
 			<td>AGAVE_JOB_CALLBACK_FAILURE</td>
-			<td>Represents a call back to the API stating the job failed. Use this with caution as it will tell the API the job failed even if it has not yet completed. Upon receiving this callback, Agave will abandon the job and skip any archiving that may have been requested. Think of this as <span class="code">kill -9</span> for the job lifecycle.</td>
+			<td>Represents a call back to the API stating the job failed. Use this with caution as it will tell the API the job failed even if it has not yet completed. Upon receiving this callback, Tapis will abandon the job and skip any archiving that may have been requested. Think of this as <span class="code">kill -9</span> for the job lifecycle.</td>
 		</tr>
 	</tbody>
 </table>

@@ -144,3 +144,4 @@ venv.bak/
 bin/
 pip-selfcheck.json
 pyvenv.cfg
+/.idea/

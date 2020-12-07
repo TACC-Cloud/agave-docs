@@ -1,9 +1,9 @@
 ===================
-Agave Documentation
+Tapis Documentation
 ===================
 
 Quickstart
-----------
+-----------
 
 1. Create a Python 3 environment
 2. Install dependencies ``pip install -r requirements.txt``

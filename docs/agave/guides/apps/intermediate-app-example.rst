@@ -2,18 +2,18 @@
    :format: html
 
 
-This is the second of three app examples demonstrating how a real world code can be registered and used in Agave. The app is a Python code that takes a csv file and creates a graph of the data. We detail how to create a JSON description of the code we want to run, how to create the wrapper template that Agave uses to run the code, and how to test and run the app with Agave.
+This is the second of three app examples demonstrating how a real world code can be registered and used in Tapis. The app is a Python code that takes a csv file and creates a graph of the data. We detail how to create a JSON description of the code we want to run, how to create the wrapper template that Tapis uses to run the code, and how to test and run the app with Tapis.
 
 
 .. raw:: html
 
-   <aside class="notice">You can download the full source code for this example app and client application in the <a href="https://bitbucket.org/agaveapi/science-api-samples" title="Agave Samples">Agave Samples</a> repository in the <span class="code">apps/pyplot-demo/intermediate/pyplot-demo-intermediate-0.1.0</span> directory. The webapp source code is provided in the <span class="code">apps/pyplot-demo/intermediate/webapp</span>directory. If you would like to run this app in a live environment, you can register your own compute and storage systems, or use one of our developer sandbox environments.</aside>
+   <aside class="notice">You can download the full source code for this example app and client application in the <a href="https://bitbucket.org/agaveapi/science-api-samples" title="Tapis Samples">Tapis Samples</a> repository in the <span class="code">apps/pyplot-demo/intermediate/pyplot-demo-intermediate-0.1.0</span> directory. The webapp source code is provided in the <span class="code">apps/pyplot-demo/intermediate/webapp</span>directory. If you would like to run this app in a live environment, you can register your own compute and storage systems, or use one of our developer sandbox environments.</aside>
 
 
 Basic app overview
 ------------------
 
-The application code we're going to use in the same Python plotting program from the previous tutorial. In this tutorial we will enhance the previous app by exposing several more parameters and adding validation rules so Agave will handle server-side validation for us. As a refresher, here is the usage text from the pyplot app.
+The application code we're going to use in the same Python plotting program from the previous tutorial. In this tutorial we will enhance the previous app by exposing several more parameters and adding validation rules so Tapis will handle server-side validation for us. As a refresher, here is the usage text from the pyplot app.
 
 [code lang=text]
 python main.py -h
@@ -58,7 +58,7 @@ optional arguments:
 
    The result of these changes will be an app that is more flexible and error-resistant than its predecessor. To illustrate, we will look at a simple web application that exposes both apps to the end user and highlight the impact the changes have on the user experience.
 
-   ### Runtime requirements  
+   ### Runtime requirements
 
    In order to run this app, the target execution system must have the following installed.
 
@@ -69,7 +69,7 @@ optional arguments:
 
    If you are following along on your local system, you will need to have these installed in order to run the wrapper script and invoke the pyplot Python code.
 
-   ### Creating the app JSON description  
+   ### Creating the app JSON description
 
    The JSON for our intermediate app is below.
 
@@ -244,7 +244,7 @@ optional arguments:
 
 As with the previous app description, the JSON is still broken up in 3 general section. The first section is identical to before, save we have given this app a new name to reflect it represents our intermediate app tutorial. The inputs section still contains a single input object called ``dataset``. This time we added an extra attribute to the definition called, ``validator``. The validator field takes a regular expression value and uses this to validate user supplied values in job requests for the app. The regular expression we specified will ensure that only files ending with :raw-html-m2r:`<strong>.csv</strong>` will be accepted.
 
-The parameters section is significantly larger than last time. Whereas the basic app had a single enumerated string parameter, this app has parameters for all the options the underlying pyplot supports. The parameters represent string, boolean, and numeric values. Notice that we do not explicitly define integer or decimal values. Rather, Agave supports a generic :raw-html-m2r:`<em>number</em>` type which you can refine to an integer or decimal value through the use of the ``validator`` field.
+The parameters section is significantly larger than last time. Whereas the basic app had a single enumerated string parameter, this app has parameters for all the options the underlying pyplot supports. The parameters represent string, boolean, and numeric values. Notice that we do not explicitly define integer or decimal values. Rather, Tapis supports a generic :raw-html-m2r:`<em>number</em>` type which you can refine to an integer or decimal value through the use of the ``validator`` field.
 
 Another change from the basic app is that our new parameters are optional. As you will see when we create our wrapper template, this means we will need to check for the existence of these values at run time.
 
@@ -258,7 +258,7 @@ Another change from the basic app is that our new parameters are optional. As yo
 Creating a wrapper script
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Now that we have our app definition, we will create a wrapper template that Agave can use to run our pyplot code. A wrapper template is a shell script that Agave calls to invoke your app. A simple wrapper template for our app is shown below.
+Now that we have our app definition, we will create a wrapper template that Tapis can use to run our pyplot code. A wrapper template is a shell script that Tapis calls to invoke your app. A simple wrapper template for our app is shown below.
 
 [code lang=text]
 
@@ -279,7 +279,7 @@ if [[ ! -e "$inputfile" ]]; then
     exit 1
 fi
 
-Set the dimensions of the chart if specified. Because Agave validates the type
+Set the dimensions of the chart if specified. Because Tapis validates the type
 ==============================================================================
 
 and value, we know the width and height values are either positive integers or empty
@@ -343,34 +343,34 @@ python $WRAPPERDIR/lib/main.py ${showYLabel} "${Y_LABEL}" "${X_LABEL}" ${SHOW_LE
 .. code-block::
 
 
-   As you probably guessed, the wrapper template, like the app description, is a little bit more complex. However, a closer look will reveal that the majority of the new content is predictable scaffolding to check for the existence of a parameter before adding it to the call to pyplot. No value or type checks are needed because Agave already handled the validation when it processed the job request. By the time the wrapper template is processed, boolean parameters will be resolved to 1 or 0, string parameters will be empty   or match the validator, enumeration parameters will be one of the predefined values, and numeric parameters will be integer values. Thus, with only value or missing values to deal with in the wrapper template, the initialization code becomes very predictable.
+   As you probably guessed, the wrapper template, like the app description, is a little bit more complex. However, a closer look will reveal that the majority of the new content is predictable scaffolding to check for the existence of a parameter before adding it to the call to pyplot. No value or type checks are needed because Tapis already handled the validation when it processed the job request. By the time the wrapper template is processed, boolean parameters will be resolved to 1 or 0, string parameters will be empty   or match the validator, enumeration parameters will be one of the predefined values, and numeric parameters will be integer values. Thus, with only value or missing values to deal with in the wrapper template, the initialization code becomes very predictable.
 
    <pre>`For even more help registering your apps, check out the App Generator. This form-based wizard will walk you through the creation of your app step by step, show you the resulting JSON along the way, and give you the option to generate a wrapper template skeleton. It is a big help in making app definition painless.
    `</pre>
 
-   When a user runs this example app, they will specify a `dataset` and `chartType` in their job request. During job submission, Agave will stage the `dataset` to the execution system, demo.execute.example.com, and place it in the job's work directory. It will then copy the contents of the app's `deploymentPath`, apps/pyplot-demo-intermediate-0.1.0, from the `deploymentSystem`, demo.storage.example.com, to the job work directory on demo.execute.example.com and process the contents of the wrapper template, wrapper.sh, into an executable file.
+   When a user runs this example app, they will specify a `dataset` and `chartType` in their job request. During job submission, Tapis will stage the `dataset` to the execution system, demo.execute.example.com, and place it in the job's work directory. It will then copy the contents of the app's `deploymentPath`, apps/pyplot-demo-intermediate-0.1.0, from the `deploymentSystem`, demo.storage.example.com, to the job work directory on demo.execute.example.com and process the contents of the wrapper template, wrapper.sh, into an executable file.
 
-   During processing, Agave will replace all occurrences of `${dataset}`, `${chartType}`, `${xlabel}`, etc. with the name of the corresponding input or parameter value provided in the job description. Depending on whether the execution system registered with Agave uses a batch scheduler, specifies a custom environment, or requires other custom environment variables set, Agave will prepend these values to the top of the file, resolve any other <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/" title="App Management Tutorial">predefined template variables</a> in the wrapper, save the file in the job work directory, and run it.
+   During processing, Tapis will replace all occurrences of `${dataset}`, `${chartType}`, `${xlabel}`, etc. with the name of the corresponding input or parameter value provided in the job description. Depending on whether the execution system registered with Tapis uses a batch scheduler, specifies a custom environment, or requires other custom environment variables set, Tapis will prepend these values to the top of the file, resolve any other <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/" title="App Management Tutorial">predefined template variables</a> in the wrapper, save the file in the job work directory, and run it.
 
-   ### Things you don't worry about  
+   ### Things you don't worry about
 
-   #### Data staging  
+   #### Data staging
 
    Data will already be there before the app is run. If the data isn't available or the user didn't provide any, the job will fail before the wrapper template is processed.
 
-   #### Logging  
+   #### Logging
 
-   Logging is handled for you by Agave. Both stderr and stdout will be captured for CLI apps. On batch systems, the job log files are saved in the job work directory. All will be present in the job work directory or archive directory when the job completes.
+   Logging is handled for you by Tapis. Both stderr and stdout will be captured for CLI apps. On batch systems, the job log files are saved in the job work directory. All will be present in the job work directory or archive directory when the job completes.
 
-   #### App installation  
+   #### App installation
 
-   This is a bit of a moot point since pyplot is Python, but Agave handles the app staging for you by copying the `deploymentPath` from the `deploymentSystem` given in your app description to the job work folder on the `executionSystem`. As long as you can package up your app's assets into the `deploymentPath`, or ensure that they are already present on the system, you can run your app without dealing with pulling in dependencies, etc.
+   This is a bit of a moot point since pyplot is Python, but Tapis handles the app staging for you by copying the `deploymentPath` from the `deploymentSystem` given in your app description to the job work folder on the `executionSystem`. As long as you can package up your app's assets into the `deploymentPath`, or ensure that they are already present on the system, you can run your app without dealing with pulling in dependencies, etc.
 
    Of course, you still have the option of including a build or compilation in your wrapper script. For throughput reasons, however, that may not be the best approach. For another option with much better portability and performance, see the <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/docker-app-containers-tutorial/" title="Docker App Containers Tutorial">Docker App Containers Tutorial</a>.
 
-   ### Testing the wrapper template  
+   ### Testing the wrapper template
 
-   To test our wrapper template, we will create a new script in our test folder. The script will define the template variables Agave would replace in the wrapper template at runtime. One perk of the wrapper templates being shell scripts is we can simply define our inputs and parameters as environment variables and bash will do the replacement for us.
+   To test our wrapper template, we will create a new script in our test folder. The script will define the template variables Tapis would replace in the wrapper template at runtime. One perk of the wrapper templates being shell scripts is we can simply define our inputs and parameters as environment variables and bash will do the replacement for us.
 
    [code lang=text]
    #!/bin/bash
@@ -399,22 +399,22 @@ That's it. We can run the script and verify that the correct bar chart appears i
 Registering your app
 ^^^^^^^^^^^^^^^^^^^^
 
-Now that we have our wrapper script and app description, and we have tested it works, we will register it to Agave. Let's copy our wrapper script and test directory up to the ``deploymentSystem`` we specified in the app description and then send our app description to Agave.
+Now that we have our wrapper script and app description, and we have tested it works, we will register it to Tapis. Let's copy our wrapper script and test directory up to the ``deploymentSystem`` we specified in the app description and then send our app description to Tapis.
 
 .. code-block:: shell
 
-   files-mkdir -N apps/pyplot-demo-intermediate-0.1.0 -S demo.storage.example.com 
-   files-upload -F wrapper.sh -S demo.storage.example.com apps/pyplot-demo-intermediate-0.1.0
-   files-upload -F test -S demo.storage.example.com apps/pyplot-demo-intermediate-0.1.0
+  tapis files mkdir agave://tacc.work.taccuser/ apps/pyplot-demo-advanced-0.1.0
+  tapis files upload agave://tacc.work.taccuser/apps/pyplot-demo-advanced-0.1.0 wrapper.sh
+  tapis files upload agave://tacc.work.taccuser/apps/pyplot-demo-advanced-0.1.0 test
 
-   apps-addupdate -F app.json
+   tapis apps create -F app.json
 
-That's it. Now we have our app ready to run with Agave.
+That's it. Now we have our app ready to run with Tapis.
 
 Running your app
 ^^^^^^^^^^^^^^^^
 
-To run your app, we will post a JSON job request object to the jobs service. We can get an sample job description from the Agave CLI's ``jobs-template`` script.
+To run your app, we will post a JSON job request object to the jobs service. We can get an sample job description from the Tapis CLI's ``jobs-template`` script.
 
 .. code-block:: shell
 

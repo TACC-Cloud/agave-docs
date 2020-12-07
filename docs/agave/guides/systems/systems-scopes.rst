@@ -43,11 +43,6 @@ Private systems
 
 All systems are private by default. This means that no one can use a system you register without you or another user with "admin" permissions granting them a role on that system. Most of the time, unless you are configuring a tenant for your organization, all the systems you register will stay private. Do not mistake the term private for isolated. Private simply means not public. Another way to think of private systems is as "invitation only." You are free to share your system as many or as few people as you want and it will still remain a private system.
 
-Readonly systems
-----------------
-
-Readonly systems are systems who have granted a GUEST role to the ``world`` group. Once this grant is made, any user will be able to browse the system's entire file system regardless of individual permissions. Be careful when making a system readonly. Usually, the only reason you would do this is because you have configured the system ``rootDir`` to point to a dataset or volume that you want to publish for others to use. Carelessly making systems readonly can expose personal data stored on the system to every other API user. While your intentions may be pure, theirs may not be, so think through the implications of this action before you take it.
-
 Public systems
 --------------
 
@@ -127,7 +122,7 @@ To publish a system and make it public, you make a PUT request on the system's u
 
 .. code-block:: plaintext
 
-   systems-publish -v $SYSTEM_ID
+   tapis systems publish -v $SYSTEM_ID
 
 .. container:: foldable
 
@@ -153,7 +148,7 @@ Unpublishing a system
 
 .. code-block:: plaintext
 
-   systems-unpublish -v $SYSTEM_ID
+   tapis systems unpublish -v $SYSTEM_ID
 
 .. container:: foldable
 
@@ -179,9 +174,9 @@ To unpublish a system, make the same request with the ``action`` attribute set t
 Default systems
 ===============
 
-As you continue to use Agave over time, it will not be uncommon for you to accumulate additional storage and execution systems through both self-registration and other people sharing their systems with you. It may even be the case that you have multiple public systems available to you. In this situation, it is helpful for both you and your users to specify what the default systems should be.
+As you continue to use Tapis over time, it will not be uncommon for you to accumulate additional storage and execution systems through both self-registration and other people sharing their systems with you. It may even be the case that you have multiple public systems available to you. In this situation, it is helpful for both you and your users to specify what the default systems should be.
 
-Default systems are the systems that are used when the user does not specify a system to use when performing a remote action in Agave. For example, specifying an ``archivePath`` in a job request, but no ``archiveSystem``\ , or specifying a ``deploymentPath`` in an app description, but no ``deploymentSystem``. In these situations, Agave will use the user's default storage system.
+Default systems are the systems that are used when the user does not specify a system to use when performing a remote action in Tapis. For example, specifying an ``archivePath`` in a job request, but no ``archiveSystem``\ , or specifying a ``deploymentPath`` in an app description, but no ``deploymentSystem``. In these situations, Tapis will use the user's default storage system.
 
 Four types of default systems are possible. The following table describes them.
 
@@ -226,7 +221,7 @@ Four types of default systems are possible. The following table describes them.
    </table>
 |
 
-As a best practice, it is recommended to always specify the system you intend to use when interacting with Agave. This will eliminate ambiguity in each request and make your actions more repeatable over time as the availability and configuration of the global and user default systems may change.
+As a best practice, it is recommended to always specify the system you intend to use when interacting with Tapis. This will eliminate ambiguity in each request and make your actions more repeatable over time as the availability and configuration of the global and user default systems may change.
 
 Setting user default system
 ---------------------------
@@ -235,7 +230,7 @@ To set a system as the user's default, you make a PUT request on the system's ur
 
 .. code-block:: plaintext
 
-   systems-setdefault $SYSTEM_ID
+   tapis systems default set $SYSTEM_ID
 
 .. container:: foldable
 
@@ -261,7 +256,7 @@ Unsetting user default system
 
 .. code-block:: plaintext
 
-   systems-unsetdefault $SYSTEM_ID
+   tapis systems default unset $SYSTEM_ID
 
 .. container:: foldable
 
@@ -291,7 +286,7 @@ Tenant administrators may wish to set default storage and execution systems for 
 
 .. code-block:: plaintext
 
-   systems-setdefault -G $SYSTEM_ID
+   tapis systems default set -G $SYSTEM_ID
 
 .. container:: foldable
 
@@ -318,7 +313,7 @@ To remove a system from being the global default, make the same request with the
 
 .. code-block:: plaintext
 
-   systems-unsetdefault -G $SYSTEM_ID
+   tapis systems default unset -G $SYSTEM_ID
 
 .. container:: foldable
 

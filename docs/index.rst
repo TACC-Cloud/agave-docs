@@ -1,12 +1,12 @@
-.. Agave documentation master file, created by
+.. Tapis documentation master file, created by
    sphinx-quickstart on Mon Jul  9 15:39:15 2018.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Agave
+Tapis
 =====
 
-The Agave Platform is an open source, science-as-a-service API platform for powering your digital lab. Documentation is presented below:
+Tapis is an open source, science-as-a-service API platform for powering your digital lab. Documentation is presented below:
 
 .. toctree::
    :maxdepth: 2
@@ -17,6 +17,7 @@ The Agave Platform is an open source, science-as-a-service API platform for powe
    agave/introduction/conventions-response-customization
    agave/introduction/status-codes
    agave/introduction/best-practices
+   agave/introduction/tutorials
 
 .. toctree::
     :maxdepth: 2
@@ -94,6 +95,7 @@ The Agave Platform is an open source, science-as-a-service API platform for powe
     agave/guides/metadata/metadata-search
     agave/guides/metadata/metadata-permissions
     agave/guides/metadata/metadata-schema
+    agave/guides/metadata/metadata-v3
 
 .. toctree::
     :maxdepth: 2

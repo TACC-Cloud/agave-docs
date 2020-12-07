@@ -12,7 +12,7 @@ App Tutorial
 
 We saw in the :raw-html-m2r:`<a href="http://agaveapi.co/documentation/beginners-guides/system-discovery/" title="System Discovery">System Discovery</a>` guide that there were both storage and execution systems. The :raw-html-m2r:`<a href="http://agaveapi.co/documentation/beginners-guides/managing-data/" title="Managing Data">Data Management</a>` guide covered interacting with storage systems. In this section we look at Apps, which are the primary point of interaction with execution systems.
 
-An app in Agave is most easily thought of as the installation of a simulation code on a physical resource. For example, the official installation of Blast on Stampede would be described by a single app. Your personally compiled version of Blast on Stampede would be described by a different app. Ditto for the same two codes on Lonestar.
+An app in Tapis is most easily thought of as the installation of a simulation code on a physical resource. For example, the official installation of Blast on Stampede would be described by a single app. Your personally compiled version of Blast on Stampede would be described by a different app. Ditto for the same two codes on Lonestar.
 
 Discovering Apps
 ----------------
@@ -23,12 +23,12 @@ Discovering Apps
 
 .. code-block:: plaintext
 
-   apps-list -v
+   tapis apps list -v
 
 .. code-block:: json
 
-   [  
-     {  
+   [
+     {
        "executionSystem":"docker.agaveapi.co",
        "id":"cloud-runner-0.1.0u1",
        "isPublic":true,
@@ -37,13 +37,13 @@ Discovering Apps
        "revision":1,
        "shortDescription":"Generic app to run arbitrary docker images in the cloud.",
        "version":"0.1.0",
-       "_links":{  
-         "self":{  
+       "_links":{
+         "self":{
            "href":"https://public.tenants.agaveapi.co/apps/v2/cloud-runner-0.1.0u1"
          }
        }
      },
-     {  
+     {
        "executionSystem":"docker.agaveapi.co",
        "id":"wordcount-1.0u1",
        "isPublic":true,
@@ -52,8 +52,8 @@ Discovering Apps
        "revision":1,
        "shortDescription":"Demo R app running as a Docker container.",
        "version":"1.0",
-       "_links":{  
-         "self":{  
+       "_links":{
+         "self":{
            "href":"https://public.tenants.agaveapi.co/apps/v2/wordcount-1.0u1"
          }
        }
@@ -67,7 +67,7 @@ The response is a JSON array of summary app descriptions.
 
 .. raw:: html
 
-   <aside class="notice">Depending on who is administering the Agave platform for your organization, you may see many or few apps returned from the above response. This is normal and has to do with what systems and apps they have chosen to make publicly available. If you don't see any apps there by default, no worries, see the <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/" title="App Management Tutorial">App Management Tutorial</a> for a quick reference on how to add your own.</aside>
+   <aside class="notice">Depending on who is administering the Tapis platform for your organization, you may see many or few apps returned from the above response. This is normal and has to do with what systems and apps they have chosen to make publicly available. If you don't see any apps there by default, no worries, see the <a href="http://agaveapi.co/documentation/tutorials/app-management-tutorial/" title="App Management Tutorial">App Management Tutorial</a> for a quick reference on how to add your own.</aside>
 
 
 Viewing app details
@@ -79,7 +79,7 @@ Viewing app details
 
 .. code-block:: plaintext
 
-   apps-list -v wc-osg-1.00u1
+   tapis apps show -v wc-osg-1.00u1
 
 ..
 
@@ -88,7 +88,7 @@ Viewing app details
 
 .. code-block:: json
 
-   {  
+   {
      "available":true,
      "checkpointable":true,
      "defaultMaxRunTime":null,
@@ -103,9 +103,9 @@ Viewing app details
      "helpURI":"http://www.gnu.org/s/coreutils/manual/html_node/wc-invocation.html",
      "icon":null,
      "id":"wc-osg-1.00u1",
-     "inputs":[  
-       {  
-         "details":{  
+     "inputs":[
+       {
+         "details":{
            "argument":null,
            "description":"",
            "label":"File to count words in: ",
@@ -113,16 +113,16 @@ Viewing app details
            "visible":true
          },
          "id":"query1",
-         "semantics":{  
-           "fileTypes":[  
+         "semantics":{
+           "fileTypes":[
              "text-0"
            ],
            "minCardinality":1,
-           "ontology":[  
+           "ontology":[
              "http://sswapmeet.sswap.info/util/TextDocument"
            ]
          },
-         "value":{  
+         "value":{
            "default":"read1.fq",
            "order":0,
            "required":false,
@@ -135,42 +135,42 @@ Viewing app details
      "label":"wc condor",
      "lastModified":"2014-06-07T12:29:12.000-05:00",
      "longDescription":"",
-     "modules":[  
+     "modules":[
        "load TACC",
        "purge"
      ],
      "name":"wc-osg",
-     "ontology":[  
+     "ontology":[
        "http://sswapmeet.sswap.info/algorithms/wc"
      ],
-     "outputs":[  
-       {  
-         "details":{  
+     "outputs":[
+       {
+         "details":{
            "description":"Results of WC",
            "label":"Text file"
          },
          "id":"outputWC",
-         "semantics":{  
+         "semantics":{
            "fileTypes":[],
            "maxCardinality":1,
            "minCardinality":1,
-           "ontology":[  
+           "ontology":[
              "http://sswapmeet.sswap.info/util/TextDocument"
            ]
          },
-         "value":{  
+         "value":{
            "default":"wc_out.txt",
            "validator":""
          }
        }
      ],
      "parallelism":"SERIAL",
-     "parameters":[  
+     "parameters":[
 
      ],
      "revision":1,
      "shortDescription":"Count words in a file",
-     "tags":[  
+     "tags":[
        "gnu",
        "textutils"
      ],
@@ -178,23 +178,23 @@ Viewing app details
      "testPath":"/wrapper.sh",
      "uuid":"0001402162152914-5056a550b8-0001-005",
      "version":"1.00",
-     "_links":{  
-       "executionSystem":{  
+     "_links":{
+       "executionSystem":{
          "href":"https://public.tenants.agaveapi.co/systems/v2/condor.opensciencegrid.org"
        },
-       "metadata":{  
+       "metadata":{
          "href":"https://public.tenants.agaveapi.co/meta/v2/data/?q={\"associationIds\":\"0001402162152914-5056a550b8-0001-005\"}"
        },
-       "owner":{  
+       "owner":{
          "href":"https://public.tenants.agaveapi.co/profiles/v2/nryan"
        },
-       "permissions":{  
+       "permissions":{
          "href":"https://public.tenants.agaveapi.co/apps/v2/wc-osg-1.00u1/pems"
        },
-       "self":{  
+       "self":{
          "href":"https://public.tenants.agaveapi.co/apps/v2/wc-osg-1.00u1"
        },
-       "storageSystem":{  
+       "storageSystem":{
          "href":"https://public.tenants.agaveapi.co/systems/v2/data.agaveapi.co"
        }
      }
@@ -206,14 +206,14 @@ The the important fields to notice in the repsonse are ``id``\ , ``inputs``\ , `
 
 
 * ``id``\ : The unique id of the app. App ids are made up of a name separated by a version number. Public apps also have the revision number appended to the id to distinguish their changes over time.
-* ``inputs``\ : a JSON array of objects describing the input files needed to run this app. 
-  ** ``inputs.id``\ : the input id, which is the attribute name that will be used when specifying this input in a job request. ** ``inputs.details.label``\ : a short description of what this input field represents in terms of the app 
-  ** ``inputs.value.required``\ : a boolean value indicating whether this value is required to submit a job request. ** ``inputs.value.validator``\ : a Perl regular expression used to validate this field value in a job request. 
+* ``inputs``\ : a JSON array of objects describing the input files needed to run this app.
+  ** ``inputs.id``\ : the input id, which is the attribute name that will be used when specifying this input in a job request. ** ``inputs.details.label``\ : a short description of what this input field represents in terms of the app
+  ** ``inputs.value.required``\ : a boolean value indicating whether this value is required to submit a job request. ** ``inputs.value.validator``\ : a Perl regular expression used to validate this field value in a job request.
 * ``parameters``\ : a JSON array of objects describing the parameters needed to run this app.
-  ** ``parameters.id``\ : the input id, which is the attribute name that will be used when specifying this input in a job request. ** ``parameters.details.label``\ : a short description of what this parameter represents in terms of the app 
-  ** ``parameters.value.type``\ : the primary type assigned to this parameter. This determines what kind of value you pass for this parameter in a job request. Possible values are string, number, bool, flag, and enum. ** ``parameters.value.required``\ : a boolean value indicating whether this parameter is required to submit a job request. 
-  ** ``parameters.value.validator``\ : a Perl regular expression used to validate this parameter value in a job request. Any parameter-specific validation will occur after the value's primary type is validated.  
-* ``executionSystem``\ : the system on which this app code will run. You don't actually need to know this to run a job with this app, but it's helpful in case you need/want to debug at some point. 
+  ** ``parameters.id``\ : the input id, which is the attribute name that will be used when specifying this input in a job request. ** ``parameters.details.label``\ : a short description of what this parameter represents in terms of the app
+  ** ``parameters.value.type``\ : the primary type assigned to this parameter. This determines what kind of value you pass for this parameter in a job request. Possible values are string, number, bool, flag, and enum. ** ``parameters.value.required``\ : a boolean value indicating whether this parameter is required to submit a job request.
+  ** ``parameters.value.validator``\ : a Perl regular expression used to validate this parameter value in a job request. Any parameter-specific validation will occur after the value's primary type is validated.
+* ``executionSystem``\ : the system on which this app code will run. You don't actually need to know this to run a job with this app, but it's helpful in case you need/want to debug at some point.
 
 Next Steps
 ----------
