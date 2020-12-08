@@ -27,7 +27,7 @@ Default parameters:
 
 You can create a postit with either content type 'application/json' or 'application/x-www-form-urlencoded'. The target URL must contain the base URL for the correct tenant. The url must also point to one of the following Tapis services: JOBS, FILES, APPS or SYSTEMS.
 
-<u>JSON examples</u>
+**APPLICATION/JSON examples**
 
 Creating a postit with maxUses and lifetime:
 
@@ -57,7 +57,7 @@ Creating unlimited postit:
         $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d '{"unlimited": true, "url": "<target_url>"}' -H "Content-Type: application/json" https://api.tacc.utexas.edu/postits/v2?pretty=true"
 |
 
-<u>X-WWW-FORM-URLENCODED examples</u>
+**APPLICATION/X-WWW-FORM-URLENCODED examples**
 
 Creating a postit with maxUses and lifetime:
 
@@ -88,9 +88,9 @@ Creating unlimited postit:
 |
 
 
-<u>CLI example</u>
+**CLI example**
 
-Note: CLI does not currently support unlimited postits
+(Note: CLI does not currently support unlimited postits)
 
 .. container:: foldable
 
@@ -107,7 +107,7 @@ Note: CLI does not currently support unlimited postits
             https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org/nryan/picksumipsum.txt
 |
 
-<u>Example Creation Response</u> 
+**Example Postit Creation Response**
 
 .. container:: foldable
 
