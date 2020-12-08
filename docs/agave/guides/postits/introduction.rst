@@ -24,7 +24,6 @@ Default parameters:
 * maxUses - 1
 * lifetime - 30 days 
 * unlimited - false
-* force (query parameter) - false -- discussed below 
 
 You can create a postit with either content type 'application/json' or 'application/x-www-form-urlencoded'. The target URL must contain the base URL for the correct tenant. The url must also point to one of the following Tapis services: JOBS, FILES, APPS or SYSTEMS.
 
