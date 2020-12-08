@@ -227,8 +227,10 @@ To list all currently active PostIts, see the following commands:
 
 The curl interface also allows listing postits by status. Just use `?status=<status>` at the end of the URL. For example, the following curl would return all expired postits. See the table below for other status options. 
 
-``curl -sk -H "Authorization: Bearer $AUTH_TOKEN" 
-   / 'https://api.tacc.utexas.edu/postits/v2/?pretty=true&status=expired'``
+.. code-block:: plaintext
+
+   curl -sk -H "Authorization: Bearer $AUTH_TOKEN" 
+   \ 'https://api.tacc.utexas.edu/postits/v2/?pretty=true&status=expired'
 
 **Status Fields**
 
