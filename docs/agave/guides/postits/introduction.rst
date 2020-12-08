@@ -27,7 +27,7 @@ Default parameters:
 
 You can create a postit with either content type 'application/json' or 'application/x-www-form-urlencoded'. The target URL must contain the base URL for the correct tenant. The url must also point to one of the following Tapis services: JOBS, FILES, APPS or SYSTEMS.
 
-*JSON examples*
+<u>JSON examples</u>
 
 Creating a postit with maxUses and lifetime:
 
@@ -57,7 +57,7 @@ Creating unlimited postit:
         $ curl -sk -H "Authorization: Bearer $ACCESS_TOKEN" -X POST -d '{"unlimited": true, "url": "<target_url>"}' -H "Content-Type: application/json" https://api.tacc.utexas.edu/postits/v2?pretty=true"
 |
 
-*X-WWW-FORM-URLENCODED examples*
+<u>X-WWW-FORM-URLENCODED examples</u>
 
 Creating a postit with maxUses and lifetime:
 
@@ -88,9 +88,10 @@ Creating unlimited postit:
 |
 
 
-*CLI example* 
+<u>CLI example</u>
 
 Note: CLI does not currently support unlimited postits
+
 .. container:: foldable
 
      .. container:: header
@@ -106,7 +107,7 @@ Note: CLI does not currently support unlimited postits
             https://api.tacc.utexas.edu/files/v2/media/system/data.iplantcollaborative.org/nryan/picksumipsum.txt
 |
 
-*Example Creation Response* 
+<u>Example Creation Response</u> 
 
 .. container:: foldable
 
@@ -196,8 +197,8 @@ Note: CLI does not currently support unlimited postits
     :warning: If you intend and using a PostIt as a link in a web page or a messaging service like Slack, HipChat, Facebook, Twitter, etc, which unfurl URL for display, then you should set the maximum uses greater than 4 due to the number of preflight requests made to the URL for display. Failing to do so will result in the URL showing up in the feed, but failing to resolve when clicked to download.
 
 
-Listing Active PostIts
-^^^^^^^^^^^^^^^^^^^^^^
+Listing PostIts
+^^^^^^^^^^^^^^^
 
 To list all currently active PostIts, see the following commands:
    
@@ -206,7 +207,7 @@ To list all currently active PostIts, see the following commands:
      .. container:: header
 
         :fa:`caret-right`
-        **Show cURL**
+        **Show CLI Command**
 
      .. code-block:: plaintext
 
@@ -226,7 +227,8 @@ To list all currently active PostIts, see the following commands:
 
 The curl interface also allows listing postits by status. Just use `?status=<status>` at the end of the URL. For example, the following curl would return all expired postits. See the table below for other status options. 
 
-``curl -sk -H "Authorization: Bearer $AUTH_TOKEN" 'https://api.tacc.utexas.edu/postits/v2/?pretty=true&status=expired'``
+``curl -sk -H "Authorization: Bearer $AUTH_TOKEN" 
+   / 'https://api.tacc.utexas.edu/postits/v2/?pretty=true&status=expired'``
 
 **Status Fields**
 
