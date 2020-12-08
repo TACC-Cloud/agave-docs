@@ -258,6 +258,8 @@ The curl interface also allows listing postits by status. Just use `?status=<sta
 Listing Single PostIt
 ^^^^^^^^^^^^^^^^^^^^^
 
+**COMING 12/15**
+
 You can list the information for any PostIt UUID, as long as it is on the same tenant. 
 
 List a single postit
@@ -276,6 +278,8 @@ List a single postit
 
 Updating PostIts
 ^^^^^^^^^^^^^^^^
+
+**COMING 12/15**
 
 The creator of a postit and tenant admins can update a postit. One may update maxUses, lifetime and unlimited. If a postit transitions from unlimited to limited without maxUses and lifetime, the current expiration and remaining uses is used. When updating the lifetime, a new expiration time will be calculated based on the lifetime sent in. It does not add on to the current expiration time. 
 
