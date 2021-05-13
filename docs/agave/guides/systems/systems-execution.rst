@@ -74,7 +74,7 @@ In contrast to storage systems, execution systems specify compute resources wher
            <tr>
                <td>scratchDir</td>
                <td>string</td>
-               <td>Path to use for a job scratch directory. This value is the first choice for creating a job`s working directory at runtime. The path will be resolved relative to the <code>rootDir</code> value in the storage config if it begins with a "/", and relative to the system <code>homeDir</code> otherwise.</td>
+               <td>Path to use for a job scratch directory. This value is the first choice for creating a job's working directory at runtime. The path will be resolved relative to the <code>rootDir</code> value in the storage config if it begins with a "/", and relative to the system <code>homeDir</code> otherwise.</td>
            </tr>
            <tr>
                <td>site</td>
@@ -192,53 +192,7 @@ The ``startupScript`` field supports the use of template variables which Tapis w
    <td>SYSTEM_OWNER</td>
    <td>The username of the user who created the system.</td>
    </tr>
-   <tr>
-   <td>AGAVE_JOB_NAME</td>
-   <td>The slugified version of the name of the job. See the section on <a href="#slugs">Conventions</a> for more information about slugs.</td>
-   </tr>
-   <tr>
-   <td>AGAVE_JOB_ID</td>
-   <td>The unique identifier of the job.</td>
-   </tr>
-   <tr>
-   <td>AGAVE_JOB_APP_ID</td>
-   <td>The <span class="code">appId</span> for which the job was requested.</td>
-   </tr>
-   <tr>
-   <td>AGAVE_JOB_BATCH_QUEUE</td>
-   <td>The batch queue on the <span class="code">AGAVE_JOB_EXECUTION_SYSTEM</span> to which the job was submitted.</td>
-   </tr>
-   <tr>
-   <td>AGAVE_JOB_EXECUTION_SYSTEM</td>
-   <td>The Tapis execution system id where this job is running.</td>
-   </tr>
-   <tr>
-   <td>AGAVE_JOB_ARCHIVE_PATH</td>
-   <td>The path on the <span class="code">archiveSystem</span> where the job output will be copied if archiving is enabled.</td>
-   </tr>
-   <tr>
-   <td>AGAVE_JOB_OWNER</td>
-   <td>The username of the job owner.</td>
-   </tr>
-   <tr>
-   <td>AGAVE_JOB_TENANT</td>
-   <td>The id of the tenant to which the job was submitted.</td>
-   </tr>
-   <tr>
-   <td>MONITOR_ID</td>
-   <td>The ID of the monitor.</td>
-   </tr>
-   <tr>
-   <td>MONITOR_CHECK_ID</td>
-   <td>The ID of the monitor check making the request.</td>
-   </tr>
-   <tr>
-   <td>MONITOR_OWNER</td>
-   <td>The username of the user who created the monitor.</td>
-   </tr>
-   </tbody>
-   </table>
-|
+   
 
 The ``startupScript`` is :raw-html-m2r:`<strong>NOT</strong>` a virtual path relative to the relative to the system ``rootDir`` and ``homeDir``. It is an acutal path on the remote system. The reason being that this value can only be set by the system owner, so it is unlikely to be a security issue, and the login account home directory may not be visible from the virtualized file system exposed by the system definition. This gives the owner a way to properly configure their user environment while protecting assets they would otherwise choose not to expose.
 

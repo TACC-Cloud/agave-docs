@@ -12,3 +12,19 @@ computing (HPC), high throughput computing (HTC), Cloud, and Big Data resources 
 * Integrate anywhere
 
 The Tapis documentation site contains documentation, guides, tutorials, and lots of examples to help you build your own digital lab.
+
+
+V3 Documentation
+----------------
+
+If you are looking for documentation for Tapis v3 please go  `here <https://tapis.readthedocs.io/en/latest/>`_ 
+
+
+
+Source Code
+-----------
+
+   If you are looking for source code, you can find it here: 
+
+   * https://github.com/TAPIS-PROJECT
+
