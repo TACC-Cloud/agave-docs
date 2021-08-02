@@ -21,6 +21,7 @@ Systems Service
 
    <ul>
    <li>Use restricted SSH keys whenever possible.</li>
+   <li>Open SSH keys are <b>not</b> supported.</li>
    <li>Use SSH keys rather than passwords whenever possible.</li>
    <li>Use a MyProxy Gateway service whenever available rather than a stock MyProxy service to avoid password exposure.</li>
    <li>Always configure a default storage system for your organization. This provides tremendous benefit to users who don't want to think about the makeup of your infrastructure.</li>

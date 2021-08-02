@@ -174,7 +174,7 @@ The ``startupScript`` field supports the use of template variables which Tapis w
    </tr>
    <tr>
    <td>SYSTEM_LOGIN_PROTOCOL</td>
-   <td>The protocol used to establish a session with this system (eg SSH, GSISSH, etc)</td>
+   <td>The protocol used to establish a session with this system (eg SSH, GSISSH, etc *NOTE: OpenSSH Keys are <b>not</b> supported. )</td>
    </tr>
    <tr>
    <td>SYSTEM_LOGIN_HOST</td>
@@ -612,7 +612,7 @@ The full list of login configuration options is given in the following table. We
            <tr>
                <td>protocol</td>
                <td>SSH, GSISSH, LOCAL</td>
-               <td><b>Required:</b> The protocol used to submit jobs for execution.</td>
+               <td><b>Required:</b> The protocol used to submit jobs for execution. *NOTE: OpenSSH Keys are <b>not</b> supported.</td>
            </tr>
            <tr>
                <td>proxy</td>
