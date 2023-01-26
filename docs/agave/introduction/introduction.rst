@@ -2,7 +2,9 @@
 Introduction
 ============
 
-The Tapis Platform is an open source, science-as-a-service API platform for powering your digital lab. Tapis allows you to bring together your public, private, and shared high performance
+This is the documentation for Tapis V2. The documentation for Tapis V3 is listed in the section below.
+
+The Tapis V2 Platform is an open source, science-as-a-service API platform for powering your digital lab. Tapis allows you to bring together your public, private, and shared high performance
 computing (HPC), high throughput computing (HTC), Cloud, and Big Data resources under a single, web-friendly REST API.
 
 
@@ -17,7 +19,7 @@ The Tapis documentation site contains documentation, guides, tutorials, and lots
 V3 Documentation
 ----------------
 
-If you are looking for documentation for Tapis v3 please go  `here <https://tapis.readthedocs.io/en/latest/>`_ 
+If you are looking for documentation for Tapis V3 please go  `here <https://tapis.readthedocs.io/en/latest/>`_ 
 
 
 
